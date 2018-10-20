@@ -2,26 +2,26 @@ package epicsquid.superiorshields.capability;
 
 public class ShieldCapability implements IShieldCapability {
 
-  private int currentHp;
-  private int maxHp;
+  private float currentHp;
+  private float maxHp;
 
-  public ShieldCapability(int currentHp, int maxHp) {
+  public ShieldCapability(float currentHp, float maxHp) {
     this.currentHp = currentHp;
     this.maxHp = maxHp;
   }
 
   @Override
-  public int getCurrentHp() {
+  public float getCurrentHp() {
     return currentHp;
   }
 
   @Override
-  public int getMaxHp() {
+  public float getMaxHp() {
     return maxHp;
   }
 
   @Override
-  public void setCurrentHp(int currentHp) {
+  public void setCurrentHp(float currentHp) {
     this.currentHp = currentHp;
     if (this.currentHp < 0) {
       this.currentHp = 0;
@@ -31,7 +31,7 @@ public class ShieldCapability implements IShieldCapability {
   }
 
   @Override
-  public void setMaxHp(int maxHp) {
+  public void setMaxHp(float maxHp) {
     this.maxHp = maxHp;
   }
 }

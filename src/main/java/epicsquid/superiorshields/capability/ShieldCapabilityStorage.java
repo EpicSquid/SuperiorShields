@@ -17,8 +17,8 @@ public class ShieldCapabilityStorage implements IStorage<IShieldCapability> {
   @Override
   public NBTBase writeNBT(Capability<IShieldCapability> capability, IShieldCapability instance, EnumFacing side) {
     NBTTagCompound tag = new NBTTagCompound();
-    tag.setInteger(NBT_MAX_SHIELD_HP, instance.getMaxHp());
-    tag.setInteger(NBT_SHIELD_HP, instance.getCurrentHp());
+    tag.setFloat(NBT_MAX_SHIELD_HP, instance.getMaxHp());
+    tag.setFloat(NBT_SHIELD_HP, instance.getCurrentHp());
     return tag;
   }
 
@@ -27,10 +27,10 @@ public class ShieldCapabilityStorage implements IStorage<IShieldCapability> {
     if (nbt instanceof NBTTagCompound) {
       NBTTagCompound tag = (NBTTagCompound) nbt;
       if (tag.hasKey(NBT_MAX_SHIELD_HP)) {
-        instance.setMaxHp(tag.getInteger(NBT_MAX_SHIELD_HP));
+        instance.setMaxHp(tag.getFloat(NBT_MAX_SHIELD_HP));
       }
       if (tag.hasKey(NBT_SHIELD_HP)) {
-        instance.setCurrentHp(tag.getInteger(NBT_SHIELD_HP));
+        instance.setCurrentHp(tag.getFloat(NBT_SHIELD_HP));
       }
     }
   }

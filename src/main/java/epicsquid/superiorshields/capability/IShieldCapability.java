@@ -2,11 +2,11 @@ package epicsquid.superiorshields.capability;
 
 public interface IShieldCapability {
 
-  int getCurrentHp();
+  float getCurrentHp();
 
-  int getMaxHp();
+  float getMaxHp();
 
-  void setCurrentHp(int currentHp);
+  void setCurrentHp(float currentHp);
 
-  void setMaxHp(int maxHp);
+  void setMaxHp(float maxHp);
 }

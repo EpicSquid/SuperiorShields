@@ -12,8 +12,8 @@ import net.minecraftforge.common.util.INBTSerializable;
 
 public class ShieldCapabilityProvider implements ICapabilityProvider, INBTSerializable, IShieldCapability {
 
-  int currentHp;
-  int maxHp;
+  private float currentHp;
+  private float maxHp;
 
   public ShieldCapabilityProvider(boolean isNewShield) {
     if (isNewShield) {
@@ -49,31 +49,31 @@ public class ShieldCapabilityProvider implements ICapabilityProvider, INBTSerial
     if (nbt instanceof NBTTagCompound) {
       NBTTagCompound tag = (NBTTagCompound) nbt;
       if (tag.hasKey(ShieldCapabilityStorage.NBT_MAX_SHIELD_HP)) {
-        setMaxHp(tag.getInteger(ShieldCapabilityStorage.NBT_MAX_SHIELD_HP));
+        setMaxHp(tag.getFloat(ShieldCapabilityStorage.NBT_MAX_SHIELD_HP));
       }
       if (tag.hasKey(ShieldCapabilityStorage.NBT_SHIELD_HP)) {
-        setCurrentHp(tag.getInteger(ShieldCapabilityStorage.NBT_SHIELD_HP));
+        setCurrentHp(tag.getFloat(ShieldCapabilityStorage.NBT_SHIELD_HP));
       }
     }
   }
 
   @Override
-  public int getMaxHp() {
+  public float getMaxHp() {
     return maxHp;
   }
 
   @Override
-  public int getCurrentHp() {
+  public float getCurrentHp() {
     return currentHp;
   }
 
   @Override
-  public void setMaxHp(int currentHp) {
+  public void setMaxHp(float currentHp) {
     this.currentHp = currentHp;
   }
 
   @Override
-  public void setCurrentHp(int maxHp) {
+  public void setCurrentHp(float maxHp) {
     this.maxHp = maxHp;
   }
 }
