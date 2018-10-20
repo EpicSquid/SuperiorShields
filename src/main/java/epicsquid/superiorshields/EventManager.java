@@ -5,7 +5,7 @@ import javax.annotation.Nonnull;
 import baubles.api.BaublesApi;
 import baubles.api.cap.IBaublesItemHandler;
 import epicsquid.superiorshields.init.ModItems;
-import epicsquid.superiorshields.item.IShield;
+import epicsquid.superiorshields.item.ISuperiorShield;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -21,8 +21,8 @@ public class EventManager {
       if (slot != -1) {
         IBaublesItemHandler handler = BaublesApi.getBaublesHandler(player);
         ItemStack stack = handler.getStackInSlot(slot);
-        if (stack.getItem() instanceof IShield) {
-          ((IShield) stack.getItem()).applyShield(player, event.getAmount());
+        if (stack.getItem() instanceof ISuperiorShield) {
+          event.setAmount(((ISuperiorShield) stack.getItem()).applyShield(player, event.getAmount()));
         }
       }
     }

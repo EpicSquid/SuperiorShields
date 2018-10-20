@@ -4,7 +4,7 @@ import javax.annotation.Nonnull;
 
 import net.minecraft.entity.player.EntityPlayer;
 
-public interface IShield {
+public interface ISuperiorShield {
 
-  void applyShield(@Nonnull EntityPlayer player, float damage);
+  float applyShield(@Nonnull EntityPlayer player, float damage);
 }

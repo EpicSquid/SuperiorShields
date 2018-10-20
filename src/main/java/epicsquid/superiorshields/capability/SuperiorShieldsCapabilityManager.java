@@ -1,5 +1,7 @@
 package epicsquid.superiorshields.capability;
 
+import javax.annotation.Nonnull;
+
 import epicsquid.superiorshields.SuperiorShields;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -21,7 +23,7 @@ public class SuperiorShieldsCapabilityManager {
   }
 
   @SubscribeEvent
-  public static void onAddCapabilities(AttachCapabilitiesEvent event) {
+  public static void onAddCapabilities(@Nonnull AttachCapabilitiesEvent event) {
     if (event.getObject() instanceof EntityPlayer) {
       event.addCapability(new ResourceLocation(SuperiorShields.MODID, "shieldcapability"), new ShieldCapabilityProvider(true));
     }
