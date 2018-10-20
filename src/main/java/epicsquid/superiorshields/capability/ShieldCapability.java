@@ -4,10 +4,12 @@ public class ShieldCapability implements IShieldCapability {
 
   private float currentHp;
   private float maxHp;
+  private int timeWithoutDamage;
 
-  public ShieldCapability(float currentHp, float maxHp) {
+  public ShieldCapability(float currentHp, float maxHp, int timeWithoutDamage) {
     this.currentHp = currentHp;
     this.maxHp = maxHp;
+    this.timeWithoutDamage = timeWithoutDamage;
   }
 
   @Override
@@ -18,6 +20,11 @@ public class ShieldCapability implements IShieldCapability {
   @Override
   public float getMaxHp() {
     return maxHp;
+  }
+
+  @Override
+  public int getTimeWithoutDamage() {
+    return timeWithoutDamage;
   }
 
   @Override
@@ -33,5 +40,10 @@ public class ShieldCapability implements IShieldCapability {
   @Override
   public void setMaxHp(float maxHp) {
     this.maxHp = maxHp;
+  }
+
+  @Override
+  public void setTimeWithoutDamage(int timeWithoutDamage) {
+    this.timeWithoutDamage = timeWithoutDamage;
   }
 }

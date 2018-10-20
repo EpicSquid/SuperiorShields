@@ -12,6 +12,7 @@ public class ShieldCapabilityStorage implements IStorage<IShieldCapability> {
 
   public static final String NBT_MAX_SHIELD_HP = "maxShieldHp";
   public static final String NBT_SHIELD_HP = "shieldHp";
+  public static final String NBT_TIME_WITHOUT_DAMAGE = "timeWithoutDamage";
 
   @Nullable
   @Override
@@ -19,6 +20,7 @@ public class ShieldCapabilityStorage implements IStorage<IShieldCapability> {
     NBTTagCompound tag = new NBTTagCompound();
     tag.setFloat(NBT_MAX_SHIELD_HP, instance.getMaxHp());
     tag.setFloat(NBT_SHIELD_HP, instance.getCurrentHp());
+    tag.setInteger(NBT_TIME_WITHOUT_DAMAGE, instance.getTimeWithoutDamage());
     return tag;
   }
 
@@ -31,6 +33,9 @@ public class ShieldCapabilityStorage implements IStorage<IShieldCapability> {
       }
       if (tag.hasKey(NBT_SHIELD_HP)) {
         instance.setCurrentHp(tag.getFloat(NBT_SHIELD_HP));
+      }
+      if (tag.hasKey(NBT_TIME_WITHOUT_DAMAGE)) {
+        instance.setTimeWithoutDamage(tag.getInteger(NBT_TIME_WITHOUT_DAMAGE));
       }
     }
   }

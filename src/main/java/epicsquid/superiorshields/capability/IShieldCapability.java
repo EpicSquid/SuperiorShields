@@ -6,7 +6,11 @@ public interface IShieldCapability {
 
   float getMaxHp();
 
+  int getTimeWithoutDamage();
+
   void setCurrentHp(float currentHp);
 
   void setMaxHp(float maxHp);
+
+  void setTimeWithoutDamage(int time);
 }
