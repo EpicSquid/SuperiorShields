@@ -34,6 +34,15 @@ dependencies {
     } else {
         compile project(':MysticalLib')
     }
+
+    deobfCompile "com.azanor:Baubles:1.12-${baubles_version}"
+}
+
+repositories {
+    maven {
+        name 'McModDev Maven'
+        url = "https://maven.mcmoddev.com/"
+    }
 }
 
 processResources {
