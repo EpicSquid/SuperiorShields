@@ -1,6 +1,5 @@
 package epicsquid.superiorshields;
 
-import epicsquid.superiorshields.init.ModItems;
 import epicsquid.superiorshields.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
