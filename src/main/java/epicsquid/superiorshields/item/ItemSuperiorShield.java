@@ -7,8 +7,11 @@ import baubles.api.IBauble;
 import epicsquid.mysticallib.item.ItemBase;
 import epicsquid.superiorshields.capability.IShieldCapability;
 import epicsquid.superiorshields.capability.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.network.PacketHandler;
+import epicsquid.superiorshields.network.PacketShieldUpdate;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 
 public class ItemSuperiorShield extends ItemBase implements ISuperiorShield, IBauble {
@@ -26,6 +29,7 @@ public class ItemSuperiorShield extends ItemBase implements ISuperiorShield, IBa
       float absorbed = shield.getCurrentHp() - damage;
       shield.setCurrentHp(absorbed);
       resetShieldDelay(shield);
+      updateClient(player, shield);
       return absorbed < 0f ? -1f * absorbed : 0f;
     }
     return damage;
@@ -45,7 +49,7 @@ public class ItemSuperiorShield extends ItemBase implements ISuperiorShield, IBa
 
   @Override
   public float getMaxShieldHp() {
-    return 3.0f;
+    return 8.0f;
   }
 
   @Override
@@ -66,6 +70,9 @@ public class ItemSuperiorShield extends ItemBase implements ISuperiorShield, IBa
   @Override
   public void onWornTick(@Nonnull ItemStack itemstack, @Nonnull EntityLivingBase player) {
     if (player instanceof EntityPlayer && player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
+      if (player.world.isRemote) {
+        return;
+      }
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
       if (shield.getTimeWithoutDamage() >= getShieldRechargeDelay()) {
         if (ticksSinceLastRecharge < getShieldRechargeRate()) {
@@ -73,6 +80,7 @@ public class ItemSuperiorShield extends ItemBase implements ISuperiorShield, IBa
         } else {
           ticksSinceLastRecharge = 0;
           rechargeShield(shield);
+          updateClient((EntityPlayer) player, shield);
         }
       } else {
         shield.setTimeWithoutDamage(shield.getTimeWithoutDamage() + 1);
@@ -98,6 +106,12 @@ public class ItemSuperiorShield extends ItemBase implements ISuperiorShield, IBa
       shield.setMaxHp(0f);
       shield.setCurrentHp(0f);
       shield.setTimeWithoutDamage(0);
+    }
+  }
+
+  private void updateClient(@Nonnull EntityPlayer player, @Nonnull IShieldCapability shield) {
+    if (player instanceof EntityPlayerMP) {
+      PacketHandler.INSTANCE.sendTo(new PacketShieldUpdate(shield.getCurrentHp(), shield.getMaxHp()), (EntityPlayerMP) player);
     }
   }
 }
