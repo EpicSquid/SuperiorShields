@@ -9,6 +9,7 @@ import epicsquid.superiorshields.capability.IShieldCapability;
 import epicsquid.superiorshields.capability.SuperiorShieldsCapabilityManager;
 import epicsquid.superiorshields.network.PacketHandler;
 import epicsquid.superiorshields.network.PacketShieldUpdate;
+import epicsquid.superiorshields.shield.IShieldType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -17,13 +18,15 @@ import net.minecraft.item.ItemStack;
 public class ItemSuperiorShield extends ItemBase implements ISuperiorShield, IBauble {
 
   private int ticksSinceLastRecharge = 0;
+  protected IShieldType shieldType;
 
-  public ItemSuperiorShield(@Nonnull String name) {
+  public ItemSuperiorShield(@Nonnull String name, @Nonnull IShieldType shieldType) {
     super(name);
+    this.shieldType = shieldType;
   }
 
   @Override
-  public float applyShield(@Nonnull EntityPlayer player, float damage) {
+  public float applyShield(@Nonnull EntityPlayer player, @Nonnull ItemStack stack, float damage) {
     if (player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
       float absorbed = shield.getCurrentHp() - damage;
@@ -48,21 +51,6 @@ public class ItemSuperiorShield extends ItemBase implements ISuperiorShield, IBa
   }
 
   @Override
-  public float getMaxShieldHp() {
-    return 8.0f;
-  }
-
-  @Override
-  public int getShieldRechargeDelay() {
-    return 100;
-  }
-
-  @Override
-  public int getShieldRechargeRate() {
-    return 20;
-  }
-
-  @Override
   public BaubleType getBaubleType(@Nonnull ItemStack itemStack) {
     return BaubleType.BELT;
   }
@@ -74,8 +62,8 @@ public class ItemSuperiorShield extends ItemBase implements ISuperiorShield, IBa
         return;
       }
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
-      if (shield.getTimeWithoutDamage() >= getShieldRechargeDelay()) {
-        if (ticksSinceLastRecharge < getShieldRechargeRate()) {
+      if (shield.getTimeWithoutDamage() >= shieldType.getShieldRechargeDelay()) {
+        if (ticksSinceLastRecharge < shieldType.getShieldRechargeRate()) {
           ticksSinceLastRecharge++;
         } else {
           ticksSinceLastRecharge = 0;
@@ -93,8 +81,8 @@ public class ItemSuperiorShield extends ItemBase implements ISuperiorShield, IBa
   public void onEquipped(@Nonnull ItemStack itemstack, @Nonnull EntityLivingBase player) {
     if (player instanceof EntityPlayer && player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
-      shield.setMaxHp(getMaxShieldHp());
-      shield.setCurrentHp(getMaxShieldHp());
+      shield.setMaxHp(shieldType.getMaxShieldHp());
+      shield.setCurrentHp(shieldType.getMaxShieldHp());
       shield.setTimeWithoutDamage(0);
     }
   }
@@ -109,7 +97,7 @@ public class ItemSuperiorShield extends ItemBase implements ISuperiorShield, IBa
     }
   }
 
-  private void updateClient(@Nonnull EntityPlayer player, @Nonnull IShieldCapability shield) {
+  protected void updateClient(@Nonnull EntityPlayer player, @Nonnull IShieldCapability shield) {
     if (player instanceof EntityPlayerMP) {
       PacketHandler.INSTANCE.sendTo(new PacketShieldUpdate(shield.getCurrentHp(), shield.getMaxHp()), (EntityPlayerMP) player);
     }

@@ -4,20 +4,22 @@ import javax.annotation.Nonnull;
 
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.superiorshields.SuperiorShields;
-import epicsquid.superiorshields.item.ItemSuperiorShield;
+import epicsquid.superiorshields.item.ItemEnergyShield;
+import epicsquid.superiorshields.shield.ThermalShield;
 import net.minecraft.item.Item;
 
 public class ModItems {
 
   // All mod items
-  public static Item test_shield;
+  public static Item thermal_shield_basic, thermal_sheild_hardened, thermal_shield_reinforced, thermal_shield_signalum, thermal_shield_enderium;
 
   /**
    * Register all items
    */
   public static void registerItems(@Nonnull RegisterContentEvent event) {
+    event.addItem(
+        thermal_shield_basic = new ItemEnergyShield("thermal_shield_basic", ThermalShield.BASIC).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
 
-    event.addItem(test_shield = new ItemSuperiorShield("test_shield").setModelCustom(true).setCreativeTab(SuperiorShields.tab));
   }
 
   /**

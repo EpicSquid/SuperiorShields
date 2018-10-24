@@ -2,9 +2,9 @@ package epicsquid.superiorshields;
 
 import javax.annotation.Nonnull;
 
+import baubles.api.BaubleType;
 import baubles.api.BaublesApi;
 import baubles.api.cap.IBaublesItemHandler;
-import epicsquid.superiorshields.init.ModItems;
 import epicsquid.superiorshields.item.ISuperiorShield;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -17,12 +17,11 @@ public class EventManager {
   public void onLivingHurtEvent(@Nonnull LivingHurtEvent event) {
     if (event.getEntity() instanceof EntityPlayer) {
       EntityPlayer player = (EntityPlayer) event.getEntity();
-      int slot = BaublesApi.isBaubleEquipped(player, ModItems.test_shield);
-      if (slot != -1) {
-        IBaublesItemHandler handler = BaublesApi.getBaublesHandler(player);
-        ItemStack stack = handler.getStackInSlot(slot);
-        if (stack.getItem() instanceof ISuperiorShield) {
-          event.setAmount(((ISuperiorShield) stack.getItem()).applyShield(player, event.getAmount()));
+      IBaublesItemHandler handler = BaublesApi.getBaublesHandler(player);
+      if (handler != null) {
+        ItemStack stack = handler.getStackInSlot(BaubleType.BELT.getValidSlots()[0]);
+        if (!stack.isEmpty() && stack.getItem() instanceof ISuperiorShield) {
+          event.setAmount(((ISuperiorShield) stack.getItem()).applyShield(player, stack, event.getAmount()));
         }
       }
     }
