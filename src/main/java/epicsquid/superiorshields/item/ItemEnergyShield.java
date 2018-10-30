@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 import epicsquid.superiorshields.capability.EnergyCapabilityProvider;
 import epicsquid.superiorshields.capability.IShieldCapability;
 import epicsquid.superiorshields.capability.SuperiorShieldsCapabilityManager;
-import epicsquid.superiorshields.shield.ThermalShield;
+import epicsquid.superiorshields.shield.IShieldType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -19,7 +19,7 @@ import net.minecraftforge.energy.IEnergyStorage;
 
 public class ItemEnergyShield extends ItemSuperiorShield {
 
-  public ItemEnergyShield(@Nonnull String name, @Nonnull ThermalShield shieldType) {
+  public ItemEnergyShield(@Nonnull String name, @Nonnull IShieldType shieldType) {
     super(name, shieldType);
   }
 
@@ -29,10 +29,10 @@ public class ItemEnergyShield extends ItemSuperiorShield {
     if (player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null) && energy != null) {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
       float absorbed = shield.getCurrentHp() - damage;
-      if (shield.getCurrentHp() > 0f && energy.getEnergyStored() > 100 * (damage + absorbed)) {
+      if (shield.getCurrentHp() > 0f && energy.getEnergyStored() > 200 * (damage + absorbed)) {
         shield.setCurrentHp(absorbed);
         resetShieldDelay(shield);
-        energy.extractEnergy((int) (100 * (damage + absorbed)), false);
+        energy.extractEnergy((int) (200 * (damage + absorbed)), false);
         updateClient(player, shield);
         return absorbed < 0f ? -1f * absorbed : 0f;
       }
@@ -42,7 +42,7 @@ public class ItemEnergyShield extends ItemSuperiorShield {
 
   @Override
   public int getRGBDurabilityForDisplay(@Nonnull ItemStack stack) {
-    return 0xFF0000;
+    return shieldType.getColor();
   }
 
   @Override
@@ -66,7 +66,7 @@ public class ItemEnergyShield extends ItemSuperiorShield {
   @Nullable
   @Override
   public ICapabilityProvider initCapabilities(@Nonnull ItemStack stack, @Nullable NBTTagCompound nbt) {
-    return new EnergyCapabilityProvider(10000, 0, 10000, 10000, stack);
+    return new EnergyCapabilityProvider(shieldType.getMaxEnergy(), 0, shieldType.getMaxEnergy(), shieldType.getMaxEnergy(), stack);
   }
 
   @Nullable

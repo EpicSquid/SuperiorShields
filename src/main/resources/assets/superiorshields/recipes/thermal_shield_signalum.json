@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " T ",
+    "SCS",
+    "TGT"  ],
+  "key": {
+    "S": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ingotSignalum"
+      }
+    ],
+    "T": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "dustPetrotheum"
+      }
+    ],
+    "G": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "gearSignalum"
+      }
+    ],
+    "C": [
+      {
+        "item": "superiorshields:thermal_shield_reinforced"
+      }
+    ]
+  },
+  "result": {
+    "item": "superiorshields:thermal_shield_signalum",
+    "data": 0
+  }
+}

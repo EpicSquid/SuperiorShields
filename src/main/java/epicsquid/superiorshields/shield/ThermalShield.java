@@ -2,23 +2,24 @@ package epicsquid.superiorshields.shield;
 
 public enum ThermalShield implements IShieldType {
 
-  BASIC(3, 10, 40),
-  REINFORCED(5, 8, 40),
-  HARDENED(7, 6, 40),
-  SIGNALUM(7, 4, 30),
-  ENDERIUM(8, 3, 20),
+  BASIC(3, 12, 40, 40000),
+  REINFORCED(4, 10, 40, 120000),
+  HARDENED(5, 8, 40, 240000),
+  SIGNALUM(6, 6, 30, 400000),
+  ENDERIUM(7, 4, 20, 600000),
 
   ;
 
   private float maxHp;
   private int shieldRechargeDelay;
   private int shieldRechargeRate;
-  private int maxDamage;
+  private int maxEnergy;
 
-  ThermalShield(float maxHp, int shieldRechargeDelay, int shieldRechargeRate) {
+  ThermalShield(float maxHp, int shieldRechargeDelay, int shieldRechargeRate, int maxEnergy) {
     this.maxHp = maxHp;
     this.shieldRechargeDelay = shieldRechargeDelay;
     this.shieldRechargeRate = shieldRechargeRate;
+    this.maxEnergy = maxEnergy;
   }
 
   @Override
@@ -36,7 +37,13 @@ public enum ThermalShield implements IShieldType {
     return shieldRechargeRate;
   }
 
-  public int getMaxDamage() {
-    return 20;
+  @Override
+  public int getColor() {
+    return 0xFF0000;
+  }
+
+  @Override
+  public int getMaxEnergy() {
+    return maxEnergy;
   }
 }

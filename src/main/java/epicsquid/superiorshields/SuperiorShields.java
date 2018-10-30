@@ -1,6 +1,5 @@
 package epicsquid.superiorshields;
 
-import epicsquid.mysticallib.MysticalLib;
 import epicsquid.superiorshields.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -17,12 +16,13 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = SuperiorShields.MODID, version = SuperiorShields.VERSION, name = SuperiorShields.NAME, dependencies = "required-after:mysticallib@[" + MysticalLib.VERSION + ",)")
+@Mod(modid = SuperiorShields.MODID, version = SuperiorShields.VERSION, name = SuperiorShields.NAME, dependencies = SuperiorShields.DEPENDENCIES)
 public class SuperiorShields {
   public static final String MODID = "superiorshields";
   public static final String DOMAIN = "superiorshields";
   public static final String NAME = "Superior Shields";
   public static final String VERSION = "@VERSION@";
+  public static final String DEPENDENCIES = "required-before:mysticallib";
 
   public static ModContainer CONTAINER = null;
 

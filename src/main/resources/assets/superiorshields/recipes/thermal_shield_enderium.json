@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " T ",
+    "SCS",
+    "TGT"  ],
+  "key": {
+    "S": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ingotEnderium"
+      }
+    ],
+    "T": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ingotLumium"
+      }
+    ],
+    "G": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "gearEnderium"
+      }
+    ],
+    "C": [
+      {
+        "item": "superiorshields:thermal_shield_signalum"
+      }
+    ]
+  },
+  "result": {
+    "item": "superiorshields:thermal_shield_enderium",
+    "data": 0
+  }
+}

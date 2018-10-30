@@ -7,4 +7,8 @@ public interface IShieldType {
   int getShieldRechargeDelay();
 
   int getShieldRechargeRate();
+
+  int getColor();
+
+  int getMaxEnergy();
 }
