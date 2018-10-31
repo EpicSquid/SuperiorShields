@@ -22,7 +22,7 @@ public class SuperiorShields {
   public static final String DOMAIN = "superiorshields";
   public static final String NAME = "Superior Shields";
   public static final String VERSION = "@VERSION@";
-  public static final String DEPENDENCIES = "required-before:mysticallib";
+  public static final String DEPENDENCIES = "required-before:mysticallib;required:baubles";
 
   public static ModContainer CONTAINER = null;
 
