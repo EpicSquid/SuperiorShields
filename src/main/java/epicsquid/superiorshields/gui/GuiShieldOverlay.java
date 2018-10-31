@@ -60,6 +60,9 @@ public class GuiShieldOverlay {
     int defaultXOffset = -101;
     int defaultYOffset = 49;
 
+    if (player.getTotalArmorValue() > 0) {
+     defaultYOffset += 10;
+    }
     if (player.getActivePotionEffect(MobEffects.ABSORPTION) != null) {
       defaultYOffset += 10;
     }
