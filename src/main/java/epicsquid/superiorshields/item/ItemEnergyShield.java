@@ -47,7 +47,7 @@ public class ItemEnergyShield extends ItemSuperiorShield {
 
   @Override
   public boolean showDurabilityBar(@Nonnull ItemStack stack) {
-    return getEnergyStorage(stack).getEnergyStored() > 0;
+    return true;
   }
 
   @Override

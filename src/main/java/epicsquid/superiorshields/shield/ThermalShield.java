@@ -3,10 +3,10 @@ package epicsquid.superiorshields.shield;
 public enum ThermalShield implements IShieldType {
 
   BASIC(3, 12, 40, 40000),
-  REINFORCED(4, 10, 40, 120000),
-  HARDENED(5, 8, 40, 240000),
-  SIGNALUM(6, 6, 30, 400000),
-  ENDERIUM(7, 4, 20, 600000),
+  REINFORCED(6, 10, 40, 120000),
+  HARDENED(9, 8, 40, 240000),
+  SIGNALUM(12, 7, 30, 400000),
+  ENDERIUM(15, 6, 30, 600000),
 
   ;
 

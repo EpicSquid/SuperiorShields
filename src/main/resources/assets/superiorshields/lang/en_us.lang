@@ -1,7 +1,36 @@
 itemGroup.superiorshields=Superior Shields
 
+# Thermal
 item.thermal_shield_basic.name=Flux Shield (Basic)
 item.thermal_shield_hardened.name=Flux Shield (Hardened)
 item.thermal_shield_reinforced.name=Flux Shield (Reinforced)
 item.thermal_shield_signalum.name=Flux Shield (Signalum)
 item.thermal_shield_enderium.name=Flux Shield (Enderium)
+
+# Ender IO
+item.enderio_ds_shield_conductive_iron.name=Dark Steel Energy Shield (Conductive Iron)
+item.enderio_ds_shield_energetic_alloy.name=Dark Steel Energy Shield (Energetic Alloy)
+item.enderio_ds_shield_vibrant_alloy.name=Dark Steel Energy Shield (Vibrant Alloy)
+item.enderio_ds_shield_pulsating_iron.name=Dark Steel Energy Shield (Pulsating Iron)
+item.enderio_ds_shield_redstone_alloy.name=Dark Steel Energy Shield (Redstone Alloy)
+
+item.enderio_es_shield_conductive_iron.name=End Steel Energy Shield (Conductive Iron)
+item.enderio_es_shield_energetic_alloy.name=End Steel Energy Shield (Energetic Alloy)
+item.enderio_es_shield_vibrant_alloy.name=End Steel Energy Shield (Vibrant Alloy)
+item.enderio_es_shield_pulsating_iron.name=End Steel Energy Shield (Pulsating Iron)
+item.enderio_es_shield_redstone_alloy.name=End Steel Energy Shield (Redstone Alloy)
+
+item.enderio_shield_soularium.name=Soularium Energy Shield
+
+# Endergy
+item.endergy_ds_shield_energetic_silver.name=Dark Steel Energy Shield (Energetic Silver)
+item.endergy_ds_shield_vivid_alloy.name=Dark Steel Energy Shield (Vivid Alloy)
+item.endergy_ds_shield_crystalline_alloy.name=Dark Steel Energy Shield (Crystalline Alloy)
+item.endergy_ds_shield_melodic_alloy.name=Dark Steel Energy Shield (Melodic Alloy)
+
+item.endergy_es_shield_energetic_silver.name=End Steel Energy Shield (Energetic Silver)
+item.endergy_es_shield_vivid_alloy.name=End Steel Energy Shield (Vivid Alloy)
+item.endergy_es_shield_crystalline_alloy.name=End Steel Energy Shield (Crystalline Alloy)
+item.endergy_es_shield_melodic_alloy.name=End Steel Energy Shield (Melodic Alloy)
+
+item.endergy_shield_stellar_alloy.name=Stellar Energy Shield
