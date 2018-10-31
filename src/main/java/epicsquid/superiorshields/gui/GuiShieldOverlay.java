@@ -97,23 +97,19 @@ public class GuiShieldOverlay {
     }
     offsetX = defaultXOffset;
     while (shieldCurrentHp > 0) {
-      if (shieldCurrentHp > 3) {
+      if (shieldCurrentHp > 2) {
         drawQuad(b, w / 2 + 10 + offsetX, h - (defaultYOffset - 9), w / 2 + 19 + offsetX, h - (defaultYOffset - 9), w / 2 + 19 + offsetX, h - defaultYOffset,
             w / 2 + 10 + offsetX, h - defaultYOffset, 0, 16, 9, 9);
         shieldCurrentHp -= 3;
         offsetX += 8;
       } else {
-        if (shieldCurrentHp == 3) {
-          drawQuad(b, w / 2 + 10 + offsetX, h - (defaultYOffset - 9), w / 2 + 19 + offsetX, h - (defaultYOffset - 9), w / 2 + 19 + offsetX, h - defaultYOffset,
-              w / 2 + 10 + offsetX, h - defaultYOffset, 16, 16, 9, 9);
-        }
         if (shieldCurrentHp == 2) {
           drawQuad(b, w / 2 + 10 + offsetX, h - (defaultYOffset - 9), w / 2 + 19 + offsetX, h - (defaultYOffset - 9), w / 2 + 19 + offsetX, h - defaultYOffset,
               w / 2 + 10 + offsetX, h - defaultYOffset, 32, 16, 9, 9);
         }
         if (shieldCurrentHp == 1) {
           drawQuad(b, w / 2 + 10 + offsetX, h - (defaultYOffset - 9), w / 2 + 19 + offsetX, h - (defaultYOffset - 9), w / 2 + 19 + offsetX, h - defaultYOffset,
-              w / 2 + 10 + offsetX, h - defaultYOffset, 48, 16, 9, 9);
+              w / 2 + 10 + offsetX, h - defaultYOffset, 16, 16, 9, 9);
         }
         shieldCurrentHp = 0;
       }
