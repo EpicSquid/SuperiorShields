@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SCS",
+    "SSS"  ],
+  "key": {
+    "S": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ingotStellarAlloy"
+      }
+    ],
+    "C": [
+      {
+        "item": "enderio:item_capacitor_stellar",
+        "data": 0
+      }
+    ]
+  },
+  "result": {
+    "item": "superiorshields:endergy_shield_stellar_alloy",
+    "data": 0
+  }
+}

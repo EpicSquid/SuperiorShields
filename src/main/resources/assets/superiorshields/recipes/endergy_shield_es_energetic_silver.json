@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " R ",
+    "SCS",
+    "SRS"  ],
+  "key": {
+    "S": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ingotEndSteel"
+      }
+    ],
+    "C": [
+      {
+        "item": "enderio:item_capacitor_energetic_silver",
+        "data": 0
+      }
+    ],
+    "R": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ingotEnergeticSilver"
+      }
+    ]
+  },
+  "result": {
+    "item": "superiorshields:endergy_es_shield_energetic_silver",
+    "data": 0
+  }
+}

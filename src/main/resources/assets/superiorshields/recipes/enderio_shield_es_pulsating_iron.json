@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " R ",
+    "SCS",
+    "SRS"  ],
+  "key": {
+    "S": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ingotEndSteel"
+      }
+    ],
+    "C": [
+      {
+        "item": "enderio:item_basic_capacitor",
+        "data": 0
+      }
+    ],
+    "R": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ingotPulsatingIron"
+      }
+    ]
+  },
+  "result": {
+    "item": "superiorshields:enderio_es_shield_pulsating_iron",
+    "data": 0
+  }
+}

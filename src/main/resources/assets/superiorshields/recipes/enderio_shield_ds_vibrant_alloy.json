@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " R ",
+    "SCS",
+    "SRS"  ],
+  "key": {
+    "S": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ingotDarkSteel"
+      }
+    ],
+    "C": [
+      {
+        "item": "enderio:item_basic_capacitor",
+        "data": 2
+      }
+    ],
+    "R": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ingotVibrantAlloy"
+      }
+    ]
+  },
+  "result": {
+    "item": "superiorshields:enderio_ds_shield_vibrant_alloy",
+    "data": 0
+  }
+}

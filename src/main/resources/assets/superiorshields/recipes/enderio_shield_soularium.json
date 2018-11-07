@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SCS",
+    "SSS"  ],
+  "key": {
+    "S": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ingotSoularium"
+      }
+    ],
+    "C": [
+      {
+        "item": "enderio:item_basic_capacitor",
+        "data": 2
+      }
+    ]
+  },
+  "result": {
+    "item": "superiorshields:enderio_shield_soularium",
+    "data": 0
+  }
+}
