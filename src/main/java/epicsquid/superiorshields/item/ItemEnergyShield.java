@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 import epicsquid.superiorshields.capability.EnergyCapabilityProvider;
 import epicsquid.superiorshields.capability.IShieldCapability;
 import epicsquid.superiorshields.capability.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.shield.IEnergyShield;
 import epicsquid.superiorshields.shield.IShieldType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,9 +18,9 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
-public class ItemEnergyShield extends ItemSuperiorShield {
+public class ItemEnergyShield extends ItemSuperiorShield<IEnergyShield> {
 
-  public ItemEnergyShield(@Nonnull String name, @Nonnull IShieldType shieldType) {
+  public ItemEnergyShield(@Nonnull String name, @Nonnull IEnergyShield shieldType) {
     super(name, shieldType);
   }
 
@@ -60,7 +61,7 @@ public class ItemEnergyShield extends ItemSuperiorShield {
   public double getDurabilityForDisplay(@Nonnull ItemStack stack) {
     IEnergyStorage energy = getEnergyStorage(stack);
     NBTTagCompound tag = stack.getTagCompound();
-    return MathHelper.clamp(1.0D - ((double) tag.getInteger("energy") / (double) energy.getMaxEnergyStored()), 0.0D, 1.0D);
+    return MathHelper.clamp(1.0D - (tag.getInteger("energy") / (double) energy.getMaxEnergyStored()), 0.0D, 1.0D);
   }
 
   @Nullable

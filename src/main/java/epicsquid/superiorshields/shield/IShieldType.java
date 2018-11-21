@@ -9,6 +9,4 @@ public interface IShieldType {
   int getShieldRechargeRate();
 
   int getColor();
-
-  int getMaxEnergy();
 }

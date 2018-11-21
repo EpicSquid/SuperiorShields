@@ -1,6 +1,6 @@
 package epicsquid.superiorshields.shield;
 
-public enum EnderIOShield implements IShieldType {
+public enum EnderIOShield implements IEnergyShield {
 
   DS_CONDUCTIVE_IRON(3, 40, 10, 60000),
   DS_ENERGETIC_ALLOY(5, 40, 10, 120000),

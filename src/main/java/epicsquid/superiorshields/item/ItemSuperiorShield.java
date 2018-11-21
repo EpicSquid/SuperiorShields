@@ -15,12 +15,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 
-public class ItemSuperiorShield extends ItemBase implements ISuperiorShield, IBauble {
+public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implements ISuperiorShield, IBauble {
 
   private int ticksSinceLastRecharge = 0;
-  protected IShieldType shieldType;
+  protected T shieldType;
 
-  public ItemSuperiorShield(@Nonnull String name, @Nonnull IShieldType shieldType) {
+  public ItemSuperiorShield(@Nonnull String name, @Nonnull T shieldType) {
     super(name);
     this.shieldType = shieldType;
   }

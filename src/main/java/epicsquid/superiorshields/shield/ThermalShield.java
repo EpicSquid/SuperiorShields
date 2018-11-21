@@ -1,6 +1,6 @@
 package epicsquid.superiorshields.shield;
 
-public enum ThermalShield implements IShieldType {
+public enum ThermalShield implements IEnergyShield {
 
   BASIC(3, 12, 40, 40000),
   REINFORCED(6, 10, 40, 120000),
