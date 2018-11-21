@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SCS",
+    "TST"  ],
+  "key": {
+    "S": [
+      {
+        "item": "naturesaura:gold_leaf",
+        "data": 0
+      }
+    ],
+    "T": [
+      {
+        "item": "naturesaura:sky_ingot",
+        "data": 0
+      }
+    ],
+    "C": [
+      {
+        "item": "naturesaura:calling_spirit",
+        "data": 0
+      }
+    ]
+  },
+  "result": {
+    "item": "superiorshields:natures_aura_shield_sky_ingot",
+    "data": 0
+  }
+}

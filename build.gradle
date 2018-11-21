@@ -36,12 +36,17 @@ dependencies {
     }
 
     deobfCompile "com.azanor:Baubles:1.12-${baubles_version}"
+    compile "de.ellpeck.naturesaura:NaturesAura:${natures_aura_version}"
 }
 
 repositories {
     maven {
         name 'McModDev Maven'
         url = "https://maven.mcmoddev.com/"
+    }
+    maven {
+        name = 'Natures Aura'
+        url = "https://maven.chaosfield.at"
     }
 }
 

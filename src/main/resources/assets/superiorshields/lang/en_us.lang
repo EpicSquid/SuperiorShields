@@ -34,3 +34,7 @@ item.endergy_es_shield_crystalline_alloy.name=End Steel Energy Shield (Crystalli
 item.endergy_es_shield_melodic_alloy.name=End Steel Energy Shield (Melodic Alloy)
 
 item.endergy_shield_stellar_alloy.name=Stellar Energy Shield
+
+# Natures Aura
+item.natures_aura_shield_infused_iron.name=Infused Iron Shield
+item.natures_aura_shield_sky_ingot.name=Shield of the Skies
