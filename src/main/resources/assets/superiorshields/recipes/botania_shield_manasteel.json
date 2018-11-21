@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TST",
+    "SCS",
+    "TST"  ],
+  "key": {
+    "S": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ingotManasteel"
+      }
+    ],
+    "T": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "livingwoodTwig"
+      }
+    ],
+    "C": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "manaDiamond"
+      }
+    ]
+  },
+  "result": {
+    "item": "superiorshields:botania_shield_manasteel",
+    "data": 0
+  }
+}

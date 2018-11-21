@@ -38,3 +38,8 @@ item.endergy_shield_stellar_alloy.name=Stellar Energy Shield
 # Natures Aura
 item.natures_aura_shield_infused_iron.name=Infused Iron Shield
 item.natures_aura_shield_sky_ingot.name=Shield of the Skies
+
+# Botania
+item.botania_shield_manasteel.name=Manasteel Mana Shield
+item.botania_shield_terrasteel.name=Terrasteel Mana Shield
+item.botania_shield_elementium.name=Elementium Mana Shield

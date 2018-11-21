@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TST",
+    "SCS",
+    "TST"  ],
+  "key": {
+    "S": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ingotTerrasteel"
+      }
+    ],
+    "T": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "livingwoodTwig"
+      }
+    ],
+    "C": [
+      {
+        "item": "botania:manatablet"
+      }
+    ]
+  },
+  "result": {
+    "item": "superiorshields:botania_shield_terrasteel",
+    "data": 0
+  }
+}

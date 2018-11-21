@@ -6,6 +6,8 @@ import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.superiorshields.SuperiorShields;
 import epicsquid.superiorshields.item.ItemAuraShield;
 import epicsquid.superiorshields.item.ItemEnergyShield;
+import epicsquid.superiorshields.item.ItemManaShield;
+import epicsquid.superiorshields.shield.BotaniaShield;
 import epicsquid.superiorshields.shield.EnderIOShield;
 import epicsquid.superiorshields.shield.NaturesAuraShield;
 import epicsquid.superiorshields.shield.ThermalShield;
@@ -56,6 +58,12 @@ public class ModItems {
     if (Loader.isModLoaded("naturesaura")) {
       event.addItem(new ItemAuraShield("natures_aura_shield_infused_iron", NaturesAuraShield.INFUSED_IRON).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
       event.addItem(new ItemAuraShield("natures_aura_shield_sky_ingot", NaturesAuraShield.SKY_INGOT).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+    }
+
+    if (Loader.isModLoaded("botania")) {
+      event.addItem(new ItemManaShield("botania_shield_manasteel", BotaniaShield.MANA_STEEL).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      event.addItem(new ItemManaShield("botania_shield_terrasteel", BotaniaShield.TERRA_STEEL).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      event.addItem(new ItemManaShield("botania_shield_elementium", BotaniaShield.ELEMENTIUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
     }
   }
 

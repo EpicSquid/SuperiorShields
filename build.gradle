@@ -37,6 +37,7 @@ dependencies {
 
     deobfCompile "com.azanor:Baubles:1.12-${baubles_version}"
     compile "de.ellpeck.naturesaura:NaturesAura:${natures_aura_version}"
+    compile "vazkii.botania:Botania:${botania_version}"
 }
 
 repositories {
@@ -47,6 +48,10 @@ repositories {
     maven {
         name = 'Natures Aura'
         url = "https://maven.chaosfield.at"
+    }
+    maven {
+        name = 'Botania'
+        url = "https://maven.blamejared.com/"
     }
 }
 
