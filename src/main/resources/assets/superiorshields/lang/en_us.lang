@@ -5,7 +5,7 @@ item.thermal_shield_basic.name=Flux Shield (Basic)
 item.thermal_shield_hardened.name=Flux Shield (Hardened)
 item.thermal_shield_reinforced.name=Flux Shield (Reinforced)
 item.thermal_shield_signalum.name=Flux Shield (Signalum)
-item.thermal_shield_enderium.name=Flux Shield (Enderium)
+item.thermal_shield_enderium.name=Flux Shield (Resonant)
 
 # Ender IO
 item.enderio_ds_shield_conductive_iron.name=Dark Steel Energy Shield (Conductive Iron)
