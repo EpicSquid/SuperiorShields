@@ -1,6 +1,7 @@
 package epicsquid.superiorshields.item;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
@@ -10,10 +11,18 @@ import epicsquid.superiorshields.capability.SuperiorShieldsCapabilityManager;
 import epicsquid.superiorshields.network.PacketHandler;
 import epicsquid.superiorshields.network.PacketShieldUpdate;
 import epicsquid.superiorshields.shield.IShieldType;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implements ISuperiorShield, IBauble {
 
@@ -95,6 +104,16 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
       shield.setCurrentHp(0f);
       shield.setTimeWithoutDamage(0);
     }
+  }
+
+  @Override
+  @SideOnly(Side.CLIENT)
+  public void addInformation(@Nonnull ItemStack stack, @Nullable World worldIn, @Nonnull List<String> tooltip, ITooltipFlag flagIn) {
+    tooltip.add(I18n.format("superiorshields.tooltip.hp") + " " + shieldType.getMaxShieldHp() + " " + I18n.format("superiorshields.tooltip.hpDetail"));
+    tooltip.add(I18n.format("superiorshields.tooltip.rechargeDelay") + " " + (float) shieldType.getShieldRechargeDelay() / 20 + " " + I18n
+        .format("superiorshields.tooltip.rechargeDelayTime"));
+    tooltip.add(I18n.format("superiorshields.tooltip.rechargeRate") + " " + 1f / ((float) shieldType.getShieldRechargeRate() / 20) + " " + I18n
+        .format("superiorshields.tooltip.rechargeRateTime"));
   }
 
   protected void updateClient(@Nonnull EntityPlayer player, @Nonnull IShieldCapability shield) {

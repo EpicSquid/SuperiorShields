@@ -43,3 +43,11 @@ item.natures_aura_shield_sky_ingot.name=Shield of the Skies
 item.botania_shield_manasteel.name=Manasteel Mana Shield
 item.botania_shield_terrasteel.name=Terrasteel Mana Shield
 item.botania_shield_elementium.name=Elementium Mana Shield
+
+# Tooltips
+superiorshields.tooltip.hp=Shield Capacity:
+superiorshields.tooltip.hpDetail=HP
+superiorshields.tooltip.rechargeDelay=Recharge Delay:
+superiorshields.tooltip.rechargeRate=Recharge Rate:
+superiorshields.tooltip.rechargeDelayTime=seconds
+superiorshields.tooltip.rechargeRateTime=HP per second
