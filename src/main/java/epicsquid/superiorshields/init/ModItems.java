@@ -36,10 +36,10 @@ public class ModItems {
       event.addItem(new ItemEnergyShield("enderio_es_shield_energetic_alloy", EnderIOShield.ES_ENERGETIC_ALLOY).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
       event.addItem(new ItemEnergyShield("enderio_ds_shield_vibrant_alloy", EnderIOShield.DS_VIBRANT_ALLOY).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
       event.addItem(new ItemEnergyShield("enderio_es_shield_vibrant_alloy", EnderIOShield.ES_VIBRANT_ALLOY).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
-      event.addItem(new ItemEnergyShield("enderio_ds_shield_pulsating_iron", EnderIOShield.DS_PULSATING_IRON).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
-      event.addItem(new ItemEnergyShield("enderio_es_shield_pulsating_iron", EnderIOShield.ES_PULSATING_IRON).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
-      event.addItem(new ItemEnergyShield("enderio_ds_shield_redstone_alloy", EnderIOShield.DS_REDSTONE_ALLOY).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
-      event.addItem(new ItemEnergyShield("enderio_es_shield_redstone_alloy", EnderIOShield.ES_REDSTONE_ALLOY).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+//      event.addItem(new ItemEnergyShield("enderio_ds_shield_pulsating_iron", EnderIOShield.DS_PULSATING_IRON).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+//      event.addItem(new ItemEnergyShield("enderio_es_shield_pulsating_iron", EnderIOShield.ES_PULSATING_IRON).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+//      event.addItem(new ItemEnergyShield("enderio_ds_shield_redstone_alloy", EnderIOShield.DS_REDSTONE_ALLOY).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+//      event.addItem(new ItemEnergyShield("enderio_es_shield_redstone_alloy", EnderIOShield.ES_REDSTONE_ALLOY).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
       event.addItem(new ItemEnergyShield("enderio_shield_soularium", EnderIOShield.SOULARIUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
     }
 
