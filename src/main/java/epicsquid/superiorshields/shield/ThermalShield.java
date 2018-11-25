@@ -1,5 +1,12 @@
 package epicsquid.superiorshields.shield;
 
+import javax.annotation.Nonnull;
+
+import epicsquid.superiorshields.shield.effect.IShieldEffect;
+import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
+import epicsquid.superiorshields.shield.effect.ShieldEffectSpawn;
+import net.minecraft.entity.monster.EntitySlime;
+
 public enum ThermalShield implements IEnergyShield {
 
   BASIC(3, 12, 40, 40000),
@@ -14,12 +21,24 @@ public enum ThermalShield implements IEnergyShield {
   private int shieldRechargeDelay;
   private int shieldRechargeRate;
   private int maxEnergy;
+  private IShieldEffect effect;
 
   ThermalShield(float maxHp, int shieldRechargeDelay, int shieldRechargeRate, int maxEnergy) {
+    this(maxHp, shieldRechargeDelay, shieldRechargeRate, maxEnergy, new ShieldEffectNone());
+  }
+
+  ThermalShield(float maxHp, int shieldRechargeDelay, int shieldRechargeRate, int maxEnergy, @Nonnull IShieldEffect effect) {
     this.maxHp = maxHp;
     this.shieldRechargeDelay = shieldRechargeDelay;
     this.shieldRechargeRate = shieldRechargeRate;
     this.maxEnergy = maxEnergy;
+    this.effect = effect;
+  }
+
+  @Nonnull
+  @Override
+  public IShieldEffect getEffect() {
+    return effect;
   }
 
   @Override

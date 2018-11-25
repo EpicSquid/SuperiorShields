@@ -24,6 +24,7 @@ public class ItemAuraShield extends ItemSuperiorShield<IShieldType> {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
       float absorbed = shield.getCurrentHp() - damage;
       if (shield.getCurrentHp() > 0f && NaturesAuraAPI.instance().extractAuraFromPlayer(player, (int) (5 * (damage + absorbed)), false)) {
+        triggerShieldEffect(player, stack, source, damage);
         return absorbDamage(player, shield, absorbed);
       }
     }

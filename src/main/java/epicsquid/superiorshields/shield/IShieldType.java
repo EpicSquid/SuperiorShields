@@ -1,5 +1,10 @@
 package epicsquid.superiorshields.shield;
 
+import javax.annotation.Nonnull;
+
+import epicsquid.superiorshields.shield.effect.IShieldEffect;
+import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
+
 public interface IShieldType {
 
   float getMaxShieldHp();
@@ -9,4 +14,9 @@ public interface IShieldType {
   int getShieldRechargeRate();
 
   int getColor();
+
+  @Nonnull
+  default IShieldEffect getEffect() {
+    return new ShieldEffectNone();
+  }
 }

@@ -11,6 +11,8 @@ import epicsquid.superiorshields.capability.SuperiorShieldsCapabilityManager;
 import epicsquid.superiorshields.network.PacketHandler;
 import epicsquid.superiorshields.network.PacketShieldUpdate;
 import epicsquid.superiorshields.shield.IShieldType;
+import epicsquid.superiorshields.shield.effect.IShieldEffect;
+import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -39,6 +41,7 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
   public float applyShield(@Nonnull EntityPlayer player, @Nonnull ItemStack stack, float damage, @Nonnull DamageSource source) {
     if (player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
+      triggerShieldEffect(player, stack, source, damage);
       return absorbDamage(player, shield, shield.getCurrentHp() - damage);
     }
     return damage;
@@ -126,7 +129,10 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
     }
   }
 
-  public void triggerShieldEffect() {
-
+  public void triggerShieldEffect(@Nonnull EntityPlayer player, @Nonnull ItemStack stack, @Nullable DamageSource source, float damage) {
+    if (player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
+      IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
+      shieldType.getEffect().applyEffect(shield, player, source, damage);
+    }
   }
 }

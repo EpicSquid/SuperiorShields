@@ -23,6 +23,7 @@ public class ItemManaShield extends ItemSuperiorShield<IShieldType> {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
       float absorbed = shield.getCurrentHp() - damage;
       if (shield.getCurrentHp() > 0f && ManaItemHandler.requestManaExact(stack, player, (int) (200 * (damage + absorbed)), true)) {
+        triggerShieldEffect(player, stack, source, damage);
         return absorbDamage(player, shield, absorbed);
       }
     }

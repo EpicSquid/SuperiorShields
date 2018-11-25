@@ -32,6 +32,7 @@ public class ItemEnergyShield extends ItemSuperiorShield<IEnergyShield> {
       float absorbed = shield.getCurrentHp() - damage;
       if (shield.getCurrentHp() > 0f && energy.getEnergyStored() > 200 * (damage + absorbed)) {
         energy.extractEnergy((int) (200 * (damage + absorbed)), false);
+        triggerShieldEffect(player, stack, source, damage);
         return absorbDamage(player, shield, absorbed);
       }
     }
