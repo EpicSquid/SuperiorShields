@@ -9,6 +9,7 @@ import epicsquid.superiorshields.shield.IShieldType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 public class ItemAuraShield extends ItemSuperiorShield<IShieldType> {
@@ -18,15 +19,12 @@ public class ItemAuraShield extends ItemSuperiorShield<IShieldType> {
   }
 
   @Override
-  public float applyShield(@Nonnull EntityPlayer player, @Nonnull ItemStack stack, float damage) {
+  public float applyShield(@Nonnull EntityPlayer player, @Nonnull ItemStack stack, float damage, @Nonnull DamageSource source) {
     if (player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
       float absorbed = shield.getCurrentHp() - damage;
       if (shield.getCurrentHp() > 0f && NaturesAuraAPI.instance().extractAuraFromPlayer(player, (int) (5 * (damage + absorbed)), false)) {
-        shield.setCurrentHp(absorbed);
-        resetShieldDelay(shield);
-        updateClient(player, shield);
-        return absorbed < 0f ? -1f * absorbed : 0f;
+        return absorbDamage(player, shield, absorbed);
       }
     }
     return damage;

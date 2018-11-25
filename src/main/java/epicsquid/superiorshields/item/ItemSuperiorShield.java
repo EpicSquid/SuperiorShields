@@ -18,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -35,16 +36,19 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
   }
 
   @Override
-  public float applyShield(@Nonnull EntityPlayer player, @Nonnull ItemStack stack, float damage) {
+  public float applyShield(@Nonnull EntityPlayer player, @Nonnull ItemStack stack, float damage, @Nonnull DamageSource source) {
     if (player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
-      float absorbed = shield.getCurrentHp() - damage;
-      shield.setCurrentHp(absorbed);
-      resetShieldDelay(shield);
-      updateClient(player, shield);
-      return absorbed < 0f ? -1f * absorbed : 0f;
+      return absorbDamage(player, shield, shield.getCurrentHp() - damage);
     }
     return damage;
+  }
+
+  protected float absorbDamage(@Nonnull EntityPlayer player, @Nonnull IShieldCapability shield, float absorbed) {
+    shield.setCurrentHp(absorbed);
+    resetShieldDelay(shield);
+    updateClient(player, shield);
+    return absorbed < 0f ? -1f * absorbed : 0f;
   }
 
   @Override
@@ -120,5 +124,9 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
     if (player instanceof EntityPlayerMP) {
       PacketHandler.INSTANCE.sendTo(new PacketShieldUpdate(shield.getCurrentHp(), shield.getMaxHp()), (EntityPlayerMP) player);
     }
+  }
+
+  public void triggerShieldEffect() {
+
   }
 }

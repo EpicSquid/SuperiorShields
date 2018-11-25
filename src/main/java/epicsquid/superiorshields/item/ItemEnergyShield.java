@@ -7,11 +7,11 @@ import epicsquid.superiorshields.capability.EnergyCapabilityProvider;
 import epicsquid.superiorshields.capability.IShieldCapability;
 import epicsquid.superiorshields.capability.SuperiorShieldsCapabilityManager;
 import epicsquid.superiorshields.shield.IEnergyShield;
-import epicsquid.superiorshields.shield.IShieldType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -25,17 +25,14 @@ public class ItemEnergyShield extends ItemSuperiorShield<IEnergyShield> {
   }
 
   @Override
-  public float applyShield(@Nonnull EntityPlayer player, @Nonnull ItemStack stack, float damage) {
+  public float applyShield(@Nonnull EntityPlayer player, @Nonnull ItemStack stack, float damage, @Nonnull DamageSource source) {
     IEnergyStorage energy = getEnergyStorage(stack);
     if (player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null) && energy != null) {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
       float absorbed = shield.getCurrentHp() - damage;
       if (shield.getCurrentHp() > 0f && energy.getEnergyStored() > 200 * (damage + absorbed)) {
-        shield.setCurrentHp(absorbed);
-        resetShieldDelay(shield);
         energy.extractEnergy((int) (200 * (damage + absorbed)), false);
-        updateClient(player, shield);
-        return absorbed < 0f ? -1f * absorbed : 0f;
+        return absorbDamage(player, shield, absorbed);
       }
     }
     return damage;
