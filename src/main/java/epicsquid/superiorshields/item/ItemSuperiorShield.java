@@ -8,6 +8,7 @@ import baubles.api.IBauble;
 import epicsquid.mysticallib.item.ItemBase;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.event.ShieldEquippedEvent;
 import epicsquid.superiorshields.network.PacketHandler;
 import epicsquid.superiorshields.network.PacketShieldUpdate;
 import epicsquid.superiorshields.shield.IShieldType;
@@ -20,6 +21,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -109,6 +111,7 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
       shield.setMaxHp(shieldType.getMaxShieldHp());
       shield.setCurrentHp(0);
       shield.setTimeWithoutDamage(0);
+      MinecraftForge.EVENT_BUS.post(new ShieldEquippedEvent((EntityPlayer) player, shield));
     }
   }
 
