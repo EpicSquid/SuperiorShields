@@ -69,6 +69,7 @@ public class ModItems {
 
     if (Loader.isModLoaded("industrialforegoing")) {
       event.addItem(new ItemEnergyShield("if_pink_slime_shield", IFShield.PINK_SLIME).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      event.addItem(new ItemEnergyShield("if_meat_shield", IFShield.MEAT).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
     }
   }
 
