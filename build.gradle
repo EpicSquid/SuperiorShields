@@ -30,7 +30,7 @@ minecraft {
 
 dependencies {
     if (!project.hasProperty("dev_env")) {
-        compile files('libs/')
+
     } else {
         compile project(':MysticalLib')
     }
@@ -38,6 +38,9 @@ dependencies {
     deobfCompile "com.azanor:Baubles:1.12-${baubles_version}"
     compile "de.ellpeck.naturesaura:NaturesAura:${natures_aura_version}"
     compile "vazkii.botania:Botania:${botania_version}"
+
+    // For IF since it doesn't have a maven...
+    compile files('libs/')
 }
 
 repositories {

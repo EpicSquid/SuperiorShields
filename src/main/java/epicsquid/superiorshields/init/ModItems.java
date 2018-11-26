@@ -9,6 +9,7 @@ import epicsquid.superiorshields.item.ItemEnergyShield;
 import epicsquid.superiorshields.item.ItemManaShield;
 import epicsquid.superiorshields.shield.BotaniaShield;
 import epicsquid.superiorshields.shield.EnderIOShield;
+import epicsquid.superiorshields.shield.IFShield;
 import epicsquid.superiorshields.shield.NaturesAuraShield;
 import epicsquid.superiorshields.shield.ThermalShield;
 import net.minecraft.item.Item;
@@ -64,6 +65,10 @@ public class ModItems {
       event.addItem(new ItemManaShield("botania_shield_manasteel", BotaniaShield.MANA_STEEL).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
       event.addItem(new ItemManaShield("botania_shield_terrasteel", BotaniaShield.TERRA_STEEL).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
       event.addItem(new ItemManaShield("botania_shield_elementium", BotaniaShield.ELEMENTIUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+    }
+
+    if (Loader.isModLoaded("industrialforegoing")) {
+      event.addItem(new ItemEnergyShield("if_pink_slime_shield", IFShield.PINK_SLIME).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
     }
   }
 
