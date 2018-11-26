@@ -5,8 +5,8 @@ import javax.annotation.Nonnull;
 import org.lwjgl.opengl.GL11;
 
 import epicsquid.superiorshields.SuperiorShields;
-import epicsquid.superiorshields.capability.IShieldCapability;
-import epicsquid.superiorshields.capability.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.capability.shield.IShieldCapability;
+import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;

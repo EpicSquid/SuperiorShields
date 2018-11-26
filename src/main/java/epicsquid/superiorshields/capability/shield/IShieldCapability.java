@@ -1,4 +1,4 @@
-package epicsquid.superiorshields.capability;
+package epicsquid.superiorshields.capability.shield;
 
 public interface IShieldCapability {
 

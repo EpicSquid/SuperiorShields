@@ -1,6 +1,6 @@
 package epicsquid.superiorshields.proxy;
 
-import epicsquid.superiorshields.capability.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
 import epicsquid.superiorshields.init.ModItems;
 import epicsquid.superiorshields.network.PacketHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

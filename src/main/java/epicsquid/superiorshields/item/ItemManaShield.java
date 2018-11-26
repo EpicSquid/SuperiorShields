@@ -2,9 +2,8 @@ package epicsquid.superiorshields.item;
 
 import javax.annotation.Nonnull;
 
-import de.ellpeck.naturesaura.api.NaturesAuraAPI;
-import epicsquid.superiorshields.capability.IShieldCapability;
-import epicsquid.superiorshields.capability.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.capability.shield.IShieldCapability;
+import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
 import epicsquid.superiorshields.shield.IShieldType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

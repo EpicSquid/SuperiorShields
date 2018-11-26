@@ -1,7 +1,7 @@
 package epicsquid.superiorshields.network;
 
-import epicsquid.superiorshields.capability.IShieldCapability;
-import epicsquid.superiorshields.capability.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.capability.shield.IShieldCapability;
+import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;

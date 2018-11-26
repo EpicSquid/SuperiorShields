@@ -2,7 +2,7 @@ package epicsquid.superiorshields.item;
 
 import javax.annotation.Nonnull;
 
-import epicsquid.superiorshields.capability.IShieldCapability;
+import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;

@@ -5,7 +5,7 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import epicsquid.superiorshields.capability.IShieldCapability;
+import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;

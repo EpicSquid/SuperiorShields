@@ -4,8 +4,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import epicsquid.superiorshields.capability.EnergyCapabilityProvider;
-import epicsquid.superiorshields.capability.IShieldCapability;
-import epicsquid.superiorshields.capability.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.capability.shield.IShieldCapability;
+import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
 import epicsquid.superiorshields.shield.IEnergyShield;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
