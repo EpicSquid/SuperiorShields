@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TST",
+    "SCS",
+    "TST"  ],
+  "key": {
+    "S": [
+      {
+        "item": "industrialforegoing:pink_slime_ingot",
+        "data": 0
+      }
+    ],
+    "T": [
+      {
+        "item": "industrialforegoing:plastic"
+      }
+    ],
+    "C": [
+      {
+        "item": "industrialforegoing:energy_field_addon"
+      }
+    ]
+  },
+  "result": {
+    "item": "superiorshields:if_pink_slime_shield",
+    "data": 0
+  }
+}

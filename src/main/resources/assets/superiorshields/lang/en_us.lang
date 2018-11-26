@@ -44,6 +44,10 @@ item.botania_shield_manasteel.name=Manasteel Mana Shield
 item.botania_shield_terrasteel.name=Terrasteel Mana Shield
 item.botania_shield_elementium.name=Elementium Mana Shield
 
+# Industrial Foregoing Shields
+item.if_pink_slime_shield.name=Pink Slime Energy Shield
+item.if_meat_shield.name=Meat Shield
+
 # Tooltips
 superiorshields.tooltip.hp=Shield Capacity:
 superiorshields.tooltip.hpDetail=HP
