@@ -4,8 +4,6 @@ import javax.annotation.Nonnull;
 
 import epicsquid.superiorshields.shield.effect.IShieldEffect;
 import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
-import epicsquid.superiorshields.shield.effect.ShieldEffectSpawn;
-import net.minecraft.entity.monster.EntitySlime;
 
 public enum ThermalShield implements IEnergyShield {
 

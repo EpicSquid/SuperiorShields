@@ -23,7 +23,7 @@ public enum EnderIOShield implements IEnergyShield {
   ES_MELODIC_ALLOY(15, 25, 10, 20480000),
   STELLAR_ALLOY(20, 20, 10, 40960000),
 
-  SOULARIUM(14, 200, 40, 480000)
+  SOULARIUM(10, 200, 40, 480000)
 
   ;
 
