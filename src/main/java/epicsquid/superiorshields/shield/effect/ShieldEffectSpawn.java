@@ -23,8 +23,8 @@ public class ShieldEffectSpawn<E extends Entity> implements IShieldEffect {
   }
 
   @Override
-  public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull EntityPlayer player, @Nullable DamageSource source, float damage) {
-    if (!player.world.isRemote && random.nextFloat() < chanceToSpawn) {
+  public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull EntityPlayer player, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
+    if (trigger == EffectTrigger.DAMAGE && !player.world.isRemote && random.nextFloat() < chanceToSpawn) {
       try {
         Entity entity = entityClass.getConstructor(World.class).newInstance(player.world);
         entity.setLocationAndAngles(player.posX + random.nextDouble(), player.posY + player.getEyeHeight(), player.posZ + random.nextDouble(), player.rotationYaw,0);

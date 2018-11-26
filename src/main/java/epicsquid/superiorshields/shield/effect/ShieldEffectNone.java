@@ -10,7 +10,7 @@ import net.minecraft.util.DamageSource;
 public class ShieldEffectNone implements IShieldEffect {
 
   @Override
-  public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull EntityPlayer player, @Nullable DamageSource source, float damage) {
+  public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull EntityPlayer player, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
 
   }
 }

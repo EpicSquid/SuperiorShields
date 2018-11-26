@@ -11,7 +11,7 @@ public interface ISuperiorShield {
 
   float applyShield(@Nonnull EntityPlayer player, @Nonnull ItemStack stack, float damage, @Nonnull DamageSource source);
 
-  void rechargeShield(@Nonnull IShieldCapability shield);
+  void rechargeShield(@Nonnull IShieldCapability shield, @Nonnull ItemStack stack, @Nonnull EntityPlayer player);
 
   void resetShieldDelay(@Nonnull IShieldCapability shield);
 }

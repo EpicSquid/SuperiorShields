@@ -11,6 +11,7 @@ import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityMana
 import epicsquid.superiorshields.network.PacketHandler;
 import epicsquid.superiorshields.network.PacketShieldUpdate;
 import epicsquid.superiorshields.shield.IShieldType;
+import epicsquid.superiorshields.shield.effect.EffectTrigger;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -38,7 +39,7 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
   public float applyShield(@Nonnull EntityPlayer player, @Nonnull ItemStack stack, float damage, @Nonnull DamageSource source) {
     if (player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
-      triggerShieldEffect(player, stack, source, damage);
+      triggerShieldEffect(player, stack, source, damage, EffectTrigger.DAMAGE);
       return absorbDamage(player, shield, shield.getCurrentHp() - damage);
     }
     return damage;
@@ -52,10 +53,21 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
   }
 
   @Override
-  public void rechargeShield(@Nonnull IShieldCapability shield) {
+  public void rechargeShield(@Nonnull IShieldCapability shield, @Nonnull ItemStack stack, @Nonnull EntityPlayer player) {
     if (shield.getCurrentHp() < shield.getMaxHp()) {
-      shield.setCurrentHp(shield.getCurrentHp() + 1.0f);
+      if (useEnergyToRecharge(stack, player)) {
+        shield.setCurrentHp(shield.getCurrentHp() + 1.0f);
+      }
     }
+  }
+
+  /**
+   * Triggers the use of energy to recharge.
+   * @param stack The stack to get the capability to recharge from.
+   * @return true if there was enough energy to recharge.
+   */
+  protected boolean useEnergyToRecharge(@Nonnull ItemStack stack, @Nonnull EntityPlayer player) {
+    return true;
   }
 
   @Override
@@ -69,7 +81,7 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
   }
 
   @Override
-  public void onWornTick(@Nonnull ItemStack itemstack, @Nonnull EntityLivingBase player) {
+  public void onWornTick(@Nonnull ItemStack stack, @Nonnull EntityLivingBase player) {
     if (player instanceof EntityPlayer && player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
       if (player.world.isRemote) {
         return;
@@ -80,13 +92,13 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
           ticksSinceLastRecharge++;
         } else {
           ticksSinceLastRecharge = 0;
-          rechargeShield(shield);
+          rechargeShield(shield, stack, (EntityPlayer) player);
           updateClient((EntityPlayer) player, shield);
+          triggerShieldEffect((EntityPlayer) player, stack, null, 0f, EffectTrigger.RECHARGE);
         }
       } else {
         shield.setTimeWithoutDamage(shield.getTimeWithoutDamage() + 1);
       }
-
     }
   }
 
@@ -95,7 +107,7 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
     if (player instanceof EntityPlayer && player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
       shield.setMaxHp(shieldType.getMaxShieldHp());
-      shield.setCurrentHp(shieldType.getMaxShieldHp());
+      shield.setCurrentHp(0);
       shield.setTimeWithoutDamage(0);
     }
   }
@@ -126,10 +138,10 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
     }
   }
 
-  public void triggerShieldEffect(@Nonnull EntityPlayer player, @Nonnull ItemStack stack, @Nullable DamageSource source, float damage) {
+  public void triggerShieldEffect(@Nonnull EntityPlayer player, @Nonnull ItemStack stack, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
     if (player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
-      shieldType.getEffect().applyEffect(shield, player, source, damage);
+      shieldType.getEffect().applyEffect(shield, player, source, damage, trigger);
     }
   }
 }
