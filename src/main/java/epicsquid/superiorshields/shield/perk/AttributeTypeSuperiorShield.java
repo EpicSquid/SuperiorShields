@@ -1,7 +1,5 @@
 package epicsquid.superiorshields.shield.perk;
 
-import javax.annotation.Nonnull;
-
 import epicsquid.superiorshields.SuperiorShields;
 import epicsquid.superiorshields.event.ShieldEquippedEvent;
 import epicsquid.superiorshields.network.PacketHandler;

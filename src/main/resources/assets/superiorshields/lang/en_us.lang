@@ -44,9 +44,19 @@ item.botania_shield_manasteel.name=Manasteel Mana Shield
 item.botania_shield_terrasteel.name=Terrasteel Mana Shield
 item.botania_shield_elementium.name=Elementium Mana Shield
 
-# Industrial Foregoing Shields
+# Industrial Foregoing
 item.if_pink_slime_shield.name=Pink Slime Energy Shield
 item.if_meat_shield.name=Meat Shield
+
+# Astral Sorcery
+perk.astralsorcery.mod_superiorshields_added_shield_1.name=Increased Shield Capacity
+perk.astralsorcery.mod_superiorshields_added_shield_1.desc=Gain +1 Shield HP
+perk.astralsorcery.mod_superiorshields_added_shield_2.name=Increased Shield Capacity
+perk.astralsorcery.mod_superiorshields_added_shield_2.desc=Gain +1 Shield HP
+perk.astralsorcery.mod_superiorshields_added_shield_3.name=Increased Shield Capacity
+perk.astralsorcery.mod_superiorshields_added_shield_3.desc=Gain +1 Shield HP
+perk.astralsorcery.mod_superiorshields_key_shield.name=Major Shield Capacity Increase
+perk.astralsorcery.mod_superiorshields_key_shield.desc=Gain +3 Shield HP
 
 # Tooltips
 superiorshields.tooltip.hp=Shield Capacity:
