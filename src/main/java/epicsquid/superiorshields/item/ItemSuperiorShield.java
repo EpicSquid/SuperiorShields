@@ -42,6 +42,9 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
     if (player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
       triggerShieldEffect(player, stack, source, damage, EffectTrigger.DAMAGE);
+      if (damage > shield.getCurrentHp()) {
+        triggerShieldEffect(player, stack, source, damage, EffectTrigger.EMPTY);
+      }
       return absorbDamage(player, shield, shield.getCurrentHp() - damage);
     }
     return damage;
@@ -89,7 +92,7 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
         return;
       }
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
-      if (shield.getTimeWithoutDamage() >= shieldType.getShieldRechargeDelay()) {
+      if (shield.getTimeWithoutDamage() >= shieldType.getShieldRechargeDelay() && shield.getCurrentHp() < shield.getMaxHp()) {
         if (ticksSinceLastRecharge < shieldType.getShieldRechargeRate()) {
           ticksSinceLastRecharge++;
         } else {
@@ -97,6 +100,9 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
           rechargeShield(shield, stack, (EntityPlayer) player);
           updateClient((EntityPlayer) player, shield);
           triggerShieldEffect((EntityPlayer) player, stack, null, 0f, EffectTrigger.RECHARGE);
+          if (shield.getCurrentHp() >= shield.getMaxHp()) {
+            triggerShieldEffect((EntityPlayer) player, stack, null, 0f, EffectTrigger.FILLED);
+          }
         }
       } else {
         shield.setTimeWithoutDamage(shield.getTimeWithoutDamage() + 1);

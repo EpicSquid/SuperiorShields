@@ -5,7 +5,7 @@ public enum EffectTrigger {
   DAMAGE,
   RECHARGE,
   EMPTY,
-
+  FILLED
 
   ;
 }
