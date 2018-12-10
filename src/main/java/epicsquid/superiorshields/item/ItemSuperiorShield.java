@@ -32,6 +32,9 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
   private int ticksSinceLastRecharge = 0;
   protected T shieldType;
 
+  // Used to ensure the potion effect is not applied every tick
+  private int onTickEventTrigger = 0;
+
   public ItemSuperiorShield(@Nonnull String name, @Nonnull T shieldType) {
     super(name);
     this.shieldType = shieldType;
@@ -106,6 +109,14 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
         }
       } else {
         shield.setTimeWithoutDamage(shield.getTimeWithoutDamage() + 1);
+        if (shield.getCurrentHp() >= shield.getMaxHp()) {
+          if (onTickEventTrigger >= 20) {
+            onTickEventTrigger = 0;
+            triggerShieldEffect((EntityPlayer) player, stack, null, 0f, EffectTrigger.FULL);
+          } else {
+            onTickEventTrigger++;
+          }
+        }
       }
     }
   }

@@ -12,7 +12,7 @@ public enum BotaniaShield implements IShieldType {
 
   MANA_STEEL(4, 40, 15),
   TERRA_STEEL(7, 30, 10, new ShieldEffectPotion(MobEffects.REGENERATION, EffectTrigger.FILLED, 100)),
-  ELEMENTIUM(5, 15, 10),
+  ELEMENTIUM(5, 15, 10, new ShieldEffectPotion(MobEffects.HASTE, EffectTrigger.FULL, 70)),
 
   ;
 
