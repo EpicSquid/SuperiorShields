@@ -27,6 +27,11 @@ public class ModItems {
       event.addItem(new ItemEnergyShield("thermal_shield_reinforced", ThermalShield.REINFORCED).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
       event.addItem(new ItemEnergyShield("thermal_shield_signalum", ThermalShield.SIGNALUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
       event.addItem(new ItemEnergyShield("thermal_shield_enderium", ThermalShield.ENDERIUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+
+      event.addItem(new ItemEnergyShield("thermal_shield_pyrotheum", ThermalShield.PYROTHEUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      event.addItem(new ItemEnergyShield("thermal_shield_cryotheum", ThermalShield.CRYOTHEUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      event.addItem(new ItemEnergyShield("thermal_shield_aerotheum", ThermalShield.AEROTHEUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      event.addItem(new ItemEnergyShield("thermal_shield_petrotheum", ThermalShield.PETROTHEUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
     }
 
     if (Loader.isModLoaded("enderio")) {

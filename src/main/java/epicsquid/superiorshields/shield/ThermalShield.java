@@ -3,15 +3,23 @@ package epicsquid.superiorshields.shield;
 import javax.annotation.Nonnull;
 
 import epicsquid.superiorshields.shield.effect.IShieldEffect;
+import epicsquid.superiorshields.shield.effect.ShieldEffectFireNova;
 import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
+import epicsquid.superiorshields.shield.effect.ShieldEffectPotionNova;
+import net.minecraft.init.MobEffects;
 
 public enum ThermalShield implements IEnergyShield {
 
   BASIC(3, 12, 40, 40000),
-  REINFORCED(6, 10, 40, 120000),
-  HARDENED(9, 8, 40, 240000),
+  HARDENED(6,  10, 40, 120000),
+  REINFORCED(9, 8, 40, 240000),
   SIGNALUM(12, 7, 30, 400000),
   ENDERIUM(15, 6, 30, 600000),
+
+  PYROTHEUM(7, 100, 20, 240000, new ShieldEffectFireNova(5, 10.0)),
+  CRYOTHEUM(7, 100, 20, 240000, new ShieldEffectPotionNova(MobEffects.SLOWNESS, 5, 10)),
+  AEROTHEUM(7, 100, 20, 240000, new ShieldEffectPotionNova(MobEffects.BLINDNESS, 5, 10)),
+  PETROTHEUM(7, 100, 20, 240000, new ShieldEffectPotionNova(MobEffects.WEAKNESS, 5, 10)),
 
   ;
 

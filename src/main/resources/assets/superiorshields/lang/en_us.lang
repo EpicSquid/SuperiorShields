@@ -6,6 +6,10 @@ item.thermal_shield_hardened.name=Flux Shield (Hardened)
 item.thermal_shield_reinforced.name=Flux Shield (Reinforced)
 item.thermal_shield_signalum.name=Flux Shield (Signalum)
 item.thermal_shield_enderium.name=Flux Shield (Resonant)
+item.thermal_shield_pyrotheum.name=Pyrotheum Flux Nova Shield
+item.thermal_shield_cryotheum.name=Cryotheum Flux Nova Shield
+item.thermal_shield_petrotheum.name=Petrotheum Flux Nova Shield
+item.thermal_shield_aerotheum.name=Aerotheum Flux Nova Shield
 
 # Ender IO
 item.enderio_ds_shield_conductive_iron.name=Dark Steel Energy Shield (Conductive Iron)
