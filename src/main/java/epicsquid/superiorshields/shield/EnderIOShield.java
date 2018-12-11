@@ -1,5 +1,7 @@
 package epicsquid.superiorshields.shield;
 
+import javax.annotation.Nonnull;
+
 import epicsquid.superiorshields.shield.effect.IShieldEffect;
 import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
 import epicsquid.superiorshields.shield.effect.ShieldEffectPotionNova;
@@ -48,6 +50,12 @@ public enum EnderIOShield implements IEnergyShield {
     this.shieldRechargeRate = shieldRechargeRate;
     this.maxEnergy = maxEnergy;
     this.effect = effect;
+  }
+
+  @Nonnull
+  @Override
+  public IShieldEffect getEffect() {
+    return effect;
   }
 
   @Override
