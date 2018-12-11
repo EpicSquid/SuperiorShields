@@ -1,5 +1,7 @@
 package epicsquid.superiorshields.item;
 
+import java.util.List;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -25,8 +27,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
 public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implements ISuperiorShield, IBauble {
 
   private int ticksSinceLastRecharge = 0;
@@ -44,9 +44,11 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
   public float applyShield(@Nonnull EntityPlayer player, @Nonnull ItemStack stack, float damage, @Nonnull DamageSource source) {
     if (player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
-      triggerShieldEffect(player, stack, source, damage, EffectTrigger.DAMAGE);
-      if (damage > shield.getCurrentHp()) {
-        triggerShieldEffect(player, stack, source, damage, EffectTrigger.EMPTY);
+      if (shield.getCurrentHp() > 0) {
+        triggerShieldEffect(player, stack, source, damage, EffectTrigger.DAMAGE);
+        if (damage > shield.getCurrentHp()) {
+          triggerShieldEffect(player, stack, source, damage, EffectTrigger.EMPTY);
+        }
       }
       return absorbDamage(player, shield, shield.getCurrentHp() - damage);
     }

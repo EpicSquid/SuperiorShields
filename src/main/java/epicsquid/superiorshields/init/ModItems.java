@@ -12,7 +12,6 @@ import epicsquid.superiorshields.shield.EnderIOShield;
 import epicsquid.superiorshields.shield.IFShield;
 import epicsquid.superiorshields.shield.NaturesAuraShield;
 import epicsquid.superiorshields.shield.ThermalShield;
-import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Loader;
 
 public class ModItems {

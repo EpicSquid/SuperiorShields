@@ -1,5 +1,10 @@
 package epicsquid.superiorshields.shield;
 
+import epicsquid.superiorshields.shield.effect.IShieldEffect;
+import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
+import epicsquid.superiorshields.shield.effect.ShieldEffectPotionNova;
+import net.minecraft.init.MobEffects;
+
 public enum EnderIOShield implements IEnergyShield {
 
   DS_CONDUCTIVE_IRON(3, 40, 10, 60000),
@@ -23,7 +28,7 @@ public enum EnderIOShield implements IEnergyShield {
   ES_MELODIC_ALLOY(15, 25, 10, 20480000),
   STELLAR_ALLOY(20, 20, 10, 40960000),
 
-  SOULARIUM(10, 200, 40, 480000)
+  SOULARIUM(10, 200, 40, 480000, new ShieldEffectPotionNova(MobEffects.LEVITATION, 100, 10.0))
 
   ;
 
@@ -31,12 +36,18 @@ public enum EnderIOShield implements IEnergyShield {
   private int shieldRechargeDelay;
   private int shieldRechargeRate;
   private int maxEnergy;
+  private IShieldEffect effect;
 
   EnderIOShield(float maxHp, int shieldRechargeDelay, int shieldRechargeRate, int maxEnergy) {
+    this(maxHp, shieldRechargeDelay, shieldRechargeRate, maxEnergy, new ShieldEffectNone());
+  }
+
+  EnderIOShield(float maxHp, int shieldRechargeDelay, int shieldRechargeRate, int maxEnergy, IShieldEffect effect) {
     this.maxHp = maxHp;
     this.shieldRechargeDelay = shieldRechargeDelay;
     this.shieldRechargeRate = shieldRechargeRate;
     this.maxEnergy = maxEnergy;
+    this.effect = effect;
   }
 
   @Override

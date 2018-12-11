@@ -2,13 +2,9 @@ package epicsquid.superiorshields.item;
 
 import javax.annotation.Nonnull;
 
-import epicsquid.superiorshields.capability.shield.IShieldCapability;
-import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
 import epicsquid.superiorshields.shield.IShieldType;
-import epicsquid.superiorshields.shield.effect.EffectTrigger;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 import vazkii.botania.api.mana.ManaItemHandler;
 
 public class ItemManaShield extends ItemSuperiorShield<IShieldType> {
