@@ -49,9 +49,6 @@ public class SuperiorShields {
     CONTAINER = Loader.instance().activeModContainer();
     MinecraftForge.EVENT_BUS.register(new EventManager());
     MinecraftForge.EVENT_BUS.register(new RegistryManager());
-    if(event.getSide().isClient()) {
-    	MinecraftForge.EVENT_BUS.register(new ClientEventManager());
-    }
     proxy.preInit(event);
   }
 

@@ -8,15 +8,18 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
+@Mod.EventBusSubscriber(modid = SuperiorShields.MODID, value=Side.CLIENT)
 public class ClientEventManager {
 
-  private HashMap<EntityPlayer, Integer> HURT_TIME = new HashMap<>();
+  private static HashMap<EntityPlayer, Integer> HURT_TIME = new HashMap<>();
 
   @SubscribeEvent
-  public void onRenderPlayer(RenderPlayerEvent.Pre event) {
+  public static void onRenderPlayer(RenderPlayerEvent.Pre event) {
     EntityPlayer player = event.getEntityPlayer();
     if (player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
@@ -33,7 +36,7 @@ public class ClientEventManager {
   }
   
   @SubscribeEvent
-  public void onTick(TickEvent.PlayerTickEvent event) {
+  public static void onTick(TickEvent.PlayerTickEvent event) {
     if (event.phase == TickEvent.Phase.START && HURT_TIME.containsKey(event.player)) {
       HURT_TIME.put(event.player, HURT_TIME.get(event.player) - 1);
       if (HURT_TIME.get(event.player) < 0)
