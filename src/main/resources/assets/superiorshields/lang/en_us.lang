@@ -1,5 +1,15 @@
 itemGroup.superiorshields=Superior Shields
 
+# Minecraft
+item.vanilla_shield_wood.name=Wooden Primitive Shield
+item.vanilla_shield_stone.name=Stone Primitive Shield
+item.vanilla_shield_iron.name=Iron Magic Shield
+item.vanilla_shield_gold.name=Gold Magic Shield
+item.vanilla_shield_diamond.name=Diamond Magic Shield
+item.vanilla_shield_obsidian.name=Obsidian Magic Shield
+item.vanilla_shield_emerald.name=Emerald Magic Shield
+item.vanilla_shield_endstone.name=Ender Magic Shield
+
 # Thermal
 item.thermal_shield_basic.name=Flux Shield (Basic)
 item.thermal_shield_hardened.name=Flux Shield (Hardened)

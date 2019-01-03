@@ -7,11 +7,13 @@ import epicsquid.superiorshields.SuperiorShields;
 import epicsquid.superiorshields.item.ItemAuraShield;
 import epicsquid.superiorshields.item.ItemEnergyShield;
 import epicsquid.superiorshields.item.ItemManaShield;
+import epicsquid.superiorshields.item.ItemVanillaShield;
 import epicsquid.superiorshields.shield.BotaniaShield;
 import epicsquid.superiorshields.shield.EnderIOShield;
 import epicsquid.superiorshields.shield.IFShield;
 import epicsquid.superiorshields.shield.NaturesAuraShield;
 import epicsquid.superiorshields.shield.ThermalShield;
+import epicsquid.superiorshields.shield.VanillaShield;
 import net.minecraftforge.fml.common.Loader;
 
 public class ModItems {
@@ -20,6 +22,15 @@ public class ModItems {
    * Register all items
    */
   public static void registerItems(@Nonnull RegisterContentEvent event) {
+
+    event.addItem(new ItemVanillaShield("vanilla_shield_wood", VanillaShield.WOOD).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+    event.addItem(new ItemVanillaShield("vanilla_shield_stone", VanillaShield.STONE).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+    event.addItem(new ItemVanillaShield("vanilla_shield_iron", VanillaShield.IRON).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+    event.addItem(new ItemVanillaShield("vanilla_shield_gold", VanillaShield.GOLD).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+    event.addItem(new ItemVanillaShield("vanilla_shield_diamond", VanillaShield.DIAMOND).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+    event.addItem(new ItemVanillaShield("vanilla_shield_obsidian", VanillaShield.OBSIDIAN).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+    event.addItem(new ItemVanillaShield("vanilla_shield_emerald", VanillaShield.EMERALD).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+    event.addItem(new ItemVanillaShield("vanilla_shield_endstone", VanillaShield.ENDSTONE).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
 
     if (Loader.isModLoaded("thermalexpansion")) {
       event.addItem(new ItemEnergyShield("thermal_shield_basic", ThermalShield.BASIC).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
