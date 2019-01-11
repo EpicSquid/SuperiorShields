@@ -9,10 +9,12 @@ import epicsquid.superiorshields.shield.effect.ShieldEffectFood;
 import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
 import epicsquid.superiorshields.shield.effect.ShieldEffectSpawn;
 
+import static epicsquid.superiorshields.config.ConfigManager.industrialForegoing;
+
 public enum IFShield implements IEnergyShield {
 
-  PINK_SLIME(15, 240, 40, 480000, new ShieldEffectSpawn<>(EntityPinkSlime.class, 0.03f)),
-  MEAT(10, 180, 40, 480000, new ShieldEffectFood(0.05f, 1, 1.0f)),
+  PINK_SLIME(industrialForegoing.pinkSlimeMaxHp, industrialForegoing.pinkSlimeRechargeDelay, industrialForegoing.pinkSlimeRechargeRate, industrialForegoing.pinkSlimeEnergy, new ShieldEffectSpawn<>(EntityPinkSlime.class, 0.03f)),
+  MEAT(industrialForegoing.meatMaxHp, industrialForegoing.meatRechargeDelay, industrialForegoing.meatRechargeRate, industrialForegoing.meatEnergy, new ShieldEffectFood(0.05f, 1, 1.0f)),
 
   ;
 

@@ -26,6 +26,9 @@ public class ConfigManager {
   @Config.Comment(("Config for Thermal Expansion Shield stats and enabled status"))
   public static ConfigThermal thermal = new ConfigThermal();
 
+  @Config.Comment(("Config for Industrial Foregoing Shield stats and enabled status"))
+  public static ConfigIndustrialForegoing industrialForegoing = new ConfigIndustrialForegoing();
+
   public static class ConfigVanilla {
 
     public boolean enableVanillaShields = true;
@@ -223,7 +226,7 @@ public class ConfigManager {
 
   public static class ConfigThermal {
 
-    public boolean enabledThermalShields = true;
+    public boolean enableThermalShields = true;
 
     public boolean basicEnabled = true;
     public float basicMaxHp = 3f;
@@ -279,5 +282,22 @@ public class ConfigManager {
     public int petrotheumRechargeRate = 20;
     public int petrotheumEnergy = 240000;
 
+  }
+
+  public static class ConfigIndustrialForegoing {
+
+    public boolean enableIndustrialForegoingShields = true;
+
+    public boolean pinkSlimeEnabled = true;
+    public float pinkSlimeMaxHp = 15f;
+    public int pinkSlimeRechargeDelay = 240;
+    public int pinkSlimeRechargeRate = 40;
+    public int pinkSlimeEnergy = 480000;
+
+    public boolean meatEnabled = true;
+    public float meatMaxHp = 10f;
+    public int meatRechargeDelay = 180;
+    public int meatRechargeRate = 40;
+    public int meatEnergy = 480000;
   }
 }

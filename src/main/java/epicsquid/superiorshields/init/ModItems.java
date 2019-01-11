@@ -43,7 +43,7 @@ public class ModItems {
         event.addItem(new ItemVanillaShield("vanilla_shield_endstone", VanillaShield.ENDSTONE).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
     }
 
-    if (Loader.isModLoaded("thermalexpansion") && ConfigManager.thermal.enabledThermalShields) {
+    if (Loader.isModLoaded("thermalexpansion") && ConfigManager.thermal.enableThermalShields) {
       if (ConfigManager.thermal.basicEnabled)
         event.addItem(new ItemEnergyShield("thermal_shield_basic", ThermalShield.BASIC).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
       if (ConfigManager.thermal.hardenedEnabled)
@@ -123,9 +123,11 @@ public class ModItems {
         event.addItem(new ItemManaShield("botania_shield_elementium", BotaniaShield.ELEMENTIUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
     }
 
-    if (Loader.isModLoaded("industrialforegoing")) {
-      event.addItem(new ItemEnergyShield("if_pink_slime_shield", IFShield.PINK_SLIME).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
-      event.addItem(new ItemEnergyShield("if_meat_shield", IFShield.MEAT).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+    if (Loader.isModLoaded("industrialforegoing") && ConfigManager.industrialForegoing.enableIndustrialForegoingShields) {
+      if (ConfigManager.industrialForegoing.pinkSlimeEnabled)
+        event.addItem(new ItemEnergyShield("if_pink_slime_shield", IFShield.PINK_SLIME).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      if (ConfigManager.industrialForegoing.meatEnabled)
+        event.addItem(new ItemEnergyShield("if_meat_shield", IFShield.MEAT).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
     }
   }
 
