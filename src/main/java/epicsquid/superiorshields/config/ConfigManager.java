@@ -29,6 +29,9 @@ public class ConfigManager {
   @Config.Comment(("Config for Industrial Foregoing Shield stats and enabled status"))
   public static ConfigIndustrialForegoing industrialForegoing = new ConfigIndustrialForegoing();
 
+  @Config.Comment(("Config for Astral Sorcery shield perks"))
+  public static ConfigAstralSorcery astralSorcery = new ConfigAstralSorcery();
+
   public static class ConfigVanilla {
 
     public boolean enableVanillaShields = true;
@@ -299,5 +302,19 @@ public class ConfigManager {
     public int meatRechargeDelay = 180;
     public int meatRechargeRate = 40;
     public int meatEnergy = 480000;
+  }
+
+  public static class ConfigAstralSorcery {
+
+    public boolean enableAstralSorceryShieldPerks = true;
+
+    @Config.Comment(("The amount of shield HP to add for the first perk"))
+    public float addShieldModPerk1 = 1f;
+    @Config.Comment(("The amount of shield HP to add for the second perk"))
+    public float addShieldModPerk2 = 1f;
+    @Config.Comment(("The amount of shield HP to add for the third perk"))
+    public float addShieldModPerk3 = 1f;
+    @Config.Comment(("The amount of shield HP to add for the key (big glowy) perk"))
+    public float addShieldKeyPerk = 3f;
   }
 }
