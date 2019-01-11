@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SCS",
+    " S "  ],
+  "key": {
+    "S": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ingotGold"
+      }
+    ],
+    "C": [
+      {
+        "item": "minecraft:redstone_torch"
+      }
+    ]
+  },
+  "result": {
+    "item": "superiorshields:vanilla_shield_gold",
+    "data": 0
+  }
+}

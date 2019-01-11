@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SCS",
+    " S "  ],
+  "key": {
+    "S": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "stone"
+      }
+    ],
+    "C": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "stickWood"
+      }
+    ]
+  },
+  "result": {
+    "item": "superiorshields:vanilla_shield_stone",
+    "data": 0
+  }
+}
