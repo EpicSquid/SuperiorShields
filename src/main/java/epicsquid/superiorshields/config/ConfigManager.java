@@ -6,10 +6,13 @@ import net.minecraftforge.fml.common.Mod;
 
 @Config(modid = SuperiorShields.MODID)
 @Mod.EventBusSubscriber(modid = SuperiorShields.MODID)
-public class VanillaConfig {
+public class ConfigManager {
 
   @Config.Comment(("Config for Vanilla Shield stats and enabled status"))
   public static ConfigVanilla vanilla = new ConfigVanilla();
+
+  @Config.Comment(("Config for Botania Shield stats and enabled status"))
+  public static ConfigBotania botania = new ConfigBotania();
 
   public static class ConfigVanilla {
 
@@ -62,5 +65,25 @@ public class VanillaConfig {
     public int endstoneRechargeDelay = 80;
     public int endstoneRechargeRate = 40;
     public int endstoneDamage = 360;
+  }
+
+  public static class ConfigBotania {
+
+    public boolean enableBotaniaShields = true;
+
+    public boolean manaSteelEnabled = true;
+    public float manaSteelMaxHp = 4f;
+    public int manaSteelRechargeDelay = 40;
+    public int manaSteelRechargeRate = 15;
+
+    public boolean terraSteelEnabled = true;
+    public float terraSteelMaxHp = 8f;
+    public int terraSteelRechargeDelay = 30;
+    public int terraSteelRechargeRate = 10;
+
+    public boolean elementiumEnabled = true;
+    public float elementiumMaxHp = 6f;
+    public int elementiumRechargeDelay = 15;
+    public int elementiumRechargeRate = 10;
   }
 }

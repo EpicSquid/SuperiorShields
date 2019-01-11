@@ -8,27 +8,29 @@ import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
 import epicsquid.superiorshields.shield.effect.ShieldEffectPotion;
 import net.minecraft.init.MobEffects;
 
+import static epicsquid.superiorshields.config.ConfigManager.botania;
+
 public enum BotaniaShield implements IShieldType {
 
-  MANA_STEEL(4, 40, 15),
-  TERRA_STEEL(7, 30, 10, new ShieldEffectPotion(MobEffects.REGENERATION, EffectTrigger.FILLED, 100)),
-  ELEMENTIUM(5, 15, 10, new ShieldEffectPotion(MobEffects.HASTE, EffectTrigger.FULL, 70)),
+  MANA_STEEL(botania.manaSteelMaxHp, botania.manaSteelRechargeDelay, botania.manaSteelRechargeRate),
+  TERRA_STEEL(botania.terraSteelMaxHp, botania.terraSteelRechargeDelay, botania.terraSteelRechargeRate, new ShieldEffectPotion(MobEffects.REGENERATION, EffectTrigger.FILLED, 100)),
+  ELEMENTIUM(botania.elementiumMaxHp, botania.elementiumRechargeDelay, botania.elementiumRechargeRate, new ShieldEffectPotion(MobEffects.HASTE, EffectTrigger.FULL, 70)),
 
   ;
 
-  private int maxShieldHp;
+  private float maxShieldHp;
   private int rechargeDelay;
   private int rechargeRate;
   private IShieldEffect effect;
 
-  BotaniaShield(int maxShieldHp, int rechargeDelay, int rechargeRate, IShieldEffect effect) {
+  BotaniaShield(float maxShieldHp, int rechargeDelay, int rechargeRate, IShieldEffect effect) {
     this.maxShieldHp = maxShieldHp;
     this.rechargeDelay = rechargeDelay;
     this.rechargeRate = rechargeRate;
     this.effect = effect;
   }
 
-  BotaniaShield(int maxShieldHp, int rechargeDelay, int rechargeRate) {
+  BotaniaShield(float maxShieldHp, int rechargeDelay, int rechargeRate) {
     this(maxShieldHp, rechargeDelay, rechargeRate, new ShieldEffectNone());
   }
 

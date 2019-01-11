@@ -7,7 +7,7 @@ import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
 import epicsquid.superiorshields.shield.effect.ShieldEffectPotionNova;
 import net.minecraft.init.MobEffects;
 
-import static epicsquid.superiorshields.config.VanillaConfig.vanilla;
+import static epicsquid.superiorshields.config.ConfigManager.vanilla;
 
 public enum VanillaShield implements IShieldType {
 
