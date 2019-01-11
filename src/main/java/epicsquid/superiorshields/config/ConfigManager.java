@@ -14,6 +14,12 @@ public class ConfigManager {
   @Config.Comment(("Config for Botania Shield stats and enabled status"))
   public static ConfigBotania botania = new ConfigBotania();
 
+  @Config.Comment(("Config for Ender IO Shield stats and enabled status"))
+  public static ConfigEnderIO enderio = new ConfigEnderIO();
+
+  @Config.Comment(("Config for Endergy Shield stats and enabled status"))
+  public static ConfigEndergy endergy = new ConfigEndergy();
+
   public static class ConfigVanilla {
 
     public boolean enableVanillaShields = true;
@@ -86,4 +92,111 @@ public class ConfigManager {
     public int elementiumRechargeDelay = 15;
     public int elementiumRechargeRate = 10;
   }
+
+  public static class ConfigEnderIO {
+
+    public boolean enableEnderIOShields = true;
+
+    public boolean darkSteelConductiveIronEnabled = true;
+    public float darkSteelConductiveIronMaxHp = 3f;
+    public int darkSteelConductiveIronRechargeDelay = 40;
+    public int darkSteelConductiveIronRechargeRate = 10;
+    public int darkSteelConductiveIronEnergy = 60000;
+
+    public boolean darkSteelEnergeticAlloyEnabled = true;
+    public float darkSteelEnergeticAlloyMaxHp = 5f;
+    public int darkSteelEnergeticAlloyRechargeDelay = 40;
+    public int darkSteelEnergeticAlloyRechargeRate = 10;
+    public int darkSteelEnergeticAlloyEnergy = 120000;
+
+    public boolean darkSteelVibrantAlloyEnabled = true;
+    public float darkSteelVibrantAlloyMaxHp = 8f;
+    public int darkSteelVibrantAlloyRechargeDelay = 30;
+    public int darkSteelVibrantAlloyRechargeRate = 10;
+    public int darkSteelVibrantAlloyEnergy = 240000;
+
+    public boolean endSteelConductiveIronEnabled = true;
+    public float endSteelConductiveIronMaxHp = 5f;
+    public int endSteelConductiveIronRechargeDelay = 40;
+    public int endSteelConductiveIronRechargeRate = 10;
+    public int endSteelConductiveIronEnergy = 120000;
+
+    public boolean endSteelEnergeticAlloyEnabled = true;
+    public float endSteelEnergeticAlloyMaxHp = 7f;
+    public int endSteelEnergeticAlloyRechargeDelay = 40;
+    public int endSteelEnergeticAlloyRechargeRate = 10;
+    public int endSteelEnergeticAlloyEnergy = 240000;
+
+    public boolean endSteelVibrantAlloyEnabled = true;
+    public float endSteelVibrantAlloyMaxHp = 10f;
+    public int endSteelVibrantAlloyRechargeDelay = 30;
+    public int endSteelVibrantAlloyRechargeRate = 10;
+    public int endSteelVibrantAlloyEnergy = 480000;
+
+    public boolean soulariumEnabled = true;
+    public float soulariumMaxHp = 10f;
+    public int soulariumRechargeDelay = 200;
+    public int soulariumRechargeRate = 40;
+    public int soulariumEnergy = 480000;
+  }
+
+  public static class ConfigEndergy {
+
+    public boolean enableEndergyShields = true;
+
+    public boolean darkSteelEnergeticSilverEnabled = true;
+    public float darkSteelEnergeticSilverMaxHp = 5f;
+    public int darkSteelEnergeticSilverRechargeDelay = 40;
+    public int darkSteelEnergeticSilverRechargeRate = 10;
+    public int darkSteelEnergeticSilverEnergy = 120000;
+
+    public boolean darkSteelVividAlloyEnabled = true;
+    public float darkSteelVividAlloyMaxHp = 8f;
+    public int darkSteelVividAlloyRechargeDelay = 30;
+    public int darkSteelVividAlloyRechargeRate = 10;
+    public int darkSteelVividAlloyEnergy = 240000;
+
+    public boolean darkSteelCrystallineAlloyEnabled = true;
+    public float darkSteelCrystallineAlloyMaxHp = 10f;
+    public int darkSteelCrystallineAlloyRechargeDelay = 30;
+    public int darkSteelCrystallineAlloyRechargeRate = 10;
+    public int darkSteelCrystallineAlloyEnergy = 512000;
+
+    public boolean darkSteelMelodicAlloyEnabled = true;
+    public float darkSteelMelodicAlloyMaxHp = 12f;
+    public int darkSteelMelodicAlloyRechargeDelay = 25;
+    public int darkSteelMelodicAlloyRechargeRate = 10;
+    public int darkSteelMelodicAlloyEnergy = 1024000;
+
+    public boolean endSteelEnergeticSilverEnabled = true;
+    public float endSteelEnergeticSilverMaxHp = 7f;
+    public int endSteelEnergeticSilverRechargeDelay = 40;
+    public int endSteelEnergeticSilverRechargeRate = 10;
+    public int endSteelEnergeticSilverEnergy = 240000;
+
+    public boolean endSteelVividAlloyEnabled = true;
+    public float endSteelVividAlloyMaxHp = 10f;
+    public int endSteelVividAlloyRechargeDelay = 30;
+    public int endSteelVividAlloyRechargeRate = 10;
+    public int endSteelVividAlloyEnergy = 480000;
+
+    public boolean endSteelCrystallineAlloyEnabled = true;
+    public float endSteelCrystallineAlloyMaxHp = 12f;
+    public int endSteelCrystallineAlloyRechargeDelay = 30;
+    public int endSteelCrystallineAlloyRechargeRate = 10;
+    public int endSteelCrystallineAlloyEnergy = 1024000;
+
+    public boolean endSteelMelodicAlloyEnabled = true;
+    public float endSteelMelodicAlloyMaxHp = 14f;
+    public int endSteelMelodicAlloyRechargeDelay = 25;
+    public int endSteelMelodicAlloyRechargeRate = 10;
+    public int endSteelMelodicAlloyEnergy = 2048000;
+
+    public boolean stellarAlloyEnabled = true;
+    public float stellarAlloyMaxHp = 20f;
+    public int stellarAlloyRechargeDelay = 20;
+    public int stellarAlloyRechargeRate = 10;
+    public int stellarAlloyEnergy = 4096000;
+  }
+
 }
