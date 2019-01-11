@@ -1,5 +1,7 @@
 package epicsquid.superiorshields.proxy;
 
+import epicsquid.superiorshields.render.LayerShield;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -18,5 +20,10 @@ public class ClientProxy extends CommonProxy {
   @Override
   public void postInit(FMLPostInitializationEvent event) {
     super.postInit(event);
+
+    // Shield Rendering on Player
+    LayerShield shield = new LayerShield();
+    Minecraft.getMinecraft().getRenderManager().getSkinMap().get("default").addLayer(shield);
+    Minecraft.getMinecraft().getRenderManager().getSkinMap().get("slim").addLayer(shield);
   }
 }
