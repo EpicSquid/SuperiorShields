@@ -20,6 +20,9 @@ public class ConfigManager {
   @Config.Comment(("Config for Endergy Shield stats and enabled status"))
   public static ConfigEndergy endergy = new ConfigEndergy();
 
+  @Config.Comment(("Config for Nature's Aura Shield stats and enabled status"))
+  public static ConfigNaturesAura naturesAura = new ConfigNaturesAura();
+
   public static class ConfigVanilla {
 
     public boolean enableVanillaShields = true;
@@ -199,4 +202,19 @@ public class ConfigManager {
     public int stellarAlloyEnergy = 4096000;
   }
 
+  public static class ConfigNaturesAura{
+
+    public boolean enableNaturesAuraShields = true;
+
+    public boolean infusedIronEnabled = true;
+    public float infusedIronMaxHp = 9f;
+    public int infusedIronRechargeDelay = 200;
+    public int infusedIronRechargeRate = 40;
+
+    public boolean skyIngotEnabled = true;
+    public float skyIngotMaxHp = 14f;
+    public int skyIngotRechargeDelay = 200;
+    public int skyIngotRechargeRate = 30;
+
+  }
 }

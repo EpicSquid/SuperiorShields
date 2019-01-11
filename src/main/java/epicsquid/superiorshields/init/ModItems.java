@@ -98,9 +98,11 @@ public class ModItems {
         event.addItem(new ItemEnergyShield("endergy_shield_stellar_alloy", EnderIOShield.STELLAR_ALLOY).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
     }
 
-    if (Loader.isModLoaded("naturesaura")) {
-      event.addItem(new ItemAuraShield("natures_aura_shield_infused_iron", NaturesAuraShield.INFUSED_IRON).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
-      event.addItem(new ItemAuraShield("natures_aura_shield_sky_ingot", NaturesAuraShield.SKY_INGOT).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+    if (Loader.isModLoaded("naturesaura") && ConfigManager.naturesAura.enableNaturesAuraShields) {
+      if (ConfigManager.naturesAura.infusedIronEnabled)
+        event.addItem(new ItemAuraShield("natures_aura_shield_infused_iron", NaturesAuraShield.INFUSED_IRON).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      if (ConfigManager.naturesAura.skyIngotEnabled)
+        event.addItem(new ItemAuraShield("natures_aura_shield_sky_ingot", NaturesAuraShield.SKY_INGOT).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
     }
 
     if (Loader.isModLoaded("botania") && ConfigManager.botania.enableBotaniaShields) {
