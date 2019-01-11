@@ -23,6 +23,9 @@ public class ConfigManager {
   @Config.Comment(("Config for Nature's Aura Shield stats and enabled status"))
   public static ConfigNaturesAura naturesAura = new ConfigNaturesAura();
 
+  @Config.Comment(("Config for Thermal Expansion Shield stats and enabled status"))
+  public static ConfigThermal thermal = new ConfigThermal();
+
   public static class ConfigVanilla {
 
     public boolean enableVanillaShields = true;
@@ -215,6 +218,66 @@ public class ConfigManager {
     public float skyIngotMaxHp = 14f;
     public int skyIngotRechargeDelay = 200;
     public int skyIngotRechargeRate = 30;
+
+  }
+
+  public static class ConfigThermal {
+
+    public boolean enabledThermalShields = true;
+
+    public boolean basicEnabled = true;
+    public float basicMaxHp = 3f;
+    public int basicRechargeDelay = 12;
+    public int basicRechargeRate = 40;
+    public int basicEnergy = 40000;
+
+    public boolean hardenedEnabled = true;
+    public float hardenedMaxHp = 6f;
+    public int hardenedRechargeDelay = 10;
+    public int hardenedRechargeRate = 40;
+    public int hardenedEnergy = 120000;
+
+    public boolean reinforcedEnabled = true;
+    public float reinforcedMaxHp = 9f;
+    public int reinforcedRechargeDelay = 8;
+    public int reinforcedRechargeRate = 40;
+    public int reinforcedEnergy = 240000;
+
+    public boolean signalumEnabled = true;
+    public float signalumMaxHp = 12f;
+    public int signalumRechargeDelay = 7;
+    public int signaulmRechargeRate = 30;
+    public int signalumEnergy = 400000;
+
+    public boolean enderiumEnabled = true;
+    public float enderiumMaxHp = 15f;
+    public int enderiumRechargeDelay = 6;
+    public int enderiumRechargeRate = 30;
+    public int enderiumEnergy = 600000;
+
+    public boolean pyrotheumEnabled = true;
+    public float pyrotheumMaxHp = 9f;
+    public int pyrotheumRechargeDelay = 60;
+    public int pyrotheumRechargeRate = 20;
+    public int pyrotheumEnergy = 240000;
+
+    public boolean cryotheumEnabled = true;
+    public float cryotheumMaxHp = 9f;
+    public int cryotheumRechargeDelay = 60;
+    public int cryotheumRechargeRate = 20;
+    public int cryotheumEnergy = 240000;
+
+    public boolean aerotheumEnabled = true;
+    public float aerotheumMaxHp = 9f;
+    public int aerotheumRechargeDelay = 60;
+    public int aerotheumRechargeRate = 20;
+    public int aerotheumEnergy = 240000;
+
+    public boolean petrotheumEnabled = true;
+    public float petrotheumMaxHp = 9f;
+    public int petrotheumRechargeDelay = 60;
+    public int petrotheumRechargeRate = 20;
+    public int petrotheumEnergy = 240000;
 
   }
 }

@@ -43,17 +43,26 @@ public class ModItems {
         event.addItem(new ItemVanillaShield("vanilla_shield_endstone", VanillaShield.ENDSTONE).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
     }
 
-    if (Loader.isModLoaded("thermalexpansion")) {
-      event.addItem(new ItemEnergyShield("thermal_shield_basic", ThermalShield.BASIC).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
-      event.addItem(new ItemEnergyShield("thermal_shield_hardened", ThermalShield.HARDENED).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
-      event.addItem(new ItemEnergyShield("thermal_shield_reinforced", ThermalShield.REINFORCED).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
-      event.addItem(new ItemEnergyShield("thermal_shield_signalum", ThermalShield.SIGNALUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
-      event.addItem(new ItemEnergyShield("thermal_shield_enderium", ThermalShield.ENDERIUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+    if (Loader.isModLoaded("thermalexpansion") && ConfigManager.thermal.enabledThermalShields) {
+      if (ConfigManager.thermal.basicEnabled)
+        event.addItem(new ItemEnergyShield("thermal_shield_basic", ThermalShield.BASIC).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      if (ConfigManager.thermal.hardenedEnabled)
+        event.addItem(new ItemEnergyShield("thermal_shield_hardened", ThermalShield.HARDENED).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      if (ConfigManager.thermal.reinforcedEnabled)
+        event.addItem(new ItemEnergyShield("thermal_shield_reinforced", ThermalShield.REINFORCED).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      if (ConfigManager.thermal.signalumEnabled)
+        event.addItem(new ItemEnergyShield("thermal_shield_signalum", ThermalShield.SIGNALUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      if (ConfigManager.thermal.enderiumEnabled)
+        event.addItem(new ItemEnergyShield("thermal_shield_enderium", ThermalShield.ENDERIUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
 
-      event.addItem(new ItemEnergyShield("thermal_shield_pyrotheum", ThermalShield.PYROTHEUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
-      event.addItem(new ItemEnergyShield("thermal_shield_cryotheum", ThermalShield.CRYOTHEUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
-      event.addItem(new ItemEnergyShield("thermal_shield_aerotheum", ThermalShield.AEROTHEUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
-      event.addItem(new ItemEnergyShield("thermal_shield_petrotheum", ThermalShield.PETROTHEUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      if (ConfigManager.thermal.pyrotheumEnabled)
+        event.addItem(new ItemEnergyShield("thermal_shield_pyrotheum", ThermalShield.PYROTHEUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      if (ConfigManager.thermal.cryotheumEnabled)
+        event.addItem(new ItemEnergyShield("thermal_shield_cryotheum", ThermalShield.CRYOTHEUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      if (ConfigManager.thermal.aerotheumEnabled)
+        event.addItem(new ItemEnergyShield("thermal_shield_aerotheum", ThermalShield.AEROTHEUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
+      if (ConfigManager.thermal.petrotheumEnabled)
+        event.addItem(new ItemEnergyShield("thermal_shield_petrotheum", ThermalShield.PETROTHEUM).setModelCustom(true).setCreativeTab(SuperiorShields.tab));
     }
 
     if (Loader.isModLoaded("enderio") && ConfigManager.enderio.enableEnderIOShields) {

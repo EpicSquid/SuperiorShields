@@ -8,18 +8,20 @@ import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
 import epicsquid.superiorshields.shield.effect.ShieldEffectPotionNova;
 import net.minecraft.init.MobEffects;
 
+import static epicsquid.superiorshields.config.ConfigManager.thermal;
+
 public enum ThermalShield implements IEnergyShield {
 
-  BASIC(3, 12, 40, 40000),
-  HARDENED(6,  10, 40, 120000),
-  REINFORCED(9, 8, 40, 240000),
-  SIGNALUM(12, 7, 30, 400000),
-  ENDERIUM(15, 6, 30, 600000),
+  BASIC(thermal.basicMaxHp, thermal.basicRechargeDelay, thermal.basicRechargeRate, thermal.basicEnergy),
+  HARDENED(thermal.hardenedMaxHp,  thermal.hardenedRechargeDelay, thermal.hardenedRechargeRate, thermal.hardenedEnergy),
+  REINFORCED(thermal.reinforcedMaxHp, thermal.reinforcedRechargeDelay, thermal.reinforcedRechargeRate, thermal.reinforcedEnergy),
+  SIGNALUM(thermal.signalumMaxHp, thermal.signalumRechargeDelay, thermal.signaulmRechargeRate, thermal.signalumEnergy),
+  ENDERIUM(thermal.enderiumMaxHp, thermal.enderiumRechargeDelay, thermal.enderiumRechargeRate, thermal.enderiumEnergy),
 
-  PYROTHEUM(7, 100, 20, 240000, new ShieldEffectFireNova(5, 10.0)),
-  CRYOTHEUM(7, 100, 20, 240000, new ShieldEffectPotionNova(MobEffects.SLOWNESS, 5, 10)),
-  AEROTHEUM(7, 100, 20, 240000, new ShieldEffectPotionNova(MobEffects.BLINDNESS, 5, 10)),
-  PETROTHEUM(7, 100, 20, 240000, new ShieldEffectPotionNova(MobEffects.WEAKNESS, 5, 10)),
+  PYROTHEUM(thermal.pyrotheumMaxHp, thermal.pyrotheumRechargeDelay, thermal.pyrotheumRechargeRate, thermal.pyrotheumEnergy, new ShieldEffectFireNova(5, 10.0)),
+  CRYOTHEUM(thermal.cryotheumMaxHp, thermal.cryotheumRechargeDelay, thermal.cryotheumRechargeRate, thermal.cryotheumEnergy, new ShieldEffectPotionNova(MobEffects.SLOWNESS, 5, 10)),
+  AEROTHEUM(thermal.aerotheumMaxHp, thermal.aerotheumRechargeDelay, thermal.aerotheumRechargeRate, thermal.aerotheumEnergy, new ShieldEffectPotionNova(MobEffects.BLINDNESS, 5, 10)),
+  PETROTHEUM(thermal.petrotheumMaxHp, thermal.petrotheumRechargeDelay, thermal.petrotheumRechargeRate, thermal.petrotheumEnergy, new ShieldEffectPotionNova(MobEffects.WEAKNESS, 5, 10)),
 
   ;
 
