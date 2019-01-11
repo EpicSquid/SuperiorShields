@@ -7,16 +7,18 @@ import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
 import epicsquid.superiorshields.shield.effect.ShieldEffectPotionNova;
 import net.minecraft.init.MobEffects;
 
+import static epicsquid.superiorshields.config.VanillaConfig.vanilla;
+
 public enum VanillaShield implements IShieldType {
 
-  WOOD(1f, 100, 100, 40, new ShieldEffectNone()),
-  STONE(3f, 100, 50, 80, new ShieldEffectNone()),
-  IRON(6f, 80, 40, 200, new ShieldEffectNone()),
-  GOLD(4f, 20, 10, 120, new ShieldEffectNone()),
-  DIAMOND(9f, 60, 40, 500, new ShieldEffectNone()),
-  OBSIDIAN(12f, 100, 60, 400, new ShieldEffectNone()),
-  EMERALD(7f, 30, 15, 240, new ShieldEffectNone()),
-  ENDSTONE(10f, 80, 40, 360, new ShieldEffectPotionNova(200, 12, MobEffects.GLOWING, MobEffects.LEVITATION))
+  WOOD(vanilla.woodMaxHp, vanilla.woodRechargeDelay, vanilla.woodRechargeRate, vanilla.woodDamage, new ShieldEffectNone()),
+  STONE(vanilla.stoneMaxHp, vanilla.stoneRechargeDelay, vanilla.stoneRechargeRate, vanilla.stoneDamage, new ShieldEffectNone()),
+  IRON(vanilla.ironMaxHp, vanilla.ironRechargeDelay, vanilla.ironRechargeRate, vanilla.ironDamage, new ShieldEffectNone()),
+  GOLD(vanilla.goldMaxHp, vanilla.goldRechargeDelay, vanilla.goldRechargeRate, vanilla.goldDamage, new ShieldEffectNone()),
+  DIAMOND(vanilla.diamondMaxHp, vanilla.diamondRechargeDelay, vanilla.diamondRechargeRate, vanilla.diamondDamage, new ShieldEffectNone()),
+  OBSIDIAN(vanilla.obsidianMaxHp, vanilla.obsidianRechargeDelay, vanilla.obsidianRechargeRate, vanilla.obsidianDamage, new ShieldEffectNone()),
+  EMERALD(vanilla.emeraldMaxHp, vanilla.emeraldRechargeDelay, vanilla.emeraldRechargeRate, vanilla.emeraldDamage, new ShieldEffectNone()),
+  ENDSTONE(vanilla.endstoneMaxHp, vanilla.endstoneRechargeDelay, vanilla.endstoneRechargeRate, vanilla.endstoneDamage, new ShieldEffectPotionNova(200, 12, MobEffects.GLOWING, MobEffects.LEVITATION))
 
   ;
 
