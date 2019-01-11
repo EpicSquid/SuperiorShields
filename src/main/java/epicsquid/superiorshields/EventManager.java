@@ -20,7 +20,7 @@ public class EventManager {
       EntityPlayer player = (EntityPlayer) event.getEntity();
       IBaublesItemHandler handler = BaublesApi.getBaublesHandler(player);
       if (handler != null && event.getSource() != DamageSource.STARVE && event.getSource() != DamageSource.DROWN) {
-        ItemStack stack = handler.getStackInSlot(BaubleType.BELT.getValidSlots()[0]);
+        ItemStack stack = handler.getStackInSlot(BaubleType.CHARM.getValidSlots()[0]);
         if (!stack.isEmpty() && stack.getItem() instanceof ISuperiorShield) {
           event.setAmount(((ISuperiorShield) stack.getItem()).applyShield(player, stack, event.getAmount(), event.getSource()));
         }

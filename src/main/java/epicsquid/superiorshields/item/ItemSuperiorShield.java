@@ -87,7 +87,7 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
 
   @Override
   public BaubleType getBaubleType(@Nonnull ItemStack itemStack) {
-    return BaubleType.BELT;
+    return BaubleType.CHARM;
   }
 
   @Override
