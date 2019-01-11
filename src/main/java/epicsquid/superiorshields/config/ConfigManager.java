@@ -46,43 +46,43 @@ public class ConfigManager {
     public float stoneMaxHp = 3f;
     public int stoneRechargeDelay = 100;
     public int stoneRechargeRate = 50;
-    public int stoneDamage = 80;
+    public int stoneDamage = 120;
 
     public boolean ironEnabled = true;
     public float ironMaxHp = 6f;
     public int ironRechargeDelay = 80;
     public int ironRechargeRate = 40;
-    public int ironDamage = 200;
+    public int ironDamage = 320;
 
     public boolean goldEnabled = true;
     public float goldMaxHp = 4f;
     public int goldRechargeDelay = 20;
     public int goldRechargeRate = 10;
-    public int goldDamage = 120;
+    public int goldDamage = 240;
 
     public boolean diamondEnabled = true;
     public float diamondMaxHp = 9f;
     public int diamondRechargeDelay = 60;
     public int diamondRechargeRate = 40;
-    public int diamondDamage = 500;
+    public int diamondDamage = 560;
 
     public boolean obsidianEnabled = true;
     public float obsidianMaxHp = 12f;
     public int obsidianRechargeDelay = 100;
     public int obsidianRechargeRate = 60;
-    public int obsidianDamage = 400;
+    public int obsidianDamage = 720;
 
     public boolean emeraldEnabled = true;
     public float emeraldMaxHp = 7f;
     public int emeraldRechargeDelay = 30;
     public int emeraldRechargeRate = 15;
-    public int emeraldDamage = 240;
+    public int emeraldDamage = 480;
 
     public boolean endstoneEnabled = true;
     public float endstoneMaxHp = 10f;
     public int endstoneRechargeDelay = 80;
     public int endstoneRechargeRate = 40;
-    public int endstoneDamage = 360;
+    public int endstoneDamage = 480;
   }
 
   public static class ConfigBotania {
