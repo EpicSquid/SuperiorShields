@@ -1,6 +1,7 @@
 package epicsquid.superiorshields.shield.effect;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -8,7 +9,6 @@ import javax.annotation.Nonnull;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import scala.actors.threadpool.Arrays;
 
 public class ShieldEffectPotionNova extends ShieldEffectNova {
 
