@@ -13,7 +13,7 @@ import static epicsquid.superiorshields.config.ConfigManager.industrialForegoing
 
 public enum IFShield implements IEnergyShield {
 
-  PINK_SLIME(industrialForegoing.pinkSlimeMaxHp, industrialForegoing.pinkSlimeRechargeDelay, industrialForegoing.pinkSlimeRechargeRate, industrialForegoing.pinkSlimeEnergy, new ShieldEffectSpawn<>(EntityPinkSlime.class, 0.03f)),
+  PINK_SLIME(industrialForegoing.pinkSlimeMaxHp, industrialForegoing.pinkSlimeRechargeDelay, industrialForegoing.pinkSlimeRechargeRate, industrialForegoing.pinkSlimeEnergy, new ShieldEffectSpawn<>(EntityPinkSlime.class, 0.03f, "shield.effect.spawn.pinkslime")),
   MEAT(industrialForegoing.meatMaxHp, industrialForegoing.meatRechargeDelay, industrialForegoing.meatRechargeRate, industrialForegoing.meatEnergy, new ShieldEffectFood(0.05f, 1, 1.0f)),
 
   ;

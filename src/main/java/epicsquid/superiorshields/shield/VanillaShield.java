@@ -18,7 +18,7 @@ public enum VanillaShield implements IShieldType {
   DIAMOND(vanilla.diamondMaxHp, vanilla.diamondRechargeDelay, vanilla.diamondRechargeRate, vanilla.diamondDamage, new ShieldEffectNone()),
   OBSIDIAN(vanilla.obsidianMaxHp, vanilla.obsidianRechargeDelay, vanilla.obsidianRechargeRate, vanilla.obsidianDamage, new ShieldEffectNone()),
   EMERALD(vanilla.emeraldMaxHp, vanilla.emeraldRechargeDelay, vanilla.emeraldRechargeRate, vanilla.emeraldDamage, new ShieldEffectNone()),
-  ENDSTONE(vanilla.endstoneMaxHp, vanilla.endstoneRechargeDelay, vanilla.endstoneRechargeRate, vanilla.endstoneDamage, new ShieldEffectPotionNova(200, 12, MobEffects.GLOWING, MobEffects.LEVITATION))
+  ENDSTONE(vanilla.endstoneMaxHp, vanilla.endstoneRechargeDelay, vanilla.endstoneRechargeRate, vanilla.endstoneDamage, new ShieldEffectPotionNova(200, 12, "shield.effect.nova.ender", MobEffects.GLOWING, MobEffects.LEVITATION))
 
   ;
 

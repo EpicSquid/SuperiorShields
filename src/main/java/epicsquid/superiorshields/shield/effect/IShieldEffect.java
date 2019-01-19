@@ -10,4 +10,7 @@ import net.minecraft.util.DamageSource;
 public interface IShieldEffect {
 
   void applyEffect(@Nonnull IShieldCapability shield, @Nonnull EntityPlayer player, @Nullable DamageSource source, float damage, EffectTrigger trigger);
+
+  @Nonnull
+  String getDescription();
 }

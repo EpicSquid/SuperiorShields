@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
@@ -16,10 +17,12 @@ public class ShieldEffectSpawn<E extends Entity> implements IShieldEffect {
   private Random random = new Random();
   private float chanceToSpawn;
   private Class<E> entityClass;
+  private String description;
 
-  public ShieldEffectSpawn(@Nonnull Class<E> entityClass, float chanceToSpawn) {
+  public ShieldEffectSpawn(@Nonnull Class<E> entityClass, float chanceToSpawn, String description) {
     this.entityClass = entityClass;
     this.chanceToSpawn = chanceToSpawn;
+    this.description = description;
   }
 
   @Override
@@ -35,5 +38,11 @@ public class ShieldEffectSpawn<E extends Entity> implements IShieldEffect {
       }
 
     }
+  }
+
+  @Nonnull
+  @Override
+  public String getDescription() {
+    return I18n.format(description);
   }
 }

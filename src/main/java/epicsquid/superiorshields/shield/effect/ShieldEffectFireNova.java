@@ -11,7 +11,7 @@ public class ShieldEffectFireNova extends ShieldEffectNova {
   private int duration;
 
   public ShieldEffectFireNova(int duration, double radius) {
-    super(radius);
+    super(radius, "shield.effect.nova.fire");
     this.duration = duration;
   }
 

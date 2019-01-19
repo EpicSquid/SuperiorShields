@@ -13,4 +13,10 @@ public class ShieldEffectNone implements IShieldEffect {
   public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull EntityPlayer player, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
 
   }
+
+  @Nonnull
+  @Override
+  public String getDescription() {
+    return "";
+  }
 }

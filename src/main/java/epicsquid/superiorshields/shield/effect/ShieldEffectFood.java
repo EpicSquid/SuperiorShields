@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.FoodStats;
@@ -31,5 +32,11 @@ public class ShieldEffectFood implements IShieldEffect {
         food.addStats(foodLevel, saturationModifier);
       }
     }
+  }
+
+  @Nonnull
+  @Override
+  public String getDescription() {
+    return I18n.format("shield.effect.food");
   }
 }

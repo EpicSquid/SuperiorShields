@@ -15,6 +15,7 @@ import epicsquid.superiorshields.network.PacketHandler;
 import epicsquid.superiorshields.network.PacketShieldUpdate;
 import epicsquid.superiorshields.shield.IShieldType;
 import epicsquid.superiorshields.shield.effect.EffectTrigger;
+import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -152,6 +153,10 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
         .format("superiorshields.tooltip.rechargeDelayTime"));
     tooltip.add(I18n.format("superiorshields.tooltip.rechargeRate") + " " + 1f / ((float) shieldType.getShieldRechargeRate() / 20) + " " + I18n
         .format("superiorshields.tooltip.rechargeRateTime"));
+
+    if (!(shieldType.getEffect() instanceof ShieldEffectNone)) {
+      tooltip.add(shieldType.getEffect().getDescription());
+    }
   }
 
   protected void updateClient(@Nonnull EntityPlayer player, @Nonnull IShieldCapability shield) {

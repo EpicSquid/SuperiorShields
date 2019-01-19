@@ -2,8 +2,10 @@ package epicsquid.superiorshields.shield;
 
 import javax.annotation.Nonnull;
 
+import epicsquid.superiorshields.shield.effect.EffectTrigger;
 import epicsquid.superiorshields.shield.effect.IShieldEffect;
 import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
+import epicsquid.superiorshields.shield.effect.ShieldEffectPotion;
 import epicsquid.superiorshields.shield.effect.ShieldEffectPotionNova;
 import net.minecraft.init.MobEffects;
 
@@ -33,7 +35,7 @@ public enum EnderIOShield implements IEnergyShield {
   ES_MELODIC_ALLOY(endergy.endSteelMelodicAlloyMaxHp, endergy.endSteelMelodicAlloyRechargeDelay, endergy.endSteelMelodicAlloyRechargeRate, endergy.endSteelMelodicAlloyEnergy),
   STELLAR_ALLOY(endergy.stellarAlloyMaxHp, endergy.stellarAlloyRechargeDelay, endergy.stellarAlloyRechargeRate, endergy.stellarAlloyEnergy),
 
-  SOULARIUM(enderio.soulariumMaxHp, enderio.soulariumRechargeDelay, enderio.soulariumRechargeRate, enderio.soulariumEnergy, new ShieldEffectPotionNova(MobEffects.LEVITATION, 100, 10.0))
+  SOULARIUM(enderio.soulariumMaxHp, enderio.soulariumRechargeDelay, enderio.soulariumRechargeRate, enderio.soulariumEnergy, new ShieldEffectPotion(MobEffects.SPEED, EffectTrigger.EMPTY, 5,"shield.effect.potion.speed"));
 
   ;
 

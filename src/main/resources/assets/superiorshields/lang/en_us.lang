@@ -79,3 +79,16 @@ superiorshields.tooltip.rechargeDelay=Recharge Delay:
 superiorshields.tooltip.rechargeRate=Recharge Rate:
 superiorshields.tooltip.rechargeDelayTime=seconds
 superiorshields.tooltip.rechargeRateTime=HP per second
+
+# Effects
+shield.effect.fire=Light nearby mobs on fire when depleted
+shield.effect.nova.potion.slownes=Slows nearby mobs down when depleted
+shield.effect.nova.potion.blindness=Blinds nearby mobs when depleted
+shield.effect.nova.potion.weakness=Weakens the attacks of nearby mobs when depleted
+shield.effect.nova.knockback=Knocks neraby mobs away when depleted
+shield.effect.potion.regeneration=Regenerates your health while full
+shield.effect.potion.haste=Increases mining speed while full
+shield.effect.spawn.pinkslime=Has a tendency to invite unwanted guests when hit
+shield.effect.food=Occasionally feeds the wearer when hit
+shield.effect.nova.ender=Makes nearby enemies float when depleted
+shield.effect.potion.speed=Speeds up the wearer when depleted

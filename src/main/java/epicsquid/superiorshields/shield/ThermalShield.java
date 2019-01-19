@@ -19,9 +19,9 @@ public enum ThermalShield implements IEnergyShield {
   ENDERIUM(thermal.enderiumMaxHp, thermal.enderiumRechargeDelay, thermal.enderiumRechargeRate, thermal.enderiumEnergy),
 
   PYROTHEUM(thermal.pyrotheumMaxHp, thermal.pyrotheumRechargeDelay, thermal.pyrotheumRechargeRate, thermal.pyrotheumEnergy, new ShieldEffectFireNova(5, 10.0)),
-  CRYOTHEUM(thermal.cryotheumMaxHp, thermal.cryotheumRechargeDelay, thermal.cryotheumRechargeRate, thermal.cryotheumEnergy, new ShieldEffectPotionNova(MobEffects.SLOWNESS, 5, 10)),
-  AEROTHEUM(thermal.aerotheumMaxHp, thermal.aerotheumRechargeDelay, thermal.aerotheumRechargeRate, thermal.aerotheumEnergy, new ShieldEffectPotionNova(MobEffects.BLINDNESS, 5, 10)),
-  PETROTHEUM(thermal.petrotheumMaxHp, thermal.petrotheumRechargeDelay, thermal.petrotheumRechargeRate, thermal.petrotheumEnergy, new ShieldEffectPotionNova(MobEffects.WEAKNESS, 5, 10)),
+  CRYOTHEUM(thermal.cryotheumMaxHp, thermal.cryotheumRechargeDelay, thermal.cryotheumRechargeRate, thermal.cryotheumEnergy, new ShieldEffectPotionNova(MobEffects.SLOWNESS, 5, 10, "shield.effect.nova.potion.slowness")),
+  AEROTHEUM(thermal.aerotheumMaxHp, thermal.aerotheumRechargeDelay, thermal.aerotheumRechargeRate, thermal.aerotheumEnergy, new ShieldEffectPotionNova(MobEffects.BLINDNESS, 5, 10, "shield.effect.nova.potion.blindness")),
+  PETROTHEUM(thermal.petrotheumMaxHp, thermal.petrotheumRechargeDelay, thermal.petrotheumRechargeRate, thermal.petrotheumEnergy, new ShieldEffectPotionNova(MobEffects.WEAKNESS, 5, 10, "shield.effect.nova.potion.weakness")),
 
   ;
 

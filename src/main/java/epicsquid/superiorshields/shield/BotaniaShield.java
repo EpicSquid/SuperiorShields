@@ -13,8 +13,8 @@ import static epicsquid.superiorshields.config.ConfigManager.botania;
 public enum BotaniaShield implements IShieldType {
 
   MANA_STEEL(botania.manaSteelMaxHp, botania.manaSteelRechargeDelay, botania.manaSteelRechargeRate),
-  TERRA_STEEL(botania.terraSteelMaxHp, botania.terraSteelRechargeDelay, botania.terraSteelRechargeRate, new ShieldEffectPotion(MobEffects.REGENERATION, EffectTrigger.FILLED, 100)),
-  ELEMENTIUM(botania.elementiumMaxHp, botania.elementiumRechargeDelay, botania.elementiumRechargeRate, new ShieldEffectPotion(MobEffects.HASTE, EffectTrigger.FULL, 70)),
+  TERRA_STEEL(botania.terraSteelMaxHp, botania.terraSteelRechargeDelay, botania.terraSteelRechargeRate, new ShieldEffectPotion(MobEffects.REGENERATION, EffectTrigger.FILLED, 100, "shield.effect.potion.regeneration")),
+  ELEMENTIUM(botania.elementiumMaxHp, botania.elementiumRechargeDelay, botania.elementiumRechargeRate, new ShieldEffectPotion(MobEffects.HASTE, EffectTrigger.FULL, 70, "shield.effect.potion.haste")),
 
   ;
 
