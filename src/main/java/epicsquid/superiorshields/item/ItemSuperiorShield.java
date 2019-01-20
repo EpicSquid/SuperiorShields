@@ -38,6 +38,7 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
 
   public ItemSuperiorShield(@Nonnull String name, @Nonnull T shieldType) {
     super(name);
+    this.setMaxStackSize(1);
     this.shieldType = shieldType;
   }
 
