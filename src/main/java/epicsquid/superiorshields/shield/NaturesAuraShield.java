@@ -11,7 +11,7 @@ import static epicsquid.superiorshields.config.ConfigManager.naturesAura;
 public enum NaturesAuraShield implements IShieldType {
 
   INFUSED_IRON(naturesAura.infusedIronMaxHp, naturesAura.infusedIronRechargeDelay, naturesAura.infusedIronRechargeRate),
-  SKY_INGOT(naturesAura.skyIngotMaxHp, naturesAura.skyIngotRechargeDelay, naturesAura.skyIngotRechargeRate, new ShieldEffectKnockbackNova(10, 0.5f, 0, 0)),
+  SKY_INGOT(naturesAura.skyIngotMaxHp, naturesAura.skyIngotRechargeDelay, naturesAura.skyIngotRechargeRate, new ShieldEffectKnockbackNova(10, 1.0f, 1, 1)),
 
   ;
 
