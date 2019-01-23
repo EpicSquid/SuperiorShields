@@ -117,6 +117,7 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
           if (onTickEventTrigger >= 20) {
             onTickEventTrigger = 0;
             triggerShieldEffect((EntityPlayer) player, stack, null, 0f, EffectTrigger.FULL);
+            updateClient((EntityPlayer) player, shield);
           } else {
             onTickEventTrigger++;
           }
@@ -127,22 +128,26 @@ public class ItemSuperiorShield<T extends IShieldType> extends ItemBase implemen
 
   @Override
   public void onEquipped(@Nonnull ItemStack itemstack, @Nonnull EntityLivingBase player) {
-    if (player instanceof EntityPlayer && player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
+    if (player instanceof EntityPlayer && player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null) && !player.world.isRemote) {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
       shield.setMaxHp(shieldType.getMaxShieldHp());
       shield.setCurrentHp(0);
       shield.setTimeWithoutDamage(0);
       MinecraftForge.EVENT_BUS.post(new ShieldEquippedEvent((EntityPlayer) player, shield));
+      if (!player.world.isRemote) {
+        updateClient((EntityPlayer) player, shield);
+      }
     }
   }
 
   @Override
   public void onUnequipped(@Nonnull ItemStack itemstack, @Nonnull EntityLivingBase player) {
-    if (player instanceof EntityPlayer && player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
+    if (player instanceof EntityPlayer && player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null) && !player.world.isRemote) {
       IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
       shield.setMaxHp(0f);
       shield.setCurrentHp(0f);
       shield.setTimeWithoutDamage(0);
+      updateClient((EntityPlayer) player, shield);
     }
   }
 
