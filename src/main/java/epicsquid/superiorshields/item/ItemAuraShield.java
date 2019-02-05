@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 public class ItemAuraShield extends ItemSuperiorShield<IShieldType> {
 
-  private int auraToConsume = 10;
+  private int auraToConsume = 1000;
 
   public ItemAuraShield(@Nonnull String name, @Nonnull IShieldType shieldType) {
     super(name, shieldType);
