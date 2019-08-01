@@ -1,23 +1,25 @@
 package epicsquid.superiorshields;
 
-import javax.annotation.Nonnull;
-
 import baubles.api.BaubleType;
 import baubles.api.BaublesApi;
 import baubles.api.cap.IBaublesItemHandler;
 import epicsquid.superiorshields.item.ISuperiorShield;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+import javax.annotation.Nonnull;
+
+@Mod.EventBusSubscriber(modid = SuperiorShields.MODID)
 public class EventManager {
 
   @SubscribeEvent
-  public void onLivingHurtEvent(@Nonnull LivingHurtEvent event) {
-    if (event.getEntity() instanceof EntityPlayer) {
-      EntityPlayer player = (EntityPlayer) event.getEntity();
+  public static void onLivingHurtEvent(@Nonnull LivingHurtEvent event) {
+    if (event.getEntity() instanceof PlayerEntity) {
+      PlayerEntity player = (PlayerEntity) event.getEntity();
       IBaublesItemHandler handler = BaublesApi.getBaublesHandler(player);
       if (handler != null && event.getSource() != DamageSource.STARVE && event.getSource() != DamageSource.DROWN) {
         ItemStack stack = handler.getStackInSlot(BaubleType.CHARM.getValidSlots()[0]);

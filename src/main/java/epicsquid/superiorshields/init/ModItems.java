@@ -5,15 +5,8 @@ import javax.annotation.Nonnull;
 import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.superiorshields.SuperiorShields;
 import epicsquid.superiorshields.config.ConfigManager;
-import epicsquid.superiorshields.item.ItemAuraShield;
 import epicsquid.superiorshields.item.ItemEnergyShield;
-import epicsquid.superiorshields.item.ItemManaShield;
 import epicsquid.superiorshields.item.ItemVanillaShield;
-import epicsquid.superiorshields.shield.BotaniaShield;
-import epicsquid.superiorshields.shield.EnderIOShield;
-import epicsquid.superiorshields.shield.IFShield;
-import epicsquid.superiorshields.shield.NaturesAuraShield;
-import epicsquid.superiorshields.shield.ThermalShield;
 import epicsquid.superiorshields.shield.VanillaShield;
 import net.minecraftforge.fml.common.Loader;
 

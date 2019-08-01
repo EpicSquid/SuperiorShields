@@ -5,16 +5,19 @@ import javax.annotation.Nullable;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.Direction;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
+import net.minecraftforge.common.util.LazyOptional;
 
 public class ShieldCapabilityProvider implements ICapabilityProvider, INBTSerializable, IShieldCapability {
 
   private float currentHp;
   private float maxHp;
   private int timeWithoutDamage;
+  private LazyOptional<ShieldCapabilityProvider> op;
 
   public ShieldCapabilityProvider(boolean isNewShield) {
     if (isNewShield) {
@@ -22,20 +25,19 @@ public class ShieldCapabilityProvider implements ICapabilityProvider, INBTSerial
       maxHp = 0;
       timeWithoutDamage = 0;
     }
-  }
-
-  @Override
-  public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
-    return SuperiorShieldsCapabilityManager.shieldCapability != null && capability == SuperiorShieldsCapabilityManager.shieldCapability;
+    op = LazyOptional.of(() -> this);
   }
 
   @Nullable
   @Override
-  public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-    if (capability == SuperiorShieldsCapabilityManager.shieldCapability) {
-      return (T) this;
-    }
-    return null;
+  public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing) {
+    return getCapability(capability);
+  }
+
+  @Nonnull
+  @Override
+  public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap) {
+    return cap == SuperiorShieldsCapabilityManager.shieldCapability ?  (LazyOptional<T>) op : LazyOptional.empty();
   }
 
   @Override
