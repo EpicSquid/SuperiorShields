@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.LivingEntity;
 
 public class ShieldEffectFireNova extends ShieldEffectNova {
 
@@ -16,8 +16,8 @@ public class ShieldEffectFireNova extends ShieldEffectNova {
   }
 
   @Override
-  protected void applyToEntities(@Nonnull List<EntityLiving> entities) {
-    for (EntityLiving entity : entities) {
+  protected void applyToEntities(@Nonnull List<LivingEntity> entities) {
+    for (LivingEntity entity : entities) {
       entity.setFire(duration);
     }
   }
