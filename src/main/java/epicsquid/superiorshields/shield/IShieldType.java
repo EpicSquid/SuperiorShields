@@ -15,7 +15,8 @@ public interface IShieldType {
 
   int getColor();
 
-  @Nonnull
+  int getMaxDamage();
+
   default IShieldEffect getEffect() {
     return new ShieldEffectNone();
   }

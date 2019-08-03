@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SCS",
+    " S "
+  ],
+  "key": {
+    "S": [
+      {
+        "tag": "forge:gems/diamond"
+      }
+    ],
+    "C": [
+      {
+        "item": "minecraft:enderpearl"
+      }
+    ]
+  },
+  "result": {
+    "item": "superiorshields:diamond_shield"
+  }
+}

@@ -15,7 +15,7 @@ public class SuperiorShields {
   public static final ItemGroup ITEM_GROUP = new ItemGroup("superior_shields") {
     @Override
     public ItemStack createIcon() {
-      return new ItemStack(ModItems.VANILLA_SHIELD_IRON);
+      return new ItemStack(ModItems.IRON_SHIELD);
     }
   };
 

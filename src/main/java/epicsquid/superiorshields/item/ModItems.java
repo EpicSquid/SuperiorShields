@@ -7,5 +7,5 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder(SuperiorShields.MODID)
 public class ModItems {
 
-	public static final Item VANILLA_SHIELD_IRON = null;
+	public static final Item IRON_SHIELD = null;
 }

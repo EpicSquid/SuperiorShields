@@ -1,0 +1,9 @@
+{
+  "itemGroup.superiorshields": "Superior Shields",
+
+  "item.superiorshields.iron_shield": "Iron Superior Shield",
+  "item.superiorshields.golden_shield": "Golden Superior Shield",
+  "item.superiorshields.diamond_shield": "Diamond Superior Shield",
+
+  "curios.identifier.superior_shield": "Superior Shield"
+}
