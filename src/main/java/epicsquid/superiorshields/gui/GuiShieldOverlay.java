@@ -15,12 +15,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nonnull;
 
-@EventBusSubscriber(modid = SuperiorShields.MODID, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = SuperiorShields.MODID, value = Dist.CLIENT)
 public class GuiShieldOverlay {
 
 	private static void drawQuad(BufferBuilder buffer, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int minU, int minV, int maxU, int maxV) {

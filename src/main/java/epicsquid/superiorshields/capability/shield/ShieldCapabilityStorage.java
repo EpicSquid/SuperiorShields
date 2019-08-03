@@ -25,13 +25,13 @@ public class ShieldCapabilityStorage implements IStorage<IShieldCapability> {
 	public void readNBT(Capability<IShieldCapability> capability, IShieldCapability instance, Direction side, INBT nbt) {
 		if (nbt instanceof CompoundNBT) {
 			CompoundNBT tag = (CompoundNBT) nbt;
-			if (tag.get(NBT_MAX_SHIELD_HP) != null) {
+			if (tag.contains(NBT_MAX_SHIELD_HP)) {
 				instance.setMaxHp(tag.getFloat(NBT_MAX_SHIELD_HP));
 			}
-			if (tag.get(NBT_SHIELD_HP) != null) {
+			if (tag.contains(NBT_SHIELD_HP)) {
 				instance.setCurrentHp(tag.getFloat(NBT_SHIELD_HP));
 			}
-			if (tag.get(NBT_TIME_WITHOUT_DAMAGE) != null) {
+			if (tag.contains(NBT_TIME_WITHOUT_DAMAGE)) {
 				instance.setTimeWithoutDamage(tag.getInt(NBT_TIME_WITHOUT_DAMAGE));
 			}
 		}

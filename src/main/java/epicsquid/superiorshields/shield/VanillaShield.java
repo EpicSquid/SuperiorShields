@@ -9,14 +9,14 @@ import net.minecraft.potion.Effects;
 
 public enum VanillaShield implements IShieldType {
 
-  WOOD(vanilla.woodMaxHp, vanilla.woodRechargeDelay, vanilla.woodRechargeRate, vanilla.woodDamage, new ShieldEffectNone()),
-  STONE(vanilla.stoneMaxHp, vanilla.stoneRechargeDelay, vanilla.stoneRechargeRate, vanilla.stoneDamage, new ShieldEffectNone()),
-  IRON(vanilla.ironMaxHp, vanilla.ironRechargeDelay, vanilla.ironRechargeRate, vanilla.ironDamage, new ShieldEffectNone()),
-  GOLD(vanilla.goldMaxHp, vanilla.goldRechargeDelay, vanilla.goldRechargeRate, vanilla.goldDamage, new ShieldEffectNone()),
-  DIAMOND(vanilla.diamondMaxHp, vanilla.diamondRechargeDelay, vanilla.diamondRechargeRate, vanilla.diamondDamage, new ShieldEffectNone()),
-  OBSIDIAN(vanilla.obsidianMaxHp, vanilla.obsidianRechargeDelay, vanilla.obsidianRechargeRate, vanilla.obsidianDamage, new ShieldEffectNone()),
-  EMERALD(vanilla.emeraldMaxHp, vanilla.emeraldRechargeDelay, vanilla.emeraldRechargeRate, vanilla.emeraldDamage, new ShieldEffectNone()),
-  ENDSTONE(vanilla.endstoneMaxHp, vanilla.endstoneRechargeDelay, vanilla.endstoneRechargeRate, vanilla.endstoneDamage, new ShieldEffectPotionNova(200, 12, "shield.effect.nova.ender", Effects.GLOWING, Effects.LEVITATION))
+//  WOOD(vanilla.woodMaxHp, vanilla.woodRechargeDelay, vanilla.woodRechargeRate, vanilla.woodDamage, new ShieldEffectNone()),
+//  STONE(vanilla.stoneMaxHp, vanilla.stoneRechargeDelay, vanilla.stoneRechargeRate, vanilla.stoneDamage, new ShieldEffectNone()),
+  IRON(3f, 100, 50, 179, new ShieldEffectNone()),
+//  GOLD(vanilla.goldMaxHp, vanilla.goldRechargeDelay, vanilla.goldRechargeRate, vanilla.goldDamage, new ShieldEffectNone()),
+//  DIAMOND(vanilla.diamondMaxHp, vanilla.diamondRechargeDelay, vanilla.diamondRechargeRate, vanilla.diamondDamage, new ShieldEffectNone()),
+//  OBSIDIAN(vanilla.obsidianMaxHp, vanilla.obsidianRechargeDelay, vanilla.obsidianRechargeRate, vanilla.obsidianDamage, new ShieldEffectNone()),
+//  EMERALD(vanilla.emeraldMaxHp, vanilla.emeraldRechargeDelay, vanilla.emeraldRechargeRate, vanilla.emeraldDamage, new ShieldEffectNone()),
+//  ENDSTONE(vanilla.endstoneMaxHp, vanilla.endstoneRechargeDelay, vanilla.endstoneRechargeRate, vanilla.endstoneDamage, new ShieldEffectPotionNova(200, 12, "shield.effect.nova.ender", Effects.GLOWING, Effects.LEVITATION))
 
   ;
 

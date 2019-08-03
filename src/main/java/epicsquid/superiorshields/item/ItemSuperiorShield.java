@@ -7,24 +7,28 @@ import javax.annotation.Nullable;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
 import epicsquid.superiorshields.event.ShieldEquippedEvent;
-import epicsquid.superiorshields.network.PacketHandler;
-import epicsquid.superiorshields.network.PacketShieldUpdate;
+import epicsquid.superiorshields.network.SPacketShieldUpdate;
+import epicsquid.superiorshields.network.NetworkHandler;
 import epicsquid.superiorshields.shield.IShieldType;
 import epicsquid.superiorshields.shield.effect.EffectTrigger;
-import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.fml.network.NetworkDirection;
+import net.minecraftforge.fml.network.PacketDistributor;
+import top.theillusivec4.curios.api.capability.ICurio;
+import top.theillusivec4.curios.common.capability.CapCurioItem;
 
 public class ItemSuperiorShield<T extends IShieldType> extends Item implements ISuperiorShield, ICurio {
 
@@ -85,82 +89,104 @@ public class ItemSuperiorShield<T extends IShieldType> extends Item implements I
 		shield.setTimeWithoutDamage(0);
 	}
 
+	@Nullable
 	@Override
-	public void onCurioTick(String id, LivingEntity livingEntity) {
-		if (player instanceof EntityPlayer && player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null)) {
-			if (player.world.isRemote) {
-				return;
-			}
-			IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
-			if (shield.getTimeWithoutDamage() >= shieldType.getShieldRechargeDelay() && shield.getCurrentHp() < shield.getMaxHp()) {
-				if (ticksSinceLastRecharge < shieldType.getShieldRechargeRate()) {
-					ticksSinceLastRecharge++;
-				} else {
-					ticksSinceLastRecharge = 0;
-					rechargeShield(shield, stack, (EntityPlayer) player);
-					updateClient((EntityPlayer) player, shield);
-					triggerShieldEffect((EntityPlayer) player, stack, null, 0f, EffectTrigger.RECHARGE);
-					if (shield.getCurrentHp() >= shield.getMaxHp()) {
-						triggerShieldEffect((EntityPlayer) player, stack, null, 0f, EffectTrigger.FILLED);
+	public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
+		return CapCurioItem.createProvider(new ICurio() {
+
+
+			@Override
+			public void onCurioTick(String identifier, LivingEntity livingEntity) {
+				if (livingEntity instanceof PlayerEntity) {
+					PlayerEntity player = (PlayerEntity) livingEntity;
+					if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent()) {
+						if (player.world.isRemote) {
+							return;
+						}
+						IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
+						if (shield.getTimeWithoutDamage() >= shieldType.getShieldRechargeDelay() && shield.getCurrentHp() < shield.getMaxHp()) {
+							if (ticksSinceLastRecharge < shieldType.getShieldRechargeRate()) {
+								ticksSinceLastRecharge++;
+							} else {
+								ticksSinceLastRecharge = 0;
+								rechargeShield(shield, stack, player);
+								updateClient(player, shield);
+								triggerShieldEffect(player, stack, null, 0f, EffectTrigger.RECHARGE);
+								if (shield.getCurrentHp() >= shield.getMaxHp()) {
+									triggerShieldEffect(player, stack, null, 0f, EffectTrigger.FILLED);
+								}
+							}
+						} else {
+							shield.setTimeWithoutDamage(shield.getTimeWithoutDamage() + 1);
+							if (shield.getCurrentHp() >= shield.getMaxHp()) {
+								if (onTickEventTrigger >= 20) {
+									onTickEventTrigger = 0;
+									triggerShieldEffect(player, stack, null, 0f, EffectTrigger.FULL);
+									updateClient(player, shield);
+								} else {
+									onTickEventTrigger++;
+								}
+							}
+						}
 					}
 				}
-			} else {
-				shield.setTimeWithoutDamage(shield.getTimeWithoutDamage() + 1);
-				if (shield.getCurrentHp() >= shield.getMaxHp()) {
-					if (onTickEventTrigger >= 20) {
-						onTickEventTrigger = 0;
-						triggerShieldEffect((EntityPlayer) player, stack, null, 0f, EffectTrigger.FULL);
-						updateClient((EntityPlayer) player, shield);
-					} else {
-						onTickEventTrigger++;
+			}
+
+			@Override
+			public void onEquipped(String identifier, LivingEntity livingEntity) {
+				if (livingEntity instanceof PlayerEntity) {
+					PlayerEntity player = (PlayerEntity) livingEntity;
+					if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.world.isRemote) {
+						IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
+						shield.setMaxHp(shieldType.getMaxShieldHp());
+						shield.setCurrentHp(0);
+						shield.setTimeWithoutDamage(0);
+						MinecraftForge.EVENT_BUS.post(new ShieldEquippedEvent(player, shield));
+						if (!player.world.isRemote) {
+							updateClient(player, shield);
+						}
 					}
 				}
 			}
-		}
-	}
 
-	@Override
-	public void onEquipped(ItemStack itemstack, EntityLivingBase player) {
-		if (player instanceof EntityPlayer && player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null) && !player.world.isRemote) {
-			IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
-			shield.setMaxHp(shieldType.getMaxShieldHp());
-			shield.setCurrentHp(0);
-			shield.setTimeWithoutDamage(0);
-			MinecraftForge.EVENT_BUS.post(new ShieldEquippedEvent((EntityPlayer) player, shield));
-			if (!player.world.isRemote) {
-				updateClient((EntityPlayer) player, shield);
+			@Override
+			public void onUnequipped(String identifier, LivingEntity livingEntity) {
+				if (livingEntity instanceof PlayerEntity) {
+					PlayerEntity player = (PlayerEntity) livingEntity;
+					if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.world.isRemote) {
+						IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
+						shield.setMaxHp(0f);
+						shield.setCurrentHp(0f);
+						shield.setTimeWithoutDamage(0);
+						updateClient(player, shield);
+					}
+				}
 			}
-		}
-	}
 
-	@Override
-	public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
-		if (player instanceof EntityPlayer && player.hasCapability(SuperiorShieldsCapabilityManager.shieldCapability, null) && !player.world.isRemote) {
-			IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability, null);
-			shield.setMaxHp(0f);
-			shield.setCurrentHp(0f);
-			shield.setTimeWithoutDamage(0);
-			updateClient((EntityPlayer) player, shield);
-		}
+			@Override
+			public boolean canRightClickEquip() {
+				return true;
+			}
+		});
 	}
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("superiorshields.tooltip.hp") + " " + shieldType.getMaxShieldHp() + " " + I18n.format("superiorshields.tooltip.hpDetail"));
-		tooltip.add(I18n.format("superiorshields.tooltip.rechargeDelay") + " " + (float) shieldType.getShieldRechargeDelay() / 20 + " " + I18n
-				.format("superiorshields.tooltip.rechargeDelayTime"));
-		tooltip.add(I18n.format("superiorshields.tooltip.rechargeRate") + " " + 1f / ((float) shieldType.getShieldRechargeRate() / 20) + " " + I18n
-				.format("superiorshields.tooltip.rechargeRateTime"));
-
-		if (!(shieldType.getEffect() instanceof ShieldEffectNone)) {
-			tooltip.add(shieldType.getEffect().getDescription());
-		}
+		//		tooltip.add(I18n.format("superiorshields.tooltip.hp") + " " + shieldType.getMaxShieldHp() + " " + I18n.format("superiorshields.tooltip.hpDetail"));
+		//		tooltip.add(I18n.format("superiorshields.tooltip.rechargeDelay") + " " + (float) shieldType.getShieldRechargeDelay() / 20 + " " + I18n
+		//				.format("superiorshields.tooltip.rechargeDelayTime"));
+		//		tooltip.add(I18n.format("superiorshields.tooltip.rechargeRate") + " " + 1f / ((float) shieldType.getShieldRechargeRate() / 20) + " " + I18n
+		//				.format("superiorshields.tooltip.rechargeRateTime"));
+		//
+		//		if (!(shieldType.getEffect() instanceof ShieldEffectNone)) {
+		//			tooltip.add(shieldType.getEffect().getDescription());
+		//		}
 	}
 
 	protected void updateClient(PlayerEntity player, IShieldCapability shield) {
 		if (player instanceof ServerPlayerEntity) {
-			PacketHandler.INSTANCE.sendTo(new PacketShieldUpdate(shield.getCurrentHp(), shield.getMaxHp()), (ServerPlayerEntity) player);
+			NetworkHandler.INSTANCE.sendTo(new SPacketShieldUpdate(shield.getCurrentHp(), shield.getMaxHp()), ((ServerPlayerEntity) player).connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
 		}
 	}
 

@@ -6,6 +6,10 @@ public class ShieldCapability implements IShieldCapability {
   private float maxHp;
   private int timeWithoutDamage;
 
+  public ShieldCapability() {
+
+  }
+
   public ShieldCapability(float currentHp, float maxHp, int timeWithoutDamage) {
     this.currentHp = currentHp;
     this.maxHp = maxHp;
