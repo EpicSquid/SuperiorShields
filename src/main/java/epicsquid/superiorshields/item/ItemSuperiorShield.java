@@ -1,5 +1,6 @@
 package epicsquid.superiorshields.item;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -20,6 +21,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -173,6 +176,14 @@ public class ItemSuperiorShield<T extends IShieldType> extends Item implements I
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+		super.addInformation(stack, worldIn, tooltip, flagIn);
+		DecimalFormat df = new DecimalFormat();
+		df.setMaximumFractionDigits(2);
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.blank"));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.equip").applyTextStyle(TextFormatting.GRAY));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.hp", df.format(shieldType.getMaxShieldHp())).applyTextStyle(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_rate", df.format((float) shieldType.getShieldRechargeRate() / 20f)).applyTextStyle(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_delay", df.format((float) shieldType.getShieldRechargeDelay() / 20f)).applyTextStyle(TextFormatting.DARK_GREEN));
 		//		tooltip.add(I18n.format("superiorshields.tooltip.hp") + " " + shieldType.getMaxShieldHp() + " " + I18n.format("superiorshields.tooltip.hpDetail"));
 		//		tooltip.add(I18n.format("superiorshields.tooltip.rechargeDelay") + " " + (float) shieldType.getShieldRechargeDelay() / 20 + " " + I18n
 		//				.format("superiorshields.tooltip.rechargeDelayTime"));

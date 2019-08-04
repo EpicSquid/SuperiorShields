@@ -1,9 +1,15 @@
 {
-  "itemGroup.superiorshields": "Superior Shields",
+  "itemGroup.superior_shields": "Superior Shields",
 
   "item.superiorshields.iron_shield": "Iron Superior Shield",
   "item.superiorshields.golden_shield": "Golden Superior Shield",
   "item.superiorshields.diamond_shield": "Diamond Superior Shield",
+
+  "superiorshields.tooltip.blank": "",
+  "superiorshields.tooltip.equip": "When in the curios slot:",
+  "superiorshields.tooltip.hp": " %s Hit Points",
+  "superiorshields.tooltip.recharge_delay": " %s Recharge Delay",
+  "superiorshields.tooltip.recharge_rate": " %s Recharge Rate",
 
   "curios.identifier.superior_shield": "Superior Shield"
 }

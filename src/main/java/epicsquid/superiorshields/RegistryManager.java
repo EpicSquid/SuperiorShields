@@ -11,9 +11,9 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = SuperiorShields.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RegistryManager {
 
-  private static final GenericShieldType IRON = new GenericShieldType(6f, 80, 40, ItemTier.IRON.getMaxUses());
-  private static final GenericShieldType GOLD = new GenericShieldType(4f, 20, 40, ItemTier.GOLD.getMaxUses());
-  private static final GenericShieldType DIAMOND = new GenericShieldType(9f, 60, 40, ItemTier.DIAMOND.getMaxUses());
+  private static final GenericShieldType IRON = new GenericShieldType(5f, 80, 40, ItemTier.IRON.getMaxUses());
+  private static final GenericShieldType GOLD = new GenericShieldType(3f, 20, 40, ItemTier.GOLD.getMaxUses());
+  private static final GenericShieldType DIAMOND = new GenericShieldType(7f, 60, 40, ItemTier.DIAMOND.getMaxUses());
 
   @SubscribeEvent
   public static void registerItems(RegistryEvent.Register<Item> event) {
