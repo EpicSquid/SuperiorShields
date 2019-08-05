@@ -14,4 +14,12 @@ public class ShieldHelper {
 		}
 		return 0.0f;
 	}
+
+	public static int getShieldRechargeRate(ItemStack stack) {
+		if (stack.getItem() instanceof SuperiorShield) {
+			ShieldType type = ((SuperiorShield) stack.getItem()).getShield();
+			return type.getShieldRechargeRate() - (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.QUICKENED, stack) * type.getShieldRechargeRate() / 5);
+		}
+		return 0;
+	}
 }

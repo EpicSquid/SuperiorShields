@@ -9,4 +9,5 @@ public class ModEnchantments {
 
 	public static final Enchantment CAPACITY = null;
 	public static final Enchantment JUMP_START = null;
+	public static final Enchantment QUICKENED = null;
 }

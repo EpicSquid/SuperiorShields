@@ -114,8 +114,8 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 							return;
 						}
 						IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
-						if (shield.getTimeWithoutDamage() >= shieldType.getShieldRechargeDelay() && shield.getCurrentHp() < shield.getMaxHp()) {
-							if (ticksSinceLastRecharge < shieldType.getShieldRechargeRate()) {
+						if (shield.getTimeWithoutDamage() >= ShieldHelper.getShieldRechargeRate(stack) && shield.getCurrentHp() < shield.getMaxHp()) {
+							if (ticksSinceLastRecharge < ShieldHelper.getShieldRechargeRate(stack)) {
 								ticksSinceLastRecharge++;
 							} else {
 								ticksSinceLastRecharge = 0;

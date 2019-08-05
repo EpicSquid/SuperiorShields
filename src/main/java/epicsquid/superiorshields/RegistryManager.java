@@ -2,6 +2,7 @@ package epicsquid.superiorshields;
 
 import epicsquid.superiorshields.enchantment.CapacityEnchantment;
 import epicsquid.superiorshields.enchantment.JumpStartEnchantment;
+import epicsquid.superiorshields.enchantment.QuickenedEnchantment;
 import epicsquid.superiorshields.item.SuperiorShield;
 import epicsquid.superiorshields.item.VanillaShieldItem;
 import epicsquid.superiorshields.shield.GenericShieldType;
@@ -33,6 +34,7 @@ public class RegistryManager {
 	public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
 
 		event.getRegistry().register(new CapacityEnchantment(Enchantment.Rarity.COMMON, type).setRegistryName(SuperiorShields.MODID, "capacity"));
+		event.getRegistry().register(new QuickenedEnchantment(Enchantment.Rarity.COMMON, type).setRegistryName(SuperiorShields.MODID, "quickened"));
 		event.getRegistry().register(new JumpStartEnchantment(Enchantment.Rarity.RARE, type).setRegistryName(SuperiorShields.MODID, "jump_start"));
 	}
 }
