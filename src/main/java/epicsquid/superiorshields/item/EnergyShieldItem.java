@@ -4,7 +4,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import epicsquid.superiorshields.capability.EnergyCapabilityProvider;
-import epicsquid.superiorshields.shield.IEnergyShield;
+import epicsquid.superiorshields.shield.EnergyShield;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,11 +14,11 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
-public class ItemEnergyShield extends ItemSuperiorShield<IEnergyShield> {
+public class EnergyShieldItem extends SuperiorShieldItem<EnergyShield> {
 
 	private int energyToConsume = 400;
 
-	public ItemEnergyShield(Item.Properties props, IEnergyShield shieldType) {
+	public EnergyShieldItem(Item.Properties props, EnergyShield shieldType) {
 		super(props, shieldType);
 	}
 
@@ -34,7 +34,7 @@ public class ItemEnergyShield extends ItemSuperiorShield<IEnergyShield> {
 
 	@Override
 	public int getRGBDurabilityForDisplay(@Nonnull ItemStack stack) {
-		return shieldType.getColor();
+		return getShield().getColor();
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class ItemEnergyShield extends ItemSuperiorShield<IEnergyShield> {
 	@Nullable
 	@Override
 	public ICapabilityProvider initCapabilities(@Nonnull ItemStack stack, @Nullable CompoundNBT nbt) {
-		return new EnergyCapabilityProvider(shieldType.getMaxEnergy(), 0, shieldType.getMaxEnergy(), shieldType.getMaxEnergy(), stack);
+		return new EnergyCapabilityProvider(getShield().getMaxEnergy(), 0, getShield().getMaxEnergy(), getShield().getMaxEnergy(), stack);
 	}
 
 	@Nullable

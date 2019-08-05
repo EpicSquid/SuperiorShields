@@ -1,6 +1,6 @@
 package epicsquid.superiorshields.shield;
 
-public class GenericShieldType implements IShieldType {
+public class GenericShieldType implements ShieldType {
 
 	private float maxHp;
 	private int shieldRechargeDelay;

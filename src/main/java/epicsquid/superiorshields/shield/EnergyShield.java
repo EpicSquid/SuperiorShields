@@ -1,6 +1,6 @@
 package epicsquid.superiorshields.shield;
 
-public interface IEnergyShield extends IShieldType {
+public interface EnergyShield extends ShieldType {
 
   int getMaxEnergy();
 }

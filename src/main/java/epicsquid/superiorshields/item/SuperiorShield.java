@@ -1,12 +1,12 @@
 package epicsquid.superiorshields.item;
 
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
-import epicsquid.superiorshields.shield.IShieldType;
+import epicsquid.superiorshields.shield.ShieldType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 
-public interface ISuperiorShield<T extends IShieldType> {
+public interface SuperiorShield<T extends ShieldType> {
 
 	float applyShield(PlayerEntity player, ItemStack stack, float damage, DamageSource source);
 

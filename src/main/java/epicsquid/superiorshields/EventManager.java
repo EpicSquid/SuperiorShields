@@ -2,7 +2,7 @@ package epicsquid.superiorshields;
 
 import javax.annotation.Nonnull;
 
-import epicsquid.superiorshields.item.ISuperiorShield;
+import epicsquid.superiorshields.item.SuperiorShield;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -22,8 +22,8 @@ public class EventManager {
 			if (CuriosAPI.getCuriosHandler(player).isPresent() && event.getSource() != DamageSource.STARVE && event.getSource() != DamageSource.DROWN) {
 				ICurioItemHandler handler = CuriosAPI.getCuriosHandler(player).orElse(null);
 				ItemStack stack = handler.getStackInSlot(SuperiorShields.SHIELD_CURIO, 0);
-				if (!stack.isEmpty() && stack.getItem() instanceof ISuperiorShield) {
-					event.setAmount(((ISuperiorShield) stack.getItem()).applyShield(player, stack, event.getAmount(), event.getSource()));
+				if (!stack.isEmpty() && stack.getItem() instanceof SuperiorShield) {
+					event.setAmount(((SuperiorShield) stack.getItem()).applyShield(player, stack, event.getAmount(), event.getSource()));
 				}
 			}
 		}

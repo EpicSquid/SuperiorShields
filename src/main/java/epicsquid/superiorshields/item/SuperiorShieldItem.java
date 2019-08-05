@@ -7,15 +7,13 @@ import javax.annotation.Nullable;
 
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
-import epicsquid.superiorshields.enchantment.ModEnchantments;
 import epicsquid.superiorshields.event.ShieldEquippedEvent;
 import epicsquid.superiorshields.network.SPacketShieldUpdate;
 import epicsquid.superiorshields.network.NetworkHandler;
-import epicsquid.superiorshields.shield.IShieldType;
+import epicsquid.superiorshields.shield.ShieldType;
 import epicsquid.superiorshields.shield.ShieldHelper;
 import epicsquid.superiorshields.shield.effect.EffectTrigger;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -32,14 +30,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.network.NetworkDirection;
-import net.minecraftforge.fml.network.PacketDistributor;
-import top.theillusivec4.curios.api.CuriosAPI;
-import top.theillusivec4.curios.api.capability.CuriosCapability;
 import top.theillusivec4.curios.api.capability.ICurio;
-import top.theillusivec4.curios.api.capability.ICurioItemHandler;
 import top.theillusivec4.curios.common.capability.CapCurioItem;
 
-public class ItemSuperiorShield<T extends IShieldType> extends Item implements ISuperiorShield<T>, ICurio {
+public class SuperiorShieldItem<T extends ShieldType> extends Item implements SuperiorShield<T>, ICurio {
 
 	private int ticksSinceLastRecharge = 0;
 	private T shieldType;
@@ -47,7 +41,7 @@ public class ItemSuperiorShield<T extends IShieldType> extends Item implements I
 	// Used to ensure the potion effect is not applied every tick
 	private int onTickEventTrigger = 0;
 
-	public ItemSuperiorShield(Properties props, T shieldType) {
+	public SuperiorShieldItem(Properties props, T shieldType) {
 		super(props);
 		this.shieldType = shieldType;
 	}
