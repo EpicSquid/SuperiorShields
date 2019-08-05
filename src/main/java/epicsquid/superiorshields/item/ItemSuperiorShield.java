@@ -7,12 +7,15 @@ import javax.annotation.Nullable;
 
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.enchantment.ModEnchantments;
 import epicsquid.superiorshields.event.ShieldEquippedEvent;
 import epicsquid.superiorshields.network.SPacketShieldUpdate;
 import epicsquid.superiorshields.network.NetworkHandler;
 import epicsquid.superiorshields.shield.IShieldType;
+import epicsquid.superiorshields.shield.ShieldHelper;
 import epicsquid.superiorshields.shield.effect.EffectTrigger;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -30,13 +33,16 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.PacketDistributor;
+import top.theillusivec4.curios.api.CuriosAPI;
+import top.theillusivec4.curios.api.capability.CuriosCapability;
 import top.theillusivec4.curios.api.capability.ICurio;
+import top.theillusivec4.curios.api.capability.ICurioItemHandler;
 import top.theillusivec4.curios.common.capability.CapCurioItem;
 
-public class ItemSuperiorShield<T extends IShieldType> extends Item implements ISuperiorShield, ICurio {
+public class ItemSuperiorShield<T extends IShieldType> extends Item implements ISuperiorShield<T>, ICurio {
 
 	private int ticksSinceLastRecharge = 0;
-	protected T shieldType;
+	private T shieldType;
 
 	// Used to ensure the potion effect is not applied every tick
 	private int onTickEventTrigger = 0;
@@ -44,6 +50,11 @@ public class ItemSuperiorShield<T extends IShieldType> extends Item implements I
 	public ItemSuperiorShield(Properties props, T shieldType) {
 		super(props);
 		this.shieldType = shieldType;
+	}
+
+	@Override
+	public T getShield() {
+		return shieldType;
 	}
 
 	@Override
@@ -97,9 +108,8 @@ public class ItemSuperiorShield<T extends IShieldType> extends Item implements I
 	public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
 		return CapCurioItem.createProvider(new ICurio() {
 
-
 			@Override
-			public void onCurioTick(String identifier, LivingEntity livingEntity) {
+			public void onCurioTick(String identifier, int index, LivingEntity livingEntity) {
 				if (livingEntity instanceof PlayerEntity) {
 					PlayerEntity player = (PlayerEntity) livingEntity;
 					if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent()) {
@@ -141,7 +151,8 @@ public class ItemSuperiorShield<T extends IShieldType> extends Item implements I
 					PlayerEntity player = (PlayerEntity) livingEntity;
 					if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.world.isRemote) {
 						IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
-						shield.setMaxHp(shieldType.getMaxShieldHp());
+
+						shield.setMaxHp(ShieldHelper.getShieldCapacity(stack));
 						shield.setCurrentHp(0);
 						shield.setTimeWithoutDamage(0);
 						MinecraftForge.EVENT_BUS.post(new ShieldEquippedEvent(player, shield));
@@ -177,22 +188,15 @@ public class ItemSuperiorShield<T extends IShieldType> extends Item implements I
 	@OnlyIn(Dist.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
+
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
+
 		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.blank"));
 		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.equip").applyTextStyle(TextFormatting.GRAY));
-		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.hp", df.format(shieldType.getMaxShieldHp())).applyTextStyle(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.hp", df.format(ShieldHelper.getShieldCapacity(stack))).applyTextStyle(TextFormatting.DARK_GREEN));
 		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_rate", df.format((float) shieldType.getShieldRechargeRate() / 20f)).applyTextStyle(TextFormatting.DARK_GREEN));
 		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_delay", df.format((float) shieldType.getShieldRechargeDelay() / 20f)).applyTextStyle(TextFormatting.DARK_GREEN));
-		//		tooltip.add(I18n.format("superiorshields.tooltip.hp") + " " + shieldType.getMaxShieldHp() + " " + I18n.format("superiorshields.tooltip.hpDetail"));
-		//		tooltip.add(I18n.format("superiorshields.tooltip.rechargeDelay") + " " + (float) shieldType.getShieldRechargeDelay() / 20 + " " + I18n
-		//				.format("superiorshields.tooltip.rechargeDelayTime"));
-		//		tooltip.add(I18n.format("superiorshields.tooltip.rechargeRate") + " " + 1f / ((float) shieldType.getShieldRechargeRate() / 20) + " " + I18n
-		//				.format("superiorshields.tooltip.rechargeRateTime"));
-		//
-		//		if (!(shieldType.getEffect() instanceof ShieldEffectNone)) {
-		//			tooltip.add(shieldType.getEffect().getDescription());
-		//		}
 	}
 
 	protected void updateClient(PlayerEntity player, IShieldCapability shield) {

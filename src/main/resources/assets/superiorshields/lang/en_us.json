@@ -11,5 +11,7 @@
   "superiorshields.tooltip.recharge_delay": " %s Recharge Delay",
   "superiorshields.tooltip.recharge_rate": " %s Recharge Rate",
 
+  "enchantment.superiorshields.capacity": "Capacity",
+
   "curios.identifier.superior_shield": "Superior Shield"
 }

@@ -1,0 +1,11 @@
+package epicsquid.superiorshields.enchantment;
+
+import epicsquid.superiorshields.SuperiorShields;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraftforge.registries.ObjectHolder;
+
+@ObjectHolder(SuperiorShields.MODID)
+public class ModEnchantments {
+
+	public static final Enchantment CAPACITY = null;
+}

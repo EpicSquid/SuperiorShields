@@ -1,7 +1,11 @@
 package epicsquid.superiorshields;
 
+import epicsquid.superiorshields.enchantment.CapacityEnchantment;
+import epicsquid.superiorshields.item.ISuperiorShield;
 import epicsquid.superiorshields.item.ItemVanillaShield;
 import epicsquid.superiorshields.shield.GenericShieldType;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
 import net.minecraftforge.event.RegistryEvent;
@@ -20,5 +24,12 @@ public class RegistryManager {
     event.getRegistry().register(new ItemVanillaShield(new Item.Properties().maxStackSize(1).group(SuperiorShields.ITEM_GROUP).maxDamage(ItemTier.IRON.getMaxUses()), IRON).setRegistryName(SuperiorShields.MODID, "iron_shield"));
     event.getRegistry().register(new ItemVanillaShield(new Item.Properties().maxStackSize(1).group(SuperiorShields.ITEM_GROUP).maxDamage(ItemTier.GOLD.getMaxUses()), GOLD).setRegistryName(SuperiorShields.MODID, "golden_shield"));
     event.getRegistry().register(new ItemVanillaShield(new Item.Properties().maxStackSize(1).group(SuperiorShields.ITEM_GROUP).maxDamage(ItemTier.DIAMOND.getMaxUses()), DIAMOND).setRegistryName(SuperiorShields.MODID, "diamond_shield"));
+  }
+
+  @SubscribeEvent
+  public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
+    EnchantmentType type = EnchantmentType.create("superior_shield", item -> item instanceof ISuperiorShield);
+
+    event.getRegistry().register(new CapacityEnchantment(Enchantment.Rarity.COMMON, type).setRegistryName(SuperiorShields.MODID, "capacity"));
   }
 }
