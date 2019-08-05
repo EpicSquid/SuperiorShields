@@ -6,12 +6,14 @@ public class GenericShieldType implements ShieldType {
 	private int shieldRechargeDelay;
 	private int shieldRechargeRate;
 	private int damage;
+	private int enchantability;
 
-	public GenericShieldType(float maxHp, int shieldRechargeDelay, int shieldRechargeRate, int damage) {
+	public GenericShieldType(float maxHp, int shieldRechargeDelay, int shieldRechargeRate, int damage, int enchantability) {
 		this.maxHp = maxHp;
 		this.shieldRechargeDelay = shieldRechargeDelay;
 		this.shieldRechargeRate = shieldRechargeRate;
 		this.damage = damage;
+		this.enchantability = enchantability;
 	}
 
 	@Override
@@ -37,5 +39,10 @@ public class GenericShieldType implements ShieldType {
 	@Override
 	public int getMaxDamage() {
 		return damage;
+	}
+
+	@Override
+	public int getEnchantability() {
+		return enchantability;
 	}
 }

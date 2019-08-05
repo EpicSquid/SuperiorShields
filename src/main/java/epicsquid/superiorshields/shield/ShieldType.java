@@ -18,4 +18,6 @@ public interface ShieldType {
 	default IShieldEffect getEffect() {
 		return new ShieldEffectNone();
 	}
+
+	int getEnchantability();
 }

@@ -1,19 +1,18 @@
 package epicsquid.superiorshields.item;
 
-import java.text.DecimalFormat;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
+import epicsquid.superiorshields.RegistryManager;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.enchantment.ModEnchantments;
 import epicsquid.superiorshields.event.ShieldEquippedEvent;
-import epicsquid.superiorshields.network.SPacketShieldUpdate;
 import epicsquid.superiorshields.network.NetworkHandler;
-import epicsquid.superiorshields.shield.ShieldType;
+import epicsquid.superiorshields.network.SPacketShieldUpdate;
 import epicsquid.superiorshields.shield.ShieldHelper;
+import epicsquid.superiorshields.shield.ShieldType;
 import epicsquid.superiorshields.shield.effect.EffectTrigger;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -32,6 +31,10 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.network.NetworkDirection;
 import top.theillusivec4.curios.api.capability.ICurio;
 import top.theillusivec4.curios.common.capability.CapCurioItem;
+
+import javax.annotation.Nullable;
+import java.text.DecimalFormat;
+import java.util.List;
 
 public class SuperiorShieldItem<T extends ShieldType> extends Item implements SuperiorShield<T>, ICurio {
 
@@ -146,8 +149,15 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 					if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.world.isRemote) {
 						IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
 
-						shield.setMaxHp(ShieldHelper.getShieldCapacity(stack));
-						shield.setCurrentHp(0);
+						float capacity = ShieldHelper.getShieldCapacity(stack);
+
+						shield.setMaxHp(capacity);
+						if (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.JUMP_START, stack) > 0) {
+							shield.setCurrentHp(capacity);
+							useEnergyToRecharge(stack, player);
+						} else {
+							shield.setCurrentHp(0);
+						}
 						shield.setTimeWithoutDamage(0);
 						MinecraftForge.EVENT_BUS.post(new ShieldEquippedEvent(player, shield));
 						if (!player.world.isRemote) {
@@ -204,5 +214,15 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 			IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
 			shieldType.getEffect().applyEffect(shield, player, source, damage, trigger);
 		}
+	}
+
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+		return enchantment.type.equals(RegistryManager.type);
+	}
+
+	@Override
+	public int getItemEnchantability() {
+		return shieldType.getEnchantability();
 	}
 }
