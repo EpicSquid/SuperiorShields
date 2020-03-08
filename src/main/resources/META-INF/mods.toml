@@ -54,6 +54,6 @@ Who needs shields when you have these? Borderlands style shields for Minecraft.
 [[dependencies.superiorshields]]
     modId="curios"
     mandatory=true
-    versionRange="[2.0.1,)"
+    versionRange="[FORGE-1.15.2-2.0.1,)"
     ordering="NONE"
     side="BOTH"
