@@ -26,8 +26,8 @@ public abstract class ShieldEffectNova implements IShieldEffect {
 	public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull PlayerEntity player, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
 		if (!player.world.isRemote && trigger == EffectTrigger.EMPTY) {
 			List<LivingEntity> entities = player.world.getEntitiesWithinAABB(LivingEntity.class,
-					new AxisAlignedBB(player.posX + radius, player.posY + radius, player.posZ + radius, player.posX - radius, player.posY - radius,
-							player.posZ - radius));
+					new AxisAlignedBB(player.getPosX() + radius, player.getPosY() + radius, player.getPosZ() + radius, player.getPosX() - radius, player.getPosY() - radius,
+							player.getPosZ() - radius));
 
 			applyToEntities(entities);
 		}

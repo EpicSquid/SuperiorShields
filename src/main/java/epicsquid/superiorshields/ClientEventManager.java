@@ -20,15 +20,15 @@ public class ClientEventManager {
 
 	@SubscribeEvent
 	public static void onRenderPlayer(RenderPlayerEvent.Pre event) {
-		PlayerEntity player = event.getEntityPlayer();
+		PlayerEntity player = event.getPlayer();
 		if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent()) {
 			IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
 			if (shield.getCurrentHp() > 0 && player.getLastDamageSource() != DamageSource.STARVE && player.getLastDamageSource() != DamageSource.DROWN) {
-				if (event.getEntityPlayer().hurtTime > 0) {
-					HURT_TIME.put(event.getEntityPlayer(), event.getEntityPlayer().hurtTime);
-					event.getEntityPlayer().hurtTime = 0;
+				if (event.getPlayer().hurtTime > 0) {
+					HURT_TIME.put(event.getPlayer(), event.getPlayer().hurtTime);
+					event.getPlayer().hurtTime = 0;
 				}
-				if (HURT_TIME.containsKey(event.getEntityPlayer())) {
+				if (HURT_TIME.containsKey(event.getPlayer())) {
 					GlStateManager.color4f(204 / 256f, 255 / 255f, 251 / 255f, 1);
 				}
 			}
