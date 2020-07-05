@@ -1,23 +1,12 @@
 buildscript {
-    repositories {
-        mavenLocal()
-        maven { url = 'http://files.minecraftforge.net/maven' }
-        jcenter()
-        mavenCentral()
-        maven {
-            url 'https://dogforce-games.com/maven'
-        }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.0.165-run-configs-rework', changing: true
-    }
-}
-plugins {
-    id 'com.github.johnrengelman.shadow' version '5.2.0'
+	repositories {
+		maven { url = 'https://files.minecraftforge.net/maven' }
+		jcenter()
+		mavenCentral()
+	}
+	dependencies {
+		classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+	}
 }
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
@@ -109,7 +98,9 @@ dependencies {
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    compile fg.deobf("top.theillusivec4.curios:curios:FORGE-${minecraft_version}-${curios_version}")
+
+		runtimeOnly fg.deobf("top.theillusivec4.curios:curios:${curios_version}")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios:${curios_version}:api")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
