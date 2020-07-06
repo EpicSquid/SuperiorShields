@@ -1,7 +1,5 @@
 package epicsquid.superiorshields;
 
-import javax.annotation.Nonnull;
-
 import epicsquid.superiorshields.item.SuperiorShield;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -9,8 +7,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import top.theillusivec4.curios.api.CuriosAPI;
-import top.theillusivec4.curios.api.capability.ICurioItemHandler;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+
+import javax.annotation.Nonnull;
 
 @Mod.EventBusSubscriber(modid = SuperiorShields.MODID)
 public class EventManager {
@@ -19,12 +19,16 @@ public class EventManager {
 	public static void onLivingHurtEvent(@Nonnull LivingHurtEvent event) {
 		if (event.getEntity() instanceof PlayerEntity) {
 			PlayerEntity player = (PlayerEntity) event.getEntity();
-			if (CuriosAPI.getCuriosHandler(player).isPresent() && event.getSource() != DamageSource.STARVE && event.getSource() != DamageSource.DROWN) {
-				ICurioItemHandler handler = CuriosAPI.getCuriosHandler(player).orElse(null);
-				ItemStack stack = handler.getStackInSlot(SuperiorShields.SHIELD_CURIO, 0);
-				if (!stack.isEmpty() && stack.getItem() instanceof SuperiorShield) {
-					event.setAmount(((SuperiorShield) stack.getItem()).applyShield(player, stack, event.getAmount(), event.getSource()));
-				}
+			if (CuriosApi.getCuriosHelper().getCuriosHandler(player).isPresent() && event.getSource() != DamageSource.STARVE && event.getSource() != DamageSource.DROWN) {
+				ICuriosItemHandler handler = CuriosApi.getCuriosHelper().getCuriosHandler(player).orElse(null);
+				handler.getStacksHandler(SuperiorShields.SHIELD_CURIO).ifPresent(
+					stackHandler -> {
+						ItemStack stack = stackHandler.getStacks().getStackInSlot(0);
+						if (!stack.isEmpty() && stack.getItem() instanceof SuperiorShield) {
+							event.setAmount(((SuperiorShield) stack.getItem()).applyShield(player, stack, event.getAmount(), event.getSource()));
+						}
+					}
+				);
 			}
 		}
 	}

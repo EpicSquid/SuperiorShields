@@ -1,6 +1,7 @@
 package epicsquid.superiorshields.item;
 
 import epicsquid.superiorshields.RegistryManager;
+import epicsquid.superiorshields.capability.CuriosItemCapabilityProvider;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
 import epicsquid.superiorshields.enchantment.ModEnchantments;
@@ -29,8 +30,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.network.NetworkDirection;
-import top.theillusivec4.curios.api.capability.ICurio;
-import top.theillusivec4.curios.common.capability.CapCurioItem;
+import top.theillusivec4.curios.api.type.capability.ICurio;
 
 import javax.annotation.Nullable;
 import java.text.DecimalFormat;
@@ -103,10 +103,10 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 	@Nullable
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
-		return CapCurioItem.createProvider(new ICurio() {
+		return new CuriosItemCapabilityProvider(new ICurio() {
 
 			@Override
-			public void onCurioTick(String identifier, int index, LivingEntity livingEntity) {
+			public void curioTick(String identifier, int index, LivingEntity livingEntity) {
 				if (livingEntity instanceof PlayerEntity) {
 					PlayerEntity player = (PlayerEntity) livingEntity;
 					if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent()) {
@@ -143,7 +143,7 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 			}
 
 			@Override
-			public void onEquipped(String identifier, LivingEntity livingEntity) {
+			public void onEquip(String identifier, int index, LivingEntity livingEntity) {
 				if (livingEntity instanceof PlayerEntity) {
 					PlayerEntity player = (PlayerEntity) livingEntity;
 					if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.world.isRemote) {
@@ -168,7 +168,7 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 			}
 
 			@Override
-			public void onUnequipped(String identifier, LivingEntity livingEntity) {
+			public void onUnequip(String identifier, int index, LivingEntity livingEntity) {
 				if (livingEntity instanceof PlayerEntity) {
 					PlayerEntity player = (PlayerEntity) livingEntity;
 					if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.world.isRemote) {
@@ -197,10 +197,10 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 		df.setMaximumFractionDigits(2);
 
 		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.blank"));
-		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.equip").applyTextStyle(TextFormatting.GRAY));
-		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.hp", df.format(ShieldHelper.getShieldCapacity(stack))).applyTextStyle(TextFormatting.DARK_GREEN));
-		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_rate", df.format((float) shieldType.getShieldRechargeRate() / 20f)).applyTextStyle(TextFormatting.DARK_GREEN));
-		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_delay", df.format((float) shieldType.getShieldRechargeDelay() / 20f)).applyTextStyle(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.equip").func_240699_a_(TextFormatting.GRAY));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.hp", df.format(ShieldHelper.getShieldCapacity(stack))).func_240699_a_(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_rate", df.format((float) shieldType.getShieldRechargeRate() / 20f)).func_240699_a_(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_delay", df.format((float) shieldType.getShieldRechargeDelay() / 20f)).func_240699_a_(TextFormatting.DARK_GREEN));
 	}
 
 	protected void updateClient(PlayerEntity player, IShieldCapability shield) {

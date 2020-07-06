@@ -2,14 +2,15 @@ package epicsquid.superiorshields.proxy;
 
 import epicsquid.superiorshields.SuperiorShields;
 import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.item.SuperiorShield;
 import epicsquid.superiorshields.network.NetworkHandler;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import top.theillusivec4.curios.Curios;
-import top.theillusivec4.curios.api.CuriosAPI;
-import top.theillusivec4.curios.api.imc.CurioIMCMessage;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotTypeMessage;
 
 public class ModSetup {
 
@@ -19,8 +20,10 @@ public class ModSetup {
 		DeferredWorkQueue.runLater(NetworkHandler::register);
 	}
 
-	public void eneque(InterModEnqueueEvent event) {
-		InterModComms.sendTo(Curios.MODID, CuriosAPI.IMC.REGISTER_TYPE,
-				() -> new CurioIMCMessage(SuperiorShields.SHIELD_CURIO).setSize(1).setEnabled(true).setHidden(false));
+	public void enqueue(InterModEnqueueEvent event) {
+		InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
+						() -> new SlotTypeMessage.Builder(SuperiorShields.SHIELD_CURIO)
+										.icon(new ResourceLocation(SuperiorShields.MODID, "textures/gui/superior_shield_slot_icon.png"))
+										.build());
 	}
 }

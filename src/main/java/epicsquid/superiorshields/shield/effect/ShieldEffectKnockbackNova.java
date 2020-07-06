@@ -22,7 +22,8 @@ public class ShieldEffectKnockbackNova extends ShieldEffectNova {
 	@Override
 	protected void applyToEntities(@Nonnull List<LivingEntity> entities) {
 		for (LivingEntity entity : entities) {
-			entity.knockBack(entity, strength, x, z);
+			// This is supposed to be the knockback, so hopefully it is
+			entity.func_233562_a_(entity, strength);
 		}
 	}
 }

@@ -23,7 +23,7 @@ public class SuperiorShields {
 
   public SuperiorShields() {
     FMLJavaModLoadingContext.get().getModEventBus().addListener(setup::setup);
-    FMLJavaModLoadingContext.get().getModEventBus().addListener(setup::eneque);
+    FMLJavaModLoadingContext.get().getModEventBus().addListener(setup::enqueue);
     //		ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
   }
 }
