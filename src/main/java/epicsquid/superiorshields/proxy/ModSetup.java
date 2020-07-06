@@ -5,6 +5,7 @@ import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityMana
 import epicsquid.superiorshields.item.SuperiorShield;
 import epicsquid.superiorshields.network.NetworkHandler;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -16,8 +17,7 @@ public class ModSetup {
 
 	public void setup(FMLCommonSetupEvent event) {
 		SuperiorShieldsCapabilityManager.init();
-
-		DeferredWorkQueue.runLater(NetworkHandler::register);
+		NetworkHandler.register();
 	}
 
 	public void enqueue(InterModEnqueueEvent event) {

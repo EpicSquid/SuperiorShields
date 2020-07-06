@@ -15,4 +15,8 @@ public interface SuperiorShield<T extends ShieldType> {
 	void resetShieldDelay(IShieldCapability shield);
 
 	T getShield();
+
+	void unequip(PlayerEntity player);
+
+	void equip(PlayerEntity player, ItemStack stack);
 }

@@ -143,45 +143,6 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 			}
 
 			@Override
-			public void onEquip(String identifier, int index, LivingEntity livingEntity) {
-				if (livingEntity instanceof PlayerEntity) {
-					PlayerEntity player = (PlayerEntity) livingEntity;
-					if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.world.isRemote) {
-						IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
-
-						float capacity = ShieldHelper.getShieldCapacity(stack);
-
-						shield.setMaxHp(capacity);
-						if (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.JUMP_START, stack) > 0) {
-							shield.setCurrentHp(capacity);
-							useEnergyToRecharge(stack, player);
-						} else {
-							shield.setCurrentHp(0);
-						}
-						shield.setTimeWithoutDamage(0);
-						MinecraftForge.EVENT_BUS.post(new ShieldEquippedEvent(player, shield));
-						if (!player.world.isRemote) {
-							updateClient(player, shield);
-						}
-					}
-				}
-			}
-
-			@Override
-			public void onUnequip(String identifier, int index, LivingEntity livingEntity) {
-				if (livingEntity instanceof PlayerEntity) {
-					PlayerEntity player = (PlayerEntity) livingEntity;
-					if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.world.isRemote) {
-						IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
-						shield.setMaxHp(0f);
-						shield.setCurrentHp(0f);
-						shield.setTimeWithoutDamage(0);
-						updateClient(player, shield);
-					}
-				}
-			}
-
-			@Override
 			public boolean canRightClickEquip() {
 				return true;
 			}
@@ -224,5 +185,38 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 	@Override
 	public int getItemEnchantability() {
 		return shieldType.getEnchantability();
+	}
+
+	@Override
+	public void equip(PlayerEntity player, ItemStack stack) {
+		if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.world.isRemote) {
+			IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
+
+			float capacity = ShieldHelper.getShieldCapacity(stack);
+
+			shield.setMaxHp(capacity);
+			if (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.JUMP_START, stack) > 0) {
+				shield.setCurrentHp(capacity);
+				useEnergyToRecharge(stack, player);
+			} else {
+				shield.setCurrentHp(0);
+			}
+			shield.setTimeWithoutDamage(0);
+			MinecraftForge.EVENT_BUS.post(new ShieldEquippedEvent(player, shield));
+			if (!player.world.isRemote) {
+				updateClient(player, shield);
+			}
+		}
+	}
+
+	@Override
+	public void unequip(PlayerEntity player) {
+		if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.world.isRemote) {
+			IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
+			shield.setMaxHp(0f);
+			shield.setCurrentHp(0f);
+			shield.setTimeWithoutDamage(0);
+			updateClient(player, shield);
+		}
 	}
 }
