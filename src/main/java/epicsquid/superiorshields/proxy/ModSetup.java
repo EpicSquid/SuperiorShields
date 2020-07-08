@@ -23,7 +23,6 @@ public class ModSetup {
 	public void enqueue(InterModEnqueueEvent event) {
 		InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
 						() -> new SlotTypeMessage.Builder(SuperiorShields.SHIELD_CURIO)
-										.icon(new ResourceLocation(SuperiorShields.MODID, "textures/gui/superior_shield_slot_icon.png"))
 										.build());
 	}
 }
