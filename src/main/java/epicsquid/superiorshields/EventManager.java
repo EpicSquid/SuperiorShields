@@ -42,7 +42,7 @@ public class EventManager {
 			if (event.getFrom().getItem() instanceof SuperiorShield<?>) {
 				// Unequip
 				((SuperiorShield<?>) event.getFrom().getItem()).unequip(player);
-			} else {
+			} else if (event.getFrom().isEmpty()) {
 				// Equip
 				((SuperiorShield<?>) event.getTo().getItem()).equip(player, event.getTo());
 			}
