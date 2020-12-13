@@ -99,8 +99,8 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-		runtimeOnly fg.deobf("top.theillusivec4.curios:curios:${curios_version}")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios:${curios_version}:api")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

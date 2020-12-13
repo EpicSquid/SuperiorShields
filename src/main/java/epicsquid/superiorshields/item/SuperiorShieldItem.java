@@ -158,10 +158,10 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 		df.setMaximumFractionDigits(2);
 
 		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.blank"));
-		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.equip").func_240699_a_(TextFormatting.GRAY));
-		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.hp", df.format(ShieldHelper.getShieldCapacity(stack))).func_240699_a_(TextFormatting.DARK_GREEN));
-		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_rate", df.format((float) shieldType.getShieldRechargeRate() / 20f)).func_240699_a_(TextFormatting.DARK_GREEN));
-		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_delay", df.format((float) shieldType.getShieldRechargeDelay() / 20f)).func_240699_a_(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.equip").mergeStyle(TextFormatting.GRAY));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.hp", df.format(ShieldHelper.getShieldCapacity(stack))).mergeStyle(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_rate", df.format((float) shieldType.getShieldRechargeRate() / 20f)).mergeStyle(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_delay", df.format((float) shieldType.getShieldRechargeDelay() / 20f)).mergeStyle(TextFormatting.DARK_GREEN));
 	}
 
 	protected void updateClient(PlayerEntity player, IShieldCapability shield) {
