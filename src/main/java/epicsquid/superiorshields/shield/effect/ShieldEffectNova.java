@@ -24,10 +24,10 @@ public abstract class ShieldEffectNova implements IShieldEffect {
 
 	@Override
 	public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull PlayerEntity player, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
-		if (!player.world.isRemote && trigger == EffectTrigger.EMPTY) {
-			List<LivingEntity> entities = player.world.getEntitiesWithinAABB(LivingEntity.class,
-					new AxisAlignedBB(player.getPosX() + radius, player.getPosY() + radius, player.getPosZ() + radius, player.getPosX() - radius, player.getPosY() - radius,
-							player.getPosZ() - radius));
+		if (!player.getCommandSenderWorld().isClientSide && trigger == EffectTrigger.EMPTY) {
+			List<LivingEntity> entities = player.getCommandSenderWorld().getEntitiesOfClass(LivingEntity.class,
+					new AxisAlignedBB(player.position().x + radius, player.position().y + radius, player.position().z + radius, player.position().x - radius, player.position().y - radius,
+							player.position().z - radius));
 
 			applyToEntities(entities);
 		}
@@ -38,6 +38,6 @@ public abstract class ShieldEffectNova implements IShieldEffect {
 	@Nonnull
 	@Override
 	public final String getDescription() {
-		return I18n.format(this.description);
+		return I18n.get(this.description);
 	}
 }

@@ -27,9 +27,9 @@ public class ShieldEffectFood implements IShieldEffect {
 	@Override
 	public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull PlayerEntity player, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
 		if (trigger == EffectTrigger.DAMAGE && random.nextFloat() < chanceToFeed) {
-			FoodStats food = player.getFoodStats();
-			if (food.needFood()) {
-				food.addStats(foodLevel, saturationModifier);
+			FoodStats food = player.getFoodData();
+			if (food.needsFood()) {
+				food.eat(foodLevel, saturationModifier);
 			}
 		}
 	}
@@ -37,6 +37,6 @@ public class ShieldEffectFood implements IShieldEffect {
 	@Nonnull
 	@Override
 	public String getDescription() {
-		return I18n.format("shield.effect.food");
+		return I18n.get("shield.effect.food");
 	}
 }

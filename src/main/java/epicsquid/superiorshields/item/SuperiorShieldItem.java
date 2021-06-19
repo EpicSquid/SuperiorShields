@@ -110,7 +110,7 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 				if (livingEntity instanceof PlayerEntity) {
 					PlayerEntity player = (PlayerEntity) livingEntity;
 					if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent()) {
-						if (player.world.isRemote) {
+						if (player.getCommandSenderWorld().isClientSide) {
 							return;
 						}
 						IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
@@ -149,24 +149,26 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 		});
 	}
 
+
+
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		super.addInformation(stack, worldIn, tooltip, flagIn);
+	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
 
 		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.blank"));
-		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.equip").mergeStyle(TextFormatting.GRAY));
-		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.hp", df.format(ShieldHelper.getShieldCapacity(stack))).mergeStyle(TextFormatting.DARK_GREEN));
-		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_rate", df.format((float) shieldType.getShieldRechargeRate() / 20f)).mergeStyle(TextFormatting.DARK_GREEN));
-		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_delay", df.format((float) shieldType.getShieldRechargeDelay() / 20f)).mergeStyle(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.equip").withStyle(TextFormatting.GRAY));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.hp", df.format(ShieldHelper.getShieldCapacity(stack))).withStyle(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_rate", df.format((float) shieldType.getShieldRechargeRate() / 20f)).withStyle(TextFormatting.DARK_GREEN));
+		tooltip.add(new TranslationTextComponent("superiorshields.tooltip.recharge_delay", df.format((float) shieldType.getShieldRechargeDelay() / 20f)).withStyle(TextFormatting.DARK_GREEN));
 	}
 
 	protected void updateClient(PlayerEntity player, IShieldCapability shield) {
 		if (player instanceof ServerPlayerEntity) {
-			NetworkHandler.INSTANCE.sendTo(new SPacketShieldUpdate(shield.getCurrentHp(), shield.getMaxHp()), ((ServerPlayerEntity) player).connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
+			NetworkHandler.INSTANCE.sendTo(new SPacketShieldUpdate(shield.getCurrentHp(), shield.getMaxHp()), ((ServerPlayerEntity) player).connection.connection, NetworkDirection.PLAY_TO_CLIENT);
 		}
 	}
 
@@ -179,23 +181,24 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 
 	@Override
 	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-		return enchantment.type.equals(RegistryManager.type);
+		return enchantment.category.equals(RegistryManager.type);
 	}
 
+
 	@Override
-	public int getItemEnchantability() {
+	public int getItemEnchantability(ItemStack stack) {
 		return shieldType.getEnchantability();
 	}
 
 	@Override
 	public void equip(PlayerEntity player, ItemStack stack) {
-		if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.world.isRemote) {
+		if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.getCommandSenderWorld().isClientSide) {
 			IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
 
 			float capacity = ShieldHelper.getShieldCapacity(stack);
 
 			shield.setMaxHp(capacity);
-			if (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.JUMP_START, stack) > 0) {
+			if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.JUMP_START, stack) > 0) {
 				shield.setCurrentHp(capacity);
 				useEnergyToRecharge(stack, player);
 			} else {
@@ -203,7 +206,7 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 			}
 			shield.setTimeWithoutDamage(0);
 			MinecraftForge.EVENT_BUS.post(new ShieldEquippedEvent(player, shield));
-			if (!player.world.isRemote) {
+			if (!player.getCommandSenderWorld().isClientSide) {
 				updateClient(player, shield);
 			}
 		}
@@ -211,7 +214,7 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 
 	@Override
 	public void unequip(PlayerEntity player) {
-		if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.world.isRemote) {
+		if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.getCommandSenderWorld().isClientSide) {
 			IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
 			shield.setMaxHp(0f);
 			shield.setCurrentHp(0f);

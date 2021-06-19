@@ -41,7 +41,7 @@ Who needs shields when you have these? Borderlands style shields for Minecraft.
     # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory
     # The version range of the dependency
-    versionRange="[35,)" #mandatory
+    versionRange="[36.1,)" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
@@ -50,13 +50,13 @@ Who needs shields when you have these? Borderlands style shields for Minecraft.
 [[dependencies.superiorshields]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.4,)"
+    versionRange="[1.16.5,)"
     ordering="NONE"
     side="BOTH"
 # Here's another dependency
 [[dependencies.superiorshields]]
     modId="curios"
     mandatory=true
-    versionRange="[FORGE-1.16.4-4.0.3.0,)"
+    versionRange="[FORGE-1.16.5-4.0.5.0,)"
     ordering="NONE"
     side="BOTH"

@@ -32,7 +32,7 @@ public class ShieldEffectPotionNova extends ShieldEffectNova {
   protected void applyToEntities(@Nonnull List<LivingEntity> entities) {
     for (LivingEntity entity : entities) {
       for (Effect effect : effects) {
-        entity.addPotionEffect(new EffectInstance(effect, duration));
+        entity.addEffect(new EffectInstance(effect, duration));
       }
     }
   }

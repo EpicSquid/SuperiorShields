@@ -37,7 +37,7 @@ public class EventManager {
 
 	@SubscribeEvent
 	public static void onCurioChangeEvent(CurioChangeEvent event) {
-		if (event.getIdentifier().equals(SuperiorShieldsCapabilityManager.ShieldCapabilityName) && event.getEntityLiving() instanceof PlayerEntity && !event.getFrom().isItemEqualIgnoreDurability(event.getTo())) {
+		if (event.getIdentifier().equals(SuperiorShieldsCapabilityManager.ShieldCapabilityName) && event.getEntityLiving() instanceof PlayerEntity && !event.getFrom().sameItemStackIgnoreDurability(event.getTo())) {
 			PlayerEntity player = (PlayerEntity) event.getEntityLiving();
 			if (event.getFrom().getItem() instanceof SuperiorShield<?>) {
 				// Unequip

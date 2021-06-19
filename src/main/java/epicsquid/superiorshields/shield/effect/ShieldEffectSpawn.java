@@ -27,11 +27,11 @@ public class ShieldEffectSpawn<E extends Entity> implements IShieldEffect {
 
 	@Override
 	public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull PlayerEntity player, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
-		if (trigger == EffectTrigger.DAMAGE && !player.world.isRemote && random.nextFloat() < chanceToSpawn) {
+		if (trigger == EffectTrigger.DAMAGE && !player.getCommandSenderWorld().isClientSide && random.nextFloat() < chanceToSpawn) {
 			try {
-				Entity entity = entityClass.getConstructor(World.class).newInstance(player.world);
-				entity.setLocationAndAngles(player.getPosX() + random.nextDouble(), player.getPosY() + player.getEyeHeight(), player.getPosZ() + random.nextDouble(), player.rotationYaw, 0);
-				player.world.addEntity(entity);
+				Entity entity = entityClass.getConstructor(World.class).newInstance(player.getCommandSenderWorld());
+				entity.setPos(player.position().x + random.nextDouble(), player.position().y + player.getEyeHeight(), player.position().z + random.nextDouble());
+				player.getCommandSenderWorld().addFreshEntity(entity);
 			} catch (Exception e) {
 				// TODO proper exception logging
 				System.out.println("Error: Could not create entity.");
@@ -43,6 +43,6 @@ public class ShieldEffectSpawn<E extends Entity> implements IShieldEffect {
 	@Nonnull
 	@Override
 	public String getDescription() {
-		return I18n.format(description);
+		return I18n.get(description);
 	}
 }

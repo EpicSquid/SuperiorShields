@@ -1,11 +1,10 @@
 buildscript {
 	repositories {
-		maven { url = 'https://files.minecraftforge.net/maven' }
-		jcenter()
-		mavenCentral()
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        mavenCentral()
 	}
 	dependencies {
-		classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
 	}
 }
 apply plugin: 'net.minecraftforge.gradle'
@@ -20,8 +19,9 @@ version = "${minecraft_version}-${mod_version}"
 group = 'epicsquid.superiorshields' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'superiorshields'
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
 minecraft {
     // The mappings can be changed at any time, and must be in the following format.
@@ -29,7 +29,7 @@ minecraft {
     // stable_#            Stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'snapshot', version: "${mcp_mappings}"
+    mappings channel: 'official', version: "${mcp_mappings}"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
 //    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
@@ -118,38 +118,16 @@ jar {
     }
 }
 
-//processResources {
-//    // this will ensure that this task is redone when the versions change.
-//    inputs.property "version", project.version
-//    inputs.property "mcversion", project.minecraft_version
-//
-//    // replace stuff in mcmod.info, nothing else
-//    from(sourceSets.main.resources.srcDirs) {
-//        include 'mcmod.info'
-//
-//        // replace version and mcversion
-//        expand 'version': project.version, 'mcversion': project.minecraft_version
-//    }
-//
-//    // copy everything else except the mcmod.info
-//    from(sourceSets.main.resources.srcDirs) {
-//        exclude 'mcmod.info'
-//    }
-//}
-
 // Example configuration to allow publishing using the maven-publish task
-// we define a custom artifact that is sourced from the reobfJar output task
-// and then declare that to be published
-// Note you'll need to add a repository here
-def reobfFile = file("$buildDir/reobfJar/output.jar")
-def reobfArtifact = artifacts.add('default', reobfFile) {
-    type 'jar'
-    builtBy 'reobfJar'
-}
+// This is the preferred method to reobfuscate your jar file
+jar.finalizedBy('reobfJar') 
+// However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
+//publish.dependsOn('reobfJar')
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifact reobfArtifact
+            artifact jar
         }
     }
     repositories {
@@ -158,37 +136,3 @@ publishing {
         }
     }
 }
-
-// publishing {
-
-//     publications {
-
-//         mavenJava(MavenPublication) {
-
-//             groupId project.group
-//             artifactId project.archivesBaseName
-//             version project.version
-//             from components.java
-
-//             artifact deobfJar {
-
-//                 classifier 'deobf'
-//             }
-//         }
-//     }
-
-//     repositories {
-
-//         maven {
-
-//             url "file://" + System.getenv("local_maven")
-//         }
-//     }
-// }
-
-// task deobfJar(type: Jar) {
-//     from sourceSets.main.output
-//     classifier = 'deobf'
-// }
-
-// tasks.build.dependsOn deobfJar

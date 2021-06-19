@@ -29,7 +29,7 @@ public class ClientEventManager {
 					event.getPlayer().hurtTime = 0;
 				}
 				if (HURT_TIME.containsKey(event.getPlayer())) {
-					GlStateManager.color4f(204 / 256f, 255 / 255f, 251 / 255f, 1);
+					GlStateManager._color4f(204 / 256f, 255 / 255f, 251 / 255f, 1);
 				}
 			}
 		}

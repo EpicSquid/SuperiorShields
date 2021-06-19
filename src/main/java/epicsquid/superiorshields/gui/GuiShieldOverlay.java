@@ -27,10 +27,11 @@ public class GuiShieldOverlay {
 	private static void drawQuad(BufferBuilder buffer, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int minU, int minV, int maxU, int maxV) {
 		float f = 0.00390625F;
 		float f1 = 0.00390625F;
-		buffer.pos(x1 + 0.0F, y1 + 0.0F, 0).tex((minU + 0) * f, (minV + maxV) * f1).endVertex();
-		buffer.pos(x2 + 0.0F, y2 + 0.0F, 0).tex((minU + maxU) * f, (minV + maxV) * f1).endVertex();
-		buffer.pos(x3 + 0.0F, y3 + 0.0F, 0).tex((minU + maxU) * f, (minV + 0) * f1).endVertex();
-		buffer.pos(x4 + 0.0F, y4 + 0.0F, 0).tex((minU + 0) * f, (minV + 0) * f1).endVertex();
+		buffer.vertex(x1 + 0.0F, y1 + 0.0F, 0).uv((minU + 0) * f, (minV + maxV) * f1).endVertex();
+		buffer.vertex(x2 + 0.0F, y2 + 0.0F, 0).uv((minU + maxU) * f, (minV + maxV) * f1).endVertex();
+		buffer.vertex(x3 + 0.0F, y3 + 0.0F, 0).uv((minU + maxU) * f, (minV + 0) * f1).endVertex();
+		buffer.vertex(x4 + 0.0F, y4 + 0.0F, 0).uv((minU + 0) * f, (minV + 0) * f1).endVertex();
+//		buffer.pos(x4 + 0.0F, y4 + 0.0F, 0).tex((minU + 0) * f, (minV + 0) * f1).endVertex();
 	}
 
 	@SubscribeEvent
@@ -55,13 +56,13 @@ public class GuiShieldOverlay {
 		int defaultXOffset = -101;
 		int defaultYOffset = 49;
 
-		if (player.getTotalArmorValue() > 0) {
+		if (player.getArmorValue() > 0) {
 			defaultYOffset += 10;
 		}
-		if (player.getTotalArmorValue() > 20) {
+		if (player.getArmorValue() > 20) {
 			defaultXOffset += 10;
 		}
-		if (player.getActivePotionEffect(Effects.ABSORPTION) != null) {
+		if (player.getActiveEffectsMap().containsKey(Effects.ABSORPTION)) {
 			defaultYOffset += 10;
 		}
 		if (player.getMaxHealth() > 20.0f) {
@@ -69,16 +70,16 @@ public class GuiShieldOverlay {
 			defaultYOffset += 10;
 		}
 
-		GlStateManager.pushMatrix();
-		GlStateManager.enableAlphaTest();
-		GlStateManager.enableBlend();
-		Minecraft.getInstance().getTextureManager().bindTexture(new ResourceLocation("superiorshields:textures/gui/shield.png"));
+		GlStateManager._pushMatrix();
+		GlStateManager._enableAlphaTest();
+		GlStateManager._enableBlend();
+		Minecraft.getInstance().getTextureManager().getTexture(new ResourceLocation("superiorshields:textures/gui/shield.png"));
 
 		Tessellator tess = Tessellator.getInstance();
-		BufferBuilder b = tess.getBuffer();
-		int w = event.getWindow().getScaledWidth();
-		int h = event.getWindow().getScaledHeight();
-		GlStateManager.color4f(1f, 1f, 1f, 1f);
+		BufferBuilder b = tess.getBuilder();
+		int w = event.getWindow().getGuiScaledWidth();
+		int h = event.getWindow().getGuiScaledHeight();
+		GlStateManager._color4f(1f, 1f, 1f, 1f);
 
 		int shieldCurrentHp = Math.round(shield.getCurrentHp());
 		int shieldMaxHp = Math.round(shield.getMaxHp());
@@ -108,8 +109,8 @@ public class GuiShieldOverlay {
 				shieldCurrentHp = 0;
 			}
 		}
-		tess.draw();
+		tess.end();
 
-		GlStateManager.popMatrix();
+		GlStateManager._popMatrix();
 	}
 }

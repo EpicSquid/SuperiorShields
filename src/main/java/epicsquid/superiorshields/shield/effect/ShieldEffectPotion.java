@@ -27,13 +27,13 @@ public class ShieldEffectPotion implements IShieldEffect {
 	@Override
 	public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull PlayerEntity player, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
 		if (trigger == this.trigger) {
-			player.addPotionEffect(new EffectInstance(effect, duration));
+			player.addEffect(new EffectInstance(effect, duration));
 		}
 	}
 
 	@Nonnull
 	@Override
 	public String getDescription() {
-		return I18n.format(description);
+		return I18n.get(description);
 	}
 }

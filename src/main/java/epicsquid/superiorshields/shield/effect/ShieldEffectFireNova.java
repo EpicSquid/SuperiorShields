@@ -18,7 +18,7 @@ public class ShieldEffectFireNova extends ShieldEffectNova {
   @Override
   protected void applyToEntities(@Nonnull List<LivingEntity> entities) {
     for (LivingEntity entity : entities) {
-      entity.setFire(duration);
+      entity.setSecondsOnFire(duration);
     }
   }
 }
