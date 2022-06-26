@@ -2,8 +2,8 @@ package epicsquid.superiorshields;
 
 import epicsquid.superiorshields.item.ModItems;
 import epicsquid.superiorshields.proxy.ModSetup;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -12,7 +12,7 @@ public class SuperiorShields {
   public static final String MODID = "superiorshields";
   public static final String SHIELD_CURIO = "superior_shield";
 
-  public static final ItemGroup ITEM_GROUP = new ItemGroup("superior_shields") {
+  public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab("superior_shields") {
     @Override
     public ItemStack makeIcon() {
       return new ItemStack(ModItems.IRON_SHIELD);
