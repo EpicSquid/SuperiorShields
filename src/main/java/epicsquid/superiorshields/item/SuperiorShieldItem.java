@@ -1,6 +1,5 @@
 package epicsquid.superiorshields.item;
 
-import epicsquid.superiorshields.RegistryManager;
 import epicsquid.superiorshields.capability.CuriosItemCapabilityProvider;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
@@ -44,7 +43,7 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
     private int onTickEventTrigger = 0;
 
     public SuperiorShieldItem(Item.Properties props, T shieldType) {
-        super(props);
+        super(props.stacksTo(1).durability(shieldType.getMaxDamage()));
         this.shieldType = shieldType;
     }
 

@@ -1,9 +1,9 @@
 package epicsquid.superiorshields.capability;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
@@ -14,7 +14,7 @@ import net.minecraftforge.energy.IEnergyStorage;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class EnergyCapabilityProvider implements ICapabilityProvider, INBTSerializable, IEnergyStorage {
+public class EnergyCapabilityProvider implements ICapabilityProvider, INBTSerializable<Tag>, IEnergyStorage {
 
 	private int maxEnergy;
 	private int currentEnergy;
@@ -30,7 +30,7 @@ public class EnergyCapabilityProvider implements ICapabilityProvider, INBTSerial
 		this.output = Math.max(output, 0);
 		this.stack = stack;
 		if (stack.getTag() == null) {
-			CompoundNBT tag = new CompoundNBT();
+			CompoundTag tag = new CompoundTag();
 			tag.putInt("energy", currentEnergy);
 			stack.setTag(tag);
 		}
@@ -38,14 +38,15 @@ public class EnergyCapabilityProvider implements ICapabilityProvider, INBTSerial
 	}
 
 	@Override
+	@Nonnull
 	@SuppressWarnings("unchecked")
 	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing) {
 		return capability == CapabilityEnergy.ENERGY ? (LazyOptional<T>) op : LazyOptional.empty();
 	}
 
 	@Override
-	public INBT serializeNBT() {
-		CompoundNBT tag = new CompoundNBT();
+	public Tag serializeNBT() {
+		CompoundTag tag = new CompoundTag();
 		tag.putInt("maxEnergy", maxEnergy);
 		tag.putInt("currentEnergy", currentEnergy);
 		tag.putInt("input", input);
@@ -54,9 +55,8 @@ public class EnergyCapabilityProvider implements ICapabilityProvider, INBTSerial
 	}
 
 	@Override
-	public void deserializeNBT(INBT nbt) {
-		if (nbt instanceof CompoundNBT) {
-			CompoundNBT tag = (CompoundNBT) nbt;
+	public void deserializeNBT(Tag nbt) {
+		if (nbt instanceof CompoundTag tag) {
 			maxEnergy = tag.getInt("maxEnergy");
 			currentEnergy = tag.getInt("currentEnergy");
 			input = tag.getInt("input");

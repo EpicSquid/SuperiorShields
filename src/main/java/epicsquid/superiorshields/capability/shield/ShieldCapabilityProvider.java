@@ -1,9 +1,9 @@
 package epicsquid.superiorshields.capability.shield;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.INBT;
-import net.minecraft.util.Direction;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.Tag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
@@ -12,13 +12,13 @@ import net.minecraftforge.common.util.LazyOptional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class ShieldCapabilityProvider implements ICapabilityProvider, INBTSerializable<INBT> {
+public class ShieldCapabilityProvider implements ICapabilityProvider, INBTSerializable<Tag> {
 
 	private IShieldCapability shield = new ShieldCapability();
 	private LazyOptional<IShieldCapability> op;
 
-	public ShieldCapabilityProvider(PlayerEntity player) {
-		if (!player.getCommandSenderWorld().isClientSide && player instanceof ServerPlayerEntity) {
+	public ShieldCapabilityProvider(Player player) {
+		if (!player.getCommandSenderWorld().isClientSide && player instanceof ServerPlayer) {
 			this.shield = new ShieldCapability();
 		}
 		this.op = LazyOptional.of(() -> shield);
@@ -37,12 +37,12 @@ public class ShieldCapabilityProvider implements ICapabilityProvider, INBTSerial
 	}
 
 	@Override
-	public INBT serializeNBT() {
+	public Tag serializeNBT() {
 		return SuperiorShieldsCapabilityManager.shieldCapability.writeNBT(shield, null);
 	}
 
 	@Override
-	public void deserializeNBT(INBT nbt) {
+	public void deserializeNBT(Tag nbt) {
 		SuperiorShieldsCapabilityManager.shieldCapability.readNBT(shield, null, nbt);
 	}
 }

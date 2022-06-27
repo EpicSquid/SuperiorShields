@@ -1,7 +1,5 @@
 package epicsquid.superiorshields.capability.shield;
 
-import javax.annotation.Nonnull;
-
 import epicsquid.superiorshields.SuperiorShields;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,12 +11,15 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import javax.annotation.Nonnull;
+
 @Mod.EventBusSubscriber(modid = "superiorshields")
 public class SuperiorShieldsCapabilityManager {
 
 	public static final String ShieldCapabilityName = "superior_shield";
 
-	@CapabilityInject(IShieldCapability.class) public static final Capability<IShieldCapability> shieldCapability = null;
+	@CapabilityInject(IShieldCapability.class)
+	public static final Capability<IShieldCapability> shieldCapability = null;
 
 	public static void init() {
 		CapabilityManager.INSTANCE.register(IShieldCapability.class, new ShieldCapabilityStorage(), ShieldCapability::new);
