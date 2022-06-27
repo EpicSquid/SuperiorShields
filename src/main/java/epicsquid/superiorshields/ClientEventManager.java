@@ -2,7 +2,7 @@ package epicsquid.superiorshields;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
-import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
@@ -21,8 +21,8 @@ public class ClientEventManager {
     @SubscribeEvent
     public static void onRenderPlayer(RenderPlayerEvent.Pre event) {
         Player player = event.getPlayer();
-        if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent()) {
-            IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
+        if (player.getCapability(CapabilityRegistry.shieldCapability).isPresent()) {
+            IShieldCapability shield = player.getCapability(CapabilityRegistry.shieldCapability).orElseGet(() -> null);
             if (shield.getCurrentHp() > 0 && player.getLastDamageSource() != DamageSource.STARVE && player.getLastDamageSource() != DamageSource.DROWN) {
                 if (event.getPlayer().hurtTime > 0) {
                     HURT_TIME.put(event.getPlayer(), event.getPlayer().hurtTime);

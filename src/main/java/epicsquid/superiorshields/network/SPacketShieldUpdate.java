@@ -3,7 +3,7 @@ package epicsquid.superiorshields.network;
 import java.util.function.Supplier;
 
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
-import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.network.PacketBuffer;
@@ -31,8 +31,8 @@ public class SPacketShieldUpdate {
 	public static void handle(SPacketShieldUpdate msg, Supplier<NetworkEvent.Context> ctx) {
 		ctx.get().enqueueWork(() -> {
 			ClientPlayerEntity player = Minecraft.getInstance().player;
-			if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent()) {
-				IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
+			if (player.getCapability(CapabilityRegistry.shieldCapability).isPresent()) {
+				IShieldCapability shield = player.getCapability(CapabilityRegistry.shieldCapability).orElseGet(() -> null);
 				shield.setMaxHp(msg.maxHp);
 				shield.setCurrentHp(msg.currentHp);
 			}

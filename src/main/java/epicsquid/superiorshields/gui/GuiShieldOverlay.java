@@ -6,7 +6,7 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.Tesselator;
 import epicsquid.superiorshields.SuperiorShields;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
-import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
@@ -40,14 +40,14 @@ public class GuiShieldOverlay {
             return;
         }
 
-        if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent()) {
+        if (player.getCapability(CapabilityRegistry.shieldCapability).isPresent()) {
             renderShieldBar(event);
         }
     }
 
     private static void renderShieldBar(@Nonnull RenderGameOverlayEvent event) {
         Player player = Minecraft.getInstance().player;
-        IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
+        IShieldCapability shield = player.getCapability(CapabilityRegistry.shieldCapability).orElseGet(() -> null);
         if (event.getType() != ElementType.HOTBAR || shield.getMaxHp() <= 0) {
             return;
         }

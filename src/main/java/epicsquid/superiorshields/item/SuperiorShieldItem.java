@@ -2,7 +2,7 @@ package epicsquid.superiorshields.item;
 
 import epicsquid.superiorshields.capability.CuriosItemCapabilityProvider;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
-import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
 import epicsquid.superiorshields.enchantment.ModEnchantments;
 import epicsquid.superiorshields.event.ShieldEquippedEvent;
 import epicsquid.superiorshields.network.NetworkHandler;
@@ -54,8 +54,8 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 
     @Override
     public float applyShield(Player player, ItemStack stack, float damage, DamageSource source) {
-        if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent()) {
-            IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
+        if (player.getCapability(CapabilityRegistry.shieldCapability).isPresent()) {
+            IShieldCapability shield = player.getCapability(CapabilityRegistry.shieldCapability).orElseGet(() -> null);
             if (shield.getCurrentHp() > 0) {
                 triggerShieldEffect(player, stack, source, damage, EffectTrigger.DAMAGE);
                 if (damage > shield.getCurrentHp()) {
@@ -107,11 +107,11 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
             public void curioTick(String identifier, int index, LivingEntity livingEntity) {
                 if (livingEntity instanceof Player) {
                     Player player = (Player) livingEntity;
-                    if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent()) {
+                    if (player.getCapability(CapabilityRegistry.shieldCapability).isPresent()) {
                         if (player.getCommandSenderWorld().isClientSide) {
                             return;
                         }
-                        IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
+                        IShieldCapability shield = player.getCapability(CapabilityRegistry.shieldCapability).orElseGet(() -> null);
                         if (shield.getTimeWithoutDamage() >= ShieldHelper.getShieldRechargeRate(stack) && shield.getCurrentHp() < shield.getMaxHp()) {
                             if (ticksSinceLastRecharge < ShieldHelper.getShieldRechargeRate(stack)) {
                                 ticksSinceLastRecharge++;
@@ -170,8 +170,8 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
     }
 
     public void triggerShieldEffect(Player player, ItemStack stack, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
-        if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent()) {
-            IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
+        if (player.getCapability(CapabilityRegistry.shieldCapability).isPresent()) {
+            IShieldCapability shield = player.getCapability(CapabilityRegistry.shieldCapability).orElseGet(() -> null);
             shieldType.getEffect().applyEffect(shield, player, source, damage, trigger);
         }
     }
@@ -189,8 +189,8 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 
     @Override
     public void equip(Player player, ItemStack stack) {
-        if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.getCommandSenderWorld().isClientSide) {
-            IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
+        if (player.getCapability(CapabilityRegistry.shieldCapability).isPresent() && !player.getCommandSenderWorld().isClientSide) {
+            IShieldCapability shield = player.getCapability(CapabilityRegistry.shieldCapability).orElseGet(() -> null);
 
             float capacity = ShieldHelper.getShieldCapacity(stack);
 
@@ -211,8 +211,8 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 
     @Override
     public void unequip(Player player) {
-        if (player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).isPresent() && !player.getCommandSenderWorld().isClientSide) {
-            IShieldCapability shield = player.getCapability(SuperiorShieldsCapabilityManager.shieldCapability).orElseGet(() -> null);
+        if (player.getCapability(CapabilityRegistry.shieldCapability).isPresent() && !player.getCommandSenderWorld().isClientSide) {
+            IShieldCapability shield = player.getCapability(CapabilityRegistry.shieldCapability).orElseGet(() -> null);
             shield.setMaxHp(0f);
             shield.setCurrentHp(0f);
             shield.setTimeWithoutDamage(0);

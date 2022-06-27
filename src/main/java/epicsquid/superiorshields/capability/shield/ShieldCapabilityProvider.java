@@ -1,7 +1,7 @@
 package epicsquid.superiorshields.capability.shield;
 
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.Tag;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
@@ -12,7 +12,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class ShieldCapabilityProvider implements ICapabilityProvider, INBTSerializable<Tag> {
+public class ShieldCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
 	private IShieldCapability shield = new ShieldCapability();
 	private LazyOptional<IShieldCapability> op;
@@ -26,23 +26,17 @@ public class ShieldCapabilityProvider implements ICapabilityProvider, INBTSerial
 
 	@Nonnull
 	@Override
-	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing) {
-		return getCapability(capability);
-	}
-
-	@Nonnull
-	@Override
-	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap) {
-		return SuperiorShieldsCapabilityManager.shieldCapability.orEmpty(cap, op);
+	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction facing) {
+		return CapabilityRegistry.SHIELD_CAPABILITY.orEmpty(cap, op);
 	}
 
 	@Override
-	public Tag serializeNBT() {
-		return SuperiorShieldsCapabilityManager.shieldCapability.writeNBT(shield, null);
+	public CompoundTag serializeNBT() {
+		return this.shield.serializeNBT();
 	}
 
 	@Override
-	public void deserializeNBT(Tag nbt) {
-		SuperiorShieldsCapabilityManager.shieldCapability.readNBT(shield, null, nbt);
+	public void deserializeNBT(CompoundTag tag) {
+		this.shield.deserializeNBT(tag);
 	}
 }

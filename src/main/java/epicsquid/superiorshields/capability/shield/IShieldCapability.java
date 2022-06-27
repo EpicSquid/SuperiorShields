@@ -1,6 +1,9 @@
 package epicsquid.superiorshields.capability.shield;
 
-public interface IShieldCapability {
+import net.minecraft.nbt.CompoundTag;
+import net.minecraftforge.common.util.INBTSerializable;
+
+public interface IShieldCapability extends INBTSerializable<CompoundTag> {
 
   float getCurrentHp();
 

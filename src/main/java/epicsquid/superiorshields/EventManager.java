@@ -1,6 +1,6 @@
 package epicsquid.superiorshields;
 
-import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
 import epicsquid.superiorshields.item.SuperiorShield;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
@@ -37,7 +37,7 @@ public class EventManager {
 
     @SubscribeEvent
     public static void onCurioChangeEvent(CurioChangeEvent event) {
-        if (event.getIdentifier().equals(SuperiorShieldsCapabilityManager.ShieldCapabilityName) && event.getEntityLiving() instanceof Player && !event.getFrom().sameItemStackIgnoreDurability(event.getTo())) {
+        if (event.getIdentifier().equals(CapabilityRegistry.ShieldCapabilityName) && event.getEntityLiving() instanceof Player && !event.getFrom().sameItemStackIgnoreDurability(event.getTo())) {
             Player player = (Player) event.getEntityLiving();
             if (event.getFrom().getItem() instanceof SuperiorShield<?>) {
                 // Unequip

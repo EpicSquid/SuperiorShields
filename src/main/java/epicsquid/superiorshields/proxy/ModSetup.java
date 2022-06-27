@@ -1,7 +1,7 @@
 package epicsquid.superiorshields.proxy;
 
 import epicsquid.superiorshields.SuperiorShields;
-import epicsquid.superiorshields.capability.shield.SuperiorShieldsCapabilityManager;
+import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
 import epicsquid.superiorshields.network.NetworkHandler;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -12,7 +12,7 @@ import top.theillusivec4.curios.api.SlotTypeMessage;
 public class ModSetup {
 
 	public void setup(FMLCommonSetupEvent event) {
-		SuperiorShieldsCapabilityManager.init();
+		CapabilityRegistry.init();
 		NetworkHandler.register();
 	}
 
