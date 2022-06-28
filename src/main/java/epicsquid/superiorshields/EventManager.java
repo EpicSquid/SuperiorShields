@@ -17,36 +17,37 @@ import javax.annotation.Nonnull;
 @Mod.EventBusSubscriber(modid = SuperiorShields.MODID)
 public class EventManager {
 
-    @SubscribeEvent
-    public static void onLivingHurtEvent(@Nonnull LivingHurtEvent event) {
-        if (event.getEntity() instanceof Player) {
-            Player player = (Player) event.getEntity();
-            if (CuriosApi.getCuriosHelper().getCuriosHandler(player).isPresent() && event.getSource() != DamageSource.STARVE && event.getSource() != DamageSource.DROWN) {
-                ICuriosItemHandler handler = CuriosApi.getCuriosHelper().getCuriosHandler(player).orElse(null);
-                handler.getStacksHandler(SuperiorShields.SHIELD_CURIO).ifPresent(
-                        stackHandler -> {
-                            ItemStack stack = stackHandler.getStacks().getStackInSlot(0);
-                            if (!stack.isEmpty() && stack.getItem() instanceof SuperiorShield) {
-                                event.setAmount(((SuperiorShield) stack.getItem()).applyShield(player, stack, event.getAmount(), event.getSource()));
-                            }
-                        }
-                );
-            }
-        }
-    }
+	@SubscribeEvent
+	public static void onLivingHurtEvent(@Nonnull LivingHurtEvent event) {
+		if (event.getEntity() instanceof Player player) {
+			if (CuriosApi.getCuriosHelper().getCuriosHandler(player).isPresent() && event.getSource() != DamageSource.STARVE && event.getSource() != DamageSource.DROWN) {
+				var curiosOp = CuriosApi.getCuriosHelper().getCuriosHandler(player).resolve();
+				if (curiosOp.isPresent()) {
+					ICuriosItemHandler handler = curiosOp.get();
+					handler.getStacksHandler(SuperiorShields.SHIELD_CURIO).ifPresent(
+									stackHandler -> {
+										ItemStack stack = stackHandler.getStacks().getStackInSlot(0);
+										if (!stack.isEmpty() && stack.getItem() instanceof SuperiorShield) {
+											event.setAmount(((SuperiorShield<?>) stack.getItem()).applyShield(player, stack, event.getAmount(), event.getSource()));
+										}
+									}
+					);
+				}
+			}
+		}
+	}
 
-    @SubscribeEvent
-    public static void onCurioChangeEvent(CurioChangeEvent event) {
-        if (event.getIdentifier().equals(CapabilityRegistry.ShieldCapabilityName) && event.getEntityLiving() instanceof Player && !event.getFrom().sameItemStackIgnoreDurability(event.getTo())) {
-            Player player = (Player) event.getEntityLiving();
-            if (event.getFrom().getItem() instanceof SuperiorShield<?>) {
-                // Unequip
-                ((SuperiorShield<?>) event.getFrom().getItem()).unequip(player);
-            } else if (event.getTo().getItem() instanceof SuperiorShield<?>) {
-                // Equip
-                ((SuperiorShield<?>) event.getTo().getItem()).equip(player, event.getTo());
-            }
-        }
-    }
+	@SubscribeEvent
+	public static void onCurioChangeEvent(CurioChangeEvent event) {
+		if (event.getIdentifier().equals(CapabilityRegistry.SHIELD_CAP_NAME) && event.getEntityLiving() instanceof Player player && !event.getFrom().sameItemStackIgnoreDurability(event.getTo())) {
+			if (event.getFrom().getItem() instanceof SuperiorShield<?>) {
+				// Unequip
+				((SuperiorShield<?>) event.getFrom().getItem()).unequip(player);
+			} else if (event.getTo().getItem() instanceof SuperiorShield<?>) {
+				// Equip
+				((SuperiorShield<?>) event.getTo().getItem()).equip(player, event.getTo());
+			}
+		}
+	}
 
 }

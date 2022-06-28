@@ -1,44 +1,52 @@
 package epicsquid.superiorshields;
 
 import com.tterrag.registrate.Registrate;
+import epicsquid.superiorshields.enchantment.ModEnchantments;
 import epicsquid.superiorshields.item.ModItems;
-import epicsquid.superiorshields.proxy.ModSetup;
+import epicsquid.superiorshields.network.NetworkHandler;
+import epicsquid.superiorshields.setup.ModSetup;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 
 import javax.annotation.Nonnull;
 
-@Mod("superiorshields")
+@Mod(SuperiorShields.MODID)
+@Mod.EventBusSubscriber(modid = SuperiorShields.MODID)
 public class SuperiorShields {
 
-  public static final String MODID = "superiorshields";
+	public static final String MODID = "superiorshields";
 
-  private static final Lazy<Registrate> REGISTRATE = Lazy.of(() -> Registrate.create(MODID));
-  public static final String SHIELD_CURIO = "superior_shield";
+	private static final Lazy<Registrate> REGISTRATE = Lazy.of(() -> Registrate.create(MODID));
+	public static final String SHIELD_CURIO = "superior_shield";
 
-  public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab("superior_shields") {
-    @Override
-    @Nonnull
-    public ItemStack makeIcon() {
-      return new ItemStack(ModItems.IRON_SHIELD.get());
-    }
-  };
+	public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab("superior_shields") {
+		@Override
+		@Nonnull
+		public ItemStack makeIcon() {
+			return new ItemStack(ModItems.IRON_SHIELD.get());
+		}
+	};
 
-  public static ModSetup setup = new ModSetup();
+	public SuperiorShields() {
+		//		ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
 
-  public SuperiorShields() {
+		ModItems.classload();
+		ModEnchantments.classload();
+	}
 
-    FMLJavaModLoadingContext.get().getModEventBus().addListener(setup::setup);
-    FMLJavaModLoadingContext.get().getModEventBus().addListener(setup::enqueue);
-    //		ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
+	public void setup(FMLCommonSetupEvent event) {
+		NetworkHandler.register();
+	}
 
-    ModItems.classload();
-  }
+	public void sendImc(InterModEnqueueEvent event) {
+		ModSetup.sendImc();
+	}
 
-  public static Registrate registrate() {
-    return REGISTRATE.get();
-  }
+	public static Registrate registrate() {
+		return REGISTRATE.get();
+	}
 }

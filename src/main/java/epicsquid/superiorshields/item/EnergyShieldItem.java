@@ -1,18 +1,18 @@
 package epicsquid.superiorshields.item;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import epicsquid.superiorshields.capability.EnergyCapabilityProvider;
 import epicsquid.superiorshields.shield.EnergyShield;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Optional;
 
 public class EnergyShieldItem extends SuperiorShieldItem<EnergyShield> {
 
@@ -23,40 +23,49 @@ public class EnergyShieldItem extends SuperiorShieldItem<EnergyShield> {
 	}
 
 	@Override
-	protected boolean useEnergyToRecharge(@Nonnull ItemStack stack, @Nonnull PlayerEntity player) {
-		IEnergyStorage energy = getEnergyStorage(stack);
-		if (energy != null && energy.getEnergyStored() > energyToConsume) {
-			energy.extractEnergy(energyToConsume, false);
-			return true;
+	protected boolean useEnergyToRecharge(@Nonnull ItemStack stack, @Nonnull Player player) {
+		var energyOp = getEnergyStorage(stack);
+		if (energyOp.isPresent()) {
+			var energy = energyOp.get();
+			if (energy.getEnergyStored() > energyToConsume) {
+				energy.extractEnergy(energyToConsume, false);
+				return true;
+			}
 		}
 		return false;
 	}
 
 	@Override
-	public int getRGBDurabilityForDisplay(@Nonnull ItemStack stack) {
+	public int getBarColor(@Nonnull ItemStack stack) {
 		return getShield().getColor();
 	}
 
+
 	@Override
-	public boolean showDurabilityBar(@Nonnull ItemStack stack) {
+	public boolean isBarVisible(@Nonnull ItemStack stack) {
 		return true;
 	}
 
+
 	@Override
-	public double getDurabilityForDisplay(@Nonnull ItemStack stack) {
-		IEnergyStorage energy = getEnergyStorage(stack);
-		CompoundNBT tag = stack.getTag();
-		return MathHelper.clamp(1.0D - (tag.getInt("energy") / (double) energy.getMaxEnergyStored()), 0.0D, 1.0D);
+	public int getBarWidth(@Nonnull ItemStack stack) {
+		var energyOp = getEnergyStorage(stack);
+		CompoundTag tag = stack.getTag();
+		if (tag != null && energyOp.isPresent()) {
+			var energy = energyOp.get();
+			return Math.round(13 * (tag.getInt("energy") / (float) energy.getMaxEnergyStored()));
+		}
+		return 0;
 	}
 
 	@Nullable
 	@Override
-	public ICapabilityProvider initCapabilities(@Nonnull ItemStack stack, @Nullable CompoundNBT nbt) {
+	public ICapabilityProvider initCapabilities(@Nonnull ItemStack stack, @Nullable CompoundTag nbt) {
 		return new EnergyCapabilityProvider(getShield().getMaxEnergy(), 0, getShield().getMaxEnergy(), getShield().getMaxEnergy(), stack);
 	}
 
-	@Nullable
-	private IEnergyStorage getEnergyStorage(@Nonnull ItemStack stack) {
-		return stack.getCapability(CapabilityEnergy.ENERGY).orElse(null);
+	@Nonnull
+	private Optional<IEnergyStorage> getEnergyStorage(@Nonnull ItemStack stack) {
+		return stack.getCapability(CapabilityEnergy.ENERGY).resolve();
 	}
 }

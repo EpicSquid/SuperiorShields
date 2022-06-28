@@ -20,4 +20,6 @@ public class ModEnchantments {
 	private static <T extends ShieldEnchantment> EnchantmentBuilder<T, Registrate> enchantmentBuilder(String name, T enchantment) {
 		return REGISTRATE.enchantment(name, type, (r, c, s) -> enchantment);
 	}
+
+	public static void classload() {}
 }
