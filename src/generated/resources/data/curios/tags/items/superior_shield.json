@@ -1,5 +1,5 @@
 {
-  "replace": "false",
+  "replace": false,
   "values": [
     "superiorshields:iron_shield",
     "superiorshields:golden_shield",

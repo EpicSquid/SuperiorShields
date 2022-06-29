@@ -7,15 +7,18 @@ import epicsquid.superiorshields.network.NetworkHandler;
 import epicsquid.superiorshields.setup.ModSetup;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Lazy;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import javax.annotation.Nonnull;
 
 @Mod(SuperiorShields.MODID)
-@Mod.EventBusSubscriber(modid = SuperiorShields.MODID)
 public class SuperiorShields {
 
 	public static final String MODID = "superiorshields";
@@ -33,6 +36,9 @@ public class SuperiorShields {
 
 	public SuperiorShields() {
 		//		ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::sendImc);
+		MinecraftForge.EVENT_BUS.register(this);
 
 		ModItems.classload();
 		ModEnchantments.classload();
