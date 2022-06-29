@@ -3,6 +3,7 @@ package epicsquid.superiorshields;
 import com.tterrag.registrate.Registrate;
 import epicsquid.superiorshields.enchantment.ModEnchantments;
 import epicsquid.superiorshields.item.ModItems;
+import epicsquid.superiorshields.lang.ModLang;
 import epicsquid.superiorshields.network.NetworkHandler;
 import epicsquid.superiorshields.setup.ModSetup;
 import net.minecraft.world.item.CreativeModeTab;
@@ -42,6 +43,7 @@ public class SuperiorShields {
 
 		ModItems.classload();
 		ModEnchantments.classload();
+		ModLang.classload();
 		EventManager.classload();
 	}
 

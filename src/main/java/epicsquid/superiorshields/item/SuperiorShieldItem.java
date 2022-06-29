@@ -5,6 +5,7 @@ import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import epicsquid.superiorshields.enchantment.ModEnchantments;
 import epicsquid.superiorshields.event.ShieldEquippedEvent;
+import epicsquid.superiorshields.lang.ModLang;
 import epicsquid.superiorshields.network.NetworkHandler;
 import epicsquid.superiorshields.network.PacketShieldUpdate;
 import epicsquid.superiorshields.shield.ShieldHelper;
@@ -32,6 +33,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.text.DecimalFormat;
 import java.util.List;
@@ -158,17 +160,17 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+	public void appendHoverText(@Nonnull ItemStack stack, @Nullable Level worldIn, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
 
-		tooltip.add(new TranslatableComponent("superiorshields.tooltip.blank"));
-		tooltip.add(new TranslatableComponent("superiorshields.tooltip.equip").withStyle(ChatFormatting.GRAY));
-		tooltip.add(new TranslatableComponent("superiorshields.tooltip.hp", df.format(ShieldHelper.getShieldCapacity(stack))).withStyle(ChatFormatting.DARK_GREEN));
-		tooltip.add(new TranslatableComponent("superiorshields.tooltip.recharge_rate", df.format((float) shieldType.getShieldRechargeRate() / 20f)).withStyle(ChatFormatting.DARK_GREEN));
-		tooltip.add(new TranslatableComponent("superiorshields.tooltip.recharge_delay", df.format((float) shieldType.getShieldRechargeDelay() / 20f)).withStyle(ChatFormatting.DARK_GREEN));
+		tooltip.add(ModLang.BLANK);
+		tooltip.add(new TranslatableComponent(ModLang.EQUIP.getKey()).withStyle(ChatFormatting.GRAY));
+		tooltip.add(new TranslatableComponent(ModLang.HP.getKey(), df.format(ShieldHelper.getShieldCapacity(stack))).withStyle(ChatFormatting.DARK_GREEN));
+		tooltip.add(new TranslatableComponent(ModLang.RECHARGE_RATE.getKey(), df.format((float) shieldType.getShieldRechargeRate() / 20f)).withStyle(ChatFormatting.DARK_GREEN));
+		tooltip.add(new TranslatableComponent(ModLang.RECHARGE_DELAY.getKey(), df.format((float) shieldType.getShieldRechargeDelay() / 20f)).withStyle(ChatFormatting.DARK_GREEN));
 	}
 
 	protected void updateClient(Player player, IShieldCapability shield) {
