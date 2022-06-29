@@ -42,6 +42,7 @@ public class SuperiorShields {
 
 		ModItems.classload();
 		ModEnchantments.classload();
+		EventManager.classload();
 	}
 
 	public void setup(FMLCommonSetupEvent event) {

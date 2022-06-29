@@ -50,4 +50,5 @@ public class EventManager {
 		}
 	}
 
+	public static void classload() {}
 }

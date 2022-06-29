@@ -91,13 +91,13 @@ public class GuiShieldOverlay {
 
 		profiler.push("superiorShieldsOverlay");
 		RenderSystem.enableBlend();
-		Minecraft.getInstance().getTextureManager().getTexture(new ResourceLocation("superiorshields:textures/gui/shield.png"));
+		RenderSystem.setShaderTexture(0, new ResourceLocation(SuperiorShields.MODID,"textures/gui/shield.png"));
 
 		Tesselator tess = Tesselator.getInstance();
 		BufferBuilder b = tess.getBuilder();
 		int w = event.getWindow().getGuiScaledWidth();
 		int h = event.getWindow().getGuiScaledHeight();
-		RenderSystem.clearColor(1f, 1f, 1f, 1f);
+		RenderSystem.clearColor(1f, 1f, 1f, 0f);
 
 		int shieldCurrentHp = Math.round(shield.getCurrentHp());
 		int shieldMaxHp = Math.round(shield.getMaxHp());
