@@ -1,24 +1,25 @@
 package epicsquid.superiorshields;
 
-import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
+import epicsquid.superiorshields.capability.shield.ShieldCapabilityProvider;
 import epicsquid.superiorshields.item.SuperiorShield;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.event.CurioChangeEvent;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 import javax.annotation.Nonnull;
 
-@Mod.EventBusSubscriber(modid = SuperiorShields.MODID)
+import static epicsquid.superiorshields.capability.shield.CapabilityRegistry.SHIELD_CAP_ID;
+
 public class EventManager {
 
 	@SubscribeEvent
-	public static void onLivingHurtEvent(@Nonnull LivingHurtEvent event) {
+	public void onLivingHurtEvent(@Nonnull LivingHurtEvent event) {
 		if (event.getEntity() instanceof Player player) {
 			if (CuriosApi.getCuriosHelper().getCuriosHandler(player).isPresent() && event.getSource() != DamageSource.STARVE && event.getSource() != DamageSource.DROWN) {
 				var curiosOp = CuriosApi.getCuriosHelper().getCuriosHandler(player).resolve();
@@ -38,17 +39,10 @@ public class EventManager {
 	}
 
 	@SubscribeEvent
-	public static void onCurioChangeEvent(CurioChangeEvent event) {
-		if (event.getIdentifier().equals(CapabilityRegistry.SHIELD_CAP_NAME) && event.getEntityLiving() instanceof Player player && !event.getFrom().sameItemStackIgnoreDurability(event.getTo())) {
-			if (event.getFrom().getItem() instanceof SuperiorShield<?>) {
-				// Unequip
-				((SuperiorShield<?>) event.getFrom().getItem()).unequip(player);
-			} else if (event.getTo().getItem() instanceof SuperiorShield<?>) {
-				// Equip
-				((SuperiorShield<?>) event.getTo().getItem()).equip(player, event.getTo());
-			}
+	public void onAttachCapabilities(@Nonnull AttachCapabilitiesEvent<Entity> event) {
+		if (event.getObject() instanceof Player player) {
+			var provider = new ShieldCapabilityProvider(player);
+			event.addCapability(SHIELD_CAP_ID, provider);
 		}
 	}
-
-	public static void classload() {}
 }

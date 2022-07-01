@@ -26,11 +26,11 @@ public class ShieldEffectSpawn<E extends Entity> implements IShieldEffect {
 
     @Override
     public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull Player player, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
-        if (trigger == EffectTrigger.DAMAGE && !player.getCommandSenderWorld().isClientSide && random.nextFloat() < chanceToSpawn) {
+        if (trigger == EffectTrigger.DAMAGE && !player.level.isClientSide && random.nextFloat() < chanceToSpawn) {
             try {
-                Entity entity = entityClass.getConstructor(Level.class).newInstance(player.getCommandSenderWorld());
+                Entity entity = entityClass.getConstructor(Level.class).newInstance(player.level);
                 entity.setPos(player.position().x + random.nextDouble(), player.position().y + player.getEyeHeight(), player.position().z + random.nextDouble());
-                player.getCommandSenderWorld().addFreshEntity(entity);
+                player.level.addFreshEntity(entity);
             } catch (Exception e) {
                 // TODO proper exception logging
                 System.out.println("Error: Could not create entity.");

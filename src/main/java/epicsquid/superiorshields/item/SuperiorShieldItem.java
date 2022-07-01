@@ -1,6 +1,5 @@
 package epicsquid.superiorshields.item;
 
-import epicsquid.superiorshields.capability.CuriosItemCapabilityProvider;
 import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import epicsquid.superiorshields.enchantment.ModEnchantments;
@@ -12,7 +11,6 @@ import epicsquid.superiorshields.shield.ShieldHelper;
 import epicsquid.superiorshields.shield.ShieldType;
 import epicsquid.superiorshields.shield.effect.EffectTrigger;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
@@ -27,10 +25,8 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.network.NetworkDirection;
 import top.theillusivec4.curios.api.SlotContext;
-import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nonnull;
@@ -103,61 +99,6 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 		shield.setTimeWithoutDamage(0);
 	}
 
-	@Nullable
-	@Override
-	public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
-		return new CuriosItemCapabilityProvider(new ICurio() {
-
-			@Override
-			public ItemStack getStack() {
-				return null;
-			}
-
-			@Override
-			public void curioTick(SlotContext slotContext) {
-				if (slotContext.entity() instanceof Player player) {
-					var shieldOp = CapabilityRegistry.getShield(player).resolve();
-					if (shieldOp.isPresent()) {
-						if (player.getCommandSenderWorld().isClientSide) {
-							return;
-						}
-						IShieldCapability shield = shieldOp.get();
-						if (shield.getTimeWithoutDamage() >= ShieldHelper.getShieldRechargeRate(stack) && shield.getCurrentHp() < shield.getMaxHp()) {
-							if (ticksSinceLastRecharge < ShieldHelper.getShieldRechargeRate(stack)) {
-								ticksSinceLastRecharge++;
-							} else {
-								ticksSinceLastRecharge = 0;
-								rechargeShield(shield, stack, player);
-								updateClient(player, shield);
-								triggerShieldEffect(player, stack, null, 0f, EffectTrigger.RECHARGE);
-								if (shield.getCurrentHp() >= shield.getMaxHp()) {
-									triggerShieldEffect(player, stack, null, 0f, EffectTrigger.FILLED);
-								}
-							}
-						} else {
-							shield.setTimeWithoutDamage(shield.getTimeWithoutDamage() + 1);
-							if (shield.getCurrentHp() >= shield.getMaxHp()) {
-								if (onTickEventTrigger >= 20) {
-									onTickEventTrigger = 0;
-									triggerShieldEffect(player, stack, null, 0f, EffectTrigger.FULL);
-									updateClient(player, shield);
-								} else {
-									onTickEventTrigger++;
-								}
-							}
-						}
-					}
-				}
-			}
-
-			@Override
-			public boolean canEquipFromUse(SlotContext slotContext) {
-				return true;
-			}
-		});
-	}
-
-
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(@Nonnull ItemStack stack, @Nullable Level worldIn, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flagIn) {
@@ -198,38 +139,85 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 		return shieldType.getEnchantability();
 	}
 
+
 	@Override
-	public void equip(Player player, ItemStack stack) {
-		var shieldOp = CapabilityRegistry.getShield(player).resolve();
-		if (shieldOp.isPresent() && !player.getCommandSenderWorld().isClientSide) {
-			IShieldCapability shield = shieldOp.get();
+	public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
+		if (slotContext.entity() instanceof Player player) {
+			var shieldOp = CapabilityRegistry.getShield(player).resolve();
+			if (shieldOp.isPresent() && !player.level.isClientSide) {
+				IShieldCapability shield = shieldOp.get();
 
-			float capacity = ShieldHelper.getShieldCapacity(stack);
+				float capacity = ShieldHelper.getShieldCapacity(stack);
 
-			shield.setMaxHp(capacity);
-			if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.JUMP_START.get(), stack) > 0) {
-				shield.setCurrentHp(capacity);
-				useEnergyToRecharge(stack, player);
-			} else {
-				shield.setCurrentHp(0);
+				shield.setMaxHp(capacity);
+				if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.JUMP_START.get(), stack) > 0) {
+					shield.setCurrentHp(capacity);
+					useEnergyToRecharge(stack, player);
+				} else {
+					shield.setCurrentHp(0);
+				}
+				shield.setTimeWithoutDamage(0);
+				MinecraftForge.EVENT_BUS.post(new ShieldEquippedEvent(player, shield));
+				if (!player.level.isClientSide) {
+					updateClient(player, shield);
+				}
 			}
-			shield.setTimeWithoutDamage(0);
-			MinecraftForge.EVENT_BUS.post(new ShieldEquippedEvent(player, shield));
-			if (!player.getCommandSenderWorld().isClientSide) {
+		}
+	}
+
+	@Override
+	public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
+		if (slotContext.entity() instanceof Player player) {
+			var shieldOp = CapabilityRegistry.getShield(player).resolve();
+			if (shieldOp.isPresent() && !player.level.isClientSide) {
+				IShieldCapability shield = shieldOp.get();
+				shield.setMaxHp(0f);
+				shield.setCurrentHp(0f);
+				shield.setTimeWithoutDamage(0);
 				updateClient(player, shield);
 			}
 		}
 	}
 
 	@Override
-	public void unequip(Player player) {
-		var shieldOp = CapabilityRegistry.getShield(player).resolve();
-		if (shieldOp.isPresent() && !player.getCommandSenderWorld().isClientSide) {
-			IShieldCapability shield = shieldOp.get();
-			shield.setMaxHp(0f);
-			shield.setCurrentHp(0f);
-			shield.setTimeWithoutDamage(0);
-			updateClient(player, shield);
+	public void curioTick(SlotContext slotContext, ItemStack stack) {
+		if (slotContext.entity() instanceof Player player) {
+			var shieldOp = CapabilityRegistry.getShield(player).resolve();
+			if (shieldOp.isPresent()) {
+				if (player.level.isClientSide) {
+					return;
+				}
+				IShieldCapability shield = shieldOp.get();
+				if (shield.getTimeWithoutDamage() >= ShieldHelper.getShieldRechargeDelay(stack) && shield.getCurrentHp() < shield.getMaxHp()) {
+					if (ticksSinceLastRecharge < ShieldHelper.getShieldRechargeRate(stack)) {
+						ticksSinceLastRecharge++;
+					} else {
+						ticksSinceLastRecharge = 0;
+						rechargeShield(shield, stack, player);
+						updateClient(player, shield);
+						triggerShieldEffect(player, stack, null, 0f, EffectTrigger.RECHARGE);
+						if (shield.getCurrentHp() >= shield.getMaxHp()) {
+							triggerShieldEffect(player, stack, null, 0f, EffectTrigger.FILLED);
+						}
+					}
+				} else {
+					shield.setTimeWithoutDamage(shield.getTimeWithoutDamage() + 1);
+					if (shield.getCurrentHp() >= shield.getMaxHp()) {
+						if (onTickEventTrigger >= 20) {
+							onTickEventTrigger = 0;
+							triggerShieldEffect(player, stack, null, 0f, EffectTrigger.FULL);
+							updateClient(player, shield);
+						} else {
+							onTickEventTrigger++;
+						}
+					}
+				}
+			}
 		}
+	}
+
+	@Override
+	public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
+		return true;
 	}
 }

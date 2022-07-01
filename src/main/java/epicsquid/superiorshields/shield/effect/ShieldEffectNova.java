@@ -23,8 +23,8 @@ public abstract class ShieldEffectNova implements IShieldEffect {
 
 	@Override
 	public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull Player player, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
-		if (!player.getCommandSenderWorld().isClientSide && trigger == EffectTrigger.EMPTY) {
-			List<LivingEntity> entities = player.getCommandSenderWorld().getEntitiesOfClass(LivingEntity.class,
+		if (!player.level.isClientSide && trigger == EffectTrigger.EMPTY) {
+			List<LivingEntity> entities = player.level.getEntitiesOfClass(LivingEntity.class,
 							new AABB(player.position().x + radius, player.position().y + radius, player.position().z + radius, player.position().x - radius, player.position().y - radius,
 											player.position().z - radius));
 

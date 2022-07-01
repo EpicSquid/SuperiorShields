@@ -18,7 +18,7 @@ public class ShieldCapabilityProvider implements ICapabilityProvider, INBTSerial
 	private LazyOptional<IShieldCapability> op;
 
 	public ShieldCapabilityProvider(Player player) {
-		if (!player.getCommandSenderWorld().isClientSide && player instanceof ServerPlayer) {
+		if (!player.level.isClientSide && player instanceof ServerPlayer) {
 			this.shield = new ShieldCapability();
 		}
 		this.op = LazyOptional.of(() -> shield);
