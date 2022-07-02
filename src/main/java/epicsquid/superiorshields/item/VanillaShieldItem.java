@@ -13,7 +13,7 @@ public class VanillaShieldItem extends SuperiorShieldItem<GenericShieldType> {
     }
 
     @Override
-    protected boolean useEnergyToRecharge(ItemStack stack, Player player) {
+    public boolean useEnergyToRecharge(ItemStack stack, Player player) {
         stack.hurtAndBreak(1, player, e -> player.broadcastBreakEvent(EquipmentSlot.OFFHAND));
         return true;
     }

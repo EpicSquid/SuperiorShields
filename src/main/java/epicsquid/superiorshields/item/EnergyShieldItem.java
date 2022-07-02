@@ -23,7 +23,7 @@ public class EnergyShieldItem extends SuperiorShieldItem<EnergyShield> {
 	}
 
 	@Override
-	protected boolean useEnergyToRecharge(@Nonnull ItemStack stack, @Nonnull Player player) {
+	public boolean useEnergyToRecharge(@Nonnull ItemStack stack, @Nonnull Player player) {
 		var energyOp = getEnergyStorage(stack);
 		if (energyOp.isPresent()) {
 			var energy = energyOp.get();
