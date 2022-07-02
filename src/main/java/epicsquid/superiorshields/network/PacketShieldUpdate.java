@@ -1,7 +1,6 @@
 package epicsquid.superiorshields.network;
 
 import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
-import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.FriendlyByteBuf;
@@ -11,8 +10,8 @@ import java.util.function.Supplier;
 
 public class PacketShieldUpdate {
 
-	private float currentHp;
-	private float maxHp;
+	private final float currentHp;
+	private final float maxHp;
 
 	public PacketShieldUpdate(float currentHp, float maxHp) {
 		this.currentHp = currentHp;
@@ -32,12 +31,10 @@ public class PacketShieldUpdate {
 		ctx.get().enqueueWork(() -> {
 			LocalPlayer player = Minecraft.getInstance().player;
 			if (player != null) {
-				var shieldOp = CapabilityRegistry.getShield(player).resolve();
-				if (shieldOp.isPresent()) {
-					IShieldCapability shield = shieldOp.get();
+				CapabilityRegistry.getShield(player).ifPresent(shield -> {
 					shield.setMaxHp(msg.maxHp);
 					shield.setCurrentHp(msg.currentHp);
-				}
+				});
 			}
 		});
 		ctx.get().setPacketHandled(true);

@@ -68,14 +68,8 @@ public class ShieldCapability implements IShieldCapability {
 
 	@Override
 	public void deserializeNBT(CompoundTag tag) {
-		if (tag.contains(NBT_MAX_SHIELD_HP)) {
-			setMaxHp(tag.getFloat(NBT_MAX_SHIELD_HP));
-		}
-		if (tag.contains(NBT_SHIELD_HP)) {
-			setCurrentHp(tag.getFloat(NBT_SHIELD_HP));
-		}
-		if (tag.contains(NBT_TIME_WITHOUT_DAMAGE)) {
-			setTimeWithoutDamage(tag.getInt(NBT_TIME_WITHOUT_DAMAGE));
-		}
+		setMaxHp(tag.getFloat(NBT_MAX_SHIELD_HP));
+		setCurrentHp(tag.getFloat(NBT_SHIELD_HP));
+		setTimeWithoutDamage(tag.getInt(NBT_TIME_WITHOUT_DAMAGE));
 	}
 }

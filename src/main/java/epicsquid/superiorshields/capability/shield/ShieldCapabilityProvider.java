@@ -14,14 +14,11 @@ import javax.annotation.Nullable;
 
 public class ShieldCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-	private IShieldCapability shield = new ShieldCapability();
-	private LazyOptional<IShieldCapability> op;
+	private final IShieldCapability shield = new ShieldCapability();
+	private final LazyOptional<IShieldCapability> op = LazyOptional.of(() -> shield);
 
-	public ShieldCapabilityProvider(Player player) {
-		if (!player.level.isClientSide && player instanceof ServerPlayer) {
-			this.shield = new ShieldCapability();
-		}
-		this.op = LazyOptional.of(() -> shield);
+	public void invalidate() {
+		this.op.invalidate();
 	}
 
 	@Nonnull

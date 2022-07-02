@@ -25,7 +25,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.network.NetworkDirection;
+import net.minecraftforge.network.PacketDistributor;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -35,8 +35,6 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class SuperiorShieldItem<T extends ShieldType> extends Item implements SuperiorShield<T>, ICurioItem {
-
-	private int ticksSinceLastRecharge = 0;
 	private T shieldType;
 
 	// Used to ensure the potion effect is not applied every tick
@@ -88,7 +86,6 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 	 * Triggers the use of energy to recharge.
 	 *
 	 * @param stack The stack to get the capability to recharge from.
-	 * @return true if there was enough energy to recharge.
 	 */
 	protected boolean useEnergyToRecharge(ItemStack stack, Player player) {
 		return true;
@@ -115,9 +112,7 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 	}
 
 	protected void updateClient(Player player, IShieldCapability shield) {
-		if (player instanceof ServerPlayer) {
-			NetworkHandler.INSTANCE.sendTo(new PacketShieldUpdate(shield.getCurrentHp(), shield.getMaxHp()), ((ServerPlayer) player).connection.connection, NetworkDirection.PLAY_TO_CLIENT);
-		}
+		NetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new PacketShieldUpdate(shield.getCurrentHp(), shield.getMaxHp()));
 	}
 
 	public void triggerShieldEffect(Player player, ItemStack stack, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
@@ -142,11 +137,8 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 
 	@Override
 	public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-		if (slotContext.entity() instanceof Player player) {
-			var shieldOp = CapabilityRegistry.getShield(player).resolve();
-			if (shieldOp.isPresent() && !player.level.isClientSide) {
-				IShieldCapability shield = shieldOp.get();
-
+		if (slotContext.entity() instanceof Player player && !player.level.isClientSide && !ItemStack.isSameIgnoreDurability(prevStack, stack)) {
+			CapabilityRegistry.getShield(player).ifPresent(shield -> {
 				float capacity = ShieldHelper.getShieldCapacity(stack);
 
 				shield.setMaxHp(capacity);
@@ -161,38 +153,31 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 				if (!player.level.isClientSide) {
 					updateClient(player, shield);
 				}
-			}
+			});
 		}
 	}
 
 	@Override
-	public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-		if (slotContext.entity() instanceof Player player) {
-			var shieldOp = CapabilityRegistry.getShield(player).resolve();
-			if (shieldOp.isPresent() && !player.level.isClientSide) {
-				IShieldCapability shield = shieldOp.get();
+	public void onUnequip(SlotContext slotContext, ItemStack stack, ItemStack prevStack) {
+		if (slotContext.entity() instanceof Player player && !ItemStack.isSameIgnoreDurability(stack, prevStack)) {
+			CapabilityRegistry.getShield(player).ifPresent(shield -> {
 				shield.setMaxHp(0f);
 				shield.setCurrentHp(0f);
 				shield.setTimeWithoutDamage(0);
 				updateClient(player, shield);
-			}
+			});
 		}
 	}
 
 	@Override
 	public void curioTick(SlotContext slotContext, ItemStack stack) {
 		if (slotContext.entity() instanceof Player player) {
-			var shieldOp = CapabilityRegistry.getShield(player).resolve();
-			if (shieldOp.isPresent()) {
-				if (player.level.isClientSide) {
-					return;
-				}
-				IShieldCapability shield = shieldOp.get();
+			if (player.level.isClientSide) {
+				return;
+			}
+			CapabilityRegistry.getShield(player).ifPresent(shield -> {
 				if (shield.getTimeWithoutDamage() >= ShieldHelper.getShieldRechargeDelay(stack) && shield.getCurrentHp() < shield.getMaxHp()) {
-					if (ticksSinceLastRecharge < ShieldHelper.getShieldRechargeRate(stack)) {
-						ticksSinceLastRecharge++;
-					} else {
-						ticksSinceLastRecharge = 0;
+					if (player.level.getGameTime() % ShieldHelper.getShieldRechargeRate(stack) == 0) {
 						rechargeShield(shield, stack, player);
 						updateClient(player, shield);
 						triggerShieldEffect(player, stack, null, 0f, EffectTrigger.RECHARGE);
@@ -212,7 +197,7 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 						}
 					}
 				}
-			}
+			});
 		}
 	}
 
