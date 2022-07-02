@@ -2,11 +2,11 @@ package epicsquid.superiorshields.shield;
 
 public class GenericShieldType implements ShieldType {
 
-	private float maxHp;
-	private int shieldRechargeDelay;
-	private int shieldRechargeRate;
-	private int damage;
-	private int enchantability;
+	private final float maxHp;
+	private final int shieldRechargeDelay;
+	private final int shieldRechargeRate;
+	private final int damage;
+	private final int enchantability;
 
 	public GenericShieldType(float maxHp, int shieldRechargeDelay, int shieldRechargeRate, int damage, int enchantability) {
 		this.maxHp = maxHp;

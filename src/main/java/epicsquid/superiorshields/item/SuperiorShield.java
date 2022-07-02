@@ -15,4 +15,13 @@ public interface SuperiorShield<T extends ShieldType> {
 	void resetShieldDelay(IShieldCapability shield);
 
 	T getShield();
+
+	/**
+	 * Triggers the use of energy to recharge.
+	 *
+	 * @param stack The stack to get the capability to recharge from.
+	 */
+	default boolean useEnergyToRecharge(ItemStack stack, Player player) {
+		return true;
+	}
 }

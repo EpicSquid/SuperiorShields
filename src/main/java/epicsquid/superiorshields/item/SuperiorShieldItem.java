@@ -35,7 +35,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class SuperiorShieldItem<T extends ShieldType> extends Item implements SuperiorShield<T>, ICurioItem {
-	private T shieldType;
+	private final T shieldType;
 
 	// Used to ensure the potion effect is not applied every tick
 	private int onTickEventTrigger = 0;
@@ -80,15 +80,6 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 				shield.setCurrentHp(shield.getCurrentHp() + 1.0f);
 			}
 		}
-	}
-
-	/**
-	 * Triggers the use of energy to recharge.
-	 *
-	 * @param stack The stack to get the capability to recharge from.
-	 */
-	protected boolean useEnergyToRecharge(ItemStack stack, Player player) {
-		return true;
 	}
 
 	@Override
