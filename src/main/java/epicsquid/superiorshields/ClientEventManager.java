@@ -1,20 +1,22 @@
 package epicsquid.superiorshields;
 
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
-import net.minecraft.resources.ResourceLocation;
+import epicsquid.superiorshields.gui.GuiShieldOverlay;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.HashMap;
 
 public class ClientEventManager {
+
+	private static final GuiShieldOverlay shieldHUD = new GuiShieldOverlay();
 
 	private final HashMap<Player, Integer> HURT_TIME = new HashMap<>();
 
@@ -42,6 +44,13 @@ public class ClientEventManager {
 			HURT_TIME.put(event.player, HURT_TIME.get(event.player) - 1);
 			if (HURT_TIME.get(event.player) < 0)
 				HURT_TIME.remove(event.player);
+		}
+	}
+
+	@SubscribeEvent
+	public void onRenderGameOverlay(RenderGameOverlayEvent.Post event) {
+		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
+			shieldHUD.renderShieldBar(event.getMatrixStack());
 		}
 	}
 }

@@ -82,7 +82,7 @@ public class SuperiorShields {
 
 		@SubscribeEvent
 		public static void setupClient(FMLClientSetupEvent event) {
-//			MinecraftForge.EVENT_BUS.register(new ClientEventManager());
+			MinecraftForge.EVENT_BUS.register(new ClientEventManager());
 		}
 	}
 }
