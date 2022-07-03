@@ -46,11 +46,4 @@ public class ClientEventManager {
 				HURT_TIME.remove(event.player);
 		}
 	}
-
-	@SubscribeEvent
-	public void onRenderGameOverlay(RenderGameOverlayEvent.Post event) {
-		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
-			shieldHUD.renderShieldBar(event.getMatrixStack());
-		}
-	}
 }

@@ -3,6 +3,7 @@ package epicsquid.superiorshields;
 import com.tterrag.registrate.Registrate;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import epicsquid.superiorshields.enchantment.ModEnchantments;
+import epicsquid.superiorshields.gui.GuiShieldOverlay;
 import epicsquid.superiorshields.item.ModItems;
 import epicsquid.superiorshields.lang.ModLang;
 import epicsquid.superiorshields.network.NetworkHandler;
@@ -82,7 +83,8 @@ public class SuperiorShields {
 
 		@SubscribeEvent
 		public static void setupClient(FMLClientSetupEvent event) {
-			MinecraftForge.EVENT_BUS.register(new ClientEventManager());
+//			MinecraftForge.EVENT_BUS.register(new ClientEventManager());
+			GuiShieldOverlay.init();
 		}
 	}
 }

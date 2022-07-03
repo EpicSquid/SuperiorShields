@@ -9,10 +9,12 @@ import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.client.gui.ForgeIngameGui;
+import net.minecraftforge.client.gui.IIngameOverlay;
+import net.minecraftforge.client.gui.OverlayRegistry;
 import org.lwjgl.opengl.GL11;
 
-public class GuiShieldOverlay extends GuiComponent {
-	private static final Minecraft minecraft = Minecraft.getInstance();
+public class GuiShieldOverlay extends GuiComponent implements IIngameOverlay {
 
 	private static void drawQuad(BufferBuilder buffer, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int minU, int minV, int maxU, int maxV) {
 		float f = 0.00390625F;
@@ -24,9 +26,16 @@ public class GuiShieldOverlay extends GuiComponent {
 //		buffer.pos(x4 + 0.0F, y4 + 0.0F, 0).tex((minU + 0) * f, (minV + 0) * f1).endVertex();
 	}
 
-	public void renderShieldBar(PoseStack stack) {
+	public static void init()
+	{
+		OverlayRegistry.registerOverlayAbove(ForgeIngameGui.PLAYER_HEALTH_ELEMENT, "superior_shield_overlay", new GuiShieldOverlay());
+	}
+
+	@Override
+	public void render(ForgeIngameGui gui, PoseStack poseStack, float partialTick, int width, int height) {
+		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
-		if (player == null) {
+		if (player == null || player.isSpectator() || player.isCreative() || minecraft.options.hideGui) {
 			return;
 		}
 
