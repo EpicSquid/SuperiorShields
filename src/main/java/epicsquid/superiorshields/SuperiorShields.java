@@ -1,68 +1,90 @@
 package epicsquid.superiorshields;
 
-import epicsquid.superiorshields.proxy.CommonProxy;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
+import com.tterrag.registrate.Registrate;
+import epicsquid.superiorshields.capability.shield.IShieldCapability;
+import epicsquid.superiorshields.enchantment.ModEnchantments;
+import epicsquid.superiorshields.gui.GuiShieldOverlay;
+import epicsquid.superiorshields.item.ModItems;
+import epicsquid.superiorshields.lang.ModLang;
+import epicsquid.superiorshields.network.NetworkHandler;
+import epicsquid.superiorshields.setup.ModSetup;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.minecraftforge.common.util.Lazy;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.ModContainer;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(modid = SuperiorShields.MODID, version = SuperiorShields.VERSION, name = SuperiorShields.NAME, dependencies = SuperiorShields.DEPENDENCIES)
+import javax.annotation.Nonnull;
+
+@Mod(SuperiorShields.MODID)
 public class SuperiorShields {
-  public static final String MODID = "superiorshields";
-  public static final String DOMAIN = "superiorshields";
-  public static final String NAME = "Superior Shields";
-  public static final String VERSION = "@VERSION@";
-  public static final String DEPENDENCIES = "required-before:mysticallib;required:baubles";
 
-  public static ModContainer CONTAINER = null;
+	public static final String MODID = "superiorshields";
 
-  @SidedProxy(clientSide = "epicsquid.superiorshields.proxy.ClientProxy", serverSide = "epicsquid.superiorshields.proxy.CommonProxy")
-  public static CommonProxy proxy;
+	private static final Lazy<Registrate> REGISTRATE = Lazy.of(() -> Registrate.create(MODID));
+	public static final String SHIELD_CURIO = "superior_shield";
 
-  @Instance(MODID) public static SuperiorShields instance;
+	public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab(SuperiorShields.MODID) {
+		@Override
+		@Nonnull
+		public ItemStack makeIcon() {
+			return new ItemStack(ModItems.IRON_SHIELD.get());
+		}
+	};
 
-  public static CreativeTabs tab = new CreativeTabs("superiorshields") {
-    @Override
-    public String getTabLabel() {
-      return "superiorshields";
-    }
+	public SuperiorShields() {
+		//		ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::sendImc);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerCaps);
+		MinecraftForge.EVENT_BUS.register(this);
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public ItemStack getTabIconItem() {
-      return ItemStack.EMPTY;
-    }
-  };
+		ModItems.classload();
+		ModEnchantments.classload();
+		ModLang.classload();
+	}
 
-  @EventHandler
-  public void preInit(FMLPreInitializationEvent event) {
-    CONTAINER = Loader.instance().activeModContainer();
-    MinecraftForge.EVENT_BUS.register(new EventManager());
-    MinecraftForge.EVENT_BUS.register(new RegistryManager());
-    proxy.preInit(event);
-  }
+	public void setup(FMLCommonSetupEvent event) {
+		MinecraftForge.EVENT_BUS.register(new EventManager());
+		NetworkHandler.register();
+	}
 
-  public static SuperiorShields getInstance() {
-    return instance;
-  }
+	@SubscribeEvent
+	public void registerCaps(final RegisterCapabilitiesEvent event) {
+		event.register(IShieldCapability.class);
+	}
 
-  @EventHandler
-  public void init(FMLInitializationEvent event) {
-    proxy.init(event);
-  }
+	public void sendImc(InterModEnqueueEvent event) {
+		ModSetup.sendImc();
+	}
 
-  @EventHandler
-  public void postInit(FMLPostInitializationEvent event) {
-    proxy.postInit(event);
-  }
+	public static Registrate registrate() {
+		return REGISTRATE.get();
+	}
+
+	@Mod.EventBusSubscriber(modid = MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+	public static class ClientProxy {
+		@SubscribeEvent
+		public static void stitchTextures(TextureStitchEvent.Pre event) {
+			if (event.getAtlas().location() == InventoryMenu.BLOCK_ATLAS) {
+				event.addSprite(new ResourceLocation(SuperiorShields.MODID, "item/empty_shield_slot"));
+			}
+		}
+
+		@SubscribeEvent
+		public static void setupClient(FMLClientSetupEvent event) {
+//			MinecraftForge.EVENT_BUS.register(new ClientEventManager());
+			GuiShieldOverlay.init();
+		}
+	}
 }

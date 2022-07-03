@@ -1,100 +1,39 @@
 package epicsquid.superiorshields.capability.shield;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
+import net.minecraftforge.common.util.LazyOptional;
 
-public class ShieldCapabilityProvider implements ICapabilityProvider, INBTSerializable, IShieldCapability {
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
-  private float currentHp;
-  private float maxHp;
-  private int timeWithoutDamage;
+public class ShieldCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-  public ShieldCapabilityProvider(boolean isNewShield) {
-    if (isNewShield) {
-      currentHp = 0;
-      maxHp = 0;
-      timeWithoutDamage = 0;
-    }
-  }
+	private final IShieldCapability shield = new ShieldCapability();
+	private final LazyOptional<IShieldCapability> op = LazyOptional.of(() -> shield);
 
-  @Override
-  public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
-    return SuperiorShieldsCapabilityManager.shieldCapability != null && capability == SuperiorShieldsCapabilityManager.shieldCapability;
-  }
+	public void invalidate() {
+		this.op.invalidate();
+	}
 
-  @Nullable
-  @Override
-  public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-    if (capability == SuperiorShieldsCapabilityManager.shieldCapability) {
-      return (T) this;
-    }
-    return null;
-  }
+	@Nonnull
+	@Override
+	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction facing) {
+		return CapabilityRegistry.SHIELD_CAPABILITY.orEmpty(cap, op);
+	}
 
-  @Override
-  public NBTBase serializeNBT() {
-    NBTTagCompound tag = new NBTTagCompound();
-    tag.setFloat(ShieldCapabilityStorage.NBT_MAX_SHIELD_HP, getMaxHp());
-    tag.setFloat(ShieldCapabilityStorage.NBT_SHIELD_HP, getCurrentHp());
-    tag.setInteger(ShieldCapabilityStorage.NBT_TIME_WITHOUT_DAMAGE, getTimeWithoutDamage());
-    return tag;
-  }
+	@Override
+	public CompoundTag serializeNBT() {
+		return this.shield.serializeNBT();
+	}
 
-  @Override
-  public void deserializeNBT(NBTBase nbt) {
-    if (nbt instanceof NBTTagCompound) {
-      NBTTagCompound tag = (NBTTagCompound) nbt;
-      if (tag.hasKey(ShieldCapabilityStorage.NBT_MAX_SHIELD_HP)) {
-        setMaxHp(tag.getFloat(ShieldCapabilityStorage.NBT_MAX_SHIELD_HP));
-      }
-      if (tag.hasKey(ShieldCapabilityStorage.NBT_SHIELD_HP)) {
-        setCurrentHp(tag.getFloat(ShieldCapabilityStorage.NBT_SHIELD_HP));
-      }
-      if (tag.hasKey(ShieldCapabilityStorage.NBT_TIME_WITHOUT_DAMAGE)) {
-        setTimeWithoutDamage(tag.getInteger(ShieldCapabilityStorage.NBT_TIME_WITHOUT_DAMAGE));
-      }
-    }
-  }
-
-  @Override
-  public float getMaxHp() {
-    return maxHp;
-  }
-
-  @Override
-  public float getCurrentHp() {
-    return currentHp;
-  }
-
-  @Override
-  public int getTimeWithoutDamage() {
-    return timeWithoutDamage;
-  }
-
-  @Override
-  public void setCurrentHp(float currentHp) {
-    this.currentHp = currentHp;
-    if (this.currentHp < 0) {
-      this.currentHp = 0;
-    } else if (this.currentHp > maxHp) {
-      this.currentHp = maxHp;
-    }
-  }
-
-  @Override
-  public void setMaxHp(float maxHp) {
-    this.maxHp = maxHp;
-  }
-
-  @Override
-  public void setTimeWithoutDamage(int timeWithoutDamage) {
-    this.timeWithoutDamage = timeWithoutDamage;
-  }
+	@Override
+	public void deserializeNBT(CompoundTag tag) {
+		this.shield.deserializeNBT(tag);
+	}
 }

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "superiorshields:diamond_shield"
+    ]
+  },
+  "criteria": {
+    "has_enderpearl": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:ender_pearl"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "superiorshields:diamond_shield"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_enderpearl",
+      "has_the_recipe"
+    ]
+  ]
+}
