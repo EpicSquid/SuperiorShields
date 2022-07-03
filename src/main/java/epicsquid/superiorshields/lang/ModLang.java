@@ -16,8 +16,8 @@ public class ModLang {
 	public static final TranslatableComponent RECHARGE_DELAY = REGISTRATE.addLang("tooltip", new ResourceLocation(SuperiorShields.MODID, "recharge_delay"), " %s Recharge Delay");
 	public static final TranslatableComponent EQUIP = REGISTRATE.addLang("tooltip", new ResourceLocation(SuperiorShields.MODID, "equip"), "When in the curios slot:");
 
-	public static final TranslatableComponent SHIELD_CURIOS = REGISTRATE.addLang(CuriosApi.MODID, new ResourceLocation("identifier", "superior_shield"), "Superior Shield");
-	public static final TranslatableComponent CREATIVE_TAB = REGISTRATE.addLang("itemGroup", new ResourceLocation(SuperiorShields.MODID, "superior_shields"), "Superior Shields");
+	public static final TranslatableComponent SHIELD_CURIOS = REGISTRATE.addRawLang(CuriosApi.MODID + ".identifier.superior_shield", "Superior Shield");
+	public static final TranslatableComponent CREATIVE_TAB = REGISTRATE.addRawLang("itemGroup." + SuperiorShields.MODID, "Superior Shields");
 
 	public static void classload() {}
 

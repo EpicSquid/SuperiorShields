@@ -34,7 +34,7 @@ public class SuperiorShields {
 	private static final Lazy<Registrate> REGISTRATE = Lazy.of(() -> Registrate.create(MODID));
 	public static final String SHIELD_CURIO = "superior_shield";
 
-	public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab("superior_shields") {
+	public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab(SuperiorShields.MODID) {
 		@Override
 		@Nonnull
 		public ItemStack makeIcon() {
