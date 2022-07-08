@@ -20,7 +20,7 @@ public class ModEnchantments {
 	public static final RegistryEntry<CapacityEnchantment> QUICKENED = enchantmentBuilder("quickened", new CapacityEnchantment(Enchantment.Rarity.COMMON, type)).lang("Quickened").register();
 	public static final RegistryEntry<NovaShieldEnchantment> KNOCKBACK_NOVA = enchantmentBuilder("knockback_nova", new NovaShieldEnchantment(
 									Enchantment.Rarity.UNCOMMON, type,
-									new ShieldEffectKnockbackNova(1.5f, 1, 0, 0)
+									new ShieldEffectKnockbackNova(1.5f, 1, 1, 1)
 					)
 	).lang("Knockback Nova").register();
 	public static final RegistryEntry<NovaShieldEnchantment> FIRE_NOVA = enchantmentBuilder("fire_nova", new NovaShieldEnchantment(
