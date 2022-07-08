@@ -28,8 +28,7 @@ public abstract class ShieldEffectNova implements IShieldEffect {
 			List<LivingEntity> entities = player.level.getEntitiesOfClass(LivingEntity.class,
 							new AABB(player.position().x + rad, player.position().y + rad, player.position().z + rad, player.position().x - rad, player.position().y - rad,
 											player.position().z - rad));
-
-			applyToEntities(entities);
+			applyToEntities(entities.stream().filter(le -> !(le instanceof Player)).toList());
 		}
 	}
 

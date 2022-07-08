@@ -17,6 +17,11 @@ public class NovaShieldEnchantment extends ShieldEffectEnchantment {
     }
 
     @Override
+    public int getMaxLevel() {
+        return 3;
+    }
+
+    @Override
     protected boolean checkCompatibility(@Nonnull Enchantment ench) {
         return !(ench instanceof NovaShieldEnchantment);
     }
