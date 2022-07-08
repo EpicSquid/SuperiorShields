@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
 
 public interface IShieldEffect {
 
-    void applyEffect(@Nonnull IShieldCapability shield, @Nonnull Player player, @Nullable DamageSource source, float damage, EffectTrigger trigger);
+    void applyEffect(@Nonnull IShieldCapability shield, @Nonnull Player player, @Nullable DamageSource source, float damage, EffectTrigger trigger, int level);
 
     @Nonnull
     String getDescription();

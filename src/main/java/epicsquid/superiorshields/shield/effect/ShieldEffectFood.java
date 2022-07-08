@@ -24,11 +24,11 @@ public class ShieldEffectFood implements IShieldEffect {
     }
 
     @Override
-    public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull Player player, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
+    public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull Player player, @Nullable DamageSource source, float damage, EffectTrigger trigger, int level) {
         if (trigger == EffectTrigger.DAMAGE && random.nextFloat() < chanceToFeed) {
             FoodData food = player.getFoodData();
             if (food.needsFood()) {
-                food.eat(foodLevel, saturationModifier);
+                food.eat(foodLevel * level, saturationModifier);
             }
         }
     }

@@ -2,6 +2,7 @@ package epicsquid.superiorshields.item;
 
 import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
+import epicsquid.superiorshields.enchantment.EnchantmentUtils;
 import epicsquid.superiorshields.enchantment.ModEnchantments;
 import epicsquid.superiorshields.event.ShieldEquippedEvent;
 import epicsquid.superiorshields.lang.ModLang;
@@ -110,7 +111,9 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 		var shieldOp = CapabilityRegistry.getShield(player).resolve();
 		if (shieldOp.isPresent()) {
 			IShieldCapability shield = shieldOp.get();
-			shieldType.getEffect().applyEffect(shield, player, source, damage, trigger);
+			// Always apply at level 1 when the effect is on the shield, not on the enchantment
+			shieldType.getEffect().applyEffect(shield, player, source, damage, trigger, 1);
+			EnchantmentUtils.triggerEnchantmentEffect(shield, player, stack, source, damage, trigger);
 		}
 	}
 

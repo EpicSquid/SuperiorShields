@@ -22,13 +22,13 @@ public abstract class ShieldEffectNova implements IShieldEffect {
 	}
 
 	@Override
-	public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull Player player, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
+	public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull Player player, @Nullable DamageSource source, float damage, EffectTrigger trigger, int level) {
 		if (!player.level.isClientSide && trigger == EffectTrigger.EMPTY) {
+			var rad = radius * level;
 			List<LivingEntity> entities = player.level.getEntitiesOfClass(LivingEntity.class,
-							new AABB(player.position().x + radius, player.position().y + radius, player.position().z + radius, player.position().x - radius, player.position().y - radius,
-											player.position().z - radius));
-
-			applyToEntities(entities);
+							new AABB(player.position().x + rad, player.position().y + rad, player.position().z + rad, player.position().x - rad, player.position().y - rad,
+											player.position().z - rad));
+			applyToEntities(entities.stream().filter(le -> !(le instanceof Player)).toList());
 		}
 	}
 
