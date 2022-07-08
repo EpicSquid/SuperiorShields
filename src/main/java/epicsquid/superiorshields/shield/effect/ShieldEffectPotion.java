@@ -25,9 +25,9 @@ public class ShieldEffectPotion implements IShieldEffect {
     }
 
     @Override
-    public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull Player player, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
+    public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull Player player, @Nullable DamageSource source, float damage, EffectTrigger trigger, int level) {
         if (trigger == this.trigger) {
-            player.addEffect(new MobEffectInstance(effect, duration));
+            player.addEffect(new MobEffectInstance(effect, duration * level));
         }
     }
 

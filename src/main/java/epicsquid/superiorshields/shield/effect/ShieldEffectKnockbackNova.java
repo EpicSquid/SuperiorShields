@@ -12,7 +12,7 @@ public class ShieldEffectKnockbackNova extends ShieldEffectNova {
     private float z;
 
     public ShieldEffectKnockbackNova(double radius, float strength, float x, float z) {
-        super(radius, "shield.effect.nova.knockback");
+        super(radius, "superior_shields.effect.knockback_nova");
         this.strength = strength;
         this.x = x;
         this.z = z;

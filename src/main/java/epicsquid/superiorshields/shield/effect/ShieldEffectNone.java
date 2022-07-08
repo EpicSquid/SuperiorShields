@@ -10,7 +10,7 @@ import javax.annotation.Nullable;
 public class ShieldEffectNone implements IShieldEffect {
 
     @Override
-    public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull Player player, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
+    public void applyEffect(@Nonnull IShieldCapability shield, @Nonnull Player player, @Nullable DamageSource source, float damage, EffectTrigger trigger, int level) {
 
     }
 

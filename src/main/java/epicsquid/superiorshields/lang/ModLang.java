@@ -19,6 +19,8 @@ public class ModLang {
 	public static final TranslatableComponent SHIELD_CURIOS = REGISTRATE.addRawLang(CuriosApi.MODID + ".identifier.superior_shield", "Superior Shield");
 	public static final TranslatableComponent CREATIVE_TAB = REGISTRATE.addRawLang("itemGroup." + SuperiorShields.MODID, "Superior Shields");
 
+	public static final TranslatableComponent KNOCKBACK_NOVA = REGISTRATE.addRawLang(SuperiorShields.MODID + ".effect.knockback_nova", "On depletion, emits a nova that knocks enemies away from you.");
+
 	public static void classload() {}
 
 }
