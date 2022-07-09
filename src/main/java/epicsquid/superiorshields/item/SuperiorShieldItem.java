@@ -22,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -119,7 +120,7 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 
 	@Override
 	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-		return enchantment.category.equals(ModEnchantments.type);
+		return enchantment.category.equals(ModEnchantments.type) || enchantment.equals(Enchantments.UNBREAKING) || enchantment.equals(Enchantments.MENDING);
 	}
 
 
