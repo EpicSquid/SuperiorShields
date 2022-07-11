@@ -43,7 +43,7 @@ public class SuperiorShieldItem<T extends ShieldType> extends Item implements Su
 	private int onTickEventTrigger = 0;
 
 	public SuperiorShieldItem(Item.Properties props, T shieldType) {
-		super(props.stacksTo(1).durability(shieldType.getMaxDamage()));
+		super(props.stacksTo(1));
 		this.shieldType = shieldType;
 	}
 
