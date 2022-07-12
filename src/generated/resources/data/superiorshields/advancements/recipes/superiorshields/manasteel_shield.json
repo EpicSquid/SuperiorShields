@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "superiorshields:manasteel_shield"
+    ]
+  },
+  "criteria": {
+    "has_manasteel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/manasteel"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "superiorshields:manasteel_shield"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_manasteel",
+      "has_the_recipe"
+    ]
+  ]
+}

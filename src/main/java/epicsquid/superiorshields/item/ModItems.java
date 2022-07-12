@@ -106,10 +106,9 @@ public class ModItems {
 										.pattern(" X ")
 										.define('X', ItemTags.create(new ResourceLocation("botania", "ingots/manasteel")))
 										.define('E', ENDER_PEARLS)
-										.unlockedBy("has_manasteel", DataIngredient.tag(ItemTags.create(new ResourceLocation("botania", "ingots/manasteel"))).getCritereon(p))
+										.unlockedBy("has_manasteel", DataIngredient.tag(ItemTags.create(new ResourceLocation("forge", "ingots/manasteel"))).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
 					})
-					.properties(props -> props.durability(Tiers.NETHERITE.getUses()))
 					.register();
 
 	public static void classload() {}
