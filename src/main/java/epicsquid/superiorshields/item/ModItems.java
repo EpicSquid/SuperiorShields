@@ -28,12 +28,17 @@ public class ModItems {
 	private static final TagKey<Item> CURIOS_TAG = ItemTags.create(new ResourceLocation(CuriosApi.MODID, SuperiorShields.SHIELD_CURIO));
 	private static final TagKey<Item> SHIELD_TAG = ItemTags.create(new ResourceLocation(SuperiorShields.MODID, "shield"));
 	private static final TagKey<Item> ENDER_PEARLS = ItemTags.create(new ResourceLocation("forge", "ender_pearls"));
+	private static final TagKey<Item> MANASTEEL_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/manasteel"));
+	private static final TagKey<Item> TERRASTEEL_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/terrasteel"));
+	private static final TagKey<Item> ELEMENTIUM_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/elementium"));
 
 	private static final GenericShieldType IRON = new GenericShieldType(5f, 80, 40, Tiers.IRON.getEnchantmentValue());
 	private static final GenericShieldType GOLD = new GenericShieldType(3f, 20, 40, Tiers.GOLD.getEnchantmentValue());
 	private static final GenericShieldType DIAMOND = new GenericShieldType(7f, 60, 40, Tiers.DIAMOND.getEnchantmentValue());
 	private static final GenericShieldType NETHERITE = new GenericShieldType(8f, 40, 40, Tiers.NETHERITE.getEnchantmentValue());
-	private static final GenericShieldType MANASTEEL = new GenericShieldType(6f, 80, 40, BotaniaAPI.instance().getManasteelItemTier().getEnchantmentValue());
+	private static final GenericShieldType MANASTEEL = new GenericShieldType(5f, 80, 40, BotaniaAPI.instance().getManasteelItemTier().getEnchantmentValue());
+	private static final GenericShieldType TERRASTEEL = new GenericShieldType(9f, 60, 40, BotaniaAPI.instance().getTerrasteelItemTier().getEnchantmentValue());
+	private static final GenericShieldType ELEMENTIUM = new GenericShieldType(6f, 60, 20, BotaniaAPI.instance().getElementiumItemTier().getEnchantmentValue());
 
 	public static final ItemEntry<VanillaShieldItem> IRON_SHIELD = REGISTRATE.item("iron_shield", props -> new VanillaShieldItem(props, IRON)).tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
@@ -104,9 +109,41 @@ public class ModItems {
 										.pattern(" X ")
 										.pattern("XEX")
 										.pattern(" X ")
-										.define('X', ItemTags.create(new ResourceLocation("botania", "ingots/manasteel")))
+										.define('X', MANASTEEL_INGOT)
 										.define('E', ENDER_PEARLS)
-										.unlockedBy("has_manasteel", DataIngredient.tag(ItemTags.create(new ResourceLocation("forge", "ingots/manasteel"))).getCritereon(p))
+										.unlockedBy("has_manasteel", DataIngredient.tag(MANASTEEL_INGOT).getCritereon(p))
+										.save(p, p.safeId(ctx.getEntry()));
+					})
+					.register();
+
+	public static final ItemEntry<BotaniaShieldItem> TERRASTEEL_SHIELD = REGISTRATE.item("terrasteel_shield",
+					props -> new BotaniaShieldItem(props, TERRASTEEL)).tab(() -> SuperiorShields.ITEM_GROUP)
+					.tag(CURIOS_TAG)
+					.tag(SHIELD_TAG)
+					.recipe((ctx, p) -> {
+						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+										.pattern(" X ")
+										.pattern("XEX")
+										.pattern(" X ")
+										.define('X', TERRASTEEL_INGOT)
+										.define('E', ENDER_PEARLS)
+										.unlockedBy("has_terrasteel", DataIngredient.tag(TERRASTEEL_INGOT).getCritereon(p))
+										.save(p, p.safeId(ctx.getEntry()));
+					})
+					.register();
+
+	public static final ItemEntry<BotaniaShieldItem> ELEMENTIUM_SHIELD = REGISTRATE.item("elementium_shield",
+					props -> new BotaniaShieldItem(props, ELEMENTIUM)).tab(() -> SuperiorShields.ITEM_GROUP)
+					.tag(CURIOS_TAG)
+					.tag(SHIELD_TAG)
+					.recipe((ctx, p) -> {
+						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+										.pattern(" X ")
+										.pattern("XEX")
+										.pattern(" X ")
+										.define('X', ELEMENTIUM_INGOT)
+										.define('E', ENDER_PEARLS)
+										.unlockedBy("has_elementium", DataIngredient.tag(ELEMENTIUM_INGOT).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
 					})
 					.register();

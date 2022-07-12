@@ -10,7 +10,7 @@ public class BotaniaShieldItem extends SuperiorShieldItem<ShieldType>{
 	private int manaToConsume = 400;
 
 	public BotaniaShieldItem(Properties props, ShieldType shieldType) {
-		super(props, shieldType);
+		super(props.stacksTo(1), shieldType);
 	}
 
 	@Override

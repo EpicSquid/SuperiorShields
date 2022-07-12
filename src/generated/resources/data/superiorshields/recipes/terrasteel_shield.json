@@ -7,13 +7,13 @@
   ],
   "key": {
     "X": {
-      "tag": "forge:ingots/manasteel"
+      "tag": "forge:ingots/terrasteel"
     },
     "E": {
       "tag": "forge:ender_pearls"
     }
   },
   "result": {
-    "item": "superiorshields:manasteel_shield"
+    "item": "superiorshields:terrasteel_shield"
   }
 }
