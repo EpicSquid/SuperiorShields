@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "botania:mana_pearl",
+      "required": false
+    }
+  ]
+}

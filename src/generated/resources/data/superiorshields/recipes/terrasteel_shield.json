@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "XEX",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:ingots/terrasteel"
+    },
+    "E": {
+      "item": "superiorshields:manasteel_shield"
+    }
+  },
+  "result": {
+    "item": "superiorshields:terrasteel_shield"
+  }
+}

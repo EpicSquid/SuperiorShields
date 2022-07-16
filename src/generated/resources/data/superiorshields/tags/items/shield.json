@@ -4,6 +4,9 @@
     "superiorshields:iron_shield",
     "superiorshields:golden_shield",
     "superiorshields:diamond_shield",
-    "superiorshields:netherite_shield"
+    "superiorshields:netherite_shield",
+    "superiorshields:manasteel_shield",
+    "superiorshields:terrasteel_shield",
+    "superiorshields:elementium_shield"
   ]
 }

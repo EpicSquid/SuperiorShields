@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "XEX",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:ingots/elementium"
+    },
+    "E": {
+      "tag": "forge:pixie_dust"
+    }
+  },
+  "result": {
+    "item": "superiorshields:elementium_shield"
+  }
+}

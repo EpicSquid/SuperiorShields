@@ -6,6 +6,8 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        // MixinGradle:
+        classpath 'org.spongepowered:mixingradle:0.7.+'
     }
 }
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
@@ -17,6 +19,8 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 // Shadowing
 apply plugin: 'com.github.johnrengelman.shadow'
+// MixinGradle:
+apply plugin: 'org.spongepowered.mixin'
 
 version = "${minecraft_version}-${mod_version}"
 //if (System.getenv('BUILD_NUMBER') != null) {
@@ -58,6 +62,10 @@ minecraft {
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', 'superiorshields'
 
+            // Disable mixins for botania support in dev environment
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+
             mods {
                 superiorshields {
                     source sourceSets.main
@@ -74,6 +82,10 @@ minecraft {
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', 'superiorshields'
+
+            // Disable mixins for botania support in dev environment
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
 
             mods {
                 superiorshields {
@@ -138,10 +150,21 @@ repositories {
     //     dir 'libs'
     // }
     maven {
+        // Curios
         url = "https://maven.theillusivec4.top/"
     }
-    maven { // Registrate
+    maven {
+        // Registrate
         url "https://maven.tterrag.com/"
+    }
+    maven {
+        // Botania
+        url 'https://maven.blamejared.com'
+    }
+    maven {
+        // JEI
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
     }
     mavenLocal()
 }
@@ -158,6 +181,13 @@ dependencies {
 
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+
+    compileOnly fg.deobf("vazkii.botania:Botania:${botania_version}:api")
+    runtimeOnly fg.deobf("vazkii.botania:Botania:${botania_version}")
+
+    // dev env convenience
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
 
     def registrate = "com.tterrag.registrate:Registrate:MC${minecraft_version}-${registrate_version}"
     implementation fg.deobf(registrate)

@@ -8,6 +8,8 @@ import epicsquid.superiorshields.item.ModItems;
 import epicsquid.superiorshields.lang.ModLang;
 import epicsquid.superiorshields.network.NetworkHandler;
 import epicsquid.superiorshields.setup.ModSetup;
+import epicsquid.superiorshields.tags.ModTags;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.CreativeModeTab;
@@ -16,13 +18,16 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.minecraftforge.common.data.ForgeBlockTagsProvider;
 import net.minecraftforge.common.util.Lazy;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 import javax.annotation.Nonnull;
 
@@ -52,6 +57,8 @@ public class SuperiorShields {
 		ModItems.classload();
 		ModEnchantments.classload();
 		ModLang.classload();
+
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(EventPriority.LOWEST, this::gatherData);
 	}
 
 	public void setup(FMLCommonSetupEvent event) {
@@ -62,6 +69,14 @@ public class SuperiorShields {
 	@SubscribeEvent
 	public void registerCaps(final RegisterCapabilitiesEvent event) {
 		event.register(IShieldCapability.class);
+	}
+
+	public void gatherData(GatherDataEvent event) {
+		DataGenerator generator = event.getGenerator();
+		if (event.includeServer()) {
+			ForgeBlockTagsProvider b = new ForgeBlockTagsProvider(generator, event.getExistingFileHelper());
+			generator.addProvider(new ModTags(generator, b, event.getExistingFileHelper()));
+		}
 	}
 
 	public void sendImc(InterModEnqueueEvent event) {
