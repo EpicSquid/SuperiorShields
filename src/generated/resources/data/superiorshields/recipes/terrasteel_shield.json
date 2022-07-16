@@ -10,7 +10,7 @@
       "tag": "forge:ingots/terrasteel"
     },
     "E": {
-      "tag": "forge:ender_pearls"
+      "item": "superiorshields:manasteel_shield"
     }
   },
   "result": {

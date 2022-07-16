@@ -5,6 +5,7 @@ import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import epicsquid.superiorshields.SuperiorShields;
 import epicsquid.superiorshields.shield.GenericShieldType;
+import epicsquid.superiorshields.tags.ModTags;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.UpgradeRecipeBuilder;
@@ -110,7 +111,7 @@ public class ModItems {
 										.pattern("XEX")
 										.pattern(" X ")
 										.define('X', MANASTEEL_INGOT)
-										.define('E', ENDER_PEARLS)
+										.define('E', ModTags.MANAPEARL)
 										.unlockedBy("has_manasteel", DataIngredient.tag(MANASTEEL_INGOT).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
 					})
@@ -126,7 +127,7 @@ public class ModItems {
 										.pattern("XEX")
 										.pattern(" X ")
 										.define('X', TERRASTEEL_INGOT)
-										.define('E', ENDER_PEARLS)
+										.define('E', MANASTEEL_SHIELD.get())
 										.unlockedBy("has_terrasteel", DataIngredient.tag(TERRASTEEL_INGOT).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
 					})
@@ -142,7 +143,7 @@ public class ModItems {
 										.pattern("XEX")
 										.pattern(" X ")
 										.define('X', ELEMENTIUM_INGOT)
-										.define('E', ENDER_PEARLS)
+										.define('E', ModTags.PIXIE_DUST)
 										.unlockedBy("has_elementium", DataIngredient.tag(ELEMENTIUM_INGOT).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
 					})
