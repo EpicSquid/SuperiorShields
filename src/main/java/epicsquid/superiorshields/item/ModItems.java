@@ -4,9 +4,9 @@ import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import epicsquid.superiorshields.SuperiorShields;
-import epicsquid.superiorshields.shield.GenericShieldType;
+import epicsquid.superiorshields.shield.BotaniaShield;
+import epicsquid.superiorshields.shield.VanillaShield;
 import epicsquid.superiorshields.tags.ModTags;
-import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.UpgradeRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -16,11 +16,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.ShapedRecipe;
-import net.minecraft.world.level.block.SmithingTableBlock;
-import net.minecraftforge.common.MinecraftForge;
 import top.theillusivec4.curios.api.CuriosApi;
-import vazkii.botania.api.BotaniaAPI;
 
 public class ModItems {
 
@@ -33,15 +29,7 @@ public class ModItems {
 	private static final TagKey<Item> TERRASTEEL_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/terrasteel"));
 	private static final TagKey<Item> ELEMENTIUM_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/elementium"));
 
-	private static final GenericShieldType IRON = new GenericShieldType(5f, 80, 40, Tiers.IRON.getEnchantmentValue());
-	private static final GenericShieldType GOLD = new GenericShieldType(3f, 20, 40, Tiers.GOLD.getEnchantmentValue());
-	private static final GenericShieldType DIAMOND = new GenericShieldType(7f, 60, 40, Tiers.DIAMOND.getEnchantmentValue());
-	private static final GenericShieldType NETHERITE = new GenericShieldType(8f, 40, 40, Tiers.NETHERITE.getEnchantmentValue());
-	private static final GenericShieldType MANASTEEL = new GenericShieldType(5f, 80, 40, BotaniaAPI.instance().getManasteelItemTier().getEnchantmentValue());
-	private static final GenericShieldType TERRASTEEL = new GenericShieldType(9f, 60, 40, BotaniaAPI.instance().getTerrasteelItemTier().getEnchantmentValue());
-	private static final GenericShieldType ELEMENTIUM = new GenericShieldType(6f, 60, 20, BotaniaAPI.instance().getElementiumItemTier().getEnchantmentValue());
-
-	public static final ItemEntry<VanillaShieldItem> IRON_SHIELD = REGISTRATE.item("iron_shield", props -> new VanillaShieldItem(props, IRON)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<VanillaShieldItem> IRON_SHIELD = REGISTRATE.item("iron_shield", props -> new VanillaShieldItem(props, VanillaShield.IRON)).tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
@@ -57,7 +45,7 @@ public class ModItems {
 					.properties(props -> props.durability(Tiers.IRON.getUses()))
 					.register();
 	public static final ItemEntry<VanillaShieldItem> GOLDEN_SHIELD = REGISTRATE.item("golden_shield",
-					props -> new VanillaShieldItem(props, GOLD)).tab(() -> SuperiorShields.ITEM_GROUP)
+									props -> new VanillaShieldItem(props, VanillaShield.GOLD)).tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
@@ -73,7 +61,7 @@ public class ModItems {
 					.properties(props -> props.durability(Tiers.GOLD.getUses()))
 					.register();
 	public static final ItemEntry<VanillaShieldItem> DIAMOND_SHIELD = REGISTRATE.item("diamond_shield",
-					props -> new VanillaShieldItem(props, DIAMOND)).tab(() -> SuperiorShields.ITEM_GROUP)
+									props -> new VanillaShieldItem(props, VanillaShield.DIAMOND)).tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
@@ -90,7 +78,7 @@ public class ModItems {
 					.register();
 
 	public static final ItemEntry<VanillaShieldItem> NETHERITE_SHIELD = REGISTRATE.item("netherite_shield",
-					props -> new VanillaShieldItem(props, NETHERITE)).tab(() -> SuperiorShields.ITEM_GROUP)
+									props -> new VanillaShieldItem(props, VanillaShield.NETHERITE)).tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
@@ -102,7 +90,7 @@ public class ModItems {
 					.register();
 
 	public static final ItemEntry<BotaniaShieldItem> MANASTEEL_SHIELD = REGISTRATE.item("manasteel_shield",
-					props -> new BotaniaShieldItem(props, MANASTEEL)).tab(() -> SuperiorShields.ITEM_GROUP)
+									props -> new BotaniaShieldItem(props, BotaniaShield.MANASTEEL)).tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
@@ -118,7 +106,7 @@ public class ModItems {
 					.register();
 
 	public static final ItemEntry<BotaniaShieldItem> TERRASTEEL_SHIELD = REGISTRATE.item("terrasteel_shield",
-					props -> new BotaniaShieldItem(props, TERRASTEEL)).tab(() -> SuperiorShields.ITEM_GROUP)
+									props -> new BotaniaShieldItem(props, BotaniaShield.TERRASTEEL)).tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
@@ -134,7 +122,7 @@ public class ModItems {
 					.register();
 
 	public static final ItemEntry<BotaniaShieldItem> ELEMENTIUM_SHIELD = REGISTRATE.item("elementium_shield",
-					props -> new BotaniaShieldItem(props, ELEMENTIUM)).tab(() -> SuperiorShields.ITEM_GROUP)
+									props -> new BotaniaShieldItem(props, BotaniaShield.ELEMENTIUM)).tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
@@ -149,5 +137,6 @@ public class ModItems {
 					})
 					.register();
 
-	public static void classload() {}
+	public static void classload() {
+	}
 }

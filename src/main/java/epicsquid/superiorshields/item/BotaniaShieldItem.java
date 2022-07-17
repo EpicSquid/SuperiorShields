@@ -1,15 +1,15 @@
 package epicsquid.superiorshields.item;
 
-import epicsquid.superiorshields.shield.ShieldType;
+import epicsquid.superiorshields.shield.BotaniaShield;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import vazkii.botania.api.mana.ManaItemHandler;
 
-public class BotaniaShieldItem extends SuperiorShieldItem<ShieldType>{
+public class BotaniaShieldItem extends SuperiorShieldItem<BotaniaShield> {
 
 	private int manaToConsume = 400;
 
-	public BotaniaShieldItem(Properties props, ShieldType shieldType) {
+	public BotaniaShieldItem(Properties props, BotaniaShield shieldType) {
 		super(props.stacksTo(1), shieldType);
 	}
 

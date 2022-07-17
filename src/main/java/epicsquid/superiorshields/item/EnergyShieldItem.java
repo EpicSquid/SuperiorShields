@@ -1,7 +1,7 @@
 package epicsquid.superiorshields.item;
 
 import epicsquid.superiorshields.capability.EnergyCapabilityProvider;
-import epicsquid.superiorshields.shield.EnergyShield;
+import epicsquid.superiorshields.shield.IEnergyShield;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -14,11 +14,11 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-public class EnergyShieldItem extends SuperiorShieldItem<EnergyShield> {
+public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 
 	private int energyToConsume = 400;
 
-	public EnergyShieldItem(Item.Properties props, EnergyShield shieldType) {
+	public EnergyShieldItem(Item.Properties props, IEnergyShield shieldType) {
 		super(props, shieldType);
 	}
 

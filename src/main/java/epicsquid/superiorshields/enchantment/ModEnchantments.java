@@ -15,7 +15,7 @@ public class ModEnchantments {
 	public static final EnchantmentCategory type = EnchantmentCategory.create("superior_shield", item -> item instanceof SuperiorShield);
 	private static final Registrate REGISTRATE = SuperiorShields.registrate();
 
-	public static final RegistryEntry<CapacityEnchantment> CAPACITY = enchantmentBuilder("capacity", new CapacityEnchantment(Enchantment.Rarity.COMMON, type)).lang("Capacity").register();
+	public static final RegistryEntry<CapacityEnchantment> CAPACITY = enchantmentBuilder("capacity", new CapacityEnchantment(Enchantment.Rarity.COMMON, type)).lang("Shield Capacity").register();
 	public static final RegistryEntry<CapacityEnchantment> JUMP_START = enchantmentBuilder("jump_start", new CapacityEnchantment(Enchantment.Rarity.RARE, type)).lang("Jump Start").register();
 	public static final RegistryEntry<CapacityEnchantment> QUICKENED = enchantmentBuilder("quickened", new CapacityEnchantment(Enchantment.Rarity.COMMON, type)).lang("Quickened").register();
 	public static final RegistryEntry<NovaShieldEnchantment> KNOCKBACK_NOVA = enchantmentBuilder("knockback_nova", new NovaShieldEnchantment(
