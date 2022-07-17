@@ -1,15 +1,25 @@
 package epicsquid.superiorshields.shield;
 
+import epicsquid.superiorshields.config.Config;
+import epicsquid.superiorshields.config.ShieldsConfig;
 import epicsquid.superiorshields.shield.effect.IShieldEffect;
 import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
 
 public interface ShieldType {
 
-	float getMaxShieldHp();
+	String getConfigName();
 
-	int getShieldRechargeDelay();
+	default float getMaxShieldHp() {
+		return Config.SHIELD.SHIELDS.get(getConfigName()).getCapacity();
+	}
 
-	int getShieldRechargeRate();
+	default int getShieldRechargeDelay() {
+		return Config.SHIELD.SHIELDS.get(getConfigName()).getDelay();
+	};
+
+	default int getShieldRechargeRate() {
+		return Config.SHIELD.SHIELDS.get(getConfigName()).getRate();
+	}
 
 	int getColor();
 

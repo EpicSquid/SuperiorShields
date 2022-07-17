@@ -2,6 +2,7 @@ package epicsquid.superiorshields;
 
 import com.tterrag.registrate.Registrate;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
+import epicsquid.superiorshields.config.Config;
 import epicsquid.superiorshields.enchantment.ModEnchantments;
 import epicsquid.superiorshields.gui.GuiShieldOverlay;
 import epicsquid.superiorshields.item.ModItems;
@@ -22,7 +23,9 @@ import net.minecraftforge.common.data.ForgeBlockTagsProvider;
 import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -48,6 +51,7 @@ public class SuperiorShields {
 	};
 
 	public SuperiorShields() {
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SHIELD_SPEC, "superior-shields-common.toml");
 		//		ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::sendImc);

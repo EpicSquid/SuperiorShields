@@ -33,13 +33,13 @@ public class ModItems {
 	private static final TagKey<Item> TERRASTEEL_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/terrasteel"));
 	private static final TagKey<Item> ELEMENTIUM_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/elementium"));
 
-	private static final GenericShieldType IRON = new GenericShieldType(5f, 80, 40, Tiers.IRON.getEnchantmentValue());
-	private static final GenericShieldType GOLD = new GenericShieldType(3f, 20, 40, Tiers.GOLD.getEnchantmentValue());
-	private static final GenericShieldType DIAMOND = new GenericShieldType(7f, 60, 40, Tiers.DIAMOND.getEnchantmentValue());
-	private static final GenericShieldType NETHERITE = new GenericShieldType(8f, 40, 40, Tiers.NETHERITE.getEnchantmentValue());
-	private static final GenericShieldType MANASTEEL = new GenericShieldType(5f, 80, 40, BotaniaAPI.instance().getManasteelItemTier().getEnchantmentValue());
-	private static final GenericShieldType TERRASTEEL = new GenericShieldType(9f, 60, 40, BotaniaAPI.instance().getTerrasteelItemTier().getEnchantmentValue());
-	private static final GenericShieldType ELEMENTIUM = new GenericShieldType(6f, 60, 20, BotaniaAPI.instance().getElementiumItemTier().getEnchantmentValue());
+	private static final GenericShieldType IRON = new GenericShieldType("iron", Tiers.IRON.getEnchantmentValue());
+	private static final GenericShieldType GOLD = new GenericShieldType("gold", Tiers.GOLD.getEnchantmentValue());
+	private static final GenericShieldType DIAMOND = new GenericShieldType("diamond", Tiers.DIAMOND.getEnchantmentValue());
+	private static final GenericShieldType NETHERITE = new GenericShieldType("netherite", Tiers.NETHERITE.getEnchantmentValue());
+	private static final GenericShieldType MANASTEEL = new GenericShieldType("manasteel", BotaniaAPI.instance().getManasteelItemTier().getEnchantmentValue());
+	private static final GenericShieldType TERRASTEEL = new GenericShieldType("terrasteel", BotaniaAPI.instance().getTerrasteelItemTier().getEnchantmentValue());
+	private static final GenericShieldType ELEMENTIUM = new GenericShieldType("elementium", BotaniaAPI.instance().getElementiumItemTier().getEnchantmentValue());
 
 	public static final ItemEntry<VanillaShieldItem> IRON_SHIELD = REGISTRATE.item("iron_shield", props -> new VanillaShieldItem(props, IRON)).tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
