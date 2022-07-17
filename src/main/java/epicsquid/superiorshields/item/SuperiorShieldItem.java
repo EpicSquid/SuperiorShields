@@ -8,8 +8,8 @@ import epicsquid.superiorshields.event.ShieldEquippedEvent;
 import epicsquid.superiorshields.lang.ModLang;
 import epicsquid.superiorshields.network.NetworkHandler;
 import epicsquid.superiorshields.network.PacketShieldUpdate;
+import epicsquid.superiorshields.shield.IShieldType;
 import epicsquid.superiorshields.shield.ShieldHelper;
-import epicsquid.superiorshields.shield.ShieldType;
 import epicsquid.superiorshields.shield.effect.EffectTrigger;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -36,7 +36,7 @@ import javax.annotation.Nullable;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class SuperiorShieldItem<T extends ShieldType> extends Item implements SuperiorShield<T>, ICurioItem {
+public class SuperiorShieldItem<T extends IShieldType> extends Item implements SuperiorShield<T>, ICurioItem {
 	private final T shieldType;
 
 	// Used to ensure the potion effect is not applied every tick
