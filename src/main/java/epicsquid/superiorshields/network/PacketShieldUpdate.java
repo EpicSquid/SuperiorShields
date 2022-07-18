@@ -2,8 +2,8 @@ package epicsquid.superiorshields.network;
 
 import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -28,13 +28,16 @@ public class PacketShieldUpdate {
 	}
 
 	public static void handle(PacketShieldUpdate msg, Supplier<NetworkEvent.Context> ctx) {
-		ctx.get().enqueueWork(() -> {
-			LocalPlayer player = Minecraft.getInstance().player;
-			if (player != null) {
-				CapabilityRegistry.getShield(player).ifPresent(shield -> {
-					shield.setMaxHp(msg.maxHp);
-					shield.setCurrentHp(msg.currentHp);
-				});
+		ctx.get().enqueueWork(new Runnable() {
+			@Override
+			public void run() {
+				Player player = Minecraft.getInstance().player;
+				if (player != null) {
+					CapabilityRegistry.getShield(player).ifPresent(shield -> {
+						shield.setMaxHp(msg.maxHp);
+						shield.setCurrentHp(msg.currentHp);
+					});
+				}
 			}
 		});
 		ctx.get().setPacketHandled(true);
