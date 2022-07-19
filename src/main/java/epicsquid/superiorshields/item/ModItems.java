@@ -1,10 +1,13 @@
 package epicsquid.superiorshields.item;
 
 import com.tterrag.registrate.Registrate;
+import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import epicsquid.superiorshields.SuperiorShields;
 import epicsquid.superiorshields.shield.BotaniaShield;
+import epicsquid.superiorshields.shield.IShieldType;
+import epicsquid.superiorshields.shield.MetalShield;
 import epicsquid.superiorshields.shield.VanillaShield;
 import epicsquid.superiorshields.tags.ModTags;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -18,6 +21,8 @@ import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import top.theillusivec4.curios.api.CuriosApi;
 
+import java.util.Locale;
+
 public class ModItems {
 
 	private static final Registrate REGISTRATE = SuperiorShields.registrate();
@@ -29,38 +34,9 @@ public class ModItems {
 	private static final TagKey<Item> TERRASTEEL_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/terrasteel"));
 	private static final TagKey<Item> ELEMENTIUM_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/elementium"));
 
-	public static final ItemEntry<VanillaShieldItem> IRON_SHIELD = REGISTRATE.item("iron_shield", props -> new VanillaShieldItem(props, VanillaShield.IRON)).tab(() -> SuperiorShields.ITEM_GROUP)
-					.tag(CURIOS_TAG)
-					.tag(SHIELD_TAG)
-					.recipe((ctx, p) -> {
-						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-										.pattern(" X ")
-										.pattern("XEX")
-										.pattern(" X ")
-										.define('X', ItemTags.create(new ResourceLocation("forge", "ingots/iron")))
-										.define('E', ENDER_PEARLS)
-										.unlockedBy("has_enderpearl", DataIngredient.items(Items.ENDER_PEARL).getCritereon(p))
-										.save(p, p.safeId(ctx.getEntry()));
-					})
-					.properties(props -> props.durability(Tiers.IRON.getUses()))
-					.register();
-	public static final ItemEntry<VanillaShieldItem> COPPER_SHIELD = REGISTRATE.item("copper_shield", props -> new VanillaShieldItem(props, VanillaShield.COPPER)).tab(() -> SuperiorShields.ITEM_GROUP)
-					.tag(CURIOS_TAG)
-					.tag(SHIELD_TAG)
-					.recipe((ctx, p) -> {
-						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-										.pattern(" X ")
-										.pattern("XEX")
-										.pattern(" X ")
-										.define('X', ItemTags.create(new ResourceLocation("forge", "ingots/copper")))
-										.define('E', ENDER_PEARLS)
-										.unlockedBy("has_enderpearl", DataIngredient.items(Items.ENDER_PEARL).getCritereon(p))
-										.save(p, p.safeId(ctx.getEntry()));
-					})
-					.properties(props -> props.durability(160))
-					.register();
-	public static final ItemEntry<VanillaShieldItem> GOLDEN_SHIELD = REGISTRATE.item("golden_shield",
-									props -> new VanillaShieldItem(props, VanillaShield.GOLD)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<VanillaShieldItem> IRON_SHIELD = vanillaShieldItem(VanillaShield.IRON, Tiers.IRON.getUses()).register();
+	public static final ItemEntry<VanillaShieldItem> COPPER_SHIELD = vanillaShieldItem(VanillaShield.COPPER, 160).register();
+	public static final ItemEntry<VanillaShieldItem> GOLDEN_SHIELD = REGISTRATE.item("golden_shield", props -> new VanillaShieldItem(props, VanillaShield.GOLD)).tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
@@ -73,8 +49,16 @@ public class ModItems {
 										.unlockedBy("has_enderpearl", DataIngredient.items(Items.ENDER_PEARL).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
 					})
-					.properties(props -> props.durability(Tiers.GOLD.getUses()))
-					.register();
+					.properties(props -> props.durability(Tiers.GOLD.getUses())).register();
+	public static final ItemEntry<VanillaShieldItem> TIN_SHIELD = vanillaShieldItem(MetalShield.TIN, 32).register();
+	public static final ItemEntry<VanillaShieldItem> LEAD_SHIELD = vanillaShieldItem(MetalShield.LEAD, 64).register();
+	public static final ItemEntry<VanillaShieldItem> SILVER_SHIELD = vanillaShieldItem(MetalShield.SILVER, 48).register();
+	public static final ItemEntry<VanillaShieldItem> NICKEL_SHIELD = vanillaShieldItem(MetalShield.NICKEL, 240).register();
+	public static final ItemEntry<VanillaShieldItem> BRONZE_SHIELD = vanillaShieldItem(MetalShield.BRONZE, 325).register();
+	public static final ItemEntry<VanillaShieldItem> ELECTRUM_SHIELD = vanillaShieldItem(MetalShield.ELECTRUM, 192).register();
+	public static final ItemEntry<VanillaShieldItem> INVAR_SHIELD = vanillaShieldItem(MetalShield.INVAR, 300).register();
+	public static final ItemEntry<VanillaShieldItem> CONSTANTAN_SHIELD = vanillaShieldItem(MetalShield.CONSTANTAN, 250).register();
+
 	public static final ItemEntry<VanillaShieldItem> DIAMOND_SHIELD = REGISTRATE.item("diamond_shield",
 									props -> new VanillaShieldItem(props, VanillaShield.DIAMOND)).tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
@@ -151,6 +135,23 @@ public class ModItems {
 										.save(p, p.safeId(ctx.getEntry()));
 					})
 					.register();
+
+	private static ItemBuilder<VanillaShieldItem, Registrate> vanillaShieldItem(IShieldType type, int durability) {
+		return REGISTRATE.item(type.name().toLowerCase(Locale.ROOT) + "_shield", props -> new VanillaShieldItem(props, type)).tab(() -> SuperiorShields.ITEM_GROUP)
+						.tag(CURIOS_TAG)
+						.tag(SHIELD_TAG)
+						.recipe((ctx, p) -> {
+							ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+											.pattern(" X ")
+											.pattern("XEX")
+											.pattern(" X ")
+											.define('X', ItemTags.create(new ResourceLocation("forge", "ingots/" + type.name().toLowerCase(Locale.ROOT))))
+											.define('E', ENDER_PEARLS)
+											.unlockedBy("has_enderpearl", DataIngredient.items(Items.ENDER_PEARL).getCritereon(p))
+											.save(p, p.safeId(ctx.getEntry()));
+						})
+						.properties(props -> props.durability(durability));
+	}
 
 	public static void classload() {
 	}
