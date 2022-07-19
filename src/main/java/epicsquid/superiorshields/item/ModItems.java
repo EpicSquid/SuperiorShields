@@ -44,6 +44,21 @@ public class ModItems {
 					})
 					.properties(props -> props.durability(Tiers.IRON.getUses()))
 					.register();
+	public static final ItemEntry<VanillaShieldItem> COPPER_SHIELD = REGISTRATE.item("copper_shield", props -> new VanillaShieldItem(props, VanillaShield.COPPER)).tab(() -> SuperiorShields.ITEM_GROUP)
+					.tag(CURIOS_TAG)
+					.tag(SHIELD_TAG)
+					.recipe((ctx, p) -> {
+						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+										.pattern(" X ")
+										.pattern("XEX")
+										.pattern(" X ")
+										.define('X', ItemTags.create(new ResourceLocation("forge", "ingots/copper")))
+										.define('E', ENDER_PEARLS)
+										.unlockedBy("has_enderpearl", DataIngredient.items(Items.ENDER_PEARL).getCritereon(p))
+										.save(p, p.safeId(ctx.getEntry()));
+					})
+					.properties(props -> props.durability(160))
+					.register();
 	public static final ItemEntry<VanillaShieldItem> GOLDEN_SHIELD = REGISTRATE.item("golden_shield",
 									props -> new VanillaShieldItem(props, VanillaShield.GOLD)).tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)

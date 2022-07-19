@@ -5,6 +5,7 @@ import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
 import net.minecraft.world.item.Tiers;
 
 public enum VanillaShield implements IShieldType {
+	COPPER(9, 3f, 80, 40),
 	IRON(Tiers.IRON.getEnchantmentValue(), 5f, 80, 40),
 	GOLD(Tiers.GOLD.getEnchantmentValue(), 3f, 20, 40),
 	DIAMOND(Tiers.DIAMOND.getEnchantmentValue(), 7f, 60, 40),
