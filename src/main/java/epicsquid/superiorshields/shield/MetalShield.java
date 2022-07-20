@@ -6,13 +6,13 @@ import net.minecraft.world.item.Tiers;
 
 public enum MetalShield implements IShieldType {
 	// Early game fast shield, compare to copper
-	TIN(18, 4f, 40, 40),
+	TIN(18, 3f, 40, 40),
 	// Mid game tank shield, compare to iron
-	LEAD(16, 8f, 40, 80),
+	LEAD(16, 7f, 40, 80),
 	// Mid game fast shield, compare to iron/gold
-	SILVER(30, 5f, 40, 20),
+	SILVER(30, 4f, 40, 20),
 	// Mid game faster shield, compare to iron
-	NICKEL(30, 6f, 40, 40),
+	NICKEL(30, 5f, 40, 40),
 	// Mid game balanced shield, compare to iron
 	BRONZE(16, 7f, 80, 40),
 	// Later game fastest shield, compare to silver/gold
@@ -20,7 +20,7 @@ public enum MetalShield implements IShieldType {
 	// Later game balanced shield, compare to iron/nickel
 	INVAR(13, 8f, 40, 40),
 	// Mid game balanced shield, compare to iron/copper
-	CONSTANTAN(10, 6f, 60, 10);
+	CONSTANTAN(10, 5f, 60, 20);
 
 	private final int enchantability;
 	private final float defaultCapacity;

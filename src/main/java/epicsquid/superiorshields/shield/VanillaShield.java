@@ -5,11 +5,11 @@ import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
 import net.minecraft.world.item.Tiers;
 
 public enum VanillaShield implements IShieldType {
-	COPPER(9, 4f, 80, 40),
-	IRON(Tiers.IRON.getEnchantmentValue(), 6f, 80, 40),
+	COPPER(9, 3f, 80, 40),
+	IRON(Tiers.IRON.getEnchantmentValue(), 5f, 80, 40),
 	GOLD(Tiers.GOLD.getEnchantmentValue(), 3f, 20, 40),
-	DIAMOND(Tiers.DIAMOND.getEnchantmentValue(), 9f, 60, 40),
-	NETHERITE(Tiers.NETHERITE.getEnchantmentValue(), 10f, 40, 40);
+	DIAMOND(Tiers.DIAMOND.getEnchantmentValue(), 7f, 60, 40),
+	NETHERITE(Tiers.NETHERITE.getEnchantmentValue(), 8f, 40, 40);
 
 	private final int enchantability;
 	private final float defaultCapacity;
