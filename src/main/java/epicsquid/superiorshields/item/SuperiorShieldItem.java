@@ -41,6 +41,7 @@ public class SuperiorShieldItem<T extends IShieldType> extends Item implements S
 
 	// Used to ensure the potion effect is not applied every tick
 	private int onTickEventTrigger = 0;
+	private int rechargeCounter = 1;
 
 	public SuperiorShieldItem(Item.Properties props, T shieldType) {
 		super(props);
@@ -172,13 +173,16 @@ public class SuperiorShieldItem<T extends IShieldType> extends Item implements S
 			}
 			CapabilityRegistry.getShield(player).ifPresent(shield -> {
 				if (shield.getTimeWithoutDamage() >= ShieldHelper.getShieldRechargeDelay(stack) && shield.getCurrentHp() < shield.getMaxHp()) {
-					if (player.level.getGameTime() % ShieldHelper.getShieldRechargeRate(stack) == 0) {
+					if (rechargeCounter % ShieldHelper.getShieldRechargeRate(stack) == 0) {
+						rechargeCounter = 1;
 						rechargeShield(shield, stack, player);
 						updateClient(player, shield);
 						triggerShieldEffect(player, stack, null, 0f, EffectTrigger.RECHARGE);
 						if (shield.getCurrentHp() >= shield.getMaxHp()) {
 							triggerShieldEffect(player, stack, null, 0f, EffectTrigger.FILLED);
 						}
+					} else {
+						rechargeCounter++;
 					}
 				} else {
 					shield.setTimeWithoutDamage(shield.getTimeWithoutDamage() + 1);

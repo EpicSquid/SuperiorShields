@@ -10,7 +10,7 @@ public class ShieldHelper {
 	public static float getShieldCapacity(ItemStack stack) {
 		if (stack.getItem() instanceof SuperiorShield<?> shieldItem) {
 			IShieldType type = shieldItem.getShield();
-			return type.getMaxShieldHp() + EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.CAPACITY.get(), stack);
+			return type.getMaxShieldHp() + (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.CAPACITY.get(), stack) * 2);
 		}
 		return 0.0f;
 	}

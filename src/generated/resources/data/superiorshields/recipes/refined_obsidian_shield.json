@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "XEX",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:ingots/refined_obsidian"
+    },
+    "E": {
+      "tag": "forge:ender_pearls"
+    }
+  },
+  "result": {
+    "item": "superiorshields:refined_obsidian_shield"
+  }
+}

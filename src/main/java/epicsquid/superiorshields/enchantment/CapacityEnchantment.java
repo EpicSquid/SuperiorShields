@@ -10,6 +10,6 @@ public class CapacityEnchantment extends ShieldEnchantment {
 
     @Override
     public int getMaxLevel() {
-        return 5;
+        return 3;
     }
 }

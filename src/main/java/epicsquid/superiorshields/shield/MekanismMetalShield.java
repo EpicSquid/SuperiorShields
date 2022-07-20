@@ -2,21 +2,27 @@ package epicsquid.superiorshields.shield;
 
 import epicsquid.superiorshields.shield.effect.IShieldEffect;
 import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
-import net.minecraft.world.item.Tiers;
 
-public enum VanillaShield implements IShieldType {
-	COPPER(9, 3f, 80, 40),
-	IRON(Tiers.IRON.getEnchantmentValue(), 5f, 80, 40),
-	GOLD(Tiers.GOLD.getEnchantmentValue(), 3f, 20, 40),
-	DIAMOND(Tiers.DIAMOND.getEnchantmentValue(), 7f, 60, 40),
-	NETHERITE(Tiers.NETHERITE.getEnchantmentValue(), 8f, 40, 40);
+public enum MekanismMetalShield implements IShieldType {
+	// Mid game fast shield, compare to gold
+	LAPIS(32, 3f, 20, 40),
+	// Slightly different to Iron
+	OSMIUM(14, 4f, 60, 40),
+	// Mid game, tough shield
+	STEEL(16, 8f, 80, 100),
+	// Later game shield, better than osmium
+	REFINED_GLOWSTONE(20, 6f, 20, 60),
+	// Later game shield, better than osmium
+	REFINED_OBSIDIAN(18, 12f, 60, 40),
+	// Mid game balanced shield, compare to iron/copper
+	CONSTANTAN(10, 6f, 60, 10);
 
 	private final int enchantability;
 	private final float defaultCapacity;
 	private final int defaultRate;
 	private final int defaultDelay;
 
-	VanillaShield(int enchantability, float defaultCapacity, int defaultRate, int defaultDelay) {
+	MekanismMetalShield(int enchantability, float defaultCapacity, int defaultRate, int defaultDelay) {
 		this.enchantability = enchantability;
 		this.defaultCapacity = defaultCapacity;
 		this.defaultRate = defaultRate;

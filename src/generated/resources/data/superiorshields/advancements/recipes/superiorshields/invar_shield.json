@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "superiorshields:invar_shield"
+    ]
+  },
+  "criteria": {
+    "has_enderpearl": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:ender_pearl"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "superiorshields:invar_shield"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_enderpearl",
+      "has_the_recipe"
+    ]
+  ]
+}
