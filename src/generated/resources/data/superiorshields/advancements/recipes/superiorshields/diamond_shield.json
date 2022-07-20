@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_enderpearl": {
+    "has_eye_of_ender": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:ender_pearl"
+              "minecraft:ender_eye"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_enderpearl",
+      "has_eye_of_ender",
       "has_the_recipe"
     ]
   ]
