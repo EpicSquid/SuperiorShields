@@ -60,7 +60,7 @@ public class SuperiorShieldItem<T extends IShieldType> extends Item implements S
 			IShieldCapability shield = shieldOp.get();
 			if (shield.getCurrentHp() > 0) {
 				triggerShieldEffect(player, stack, source, damage, EffectTrigger.DAMAGE);
-				if (damage > shield.getCurrentHp()) {
+				if (damage >= shield.getCurrentHp()) {
 					triggerShieldEffect(player, stack, source, damage, EffectTrigger.EMPTY);
 				}
 			}
@@ -138,12 +138,7 @@ public class SuperiorShieldItem<T extends IShieldType> extends Item implements S
 				float capacity = ShieldHelper.getShieldCapacity(stack);
 
 				shield.setMaxHp(capacity);
-				if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.JUMP_START.get(), stack) > 0) {
-					shield.setCurrentHp(capacity);
-					useEnergyToRecharge(stack, player);
-				} else {
-					shield.setCurrentHp(0);
-				}
+				shield.setCurrentHp(0);
 				shield.setTimeWithoutDamage(0);
 				MinecraftForge.EVENT_BUS.post(new ShieldEquippedEvent(player, shield));
 				if (!player.level.isClientSide) {

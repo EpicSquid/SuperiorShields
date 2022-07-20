@@ -21,6 +21,7 @@ public class ModLang {
 
 	public static final TranslatableComponent KNOCKBACK_NOVA = REGISTRATE.addRawLang(SuperiorShields.MODID + ".effect.knockback_nova", "On depletion, emits a nova that knocks enemies away from you.");
 	public static final TranslatableComponent FIRE_NOVA = REGISTRATE.addRawLang(SuperiorShields.MODID + ".effect.fire_nova", "On depletion, lights all mobs around you ablaze.");
+	public static final TranslatableComponent CURING = REGISTRATE.addRawLang(SuperiorShields.MODID + ".effect.curing", "On depletion, cures you of all potion effects, just like milk.");
 
 	public static void classload() {}
 

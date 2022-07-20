@@ -1,8 +1,8 @@
 {
   "curios.identifier.superior_shield": "Superior Shield",
   "enchantment.superiorshields.capacity": "Shield Capacity",
+  "enchantment.superiorshields.curing": "Curing",
   "enchantment.superiorshields.fire_nova": "Fire Nova",
-  "enchantment.superiorshields.jump_start": "Jump Start",
   "enchantment.superiorshields.knockback_nova": "Knockback Nova",
   "enchantment.superiorshields.quickened": "Quickened",
   "item.superiorshields.bronze_shield": "Bronze Shield",
@@ -27,6 +27,7 @@
   "item.superiorshields.terrasteel_shield": "Terrasteel Shield",
   "item.superiorshields.tin_shield": "Tin Shield",
   "itemGroup.superiorshields": "Superior Shields",
+  "superiorshields.effect.curing": "On depletion, cures you of all potion effects, just like milk.",
   "superiorshields.effect.fire_nova": "On depletion, lights all mobs around you ablaze.",
   "superiorshields.effect.knockback_nova": "On depletion, emits a nova that knocks enemies away from you.",
   "tooltip.superiorshields.blank": "",
