@@ -5,10 +5,7 @@ import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import epicsquid.superiorshields.SuperiorShields;
-import epicsquid.superiorshields.shield.BotaniaShield;
-import epicsquid.superiorshields.shield.IShieldType;
-import epicsquid.superiorshields.shield.MetalShield;
-import epicsquid.superiorshields.shield.VanillaShield;
+import epicsquid.superiorshields.shield.*;
 import epicsquid.superiorshields.tags.ModTags;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.UpgradeRecipeBuilder;
@@ -19,6 +16,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.common.Tags;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.Locale;
@@ -44,7 +42,7 @@ public class ModItems {
 										.pattern(" X ")
 										.pattern("XEX")
 										.pattern(" X ")
-										.define('X', ItemTags.create(new ResourceLocation("forge", "ingots/gold")))
+										.define('X', Tags.Items.INGOTS_GOLD)
 										.define('E', ENDER_PEARLS)
 										.unlockedBy("has_enderpearl", DataIngredient.items(Items.ENDER_PEARL).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
@@ -58,6 +56,24 @@ public class ModItems {
 	public static final ItemEntry<VanillaShieldItem> ELECTRUM_SHIELD = vanillaShieldItem(MetalShield.ELECTRUM, 192).register();
 	public static final ItemEntry<VanillaShieldItem> INVAR_SHIELD = vanillaShieldItem(MetalShield.INVAR, 300).register();
 	public static final ItemEntry<VanillaShieldItem> CONSTANTAN_SHIELD = vanillaShieldItem(MetalShield.CONSTANTAN, 250).register();
+	public static final ItemEntry<VanillaShieldItem> OSMIUM_SHIELD = vanillaShieldItem(MekanismMetalShield.OSMIUM, 250).register();
+	public static final ItemEntry<VanillaShieldItem> STEEL_SHIELD = vanillaShieldItem(MekanismMetalShield.STEEL, 500).register();
+	public static final ItemEntry<VanillaShieldItem> REFINED_OBSIDIAN_SHIELD = vanillaShieldItem(MekanismMetalShield.REFINED_OBSIDIAN, 1680).register();
+	public static final ItemEntry<VanillaShieldItem> REFINED_GLOWSTONE_SHIELD = vanillaShieldItem(MekanismMetalShield.REFINED_GLOWSTONE, 384).register();
+	public static final ItemEntry<VanillaShieldItem> LAPIS_SHIELD = REGISTRATE.item("lapis_shield", props -> new VanillaShieldItem(props, MekanismMetalShield.LAPIS)).tab(() -> SuperiorShields.ITEM_GROUP)
+					.tag(CURIOS_TAG)
+					.tag(SHIELD_TAG)
+					.recipe((ctx, p) -> {
+						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+										.pattern(" X ")
+										.pattern("XEX")
+										.pattern(" X ")
+										.define('X', Tags.Items.GEMS_LAPIS)
+										.define('E', ENDER_PEARLS)
+										.unlockedBy("has_enderpearl", DataIngredient.items(Items.ENDER_PEARL).getCritereon(p))
+										.save(p, p.safeId(ctx.getEntry()));
+					})
+					.properties(props -> props.durability(128)).register();
 
 	public static final ItemEntry<VanillaShieldItem> DIAMOND_SHIELD = REGISTRATE.item("diamond_shield",
 									props -> new VanillaShieldItem(props, VanillaShield.DIAMOND)).tab(() -> SuperiorShields.ITEM_GROUP)
@@ -68,7 +84,7 @@ public class ModItems {
 										.pattern(" X ")
 										.pattern("XEX")
 										.pattern(" X ")
-										.define('X', ItemTags.create(new ResourceLocation("forge", "gems/diamond")))
+										.define('X', Tags.Items.GEMS_DIAMOND)
 										.define('E', ENDER_PEARLS)
 										.unlockedBy("has_enderpearl", DataIngredient.items(Items.ENDER_PEARL).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
@@ -81,8 +97,8 @@ public class ModItems {
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
-						UpgradeRecipeBuilder.smithing(Ingredient.of(DIAMOND_SHIELD.get()), Ingredient.of(ItemTags.create(new ResourceLocation("forge", "ingots/netherite"))), ctx.get())
-										.unlocks("has_netherite", DataIngredient.tag(ItemTags.create(new ResourceLocation("forge", "ingots/netherite"))).getCritereon(p))
+						UpgradeRecipeBuilder.smithing(Ingredient.of(DIAMOND_SHIELD.get()), Ingredient.of(Tags.Items.INGOTS_NETHERITE), ctx.get())
+										.unlocks("has_netherite", DataIngredient.tag(Tags.Items.INGOTS_NETHERITE).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
 					})
 					.properties(props -> props.durability(Tiers.NETHERITE.getUses()))

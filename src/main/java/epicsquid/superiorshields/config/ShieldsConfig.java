@@ -1,9 +1,6 @@
 package epicsquid.superiorshields.config;
 
-import epicsquid.superiorshields.shield.BotaniaShield;
-import epicsquid.superiorshields.shield.IShieldType;
-import epicsquid.superiorshields.shield.MetalShield;
-import epicsquid.superiorshields.shield.VanillaShield;
+import epicsquid.superiorshields.shield.*;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.HashMap;
@@ -25,8 +22,16 @@ public class ShieldsConfig {
 		builder.pop();
 
 		builder.push("metal");
-		builder.comment("Shields made from materials present often present in a variety of mods");
+		builder.comment("Shields made from materials often present in a variety of mods");
 		for (IShieldType type : MetalShield.values()) {
+			var shieldConfig = new ShieldConfig(builder, type);
+			shieldConfig.addTo(SHIELDS);
+		}
+		builder.pop();
+
+		builder.push("mekanism_metals");
+		builder.comment("Shields made from materials present in Mekanism");
+		for (IShieldType type : MekanismMetalShield.values()) {
 			var shieldConfig = new ShieldConfig(builder, type);
 			shieldConfig.addTo(SHIELDS);
 		}
