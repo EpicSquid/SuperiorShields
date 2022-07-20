@@ -27,7 +27,6 @@ public class ModItems {
 
 	private static final TagKey<Item> CURIOS_TAG = ItemTags.create(new ResourceLocation(CuriosApi.MODID, SuperiorShields.SHIELD_CURIO));
 	private static final TagKey<Item> SHIELD_TAG = ItemTags.create(new ResourceLocation(SuperiorShields.MODID, "shield"));
-	private static final TagKey<Item> ENDER_PEARLS = ItemTags.create(new ResourceLocation("forge", "ender_pearls"));
 	private static final TagKey<Item> MANASTEEL_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/manasteel"));
 	private static final TagKey<Item> TERRASTEEL_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/terrasteel"));
 	private static final TagKey<Item> ELEMENTIUM_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/elementium"));
@@ -43,7 +42,7 @@ public class ModItems {
 										.pattern("XEX")
 										.pattern(" X ")
 										.define('X', Tags.Items.INGOTS_GOLD)
-										.define('E', ENDER_PEARLS)
+										.define('E', Tags.Items.ENDER_PEARLS)
 										.unlockedBy("has_enderpearl", DataIngredient.items(Items.ENDER_PEARL).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
 					})
@@ -69,8 +68,8 @@ public class ModItems {
 										.pattern("XEX")
 										.pattern(" X ")
 										.define('X', Tags.Items.GEMS_LAPIS)
-										.define('E', ENDER_PEARLS)
-										.unlockedBy("has_enderpearl", DataIngredient.items(Items.ENDER_PEARL).getCritereon(p))
+										.define('E', Tags.Items.ENDER_PEARLS)
+										.unlockedBy("has_enderpearl", DataIngredient.tag(Tags.Items.ENDER_PEARLS).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
 					})
 					.properties(props -> props.durability(128)).register();
@@ -85,8 +84,8 @@ public class ModItems {
 										.pattern("XEX")
 										.pattern(" X ")
 										.define('X', Tags.Items.GEMS_DIAMOND)
-										.define('E', ENDER_PEARLS)
-										.unlockedBy("has_enderpearl", DataIngredient.items(Items.ENDER_PEARL).getCritereon(p))
+										.define('E', Items.ENDER_EYE)
+										.unlockedBy("has_eye_of_ender", DataIngredient.items(Items.ENDER_EYE).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
 					})
 					.properties(props -> props.durability(Tiers.DIAMOND.getUses()))
@@ -162,8 +161,8 @@ public class ModItems {
 											.pattern("XEX")
 											.pattern(" X ")
 											.define('X', ItemTags.create(new ResourceLocation("forge", "ingots/" + type.name().toLowerCase(Locale.ROOT))))
-											.define('E', ENDER_PEARLS)
-											.unlockedBy("has_enderpearl", DataIngredient.items(Items.ENDER_PEARL).getCritereon(p))
+											.define('E', Tags.Items.ENDER_PEARLS)
+											.unlockedBy("has_enderpearl", DataIngredient.tag(Tags.Items.ENDER_PEARLS).getCritereon(p))
 											.save(p, p.safeId(ctx.getEntry()));
 						})
 						.properties(props -> props.durability(durability));

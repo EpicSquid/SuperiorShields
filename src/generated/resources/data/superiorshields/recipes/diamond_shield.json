@@ -10,7 +10,7 @@
       "tag": "forge:gems/diamond"
     },
     "E": {
-      "tag": "forge:ender_pearls"
+      "item": "minecraft:ender_eye"
     }
   },
   "result": {
