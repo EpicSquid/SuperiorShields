@@ -44,5 +44,15 @@ public class ShieldsConfig {
 			shieldConfig.addTo(SHIELDS);
 		}
 		builder.pop();
+
+		builder.push("energy");
+		builder.comment("Shields made from rechargable materials");
+		for (IShieldType type : EnergyShield.values()) {
+			var shieldConfig = new ShieldConfig(builder, type);
+			shieldConfig.addTo(SHIELDS);
+		}
+		builder.pop();
+
+
 	}
 }

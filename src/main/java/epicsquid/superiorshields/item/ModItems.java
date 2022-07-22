@@ -151,6 +151,22 @@ public class ModItems {
 					})
 					.register();
 
+
+	public static final ItemEntry<EnergyShieldItem> ENERGY_SHIELD = REGISTRATE.item("energy_shield", props -> new EnergyShieldItem(props, EnergyShield.ENERGY)).tab(() -> SuperiorShields.ITEM_GROUP)
+					.tag(CURIOS_TAG)
+					.tag(SHIELD_TAG)
+					.recipe((ctx, p) -> {
+						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+										.pattern(" X ")
+										.pattern("XEX")
+										.pattern(" X ")
+										.define('X', Tags.Items.INGOTS_GOLD)
+										.define('E', Tags.Items.ENDER_PEARLS)
+										.unlockedBy("has_enderpearl", DataIngredient.items(Items.ENDER_PEARL).getCritereon(p))
+										.save(p, p.safeId(ctx.getEntry()));
+					})
+					.register();
+
 	private static ItemBuilder<VanillaShieldItem, Registrate> vanillaShieldItem(IShieldType type, int durability) {
 		return REGISTRATE.item(type.name().toLowerCase(Locale.ROOT) + "_shield", props -> new VanillaShieldItem(props, type)).tab(() -> SuperiorShields.ITEM_GROUP)
 						.tag(CURIOS_TAG)
