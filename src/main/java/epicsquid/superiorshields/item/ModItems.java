@@ -32,6 +32,7 @@ public class ModItems {
 	private static final TagKey<Item> ELEMENTIUM_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/elementium"));
 
 	private static final TagKey<Item> ADVANCED_ALLOY = ItemTags.create(new ResourceLocation("forge", "alloys/advanced"));
+	private static final TagKey<Item> TIN_GEAR = ItemTags.create(new ResourceLocation("forge", "gears/tin"));
 	public static final ItemEntry<VanillaShieldItem> IRON_SHIELD = vanillaShieldItem(VanillaShield.IRON, Tiers.IRON.getUses()).register();
 	public static final ItemEntry<VanillaShieldItem> COPPER_SHIELD = vanillaShieldItem(VanillaShield.COPPER, 160).register();
 	public static final ItemEntry<VanillaShieldItem> GOLDEN_SHIELD = REGISTRATE.item("golden_shield", props -> new VanillaShieldItem(props, VanillaShield.GOLD)).tab(() -> SuperiorShields.ITEM_GROUP)
@@ -174,11 +175,12 @@ public class ModItems {
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
 						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-										.pattern(" X ")
+										.pattern(" G ")
 										.pattern("XEX")
-										.pattern(" X ")
-										.define('X', ADVANCED_ALLOY)
-										.define('E', ItemTags.create(new ResourceLocation("forge", "batteries")))
+										.pattern(" G ")
+										.define('G', TIN_GEAR)
+										.define('X', Tags.Items.INGOTS_IRON)
+										.define('E', ModTags.FLUX_COIL)
 										.unlockedBy("has_advanced_alloy", DataIngredient.tag(ADVANCED_ALLOY).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
 					})

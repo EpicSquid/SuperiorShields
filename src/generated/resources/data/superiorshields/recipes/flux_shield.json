@@ -1,16 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " X ",
+    " G ",
     "XEX",
-    " X "
+    " G "
   ],
   "key": {
+    "G": {
+      "tag": "forge:gears/tin"
+    },
     "X": {
-      "tag": "forge:alloys/advanced"
+      "tag": "forge:ingots/iron"
     },
     "E": {
-      "tag": "forge:batteries"
+      "tag": "forge:flux_coil"
     }
   },
   "result": {
