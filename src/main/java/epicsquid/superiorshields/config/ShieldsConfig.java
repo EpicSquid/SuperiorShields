@@ -63,6 +63,14 @@ public class ShieldsConfig {
 		}
 		builder.pop();
 
+		builder.push("thermal");
+		builder.comment("Thermal augmentable shields stats. Each one represents a tier based on the integral components");
+		for (IShieldType type : AugmentableShield.values()) {
+			var shieldConfig = new ShieldConfig(builder, type);
+			shieldConfig.addTo(SHIELDS);
+		}
+		builder.pop();
+
 
 	}
 }

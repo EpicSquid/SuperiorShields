@@ -168,6 +168,22 @@ public class ModItems {
 					})
 					.register();
 
+	// Thermal Augmentable Shield
+	public static final ItemEntry<ThermalShieldItem> FLUX_SHIELD = REGISTRATE.item("flux_shield", props -> new ThermalShieldItem(props, AugmentableShield.BASE)).tab(() -> SuperiorShields.ITEM_GROUP)
+					.tag(CURIOS_TAG)
+					.tag(SHIELD_TAG)
+					.recipe((ctx, p) -> {
+						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+										.pattern(" X ")
+										.pattern("XEX")
+										.pattern(" X ")
+										.define('X', ADVANCED_ALLOY)
+										.define('E', ItemTags.create(new ResourceLocation("forge", "batteries")))
+										.unlockedBy("has_advanced_alloy", DataIngredient.tag(ADVANCED_ALLOY).getCritereon(p))
+										.save(p, p.safeId(ctx.getEntry()));
+					})
+					.register();
+
 	private static ItemBuilder<VanillaShieldItem, Registrate> vanillaShieldItem(IShieldType type, int durability) {
 		return REGISTRATE.item(type.name().toLowerCase(Locale.ROOT) + "_shield", props -> new VanillaShieldItem(props, type)).tab(() -> SuperiorShields.ITEM_GROUP)
 						.tag(CURIOS_TAG)
