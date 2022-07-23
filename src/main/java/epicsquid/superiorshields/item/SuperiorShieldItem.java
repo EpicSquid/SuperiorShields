@@ -37,7 +37,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class SuperiorShieldItem<T extends IShieldType> extends Item implements SuperiorShield<T>, ICurioItem {
-	private final T shieldType;
+	protected T shieldType;
 
 	// Used to ensure the potion effect is not applied every tick
 	private int onTickEventTrigger = 0;

@@ -31,6 +31,8 @@ public class ModItems {
 	private static final TagKey<Item> TERRASTEEL_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/terrasteel"));
 	private static final TagKey<Item> ELEMENTIUM_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/elementium"));
 
+	private static final TagKey<Item> ADVANCED_ALLOY = ItemTags.create(new ResourceLocation("forge", "alloys/advanced"));
+	private static final TagKey<Item> TIN_GEAR = ItemTags.create(new ResourceLocation("forge", "gears/tin"));
 	public static final ItemEntry<VanillaShieldItem> IRON_SHIELD = vanillaShieldItem(VanillaShield.IRON, Tiers.IRON.getUses()).register();
 	public static final ItemEntry<VanillaShieldItem> COPPER_SHIELD = vanillaShieldItem(VanillaShield.COPPER, 160).register();
 	public static final ItemEntry<VanillaShieldItem> GOLDEN_SHIELD = REGISTRATE.item("golden_shield", props -> new VanillaShieldItem(props, VanillaShield.GOLD)).tab(() -> SuperiorShields.ITEM_GROUP)
@@ -147,6 +149,39 @@ public class ModItems {
 										.define('X', ELEMENTIUM_INGOT)
 										.define('E', ModTags.PIXIE_DUST)
 										.unlockedBy("has_elementium", DataIngredient.tag(ELEMENTIUM_INGOT).getCritereon(p))
+										.save(p, p.safeId(ctx.getEntry()));
+					})
+					.register();
+
+	// Mekanism Electric Shield
+	public static final ItemEntry<EnergyShieldItem> ELECTRIC_SHIELD = REGISTRATE.item("electric_shield", props -> new EnergyShieldItem(props, EnergyShield.ELECTRIC_SHIELD)).tab(() -> SuperiorShields.ITEM_GROUP)
+					.tag(CURIOS_TAG)
+					.tag(SHIELD_TAG)
+					.recipe((ctx, p) -> {
+						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+										.pattern(" X ")
+										.pattern("XEX")
+										.pattern(" X ")
+										.define('X', ADVANCED_ALLOY)
+										.define('E', ItemTags.create(new ResourceLocation("forge", "batteries")))
+										.unlockedBy("has_advanced_alloy", DataIngredient.tag(ADVANCED_ALLOY).getCritereon(p))
+										.save(p, p.safeId(ctx.getEntry()));
+					})
+					.register();
+
+	// Thermal Augmentable Shield
+	public static final ItemEntry<ThermalShieldItem> FLUX_SHIELD = REGISTRATE.item("flux_shield", props -> new ThermalShieldItem(props, AugmentableShield.BASE)).tab(() -> SuperiorShields.ITEM_GROUP)
+					.tag(CURIOS_TAG)
+					.tag(SHIELD_TAG)
+					.recipe((ctx, p) -> {
+						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+										.pattern(" G ")
+										.pattern("XEX")
+										.pattern(" G ")
+										.define('G', TIN_GEAR)
+										.define('X', Tags.Items.INGOTS_IRON)
+										.define('E', ModTags.FLUX_COIL)
+										.unlockedBy("has_advanced_alloy", DataIngredient.tag(ADVANCED_ALLOY).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
 					})
 					.register();

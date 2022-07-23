@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "XEX",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:alloys/advanced"
+    },
+    "E": {
+      "tag": "forge:batteries"
+    }
+  },
+  "result": {
+    "item": "superiorshields:electric_shield"
+  }
+}

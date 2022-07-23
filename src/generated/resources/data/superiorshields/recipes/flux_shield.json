@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "XEX",
+    " G "
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:gears/tin"
+    },
+    "X": {
+      "tag": "forge:ingots/iron"
+    },
+    "E": {
+      "tag": "forge:flux_coil"
+    }
+  },
+  "result": {
+    "item": "superiorshields:flux_shield"
+  }
+}
