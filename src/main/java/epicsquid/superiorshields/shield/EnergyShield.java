@@ -4,7 +4,7 @@ import epicsquid.superiorshields.shield.effect.IShieldEffect;
 import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
 
 public enum EnergyShield implements IEnergyShield {
-	ELECTRIC_SHIELD(12, 8f, 20, 20, 48000, 0x3CFE9A);
+	ELECTRIC_SHIELD(12, 7f, 60, 60, 48000, 0x3CFE9A);
 
 	private final int enchantability;
 	private final float defaultCapacity;

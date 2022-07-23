@@ -61,7 +61,7 @@ public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 		var energyOp = getEnergyStorage(stack);
 		if (energyOp.isPresent()) {
 			var energyIn = energyOp.get();
-			return Math.round(13.0F - (float)energyIn.getEnergyStored() * 13.0F / (float)energyIn.getMaxEnergyStored());
+			return Math.round((float)energyIn.getEnergyStored() * 13.0F / (float)energyIn.getMaxEnergyStored());
 		}
 		return 0;
 	}
