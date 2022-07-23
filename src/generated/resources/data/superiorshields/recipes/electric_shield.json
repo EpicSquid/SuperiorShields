@@ -7,13 +7,13 @@
   ],
   "key": {
     "X": {
-      "tag": "forge:ingots/gold"
+      "tag": "forge:alloys/advanced"
     },
     "E": {
-      "tag": "forge:ender_pearls"
+      "tag": "forge:batteries"
     }
   },
   "result": {
-    "item": "superiorshields:energy_shield"
+    "item": "superiorshields:electric_shield"
   }
 }

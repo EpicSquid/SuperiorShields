@@ -1,5 +1,6 @@
 package epicsquid.superiorshields.item;
 
+import epicsquid.superiorshields.config.Config;
 import epicsquid.superiorshields.shield.IEnergyShield;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -20,8 +21,6 @@ import java.util.Optional;
 
 public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 
-	private int energyToConsume = 400;
-
 	@Nonnull
 	private final IEnergyStorage energy;
 	private final LazyOptional<IEnergyStorage> energyHandler = LazyOptional.of(this::getEnergy);
@@ -36,6 +35,7 @@ public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 		var energyOp = getEnergyStorage(stack);
 		if (energyOp.isPresent()) {
 			var energy = energyOp.get();
+			int energyToConsume = Config.SHIELD.ENERGY_CONSUMPTION.get();
 			if (energy.getEnergyStored() > energyToConsume) {
 				energy.extractEnergy(energyToConsume, false);
 				return true;
@@ -59,8 +59,7 @@ public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 	@Override
 	public int getBarWidth(@Nonnull ItemStack stack) {
 		var energyOp = getEnergyStorage(stack);
-		CompoundTag tag = stack.getTag();
-		if (tag != null && energyOp.isPresent()) {
+		if (energyOp.isPresent()) {
 			var energyIn = energyOp.get();
 			return Math.round(13.0F - (float)energyIn.getEnergyStored() * 13.0F / (float)energyIn.getMaxEnergyStored());
 		}

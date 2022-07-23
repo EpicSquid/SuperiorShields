@@ -2,10 +2,9 @@ package epicsquid.superiorshields.shield;
 
 import epicsquid.superiorshields.shield.effect.IShieldEffect;
 import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
-import net.minecraft.world.item.Tiers;
 
 public enum EnergyShield implements IEnergyShield {
-	ENERGY(12, 8f, 20, 20, 20000);
+	ELECTRIC_SHIELD(12, 8f, 20, 20, 48000, 0x3CFE9A);
 
 	private final int enchantability;
 	private final float defaultCapacity;
@@ -13,17 +12,20 @@ public enum EnergyShield implements IEnergyShield {
 	private final int defaultDelay;
 	private final int defaultMaxEnergy;
 
-	EnergyShield(int enchantability, float defaultCapacity, int defaultRate, int defaultDelay, int defaultMaxEnergy) {
+	private final int color;
+
+	EnergyShield(int enchantability, float defaultCapacity, int defaultRate, int defaultDelay, int defaultMaxEnergy, int color) {
 		this.enchantability = enchantability;
 		this.defaultCapacity = defaultCapacity;
 		this.defaultRate = defaultRate;
 		this.defaultDelay = defaultDelay;
 		this.defaultMaxEnergy = defaultMaxEnergy;
+		this.color = color;
 	}
 
 	@Override
 	public int getColor() {
-		return 0xFF0000;
+		return color;
 	}
 
 	@Override

@@ -10,7 +10,17 @@ public class ShieldsConfig {
 
 	public final Map<IShieldType, IShieldConfig> SHIELDS;
 
+	public final ForgeConfigSpec.ConfigValue<Integer> MANA_CONSUMPTION;
+	public final ForgeConfigSpec.ConfigValue<Integer> ENERGY_CONSUMPTION;
+
 	public ShieldsConfig(ForgeConfigSpec.Builder builder) {
+
+		builder.push("consumption");
+		builder.comment("The amount of a resource to use for a given shield type.");
+		MANA_CONSUMPTION = builder.comment("The amount of botania mana to consume when recharging a single shield HP.").define("botania_mana", 400);
+		ENERGY_CONSUMPTION = builder.comment("The amount of forge energy (FE) to consume when recharging a single shield HP.").define("energy", 400);
+		builder.pop();
+
 		SHIELDS = new HashMap<>();
 
 		builder.push("vanilla");

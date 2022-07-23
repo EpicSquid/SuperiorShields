@@ -2,18 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "superiorshields:energy_shield"
+      "superiorshields:electric_shield"
     ]
   },
   "criteria": {
-    "has_enderpearl": {
+    "has_advanced_alloy": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:ender_pearl"
-            ]
+            "tag": "forge:alloys/advanced"
           }
         ]
       }
@@ -21,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "superiorshields:energy_shield"
+        "recipe": "superiorshields:electric_shield"
       }
     }
   },
   "requirements": [
     [
-      "has_enderpearl",
+      "has_advanced_alloy",
       "has_the_recipe"
     ]
   ]

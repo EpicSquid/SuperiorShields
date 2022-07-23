@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "superiorshields:item/energy_shield"
+    "layer0": "superiorshields:item/electric_shield"
   }
 }
