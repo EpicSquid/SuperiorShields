@@ -17,7 +17,7 @@ public class ShieldEffectPotionNova extends ShieldEffectNova {
     public ShieldEffectPotionNova(int duration, double radius, String description, @Nonnull MobEffect... effects) {
         super(radius, description);
         this.effects = Arrays.asList(effects);
-        this.duration = duration;
+        this.duration = duration * 20;
     }
 
     @Override

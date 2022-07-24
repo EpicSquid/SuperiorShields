@@ -16,7 +16,7 @@ public class ShieldEffectSpikePotion extends ShieldEffectSpike {
 
 	public ShieldEffectSpikePotion(String description, int duration, MobEffect... effects) {
 		super(description);
-		this.duration = duration;
+		this.duration = duration * 20;
 		this.effects = Arrays.asList(effects);
 	}
 
