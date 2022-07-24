@@ -6,7 +6,6 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import epicsquid.superiorshields.SuperiorShields;
 import epicsquid.superiorshields.item.ISuperiorShield;
 import epicsquid.superiorshields.shield.effect.ShieldEffectFireNova;
-import epicsquid.superiorshields.shield.effect.ShieldEffectKnockbackNova;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
@@ -18,11 +17,7 @@ public class ModEnchantments {
 	public static final RegistryEntry<CapacityEnchantment> CAPACITY = enchantmentBuilder("capacity", new CapacityEnchantment(Enchantment.Rarity.COMMON, type)).lang("Shield Capacity").register();
 	public static final RegistryEntry<CuringEnchantment> CURING = enchantmentBuilder("curing", new CuringEnchantment(Enchantment.Rarity.RARE, type)).lang("Curing").register();
 	public static final RegistryEntry<QuickenedEnchantment> QUICKENED = enchantmentBuilder("quickened", new QuickenedEnchantment(Enchantment.Rarity.COMMON, type)).lang("Quickened").register();
-	public static final RegistryEntry<NovaShieldEnchantment> KNOCKBACK_NOVA = enchantmentBuilder("knockback_nova", new NovaShieldEnchantment(
-									Enchantment.Rarity.UNCOMMON, type,
-									new ShieldEffectKnockbackNova(1.5, 1, 1, 1)
-					)
-	).lang("Knockback Nova").register();
+
 	public static final RegistryEntry<NovaShieldEnchantment> FIRE_NOVA = enchantmentBuilder("fire_nova", new NovaShieldEnchantment(
 									Enchantment.Rarity.UNCOMMON, type,
 									new ShieldEffectFireNova(5, 1.5)
