@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "XEX",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:ingots/fiery"
+    },
+    "E": {
+      "item": "minecraft:ender_eye"
+    }
+  },
+  "result": {
+    "item": "superiorshields:fiery_shield"
+  }
+}

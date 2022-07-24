@@ -16,6 +16,8 @@
     "superiorshields:steel_shield",
     "superiorshields:refined_obsidian_shield",
     "superiorshields:refined_glowstone_shield",
+    "superiorshields:ironwood_shield",
+    "superiorshields:steelleaf_shield",
     "superiorshields:lapis_shield",
     "superiorshields:diamond_shield",
     "superiorshields:netherite_shield",
@@ -23,6 +25,8 @@
     "superiorshields:terrasteel_shield",
     "superiorshields:elementium_shield",
     "superiorshields:electric_shield",
-    "superiorshields:flux_shield"
+    "superiorshields:flux_shield",
+    "superiorshields:knightmetal_shield",
+    "superiorshields:fiery_shield"
   ]
 }

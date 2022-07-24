@@ -71,6 +71,14 @@ public class ShieldsConfig {
 		}
 		builder.pop();
 
+		builder.push("twilight_forest");
+		builder.comment("Shields made from materials from present in the Twilight Forest");
+		for (IShieldType type : TwilightForestShield.values()) {
+			var shieldConfig = new ShieldConfig(builder, type);
+			shieldConfig.addTo(SHIELDS);
+		}
+		builder.pop();
+
 
 	}
 }

@@ -2,16 +2,18 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "superiorshields:flux_shield"
+      "superiorshields:knightmetal_shield"
     ]
   },
   "criteria": {
-    "has_redstone": {
+    "has_eye_of_ender": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:dusts/redstone"
+            "items": [
+              "minecraft:ender_eye"
+            ]
           }
         ]
       }
@@ -19,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "superiorshields:flux_shield"
+        "recipe": "superiorshields:knightmetal_shield"
       }
     }
   },
   "requirements": [
     [
-      "has_redstone",
+      "has_eye_of_ender",
       "has_the_recipe"
     ]
   ]
