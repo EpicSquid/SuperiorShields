@@ -1,5 +1,6 @@
 package epicsquid.superiorshields.shield.effect;
 
+import epicsquid.superiorshields.lang.ModLang;
 import net.minecraft.world.entity.LivingEntity;
 
 import javax.annotation.Nonnull;
@@ -7,10 +8,10 @@ import java.util.List;
 
 public class ShieldEffectFireNova extends ShieldEffectNova {
 
-    private int duration;
+    private final int duration;
 
     public ShieldEffectFireNova(int duration, double radius) {
-        super(radius, "superior_shield.effect.fire_nova");
+        super(radius, ModLang.FIRE_NOVA.getKey());
         this.duration = duration;
     }
 

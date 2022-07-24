@@ -11,15 +11,8 @@ import java.util.List;
 
 public class ShieldEffectPotionNova extends ShieldEffectNova {
 
-    private List<MobEffect> effects;
-    private int duration;
-
-    public ShieldEffectPotionNova(@Nonnull MobEffect effect, int duration, double radius, String description) {
-        super(radius, description);
-        this.effects = new ArrayList<>();
-        effects.add(effect);
-        this.duration = duration;
-    }
+    private final List<MobEffect> effects;
+    private final int duration;
 
     public ShieldEffectPotionNova(int duration, double radius, String description, @Nonnull MobEffect... effects) {
         super(radius, description);

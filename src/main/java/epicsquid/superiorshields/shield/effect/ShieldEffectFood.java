@@ -12,10 +12,10 @@ import java.util.Random;
 
 public class ShieldEffectFood implements IShieldEffect {
 
-    private Random random = new Random();
-    private float chanceToFeed;
-    private int foodLevel;
-    private float saturationModifier;
+    private final Random random = new Random();
+    private final float chanceToFeed;
+    private final int foodLevel;
+    private final float saturationModifier;
 
     public ShieldEffectFood(float chanceToFeed, int foodLevel, float saturationModifier) {
         this.chanceToFeed = chanceToFeed;

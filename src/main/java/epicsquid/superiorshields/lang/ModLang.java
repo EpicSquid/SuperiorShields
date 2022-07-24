@@ -19,8 +19,9 @@ public class ModLang {
 	public static final TranslatableComponent SHIELD_CURIOS = REGISTRATE.addRawLang(CuriosApi.MODID + ".identifier.superior_shield", "Superior Shield");
 	public static final TranslatableComponent CREATIVE_TAB = REGISTRATE.addRawLang("itemGroup." + SuperiorShields.MODID, "Superior Shields");
 
-	public static final TranslatableComponent FIRE_NOVA = REGISTRATE.addRawLang(SuperiorShields.MODID + ".effect.fire_nova", "On depletion, lights all mobs around you ablaze.");
-	public static final TranslatableComponent CURING = REGISTRATE.addRawLang(SuperiorShields.MODID + ".effect.curing", "On depletion, cures you of all potion effects, just like milk.");
+	public static final TranslatableComponent FIRE_NOVA = REGISTRATE.addRawLang("enchantment." + SuperiorShields.MODID + ".fire_nova.desc", "On depletion, lights all mobs around you on fire.");
+	public static final TranslatableComponent FROST_NOVA = REGISTRATE.addRawLang("enchantment." + SuperiorShields.MODID + ".frost_nova.desc", "On depletion, slows and weakens all mobs around you.");
+	public static final TranslatableComponent CURING = REGISTRATE.addRawLang("enchantment." + SuperiorShields.MODID + ".curing.desc", "On depletion, cures you of all potion effects, just like milk.");
 
 	public static void classload() {}
 

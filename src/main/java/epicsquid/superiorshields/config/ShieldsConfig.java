@@ -76,6 +76,9 @@ public class ShieldsConfig {
 		for (IShieldType type : TwilightForestShield.values()) {
 			var shieldConfig = new ShieldConfig(builder, type);
 			shieldConfig.addTo(SHIELDS);
+		}for (IShieldType type : FieryShield.values()) {
+			var shieldConfig = new ShieldConfig(builder, type);
+			shieldConfig.addTo(SHIELDS);
 		}
 		builder.pop();
 

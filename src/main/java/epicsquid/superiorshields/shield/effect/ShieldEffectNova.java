@@ -13,8 +13,8 @@ import java.util.List;
 
 public abstract class ShieldEffectNova implements IShieldEffect {
 
-	private double radius;
-	private String description;
+	private final double radius;
+	private final String description;
 
 	public ShieldEffectNova(double radius, String description) {
 		this.radius = radius;
