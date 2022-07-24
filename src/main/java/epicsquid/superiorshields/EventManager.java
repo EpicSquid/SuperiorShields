@@ -28,18 +28,16 @@ public class EventManager {
 	public void onLivingHurtEvent(@Nonnull LivingHurtEvent event) {
 		if (event.getEntity() instanceof Player player) {
 			if (CuriosApi.getCuriosHelper().getCuriosHandler(player).isPresent() && event.getSource() != DamageSource.STARVE && event.getSource() != DamageSource.DROWN) {
-				var curiosOp = CuriosApi.getCuriosHelper().getCuriosHandler(player).resolve();
-				if (curiosOp.isPresent()) {
-					ICuriosItemHandler handler = curiosOp.get();
+				CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(handler -> {
 					handler.getStacksHandler(SuperiorShields.SHIELD_CURIO).ifPresent(
 									stackHandler -> {
 										ItemStack stack = stackHandler.getStacks().getStackInSlot(0);
-										if (!stack.isEmpty() && stack.getItem() instanceof ISuperiorShield) {
-											event.setAmount(((ISuperiorShield<?>) stack.getItem()).applyShield(player, stack, event.getAmount(), event.getSource()));
+										if (!stack.isEmpty() && stack.getItem() instanceof ISuperiorShield superiorShield) {
+											event.setAmount(superiorShield.applyShield(player, stack, event.getAmount(), event.getSource()));
 										}
 									}
 					);
-				}
+				});
 			}
 		}
 	}
