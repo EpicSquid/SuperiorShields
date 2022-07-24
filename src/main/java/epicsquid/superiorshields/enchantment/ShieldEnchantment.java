@@ -1,6 +1,6 @@
 package epicsquid.superiorshields.enchantment;
 
-import epicsquid.superiorshields.item.SuperiorShield;
+import epicsquid.superiorshields.item.ISuperiorShield;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -14,6 +14,6 @@ public class ShieldEnchantment extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return stack.getItem() instanceof SuperiorShield;
+        return stack.getItem() instanceof ISuperiorShield;
     }
 }

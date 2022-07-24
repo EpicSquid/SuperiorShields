@@ -16,4 +16,16 @@ public interface IShieldCapability extends INBTSerializable<CompoundTag> {
   void setMaxHp(float maxHp);
 
   void setTimeWithoutDamage(int time);
+
+  default void invalidateShield() {
+    setCurrentHp(0);
+    setMaxHp(0);
+    setTimeWithoutDamage(0);
+  }
+
+  default void setupShield(float maxHp) {
+    setMaxHp(maxHp);
+    setCurrentHp(0);
+    setTimeWithoutDamage(0);
+  }
 }
