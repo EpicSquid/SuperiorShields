@@ -21,6 +21,7 @@ public class ModLang {
 
 	public static final TranslatableComponent FIRE_NOVA = registerEnchantmentDescription("fire_nova", "On depletion, lights all mobs around you on fire.");
 	public static final TranslatableComponent FROST_NOVA = registerEnchantmentDescription("frost_nova", "On depletion, slows and weakens all mobs around you.");
+	public static final TranslatableComponent SHULKING_NOVA = registerEnchantmentDescription("shulking_nova", "On depletion, makes all mobs around you float.");
 	public static final TranslatableComponent POISON_SPIKES = registerEnchantmentDescription("poison_spikes", "On damage to shield, magical spikes will poison the attacker.");
 	public static final TranslatableComponent WITHER_SPIKES = registerEnchantmentDescription("wither_spikes", "On damage to shield, magical spikes will wither the attacker.");
 	public static final TranslatableComponent CURING = registerEnchantmentDescription("curing", "On depletion, cures you of all potion effects, just like milk.");

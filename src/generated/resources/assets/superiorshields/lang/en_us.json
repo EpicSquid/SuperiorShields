@@ -12,6 +12,8 @@
   "enchantment.superiorshields.poison_spikes.desc": "On damage to shield, magical spikes will poison the attacker.",
   "enchantment.superiorshields.quickened": "Quickened",
   "enchantment.superiorshields.quickened.desc": "Increases shield recharge rate.",
+  "enchantment.superiorshields.shulking_nova": "Frost Nova",
+  "enchantment.superiorshields.shulking_nova.desc": "On depletion, makes all mobs around you float.",
   "enchantment.superiorshields.wither_spikes": "Withering Spikes",
   "enchantment.superiorshields.wither_spikes.desc": "On damage to shield, magical spikes will wither the attacker.",
   "item.superiorshields.bronze_shield": "Bronze Shield",

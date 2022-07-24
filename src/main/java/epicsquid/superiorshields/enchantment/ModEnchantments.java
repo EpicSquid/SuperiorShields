@@ -34,6 +34,12 @@ public class ModEnchantments {
 					)
 	).lang("Frost Nova").register();
 
+	public static final RegistryEntry<NovaShieldEnchantment> SHULKING_NOVA = enchantmentBuilder("shulking_nova", new NovaShieldEnchantment(
+									Enchantment.Rarity.RARE, type,
+									new ShieldEffectPotionNova(5, 1.5, ModLang.SHULKING_NOVA.getKey(), MobEffects.LEVITATION)
+					)
+	).lang("Frost Nova").register();
+
 	public static final RegistryEntry<SpikeShieldEnchantment> POISON_SPIKES = enchantmentBuilder("poison_spikes", new SpikeShieldEnchantment(
 									Enchantment.Rarity.UNCOMMON, type,
 									new ShieldEffectSpikePotion(ModLang.POISON_SPIKES.getKey(), 2, MobEffects.POISON)
