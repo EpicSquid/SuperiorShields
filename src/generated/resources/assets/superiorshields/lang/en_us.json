@@ -1,5 +1,7 @@
 {
   "curios.identifier.superior_shield": "Superior Shield",
+  "enchantment.superiorshields.amplify": "Amplify",
+  "enchantment.superiorshields.amplify.desc": "While your shield is full, your next attack will deal significantly greater damage, at the cost of some shield energy.",
   "enchantment.superiorshields.capacity": "Shield Capacity",
   "enchantment.superiorshields.capacity.desc": "Increases shield capacity.",
   "enchantment.superiorshields.curing": "Curing",
@@ -12,6 +14,8 @@
   "enchantment.superiorshields.poison_spikes.desc": "On damage to shield, magical spikes will poison the attacker.",
   "enchantment.superiorshields.quickened": "Quickened",
   "enchantment.superiorshields.quickened.desc": "Increases shield recharge rate.",
+  "enchantment.superiorshields.raging": "Raging",
+  "enchantment.superiorshields.raging.desc": "Increases your damage while your shield is depleted.",
   "enchantment.superiorshields.shulking_nova": "Frost Nova",
   "enchantment.superiorshields.shulking_nova.desc": "On depletion, makes all mobs around you float.",
   "enchantment.superiorshields.wither_spikes": "Withering Spikes",

@@ -19,6 +19,8 @@ public class ModEnchantments {
 	private static final Registrate REGISTRATE = SuperiorShields.registrate();
 
 	public static final RegistryEntry<CapacityEnchantment> CAPACITY = enchantmentBuilder("capacity", new CapacityEnchantment(Enchantment.Rarity.COMMON, type)).lang("Shield Capacity").register();
+	public static final RegistryEntry<RagingEnchantment> RAGING = enchantmentBuilder("raging", new RagingEnchantment(Enchantment.Rarity.RARE, type)).lang("Raging").register();
+	public static final RegistryEntry<AmplifyEnchantment> AMPLIFY = enchantmentBuilder("amplify", new AmplifyEnchantment(Enchantment.Rarity.RARE, type)).lang("Amplify").register();
 	public static final RegistryEntry<CuringEnchantment> CURING = enchantmentBuilder("curing", new CuringEnchantment(Enchantment.Rarity.RARE, type)).lang("Curing").register();
 	public static final RegistryEntry<QuickenedEnchantment> QUICKENED = enchantmentBuilder("quickened", new QuickenedEnchantment(Enchantment.Rarity.COMMON, type)).lang("Quickened").register();
 
