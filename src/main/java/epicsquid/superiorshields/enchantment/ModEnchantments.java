@@ -26,31 +26,31 @@ public class ModEnchantments {
 
 	public static final RegistryEntry<NovaShieldEnchantment> FIRE_NOVA = enchantmentBuilder("fire_nova", new NovaShieldEnchantment(
 									Enchantment.Rarity.UNCOMMON, type,
-									new ShieldEffectFireNova(5, 1.5)
+									new ShieldEffectFireNova()
 					)
 	).lang("Fire Nova").register();
 
 	public static final RegistryEntry<NovaShieldEnchantment> FROST_NOVA = enchantmentBuilder("frost_nova", new NovaShieldEnchantment(
 									Enchantment.Rarity.UNCOMMON, type,
-									new ShieldEffectPotionNova(5, 1.5, ModLang.FROST_NOVA.getKey(), MobEffects.WEAKNESS, MobEffects.MOVEMENT_SLOWDOWN)
+									new ShieldEffectPotionNova(ModLang.FROST_NOVA.getKey(), MobEffects.WEAKNESS, MobEffects.MOVEMENT_SLOWDOWN)
 					)
 	).lang("Frost Nova").register();
 
 	public static final RegistryEntry<NovaShieldEnchantment> SHULKING_NOVA = enchantmentBuilder("shulking_nova", new NovaShieldEnchantment(
 									Enchantment.Rarity.RARE, type,
-									new ShieldEffectPotionNova(5, 1.5, ModLang.SHULKING_NOVA.getKey(), MobEffects.LEVITATION)
+									new ShieldEffectPotionNova(ModLang.SHULKING_NOVA.getKey(), MobEffects.LEVITATION)
 					)
 	).lang("Frost Nova").register();
 
 	public static final RegistryEntry<SpikeShieldEnchantment> POISON_SPIKES = enchantmentBuilder("poison_spikes", new SpikeShieldEnchantment(
 									Enchantment.Rarity.UNCOMMON, type,
-									new ShieldEffectSpikePotion(ModLang.POISON_SPIKES.getKey(), 2, MobEffects.POISON)
+									new ShieldEffectSpikePotion(ModLang.POISON_SPIKES.getKey(), MobEffects.POISON)
 					)
 	).lang("Poison Spikes").register();
 
 	public static final RegistryEntry<SpikeShieldEnchantment> WITHER_SPIKES = enchantmentBuilder("wither_spikes", new SpikeShieldEnchantment(
 									Enchantment.Rarity.UNCOMMON, type,
-									new ShieldEffectSpikePotion(ModLang.WITHER_SPIKES.getKey(), 2, MobEffects.WITHER)
+									new ShieldEffectSpikePotion(ModLang.WITHER_SPIKES.getKey(), MobEffects.WITHER)
 					)
 	).lang("Withering Spikes").register();
 

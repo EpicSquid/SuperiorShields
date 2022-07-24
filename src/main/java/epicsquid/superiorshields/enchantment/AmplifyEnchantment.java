@@ -1,6 +1,7 @@
 package epicsquid.superiorshields.enchantment;
 
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
+import epicsquid.superiorshields.config.Config;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class AmplifyEnchantment extends DamageBoostEnchantment {
@@ -22,7 +23,7 @@ public class AmplifyEnchantment extends DamageBoostEnchantment {
     @Override
     public boolean shouldBoostDamage(IShieldCapability shield) {
         if (shield.getCurrentHp() >= shield.getMaxHp() && shield.getMaxHp() > 0) {
-            shield.setCurrentHp(shield.getCurrentHp() - 1.5f);
+            shield.setCurrentHp(shield.getCurrentHp() - Config.SHIELD.AMPLIFY_SHIELD_DRAIN.get());
             shield.setTimeWithoutDamage(0);
             return true;
         }

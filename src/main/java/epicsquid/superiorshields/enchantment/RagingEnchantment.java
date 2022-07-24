@@ -1,7 +1,7 @@
 package epicsquid.superiorshields.enchantment;
 
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
-import net.minecraft.world.item.ItemStack;
+import epicsquid.superiorshields.config.Config;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class RagingEnchantment extends DamageBoostEnchantment {
@@ -17,7 +17,7 @@ public class RagingEnchantment extends DamageBoostEnchantment {
 
     @Override
     public float boostDamage(float damage) {
-        return damage + 2.0f;
+        return damage + Config.SHIELD.RAGING_DAMAGE_ADDED.get();
     }
 
     @Override
