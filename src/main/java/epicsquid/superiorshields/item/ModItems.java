@@ -205,8 +205,8 @@ public class ModItems {
 					.properties(props -> props.durability(Tiers.DIAMOND.getUses()))
 					.register();
 
-	public static final ItemEntry<VanillaShieldItem> FIERY_SHIELD = REGISTRATE.item("fiery_shield",
-									props -> new VanillaShieldItem(props, TwilightForestShield.FIREY)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<FieryShieldItem> FIERY_SHIELD = REGISTRATE.item("fiery_shield",
+									props -> new FieryShieldItem(props, FieryShield.FIREY)).tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {

@@ -1,22 +1,19 @@
 package epicsquid.superiorshields.shield;
 
 import epicsquid.superiorshields.shield.effect.IShieldEffect;
+import epicsquid.superiorshields.shield.effect.ShieldEffectFireNova;
 import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
-import net.minecraft.world.item.Tiers;
 
-public enum TwilightForestShield implements IShieldType {
-	// Fast iron, gold + iron
-	IRONWOOD(25, 5f, 40, 40),
-	// Tough, slow shield
-	KNIGHTMETAL(8, 9f, 60, 100),
-	STEELLEAF(9, 6f, 40, 40);
+public enum FieryShield implements IShieldType {
+	// Better than diamond, also comes with fire nova enchantment
+	FIREY(10, 7f, 30, 60);
 
 	private final int enchantability;
 	private final float defaultCapacity;
 	private final int defaultRate;
 	private final int defaultDelay;
 
-	TwilightForestShield(int enchantability, float defaultCapacity, int defaultRate, int defaultDelay) {
+	FieryShield(int enchantability, float defaultCapacity, int defaultRate, int defaultDelay) {
 		this.enchantability = enchantability;
 		this.defaultCapacity = defaultCapacity;
 		this.defaultRate = defaultRate;
@@ -35,7 +32,7 @@ public enum TwilightForestShield implements IShieldType {
 
 	@Override
 	public IShieldEffect getEffect() {
-		return new ShieldEffectNone();
+		return new ShieldEffectFireNova(5, 6);
 	}
 
 	@Override
