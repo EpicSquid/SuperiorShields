@@ -20,7 +20,7 @@ public class ShieldEffectPotion implements IShieldEffect {
     public ShieldEffectPotion(@Nonnull MobEffect effect, @Nonnull EffectTrigger trigger, int duration, String description) {
         this.effect = effect;
         this.trigger = trigger;
-        this.duration = duration;
+        this.duration = duration * 20;
         this.description = description;
     }
 

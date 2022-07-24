@@ -1,23 +1,32 @@
 package epicsquid.superiorshields.shield.effect;
 
+import epicsquid.superiorshields.config.Config;
+import epicsquid.superiorshields.lang.ModLang;
 import net.minecraft.world.entity.LivingEntity;
 
 import javax.annotation.Nonnull;
 import java.util.List;
+import java.util.function.IntSupplier;
+import java.util.function.Supplier;
 
 public class ShieldEffectFireNova extends ShieldEffectNova {
 
-    private int duration;
+    private final Supplier<Integer> duration;
 
-    public ShieldEffectFireNova(int duration, double radius) {
-        super(radius, "superior_shield.effect.fire_nova");
-        this.duration = duration;
+    public ShieldEffectFireNova(int duration, float radius) {
+        super(radius, ModLang.FIRE_NOVA.getKey());
+        this.duration = () -> duration;
+    }
+
+    public ShieldEffectFireNova() {
+        super(ModLang.FIRE_NOVA.getKey());
+        this.duration = Config.SHIELD.NOVA_EFFECT_DURATION;
     }
 
     @Override
     protected void applyToEntities(@Nonnull List<LivingEntity> entities) {
         for (LivingEntity entity : entities) {
-            entity.setSecondsOnFire(duration);
+            entity.setSecondsOnFire(duration.get());
         }
     }
 }

@@ -1,6 +1,8 @@
 package epicsquid.superiorshields.shield.effect;
 
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
+import epicsquid.superiorshields.enchantment.ModEnchantments;
+import epicsquid.superiorshields.lang.ModLang;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
@@ -24,6 +26,6 @@ public class ShieldEffectMilk implements IShieldEffect {
     @Nonnull
     @Override
     public String getDescription() {
-        return I18n.get("superior_shields.effect.curing");
+        return I18n.get(ModLang.CURING.getKey());
     }
 }

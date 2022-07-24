@@ -2,21 +2,24 @@ package epicsquid.superiorshields;
 
 import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
 import epicsquid.superiorshields.capability.shield.ShieldCapabilityProvider;
+import epicsquid.superiorshields.enchantment.DamageBoostEnchantment;
 import epicsquid.superiorshields.item.ISuperiorShield;
 import epicsquid.superiorshields.network.NetworkHandler;
 import epicsquid.superiorshields.network.PacketShieldUpdate;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.network.PacketDistributor;
 import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 import javax.annotation.Nonnull;
 
@@ -26,20 +29,44 @@ public class EventManager {
 
 	@SubscribeEvent
 	public void onLivingHurtEvent(@Nonnull LivingHurtEvent event) {
-		if (event.getEntity() instanceof Player player) {
-			if (CuriosApi.getCuriosHelper().getCuriosHandler(player).isPresent() && event.getSource() != DamageSource.STARVE && event.getSource() != DamageSource.DROWN) {
-				var curiosOp = CuriosApi.getCuriosHelper().getCuriosHandler(player).resolve();
-				if (curiosOp.isPresent()) {
-					ICuriosItemHandler handler = curiosOp.get();
-					handler.getStacksHandler(SuperiorShields.SHIELD_CURIO).ifPresent(
-									stackHandler -> {
+		if (event.isCanceled()) {
+			return;
+		}
+
+		// handle shield buffs
+		LivingEntity entity = event.getEntityLiving();
+		Entity attacker = event.getSource().getEntity();
+
+		if (attacker instanceof Player player) {
+			// Check if we should be amping damage
+			CapabilityRegistry.getShield(player).ifPresent(shield -> {
+				CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(handler -> {
+					handler.getStacksHandler(SuperiorShields.SHIELD_CURIO).ifPresent(stackHandler -> {
 										ItemStack stack = stackHandler.getStacks().getStackInSlot(0);
-										if (!stack.isEmpty() && stack.getItem() instanceof ISuperiorShield) {
-											event.setAmount(((ISuperiorShield<?>) stack.getItem()).applyShield(player, stack, event.getAmount(), event.getSource()));
+										if (!stack.isEmpty()) {
+											for (Enchantment ench : EnchantmentHelper.getEnchantments(stack).keySet()) {
+												if (ench instanceof DamageBoostEnchantment dmgEnch && dmgEnch.shouldBoostDamage(shield)) {
+													event.setAmount(dmgEnch.boostDamage(event.getAmount()));
+												}
+											}
 										}
 									}
 					);
-				}
+				});
+			});
+		}
+
+		if (event.getEntity() instanceof Player player) {
+			if (event.getSource() != DamageSource.STARVE && event.getSource() != DamageSource.DROWN) {
+				CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(handler -> {
+					handler.getStacksHandler(SuperiorShields.SHIELD_CURIO).ifPresent(stackHandler -> {
+										ItemStack stack = stackHandler.getStacks().getStackInSlot(0);
+										if (!stack.isEmpty() && stack.getItem() instanceof ISuperiorShield superiorShield) {
+											event.setAmount(superiorShield.applyShield(player, stack, event.getAmount(), event.getSource()));
+										}
+									}
+					);
+				});
 			}
 		}
 	}
