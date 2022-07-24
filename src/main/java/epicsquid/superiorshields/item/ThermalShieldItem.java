@@ -4,11 +4,11 @@ import cofh.lib.item.IAugmentableItem;
 import cofh.lib.util.constants.NBTTags;
 import cofh.lib.util.helpers.AugmentDataHelper;
 import cofh.lib.util.helpers.AugmentableHelper;
-import epicsquid.superiorshields.shield.AugmentableShield;
 import epicsquid.superiorshields.shield.IEnergyShield;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.function.IntSupplier;
 
@@ -57,6 +57,25 @@ public class ThermalShieldItem extends EnergyShieldItem implements IAugmentableI
 		}
 	}
 
+	@Override
+	public float getShieldCapacity(@Nonnull ItemStack stack) {
+		return super.getShieldCapacity(stack) + (2.0f * (getBaseModLevel(stack) - 1.0f));
+	}
+
+	@Override
+	public int getShieldDelay(@Nonnull ItemStack stack) {
+		return super.getShieldDelay(stack) - ((10 * ((int) getBaseModLevel(stack))) - 10);
+	}
+
+	@Override
+	public int getShieldRate(@Nonnull ItemStack stack) {
+		return super.getShieldRate(stack) - ((15 * ((int) getBaseModLevel(stack))) - 15);
+	}
+
+	private float getBaseModLevel(@Nonnull ItemStack stack) {
+		return AugmentableHelper.getPropertyWithDefault(stack, NBTTags.TAG_AUGMENT_BASE_MOD, 1.0f);
+	}
+
 	private void setShieldFromAugment(ItemStack augmentable, CompoundTag augmentData) {
 		// Set the shield type based on what base augment is in
 		CompoundTag subTag = augmentable.getTagElement(NBTTags.TAG_PROPERTIES);
@@ -64,17 +83,5 @@ public class ThermalShieldItem extends EnergyShieldItem implements IAugmentableI
 			return;
 		}
 		AugmentableHelper.setAttributeFromAugmentMax(subTag, augmentData, NBTTags.TAG_AUGMENT_BASE_MOD);
-
-		float base = AugmentableHelper.getPropertyWithDefault(augmentable, NBTTags.TAG_AUGMENT_BASE_MOD, 1.0f);
-
-		if (base <= 1.0f) {
-			shieldType = AugmentableShield.BASE;
-		} else if (base <= 2.0f) {
-			shieldType = AugmentableShield.HARDENED;
-		} else if (base <= 3.0f) {
-			shieldType = AugmentableShield.REINFORCED;
-		} else {
-			shieldType = AugmentableShield.RESONANT;
-		}
 	}
 }

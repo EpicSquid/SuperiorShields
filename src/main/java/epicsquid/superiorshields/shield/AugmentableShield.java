@@ -4,10 +4,7 @@ import epicsquid.superiorshields.shield.effect.IShieldEffect;
 import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
 
 public enum AugmentableShield implements IEnergyShield {
-	BASE(5f, 80, 40, 50000),
-	HARDENED(7f, 80, 40, 100000),
-	REINFORCED(8f, 60, 40, 150000),
-	RESONANT(10f, 40, 40, 200000);
+	BASE(5f, 80, 40, 100000);
 	private final float defaultCapacity;
 	private final int defaultRate;
 	private final int defaultDelay;

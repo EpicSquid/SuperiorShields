@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "superiorshields:flux_shield"
+      "superiorshields:steelleaf_shield"
     ]
   },
   "criteria": {
-    "has_redstone": {
+    "has_enderpearl": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:dusts/redstone"
+            "tag": "forge:ender_pearls"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "superiorshields:flux_shield"
+        "recipe": "superiorshields:steelleaf_shield"
       }
     }
   },
   "requirements": [
     [
-      "has_redstone",
+      "has_enderpearl",
       "has_the_recipe"
     ]
   ]

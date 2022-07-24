@@ -11,15 +11,15 @@ public interface IShieldType {
 		return Config.SHIELD.SHIELDS.get(this);
 	}
 
-	default float getMaxShieldHp() {
+	default float getCapacity() {
 		return getConfig().getCapacity();
 	}
 
-	default int getShieldRechargeDelay() {
+	default int getDelay() {
 		return getConfig().getDelay();
 	}
 
-	default int getShieldRechargeRate() {
+	default int getRate() {
 		return getConfig().getRate();
 	}
 

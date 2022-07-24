@@ -2,7 +2,7 @@ package epicsquid.superiorshields;
 
 import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
 import epicsquid.superiorshields.capability.shield.ShieldCapabilityProvider;
-import epicsquid.superiorshields.item.SuperiorShield;
+import epicsquid.superiorshields.item.ISuperiorShield;
 import epicsquid.superiorshields.network.NetworkHandler;
 import epicsquid.superiorshields.network.PacketShieldUpdate;
 import net.minecraft.server.level.ServerPlayer;
@@ -34,8 +34,8 @@ public class EventManager {
 					handler.getStacksHandler(SuperiorShields.SHIELD_CURIO).ifPresent(
 									stackHandler -> {
 										ItemStack stack = stackHandler.getStacks().getStackInSlot(0);
-										if (!stack.isEmpty() && stack.getItem() instanceof SuperiorShield) {
-											event.setAmount(((SuperiorShield<?>) stack.getItem()).applyShield(player, stack, event.getAmount(), event.getSource()));
+										if (!stack.isEmpty() && stack.getItem() instanceof ISuperiorShield) {
+											event.setAmount(((ISuperiorShield<?>) stack.getItem()).applyShield(player, stack, event.getAmount(), event.getSource()));
 										}
 									}
 					);

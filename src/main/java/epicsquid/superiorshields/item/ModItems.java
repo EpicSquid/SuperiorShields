@@ -61,6 +61,8 @@ public class ModItems {
 	public static final ItemEntry<VanillaShieldItem> STEEL_SHIELD = vanillaShieldItem(MekanismMetalShield.STEEL, 500).register();
 	public static final ItemEntry<VanillaShieldItem> REFINED_OBSIDIAN_SHIELD = vanillaShieldItem(MekanismMetalShield.REFINED_OBSIDIAN, 1680).register();
 	public static final ItemEntry<VanillaShieldItem> REFINED_GLOWSTONE_SHIELD = vanillaShieldItem(MekanismMetalShield.REFINED_GLOWSTONE, 384).register();
+	public static final ItemEntry<VanillaShieldItem> IRONWOOD = vanillaShieldItem(TwilightForestShield.IRONWOOD, 512).register();
+	public static final ItemEntry<VanillaShieldItem> STEELLEAF = vanillaShieldItem(TwilightForestShield.STEELLEAF, 512).register();
 	public static final ItemEntry<VanillaShieldItem> LAPIS_SHIELD = REGISTRATE.item("lapis_shield", props -> new VanillaShieldItem(props, MekanismMetalShield.LAPIS)).tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
@@ -181,9 +183,43 @@ public class ModItems {
 										.define('G', TIN_GEAR)
 										.define('X', Tags.Items.INGOTS_IRON)
 										.define('E', ModTags.FLUX_COIL)
-										.unlockedBy("has_advanced_alloy", DataIngredient.tag(ADVANCED_ALLOY).getCritereon(p))
+										.unlockedBy("has_redstone", DataIngredient.tag(Tags.Items.DUSTS_REDSTONE).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
 					})
+					.register();
+
+	public static final ItemEntry<VanillaShieldItem> KNIGHTMETAL_SHIELD = REGISTRATE.item("knightmetal_shield",
+									props -> new VanillaShieldItem(props, TwilightForestShield.KNIGHTMETAL)).tab(() -> SuperiorShields.ITEM_GROUP)
+					.tag(CURIOS_TAG)
+					.tag(SHIELD_TAG)
+					.recipe((ctx, p) -> {
+						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+										.pattern(" X ")
+										.pattern("XEX")
+										.pattern(" X ")
+										.define('X', ItemTags.create(new ResourceLocation("forge", "ingots/knightmetal")))
+										.define('E', Items.ENDER_EYE)
+										.unlockedBy("has_eye_of_ender", DataIngredient.items(Items.ENDER_EYE).getCritereon(p))
+										.save(p, p.safeId(ctx.getEntry()));
+					})
+					.properties(props -> props.durability(Tiers.DIAMOND.getUses()))
+					.register();
+
+	public static final ItemEntry<FieryShieldItem> FIERY_SHIELD = REGISTRATE.item("fiery_shield",
+									props -> new FieryShieldItem(props, FieryShield.FIREY)).tab(() -> SuperiorShields.ITEM_GROUP)
+					.tag(CURIOS_TAG)
+					.tag(SHIELD_TAG)
+					.recipe((ctx, p) -> {
+						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+										.pattern(" X ")
+										.pattern("XEX")
+										.pattern(" X ")
+										.define('X', ItemTags.create(new ResourceLocation("forge", "ingots/fiery")))
+										.define('E', Items.ENDER_EYE)
+										.unlockedBy("has_eye_of_ender", DataIngredient.items(Items.ENDER_EYE).getCritereon(p))
+										.save(p, p.safeId(ctx.getEntry()));
+					})
+					.properties(props -> props.durability(Tiers.DIAMOND.getUses()))
 					.register();
 
 	private static ItemBuilder<VanillaShieldItem, Registrate> vanillaShieldItem(IShieldType type, int durability) {
