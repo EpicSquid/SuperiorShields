@@ -64,12 +64,12 @@ public class ThermalShieldItem extends EnergyShieldItem implements IAugmentableI
 
 	@Override
 	public int getShieldDelay(@Nonnull ItemStack stack) {
-		return super.getShieldDelay(stack) - (10 * ((int) getBaseModLevel(stack) - 10));
+		return super.getShieldDelay(stack) - ((10 * ((int) getBaseModLevel(stack))) - 10);
 	}
 
 	@Override
 	public int getShieldRate(@Nonnull ItemStack stack) {
-		return super.getShieldRate(stack) - (10 * ((int) getBaseModLevel(stack) - 10));
+		return super.getShieldRate(stack) - ((15 * ((int) getBaseModLevel(stack))) - 15);
 	}
 
 	private float getBaseModLevel(@Nonnull ItemStack stack) {
