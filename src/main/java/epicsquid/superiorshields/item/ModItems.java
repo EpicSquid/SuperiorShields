@@ -30,6 +30,7 @@ public class ModItems {
 	private static final TagKey<Item> MANASTEEL_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/manasteel"));
 	private static final TagKey<Item> TERRASTEEL_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/terrasteel"));
 	private static final TagKey<Item> ELEMENTIUM_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/elementium"));
+	private static final TagKey<Item> STEEL_INGOT = ItemTags.create(new ResourceLocation("forge", "ingots/steel"));
 
 	private static final TagKey<Item> ADVANCED_ALLOY = ItemTags.create(new ResourceLocation("forge", "alloys/advanced"));
 	private static final TagKey<Item> TIN_GEAR = ItemTags.create(new ResourceLocation("forge", "gears/tin"));
@@ -186,6 +187,24 @@ public class ModItems {
 										.unlockedBy("has_redstone", DataIngredient.tag(Tags.Items.DUSTS_REDSTONE).getCritereon(p))
 										.save(p, p.safeId(ctx.getEntry()));
 					})
+					.register();
+
+	// Immersive Engineering Shield
+	public static final ItemEntry<EnergyShieldItem> ENGINEERS_SHIELD = REGISTRATE.item("engineers_shield", props -> new EnergyShieldItem(props, EnergyShield.ENGINEERS_SHIELD)).tab(() -> SuperiorShields.ITEM_GROUP)
+					.tag(CURIOS_TAG)
+					.tag(SHIELD_TAG)
+					.recipe((ctx, p) -> {
+						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+										.pattern(" G ")
+										.pattern("XEX")
+										.pattern(" G ")
+										.define('G', STEEL_INGOT)
+										.define('X', ModTags.WOODEN_GRIP)
+										.define('E', ModTags.COMPONENT_STEEL)
+										.unlockedBy("has_steel", DataIngredient.tag(STEEL_INGOT).getCritereon(p))
+										.save(p, p.safeId(ctx.getEntry()));
+					})
+					.lang("Engineer's Shield")
 					.register();
 
 	public static final ItemEntry<VanillaShieldItem> KNIGHTMETAL_SHIELD = REGISTRATE.item("knightmetal_shield",

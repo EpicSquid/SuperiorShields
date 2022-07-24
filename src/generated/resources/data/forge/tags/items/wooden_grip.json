@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "immersiveengineering:wooden_grip",
+      "required": false
+    }
+  ]
+}
