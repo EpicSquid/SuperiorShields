@@ -5,6 +5,9 @@ import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import epicsquid.superiorshields.SuperiorShields;
+import epicsquid.superiorshields.setup.compat.BotaniaCompat;
+import epicsquid.superiorshields.setup.compat.MalumCompat;
+import epicsquid.superiorshields.setup.compat.ThermalCompat;
 import epicsquid.superiorshields.shield.*;
 import epicsquid.superiorshields.tags.ModTags;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -96,8 +99,8 @@ public class ModItems {
 					.properties(props -> props.durability(Tiers.DIAMOND.getUses()))
 					.register();
 
-	public static final ItemEntry<VanillaShieldItem> NETHERITE_SHIELD = REGISTRATE.item("netherite_shield",
-									props -> new VanillaShieldItem(props, VanillaShield.NETHERITE)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<VanillaShieldItem> NETHERITE_SHIELD = REGISTRATE.item("netherite_shield", props -> new VanillaShieldItem(props, VanillaShield.NETHERITE))
+					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
@@ -108,8 +111,8 @@ public class ModItems {
 					.properties(props -> props.durability(Tiers.NETHERITE.getUses()))
 					.register();
 
-	public static final ItemEntry<BotaniaShieldItem> MANASTEEL_SHIELD = REGISTRATE.item("manasteel_shield",
-									props -> new BotaniaShieldItem(props, BotaniaShield.MANASTEEL)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<SuperiorShieldItem<IShieldType>> MANASTEEL_SHIELD = REGISTRATE.item("manasteel_shield", props -> BotaniaCompat.LoadedOnly.makeBotaniaShieldOrDefault(props, BotaniaShield.MANASTEEL))
+					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
@@ -124,8 +127,8 @@ public class ModItems {
 					})
 					.register();
 
-	public static final ItemEntry<BotaniaShieldItem> TERRASTEEL_SHIELD = REGISTRATE.item("terrasteel_shield",
-									props -> new BotaniaShieldItem(props, BotaniaShield.TERRASTEEL)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<SuperiorShieldItem<IShieldType>> TERRASTEEL_SHIELD = REGISTRATE.item("terrasteel_shield", props -> BotaniaCompat.LoadedOnly.makeBotaniaShieldOrDefault(props, BotaniaShield.TERRASTEEL))
+					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
@@ -140,8 +143,8 @@ public class ModItems {
 					})
 					.register();
 
-	public static final ItemEntry<BotaniaShieldItem> ELEMENTIUM_SHIELD = REGISTRATE.item("elementium_shield",
-									props -> new BotaniaShieldItem(props, BotaniaShield.ELEMENTIUM)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<SuperiorShieldItem<IShieldType>> ELEMENTIUM_SHIELD = REGISTRATE.item("elementium_shield", props -> BotaniaCompat.LoadedOnly.makeBotaniaShieldOrDefault(props, BotaniaShield.ELEMENTIUM))
+					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
@@ -173,7 +176,8 @@ public class ModItems {
 					.register();
 
 	// Thermal Augmentable Shield
-	public static final ItemEntry<ThermalShieldItem> FLUX_SHIELD = REGISTRATE.item("flux_shield", props -> new ThermalShieldItem(props, AugmentableShield.BASE)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<EnergyShieldItem> FLUX_SHIELD = REGISTRATE.item("flux_shield", props -> ThermalCompat.LoadedOnly.makeThermalShieldOrDefault(props, AugmentableShield.BASE))
+					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
@@ -224,8 +228,8 @@ public class ModItems {
 					.properties(props -> props.durability(Tiers.DIAMOND.getUses()))
 					.register();
 
-	public static final ItemEntry<SoulStainedSteelShield> SOUL_STAINED_STEEL_SHIELD = REGISTRATE.item("soul_stained_steel_shield",
-									props -> new SoulStainedSteelShield(props, MalumShield.SOUL_STAINED_STEEL)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<SuperiorShieldItem<IShieldType>> SOUL_STAINED_STEEL_SHIELD = REGISTRATE.item("soul_stained_steel_shield", props -> MalumCompat.LoadedOnly.makeSoulStainedShieldOrDefault(props, MalumShield.SOUL_STAINED_STEEL))
+					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
@@ -241,8 +245,8 @@ public class ModItems {
 					.properties(props -> props.durability(Tiers.DIAMOND.getUses()))
 					.register();
 
-	public static final ItemEntry<SpiritHunterShield> SPIRIT_HUNTER_SHIELD = REGISTRATE.item("spirit_hunter_shield",
-									props -> new SpiritHunterShield(props, MalumShield.SPIRIT_HUNTER)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<SuperiorShieldItem<IShieldType>> SPIRIT_HUNTER_SHIELD = REGISTRATE.item("spirit_hunter_shield", props -> MalumCompat.LoadedOnly.makeSpiritHunterOrDefault(props, MalumShield.SPIRIT_HUNTER))
+					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
