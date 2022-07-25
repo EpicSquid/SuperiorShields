@@ -241,6 +241,23 @@ public class ModItems {
 					.properties(props -> props.durability(Tiers.DIAMOND.getUses()))
 					.register();
 
+	public static final ItemEntry<SpiritHunterShield> SPIRIT_HUNTER_SHIELD = REGISTRATE.item("spirit_hunter_shield",
+									props -> new SpiritHunterShield(props, MalumShield.SPIRIT_HUNTER)).tab(() -> SuperiorShields.ITEM_GROUP)
+					.tag(CURIOS_TAG)
+					.tag(SHIELD_TAG)
+					.recipe((ctx, p) -> {
+						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+										.pattern(" X ")
+										.pattern("XEX")
+										.pattern(" X ")
+										.define('X', ItemTags.create(new ResourceLocation("forge", "ingots/soul_stained_steel")))
+										.define('E', ItemTags.create(new ResourceLocation("forge", "ingots/hallowed_gold")))
+										.unlockedBy("has_eye_of_ender", DataIngredient.items(Items.ENDER_EYE).getCritereon(p))
+										.save(p, p.safeId(ctx.getEntry()));
+					})
+					.properties(props -> props.durability(Tiers.DIAMOND.getUses()))
+					.register();
+
 	public static final ItemEntry<FieryShieldItem> FIERY_SHIELD = REGISTRATE.item("fiery_shield",
 									props -> new FieryShieldItem(props, FieryShield.FIREY)).tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
