@@ -3,30 +3,26 @@ package epicsquid.superiorshields.shield;
 import epicsquid.superiorshields.shield.effect.IShieldEffect;
 import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
 
-public enum EnergyShield implements IEnergyShield {
-	ELECTRIC_SHIELD(12, 6f, 60, 60, 48000, 0x3CFE9A),
-	ENGINEERS_SHIELD(14, 8f, 60, 80, 48000, 0xFF0000);
+public enum MalumShield implements IShieldType {
+
+	SOUL_STAINED_STEEL(11, 6, 60, 40),
+	SPIRIT_HUNTER(15, 4, 20, 50);
 
 	private final int enchantability;
 	private final float defaultCapacity;
 	private final int defaultRate;
 	private final int defaultDelay;
-	private final int defaultMaxEnergy;
 
-	private final int color;
-
-	EnergyShield(int enchantability, float defaultCapacity, int defaultRate, int defaultDelay, int defaultMaxEnergy, int color) {
+	MalumShield(int enchantability, float defaultCapacity, int defaultRate, int defaultDelay) {
 		this.enchantability = enchantability;
 		this.defaultCapacity = defaultCapacity;
 		this.defaultRate = defaultRate;
 		this.defaultDelay = defaultDelay;
-		this.defaultMaxEnergy = defaultMaxEnergy;
-		this.color = color;
 	}
 
 	@Override
 	public int getColor() {
-		return color;
+		return 0;
 	}
 
 	@Override
@@ -52,11 +48,5 @@ public enum EnergyShield implements IEnergyShield {
 	@Override
 	public int getDefaultDelay() {
 		return defaultDelay;
-	}
-
-
-	@Override
-	public int getMaxEnergy() {
-		return defaultMaxEnergy;
 	}
 }

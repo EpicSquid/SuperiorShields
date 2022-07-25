@@ -170,6 +170,12 @@ repositories {
         // Thermal
         url 'https://maven.covers1624.net/'
     }
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
     mavenLocal()
 }
 
@@ -196,6 +202,14 @@ dependencies {
     implementation fg.deobf("com.teamcofh:cofh_core:${minecraft_version}-${cofh_core_version}")
     runtimeOnly fg.deobf("com.teamcofh:thermal_foundation:${minecraft_version}-${thermal_foundation_version}")
     runtimeOnly fg.deobf("com.teamcofh:thermal_expansion:${minecraft_version}-${thermal_expansion_version}")
+
+    // Malum
+    // TODO: switch to this when malum 1.4 comes out
+    // implementation fg.deobf("com.sammy.ortus:ortus:${minecraft_version}-${ortus_version}")
+    // implementation fg.deobf("com.sammy.malum:malum:${minecraft_version}-${malum_version}")
+
+    implementation fg.deobf("curse.maven:ortus-${ortus_project_id}:${ortus_file_id}")
+    implementation fg.deobf("curse.maven:malum-${malum_project_id}:${malum_file_id}")
 
     def registrate = "com.tterrag.registrate:Registrate:MC${minecraft_version}-${registrate_version}"
     implementation fg.deobf(registrate)

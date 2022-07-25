@@ -18,6 +18,8 @@ public class ModTags extends ItemTagsProvider {
 	public static final TagKey<Item> PIXIE_DUST = ItemTags.create(new ResourceLocation("forge", "pixie_dust"));
 
 	public static final TagKey<Item> FLUX_COIL = ItemTags.create(new ResourceLocation("forge", "flux_coil"));
+	public static final TagKey<Item> COMPONENT_STEEL = ItemTags.create(new ResourceLocation("forge", "component_steel"));
+	public static final TagKey<Item> WOODEN_GRIP = ItemTags.create(new ResourceLocation("forge", "wooden_grip"));
 	public ModTags(DataGenerator dataGen, BlockTagsProvider blockTagsProvider, @Nullable ExistingFileHelper existingFileHelper) {
 		super(dataGen, blockTagsProvider, SuperiorShields.MODID, existingFileHelper);
 	}
@@ -28,5 +30,7 @@ public class ModTags extends ItemTagsProvider {
 		tag(MANAPEARL).addOptional(new ResourceLocation(BotaniaAPI.MODID, "mana_pearl"));
 		tag(PIXIE_DUST).addOptional(new ResourceLocation(BotaniaAPI.MODID, "pixie_dust"));
 		tag(FLUX_COIL).addOptional(new ResourceLocation("thermal", "rf_coil"));
+		tag(COMPONENT_STEEL).addOptional(new ResourceLocation("immersiveengineering", "component_steel"));
+		tag(WOODEN_GRIP).addOptional(new ResourceLocation("immersiveengineering", "wooden_grip"));
 	}
 }
