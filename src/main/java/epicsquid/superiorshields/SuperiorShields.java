@@ -54,7 +54,6 @@ public class SuperiorShields {
 
 	public SuperiorShields() {
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SHIELD_SPEC, "superior-shields-common.toml");
-		//		ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::sendImc);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerCaps);
