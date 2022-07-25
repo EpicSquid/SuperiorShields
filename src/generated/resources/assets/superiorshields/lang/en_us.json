@@ -1,5 +1,6 @@
 {
   "curios.identifier.superior_shield": "Superior Shield",
+  "curiosmodifiers.superior_shield": "When in the Superior Shield curios slot:",
   "enchantment.superiorshields.amplify": "Amplify",
   "enchantment.superiorshields.amplify.desc": "While your shield is full, your next attack will deal significantly greater damage, at the cost of some shield energy.",
   "enchantment.superiorshields.capacity": "Shield Capacity",
@@ -44,13 +45,14 @@
   "item.superiorshields.refined_glowstone_shield": "Refined Glowstone Shield",
   "item.superiorshields.refined_obsidian_shield": "Refined Obsidian Shield",
   "item.superiorshields.silver_shield": "Silver Shield",
+  "item.superiorshields.soul_stained_steel_shield": "Soul Stained Steel Shield",
   "item.superiorshields.steel_shield": "Steel Shield",
   "item.superiorshields.steelleaf_shield": "Steelleaf Shield",
   "item.superiorshields.terrasteel_shield": "Terrasteel Shield",
   "item.superiorshields.tin_shield": "Tin Shield",
   "itemGroup.superiorshields": "Superior Shields",
   "tooltip.superiorshields.blank": "",
-  "tooltip.superiorshields.equip": "When in the curios slot:",
+  "tooltip.superiorshields.equip": "When in the Superior Shield curios slot:",
   "tooltip.superiorshields.hp": " %s Hit Points",
   "tooltip.superiorshields.recharge_delay": " %s Recharge Delay",
   "tooltip.superiorshields.recharge_rate": " %s Recharge Rate"

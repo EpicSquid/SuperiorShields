@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "XEX",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:ingots/soul_stained_steel"
+    },
+    "E": {
+      "tag": "forge:ingots/hallowed_gold"
+    }
+  },
+  "result": {
+    "item": "superiorshields:soul_stained_steel_shield"
+  }
+}
