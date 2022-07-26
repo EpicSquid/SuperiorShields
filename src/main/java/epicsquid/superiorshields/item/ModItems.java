@@ -111,7 +111,7 @@ public class ModItems {
 					.properties(props -> props.durability(Tiers.NETHERITE.getUses()))
 					.register();
 
-	public static final ItemEntry<SuperiorShieldItem<IShieldType>> MANASTEEL_SHIELD = REGISTRATE.item("manasteel_shield", props -> BotaniaCompat.LoadedOnly.makeBotaniaShieldOrDefault(props, BotaniaShield.MANASTEEL))
+	public static final ItemEntry<SuperiorShieldItem<IShieldType>> MANASTEEL_SHIELD = REGISTRATE.item("manasteel_shield", BotaniaCompat.makeBotaniaShieldOrDefault(BotaniaShield.MANASTEEL))
 					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
@@ -127,7 +127,7 @@ public class ModItems {
 					})
 					.register();
 
-	public static final ItemEntry<SuperiorShieldItem<IShieldType>> TERRASTEEL_SHIELD = REGISTRATE.item("terrasteel_shield", props -> BotaniaCompat.LoadedOnly.makeBotaniaShieldOrDefault(props, BotaniaShield.TERRASTEEL))
+	public static final ItemEntry<SuperiorShieldItem<IShieldType>> TERRASTEEL_SHIELD = REGISTRATE.item("terrasteel_shield", BotaniaCompat.makeBotaniaShieldOrDefault(BotaniaShield.TERRASTEEL))
 					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
@@ -143,7 +143,7 @@ public class ModItems {
 					})
 					.register();
 
-	public static final ItemEntry<SuperiorShieldItem<IShieldType>> ELEMENTIUM_SHIELD = REGISTRATE.item("elementium_shield", props -> BotaniaCompat.LoadedOnly.makeBotaniaShieldOrDefault(props, BotaniaShield.ELEMENTIUM))
+	public static final ItemEntry<SuperiorShieldItem<IShieldType>> ELEMENTIUM_SHIELD = REGISTRATE.item("elementium_shield", BotaniaCompat.makeBotaniaShieldOrDefault(BotaniaShield.ELEMENTIUM))
 					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
@@ -176,7 +176,7 @@ public class ModItems {
 					.register();
 
 	// Thermal Augmentable Shield
-	public static final ItemEntry<EnergyShieldItem> FLUX_SHIELD = REGISTRATE.item("flux_shield", props -> ThermalCompat.LoadedOnly.makeThermalShieldOrDefault(props, AugmentableShield.BASE))
+	public static final ItemEntry<EnergyShieldItem> FLUX_SHIELD = REGISTRATE.item("flux_shield", ThermalCompat.makeThermalShieldOrDefault(AugmentableShield.BASE))
 					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
@@ -228,7 +228,7 @@ public class ModItems {
 					.properties(props -> props.durability(Tiers.DIAMOND.getUses()))
 					.register();
 
-	public static final ItemEntry<SuperiorShieldItem<IShieldType>> SOUL_STAINED_STEEL_SHIELD = REGISTRATE.item("soul_stained_steel_shield", props -> MalumCompat.LoadedOnly.makeSoulStainedShieldOrDefault(props, MalumShield.SOUL_STAINED_STEEL))
+	public static final ItemEntry<SuperiorShieldItem<IShieldType>> SOUL_STAINED_STEEL_SHIELD = REGISTRATE.item("soul_stained_steel_shield", MalumCompat.makeSoulStainedShieldOrDefault(MalumShield.SOUL_STAINED_STEEL))
 					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
@@ -245,7 +245,7 @@ public class ModItems {
 					.properties(props -> props.durability(Tiers.DIAMOND.getUses()))
 					.register();
 
-	public static final ItemEntry<SuperiorShieldItem<IShieldType>> SPIRIT_HUNTER_SHIELD = REGISTRATE.item("spirit_hunter_shield", props -> MalumCompat.LoadedOnly.makeSpiritHunterOrDefault(props, MalumShield.SPIRIT_HUNTER))
+	public static final ItemEntry<SuperiorShieldItem<IShieldType>> SPIRIT_HUNTER_SHIELD = REGISTRATE.item("spirit_hunter_shield", MalumCompat.makeSpiritHunterShieldOrDefault(MalumShield.SPIRIT_HUNTER))
 					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)

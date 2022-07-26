@@ -1,6 +1,5 @@
 package epicsquid.superiorshields;
 
-import com.sammy.ortus.systems.item.ModCombatItem;
 import com.tterrag.registrate.Registrate;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import epicsquid.superiorshields.config.Config;
@@ -10,7 +9,9 @@ import epicsquid.superiorshields.item.ModItems;
 import epicsquid.superiorshields.lang.ModLang;
 import epicsquid.superiorshields.network.NetworkHandler;
 import epicsquid.superiorshields.setup.ModSetup;
-import epicsquid.superiorshields.setup.compat.ModCompat;
+import epicsquid.superiorshields.setup.compat.BotaniaCompat;
+import epicsquid.superiorshields.setup.compat.MalumCompat;
+import epicsquid.superiorshields.setup.compat.ThermalCompat;
 import epicsquid.superiorshields.tags.ModTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -63,7 +64,9 @@ public class SuperiorShields {
 		ModEnchantments.classload();
 		ModLang.classload();
 
-		ModCompat.init();
+		BotaniaCompat.init();
+		MalumCompat.init();
+		ThermalCompat.init();
 
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(EventPriority.LOWEST, this::gatherData);
 	}
