@@ -24,6 +24,7 @@ public class ModTags extends ItemTagsProvider {
 	public static final TagKey<Item> SPIRIT_FABRIC = ItemTags.create(new ResourceLocation("malum", "spirit_fabric"));
 	public static final TagKey<Item> HALLOWED_SPIRIT_RESONATOR = ItemTags.create(new ResourceLocation("malum", "hallowed_spirit_resonator"));
 	public static final TagKey<Item> STAINED_SPIRIT_RESONATOR = ItemTags.create(new ResourceLocation("malum", "stained_spirit_resonator"));
+
 	public ModTags(DataGenerator dataGen, BlockTagsProvider blockTagsProvider, @Nullable ExistingFileHelper existingFileHelper) {
 		super(dataGen, blockTagsProvider, SuperiorShields.MODID, existingFileHelper);
 	}

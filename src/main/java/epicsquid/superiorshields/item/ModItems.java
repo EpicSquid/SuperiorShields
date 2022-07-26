@@ -163,7 +163,7 @@ public class ModItems {
 					})
 					.register();
 
-	public static final ItemEntry<SuperiorShieldItem<IShieldType>> ELEMENTIUM_SHIELD = REGISTRATE.item("elementium_shield", BotaniaCompat.makeBotaniaShieldOrDefault(BotaniaShield.ELEMENTIUM))
+	public static final ItemEntry<SuperiorShieldItem<IShieldType>> ELEMENTIUM_SHIELD = REGISTRATE.item("elementium_shield", BotaniaCompat.makeElementiumShieldOrDefault(BotaniaShield.ELEMENTIUM))
 					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)

@@ -3,7 +3,6 @@ package epicsquid.superiorshields.shield.effect;
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;

@@ -35,6 +35,7 @@ public class ModLang {
 		return REGISTRATE.addRawLang("enchantment." + SuperiorShields.MODID + "." + ench + ".desc", desc);
 	}
 
-	public static void classload() {}
+	public static void classload() {
+	}
 
 }

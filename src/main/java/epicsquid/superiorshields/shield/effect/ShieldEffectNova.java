@@ -11,7 +11,6 @@ import net.minecraft.world.phys.AABB;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.function.DoubleSupplier;
 import java.util.function.Supplier;
 
 public abstract class ShieldEffectNova implements IShieldEffect {

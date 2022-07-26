@@ -2,7 +2,6 @@ package epicsquid.superiorshields.shield;
 
 import epicsquid.superiorshields.shield.effect.IShieldEffect;
 import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
-import net.minecraft.world.item.Tiers;
 
 public enum MetalShield implements IShieldType {
 	// Early game fast shield, compare to copper
