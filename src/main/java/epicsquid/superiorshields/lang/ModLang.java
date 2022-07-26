@@ -17,7 +17,7 @@ public class ModLang {
 	public static final TranslatableComponent EQUIP = REGISTRATE.addLang("tooltip", new ResourceLocation(SuperiorShields.MODID, "equip"), "When in the Superior Shield curios slot:");
 
 	public static final TranslatableComponent SHIELD_CURIOS = REGISTRATE.addRawLang(CuriosApi.MODID + ".identifier.superior_shield", "Superior Shield");
-	public static final TranslatableComponent MODIFIERS = REGISTRATE.addRawLang(CuriosApi.MODID + "modifiers.superior_shield", "When in the Superior Shield curios slot:");
+	public static final TranslatableComponent MODIFIERS = REGISTRATE.addRawLang(CuriosApi.MODID + ".modifiers.superior_shield", "When in the Superior Shield curios slot:");
 	public static final TranslatableComponent CREATIVE_TAB = REGISTRATE.addRawLang("itemGroup." + SuperiorShields.MODID, "Superior Shields");
 
 	public static final TranslatableComponent FIRE_NOVA = registerEnchantmentDescription("fire_nova", "On depletion, lights all mobs around you on fire.");
