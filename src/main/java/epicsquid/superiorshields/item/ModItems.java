@@ -21,7 +21,9 @@ import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
-import net.minecraftforge.common.crafting.conditions.*;
+import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
+import net.minecraftforge.common.crafting.conditions.NotCondition;
+import net.minecraftforge.common.crafting.conditions.TagEmptyCondition;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.Locale;
@@ -68,28 +70,34 @@ public class ModItems {
 	public static final ItemEntry<VanillaShieldItem> REFINED_OBSIDIAN_SHIELD = vanillaShieldItem(MekanismMetalShield.REFINED_OBSIDIAN, 1680).register();
 	public static final ItemEntry<VanillaShieldItem> REFINED_GLOWSTONE_SHIELD = vanillaShieldItem(MekanismMetalShield.REFINED_GLOWSTONE, 384).register();
 	public static final ItemEntry<VanillaShieldItem> IRONWOOD = vanillaShieldItem(TwilightForestShield.IRONWOOD, 512).register();
-	public static final ItemEntry<VanillaShieldItem> STEELLEAF = vanillaShieldItem(TwilightForestShield.STEELLEAF, 512).register();
-	public static final ItemEntry<VanillaShieldItem> LAPIS_SHIELD = REGISTRATE.item("lapis_shield", props -> new VanillaShieldItem(props, MekanismMetalShield.LAPIS)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<VanillaShieldItem> STEELLEAF = vanillaShieldItem(TwilightForestShield.STEELLEAF, 131).register();
+	public static final ItemEntry<VanillaShieldItem> LAPIS_SHIELD = REGISTRATE.item("lapis_shield", props -> new VanillaShieldItem(props, MekanismMetalShield.LAPIS))
+					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
-						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-										.pattern(" X ")
-										.pattern("XEX")
-										.pattern(" X ")
-										.define('X', Tags.Items.GEMS_LAPIS)
-										.define('E', Tags.Items.ENDER_PEARLS)
-										.unlockedBy("has_enderpearl", DataIngredient.tag(Tags.Items.ENDER_PEARLS).getCritereon(p))
-										.save(p, p.safeId(ctx.getEntry()));
+						ConditionalRecipe.builder()
+										.addCondition(new ModLoadedCondition("mekanism"))
+										.addRecipe((writer) -> ShapedRecipeBuilder.shaped(ctx.getEntry())
+														.pattern(" X ")
+														.pattern("XEX")
+														.pattern(" X ")
+														.define('X', Tags.Items.GEMS_LAPIS)
+														.define('E', Tags.Items.ENDER_PEARLS)
+														.unlockedBy("has_enderpearl", DataIngredient.tag(Tags.Items.ENDER_PEARLS).getCritereon(p))
+														.save(writer)
+										)
+										.generateAdvancement()
+										.build(p, p.safeId(ctx.getEntry()));
 					})
 					.properties(props -> props.durability(128)).register();
 
-	public static final ItemEntry<VanillaShieldItem> DIAMOND_SHIELD = REGISTRATE.item("diamond_shield",
-									props -> new VanillaShieldItem(props, VanillaShield.DIAMOND)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<VanillaShieldItem> DIAMOND_SHIELD = REGISTRATE.item("diamond_shield", props -> new VanillaShieldItem(props, VanillaShield.DIAMOND))
+					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
-						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+						ShapedRecipeBuilder.shaped(ctx.getEntry())
 										.pattern(" X ")
 										.pattern("XEX")
 										.pattern(" X ")
@@ -118,14 +126,19 @@ public class ModItems {
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
-						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-										.pattern(" X ")
-										.pattern("XEX")
-										.pattern(" X ")
-										.define('X', MANASTEEL_INGOT)
-										.define('E', ModTags.MANAPEARL)
-										.unlockedBy("has_manasteel", DataIngredient.tag(MANASTEEL_INGOT).getCritereon(p))
-										.save(p, p.safeId(ctx.getEntry()));
+						ConditionalRecipe.builder()
+										.addCondition(new ModLoadedCondition("botania"))
+										.addRecipe((writer) -> ShapedRecipeBuilder.shaped(ctx.getEntry())
+														.pattern(" X ")
+														.pattern("XEX")
+														.pattern(" X ")
+														.define('X', MANASTEEL_INGOT)
+														.define('E', ModTags.MANAPEARL)
+														.unlockedBy("has_manasteel", DataIngredient.tag(MANASTEEL_INGOT).getCritereon(p))
+														.save(writer)
+										)
+										.generateAdvancement()
+										.build(p, p.safeId(ctx.getEntry()));
 					})
 					.register();
 
@@ -134,14 +147,19 @@ public class ModItems {
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
-						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-										.pattern(" X ")
-										.pattern("XEX")
-										.pattern(" X ")
-										.define('X', TERRASTEEL_INGOT)
-										.define('E', MANASTEEL_SHIELD.get())
-										.unlockedBy("has_terrasteel", DataIngredient.tag(TERRASTEEL_INGOT).getCritereon(p))
-										.save(p, p.safeId(ctx.getEntry()));
+						ConditionalRecipe.builder()
+										.addCondition(new ModLoadedCondition("botania"))
+										.addRecipe((writer) -> ShapedRecipeBuilder.shaped(ctx.getEntry())
+														.pattern(" X ")
+														.pattern("XEX")
+														.pattern(" X ")
+														.define('X', TERRASTEEL_INGOT)
+														.define('E', MANASTEEL_SHIELD.get())
+														.unlockedBy("has_terrasteel", DataIngredient.tag(TERRASTEEL_INGOT).getCritereon(p))
+														.save(writer)
+										)
+										.generateAdvancement()
+										.build(p, p.safeId(ctx.getEntry()));
 					})
 					.register();
 
@@ -150,30 +168,41 @@ public class ModItems {
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
-						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-										.pattern(" X ")
-										.pattern("XEX")
-										.pattern(" X ")
-										.define('X', ELEMENTIUM_INGOT)
-										.define('E', ModTags.PIXIE_DUST)
-										.unlockedBy("has_elementium", DataIngredient.tag(ELEMENTIUM_INGOT).getCritereon(p))
-										.save(p, p.safeId(ctx.getEntry()));
+						ConditionalRecipe.builder()
+										.addCondition(new ModLoadedCondition("botania"))
+										.addRecipe((writer) -> ShapedRecipeBuilder.shaped(ctx.getEntry())
+														.pattern(" X ")
+														.pattern("XEX")
+														.pattern(" X ")
+														.define('X', ELEMENTIUM_INGOT)
+														.define('E', ModTags.PIXIE_DUST)
+														.unlockedBy("has_elementium", DataIngredient.tag(ELEMENTIUM_INGOT).getCritereon(p))
+														.save(writer)
+										)
+										.generateAdvancement()
+										.build(p, p.safeId(ctx.getEntry()));
 					})
 					.register();
 
 	// Mekanism Electric Shield
-	public static final ItemEntry<EnergyShieldItem> ELECTRIC_SHIELD = REGISTRATE.item("electric_shield", props -> new EnergyShieldItem(props, EnergyShield.ELECTRIC_SHIELD)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<EnergyShieldItem> ELECTRIC_SHIELD = REGISTRATE.item("electric_shield", props -> new EnergyShieldItem(props, EnergyShield.ELECTRIC_SHIELD))
+					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
-						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-										.pattern(" X ")
-										.pattern("XEX")
-										.pattern(" X ")
-										.define('X', ADVANCED_ALLOY)
-										.define('E', ItemTags.create(new ResourceLocation("forge", "batteries")))
-										.unlockedBy("has_advanced_alloy", DataIngredient.tag(ADVANCED_ALLOY).getCritereon(p))
-										.save(p, p.safeId(ctx.getEntry()));
+						ConditionalRecipe.builder()
+										.addCondition(new ModLoadedCondition("mekanism"))
+										.addRecipe((writer) -> ShapedRecipeBuilder.shaped(ctx.getEntry())
+														.pattern(" X ")
+														.pattern("XEX")
+														.pattern(" X ")
+														.define('X', ADVANCED_ALLOY)
+														.define('E', ItemTags.create(new ResourceLocation("forge", "batteries")))
+														.unlockedBy("has_advanced_alloy", DataIngredient.tag(ADVANCED_ALLOY).getCritereon(p))
+														.save(writer)
+										)
+										.generateAdvancement()
+										.build(p, p.safeId(ctx.getEntry()));
 					})
 					.register();
 
@@ -183,51 +212,70 @@ public class ModItems {
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
-						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-										.pattern(" G ")
-										.pattern("XEX")
-										.pattern(" G ")
-										.define('G', TIN_GEAR)
-										.define('X', Tags.Items.INGOTS_IRON)
-										.define('E', ModTags.FLUX_COIL)
-										.unlockedBy("has_redstone", DataIngredient.tag(Tags.Items.DUSTS_REDSTONE).getCritereon(p))
-										.save(p, p.safeId(ctx.getEntry()));
+						ConditionalRecipe.builder()
+										.addCondition(new ModLoadedCondition("thermal"))
+										.addRecipe((writer) -> ShapedRecipeBuilder.shaped(ctx.getEntry())
+														.pattern(" G ")
+														.pattern("XEX")
+														.pattern(" G ")
+														.define('G', TIN_GEAR)
+														.define('X', Tags.Items.INGOTS_IRON)
+														.define('E', ModTags.FLUX_COIL)
+														.unlockedBy("has_redstone", DataIngredient.tag(Tags.Items.DUSTS_REDSTONE).getCritereon(p))
+														.save(writer)
+										)
+										.generateAdvancement()
+										.build(p, p.safeId(ctx.getEntry()));
 					})
 					.register();
 
 	// Immersive Engineering Shield
-	public static final ItemEntry<EnergyShieldItem> ENGINEERS_SHIELD = REGISTRATE.item("engineers_shield", props -> new EnergyShieldItem(props, EnergyShield.ENGINEERS_SHIELD)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<EnergyShieldItem> ENGINEERS_SHIELD = REGISTRATE.item("engineers_shield", props -> new EnergyShieldItem(props, EnergyShield.ENGINEERS_SHIELD))
+					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
-						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-										.pattern(" G ")
-										.pattern("XEX")
-										.pattern(" G ")
-										.define('G', STEEL_INGOT)
-										.define('X', ModTags.WOODEN_GRIP)
-										.define('E', ModTags.COMPONENT_STEEL)
-										.unlockedBy("has_steel", DataIngredient.tag(STEEL_INGOT).getCritereon(p))
-										.save(p, p.safeId(ctx.getEntry()));
+						ConditionalRecipe.builder()
+										.addCondition(new ModLoadedCondition("immersiveengineering"))
+										.addRecipe((writer) -> ShapedRecipeBuilder.shaped(ctx.getEntry())
+														.pattern(" G ")
+														.pattern("XEX")
+														.pattern(" G ")
+														.define('G', STEEL_INGOT)
+														.define('X', ModTags.WOODEN_GRIP)
+														.define('E', ModTags.COMPONENT_STEEL)
+														.unlockedBy("has_steel", DataIngredient.tag(STEEL_INGOT).getCritereon(p))
+														.save(writer)
+										)
+										.generateAdvancement()
+										.build(p, p.safeId(ctx.getEntry()));
 					})
 					.lang("Engineer's Shield")
 					.register();
 
-	public static final ItemEntry<VanillaShieldItem> KNIGHTMETAL_SHIELD = REGISTRATE.item("knightmetal_shield",
-									props -> new VanillaShieldItem(props, TwilightForestShield.KNIGHTMETAL)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<KnightmetalShieldItem> KNIGHTMETAL_SHIELD = REGISTRATE.item("knightmetal_shield", props -> new KnightmetalShieldItem(props, TwilightForestShield.KNIGHTMETAL))
+					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
-						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-										.pattern(" X ")
-										.pattern("XEX")
-										.pattern(" X ")
-										.define('X', ItemTags.create(new ResourceLocation("forge", "ingots/knightmetal")))
-										.define('E', Items.ENDER_EYE)
-										.unlockedBy("has_eye_of_ender", DataIngredient.items(Items.ENDER_EYE).getCritereon(p))
-										.save(p, p.safeId(ctx.getEntry()));
+						var tag = ItemTags.create(new ResourceLocation("forge", "ingots/knightmetal"));
+						ConditionalRecipe.builder()
+										.addCondition(new NotCondition(
+														new TagEmptyCondition(tag.location())
+										))
+										.addRecipe((writer) -> ShapedRecipeBuilder.shaped(ctx.getEntry())
+														.pattern(" X ")
+														.pattern("XEX")
+														.pattern(" X ")
+														.define('X', tag)
+														.define('E', Items.ENDER_EYE)
+														.unlockedBy("has_eye_of_ender", DataIngredient.items(Items.ENDER_EYE).getCritereon(p))
+														.save(writer)
+										)
+										.generateAdvancement()
+										.build(p, p.safeId(ctx.getEntry()));
 					})
-					.properties(props -> props.durability(Tiers.DIAMOND.getUses()))
+					.properties(props -> props.durability(512))
 					.register();
 
 	public static final ItemEntry<SuperiorShieldItem<IShieldType>> SOUL_STAINED_STEEL_SHIELD = REGISTRATE.item("soul_stained_steel_shield", MalumCompat.makeSoulStainedShieldOrDefault(MalumShield.SOUL_STAINED_STEEL))
@@ -235,16 +283,21 @@ public class ModItems {
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
-						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-										.pattern(" X ")
-										.pattern("XEX")
-										.pattern(" X ")
-										.define('X', ItemTags.create(new ResourceLocation("forge", "ingots/soul_stained_steel")))
-										.define('E', ItemTags.create(new ResourceLocation("forge", "ingots/hallowed_gold")))
-										.unlockedBy("has_eye_of_ender", DataIngredient.items(Items.ENDER_EYE).getCritereon(p))
-										.save(p, p.safeId(ctx.getEntry()));
+						ConditionalRecipe.builder()
+										.addCondition(new ModLoadedCondition("malum"))
+										.addRecipe((writer) -> ShapedRecipeBuilder.shaped(ctx.getEntry())
+														.pattern(" X ")
+														.pattern("XEX")
+														.pattern(" X ")
+														.define('X', ModTags.SOUL_STAINED_STEEL_INGOT)
+														.define('E', ModTags.HALLOWED_SPIRIT_RESONATOR)
+														.unlockedBy("has_eye_of_ender", DataIngredient.items(Items.ENDER_EYE).getCritereon(p))
+														.save(writer)
+										)
+										.generateAdvancement()
+										.build(p, p.safeId(ctx.getEntry()));
 					})
-					.properties(props -> props.durability(Tiers.DIAMOND.getUses()))
+					.properties(props -> props.durability(1250))
 					.register();
 
 	public static final ItemEntry<SuperiorShieldItem<IShieldType>> SPIRIT_HUNTER_SHIELD = REGISTRATE.item("spirit_hunter_shield", MalumCompat.makeSpiritHunterShieldOrDefault(MalumShield.SPIRIT_HUNTER))
@@ -252,33 +305,46 @@ public class ModItems {
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
-						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-										.pattern(" X ")
-										.pattern("XEX")
-										.pattern(" X ")
-										.define('X', ItemTags.create(new ResourceLocation("forge", "ingots/soul_stained_steel")))
-										.define('E', ItemTags.create(new ResourceLocation("forge", "ingots/hallowed_gold")))
-										.unlockedBy("has_eye_of_ender", DataIngredient.items(Items.ENDER_EYE).getCritereon(p))
-										.save(p, p.safeId(ctx.getEntry()));
+						ConditionalRecipe.builder()
+										.addCondition(new ModLoadedCondition("malum"))
+										.addRecipe((writer) -> ShapedRecipeBuilder.shaped(ctx.getEntry())
+														.pattern(" X ")
+														.pattern("XEX")
+														.pattern(" X ")
+														.define('X', ModTags.SPIRIT_FABRIC)
+														.define('E', ModTags.STAINED_SPIRIT_RESONATOR)
+														.unlockedBy("has_eye_of_ender", DataIngredient.items(Items.ENDER_EYE).getCritereon(p))
+														.save(writer)
+										)
+										.generateAdvancement()
+										.build(p, p.safeId(ctx.getEntry()));
 					})
-					.properties(props -> props.durability(Tiers.DIAMOND.getUses()))
+					.properties(props -> props.durability(200))
 					.register();
 
-	public static final ItemEntry<FieryShieldItem> FIERY_SHIELD = REGISTRATE.item("fiery_shield",
-									props -> new FieryShieldItem(props, FieryShield.FIREY)).tab(() -> SuperiorShields.ITEM_GROUP)
+	public static final ItemEntry<FieryShieldItem> FIERY_SHIELD = REGISTRATE.item("fiery_shield", props -> new FieryShieldItem(props, FieryShield.FIREY))
+					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
 					.tag(SHIELD_TAG)
 					.recipe((ctx, p) -> {
-						ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-										.pattern(" X ")
-										.pattern("XEX")
-										.pattern(" X ")
-										.define('X', ItemTags.create(new ResourceLocation("forge", "ingots/fiery")))
-										.define('E', Items.ENDER_EYE)
-										.unlockedBy("has_eye_of_ender", DataIngredient.items(Items.ENDER_EYE).getCritereon(p))
-										.save(p, p.safeId(ctx.getEntry()));
+						var tag = ItemTags.create(new ResourceLocation("forge", "ingots/fiery"));
+						ConditionalRecipe.builder()
+										.addCondition(new NotCondition(
+														new TagEmptyCondition(tag.location())
+										))
+										.addRecipe((writer) -> ShapedRecipeBuilder.shaped(ctx.getEntry())
+														.pattern(" X ")
+														.pattern("XEX")
+														.pattern(" X ")
+														.define('X', tag)
+														.define('E', Items.ENDER_EYE)
+														.unlockedBy("has_eye_of_ender", DataIngredient.items(Items.ENDER_EYE).getCritereon(p))
+														.save(writer)
+										)
+										.generateAdvancement()
+										.build(p, p.safeId(ctx.getEntry()));
 					})
-					.properties(props -> props.durability(Tiers.DIAMOND.getUses()))
+					.properties(props -> props.durability(1024))
 					.register();
 
 	private static ItemBuilder<VanillaShieldItem, Registrate> vanillaShieldItem(IShieldType type, int durability) {
@@ -291,7 +357,7 @@ public class ModItems {
 											.addCondition(new NotCondition(
 															new TagEmptyCondition(tag.location())
 											))
-											.addRecipe((writer) -> ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+											.addRecipe((writer) -> ShapedRecipeBuilder.shaped(ctx.getEntry())
 															.pattern(" X ")
 															.pattern("XEX")
 															.pattern(" X ")

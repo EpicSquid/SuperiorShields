@@ -1,0 +1,44 @@
+{
+  "advancements": [
+    {
+      "conditions": [
+        {
+          "modid": "botania",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "rewards": {
+          "recipes": [
+            "superiorshields:terrasteel_shield"
+          ]
+        },
+        "criteria": {
+          "has_terrasteel": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+              "items": [
+                {
+                  "tag": "forge:ingots/terrasteel"
+                }
+              ]
+            }
+          },
+          "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+              "recipe": "superiorshields:terrasteel_shield"
+            }
+          }
+        },
+        "requirements": [
+          [
+            "has_terrasteel",
+            "has_the_recipe"
+          ]
+        ]
+      }
+    }
+  ]
+}

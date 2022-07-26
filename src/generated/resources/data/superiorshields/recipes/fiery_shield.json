@@ -1,19 +1,35 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " X ",
-    "XEX",
-    " X "
-  ],
-  "key": {
-    "X": {
-      "tag": "forge:ingots/fiery"
-    },
-    "E": {
-      "item": "minecraft:ender_eye"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "value": {
+            "tag": "forge:ingots/fiery",
+            "type": "forge:tag_empty"
+          },
+          "type": "forge:not"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          " X ",
+          "XEX",
+          " X "
+        ],
+        "key": {
+          "X": {
+            "tag": "forge:ingots/fiery"
+          },
+          "E": {
+            "item": "minecraft:ender_eye"
+          }
+        },
+        "result": {
+          "item": "superiorshields:fiery_shield"
+        }
+      }
     }
-  },
-  "result": {
-    "item": "superiorshields:fiery_shield"
-  }
+  ]
 }

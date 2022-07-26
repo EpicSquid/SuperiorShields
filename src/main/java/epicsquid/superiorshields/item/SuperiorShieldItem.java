@@ -46,6 +46,11 @@ public class SuperiorShieldItem<T extends IShieldType> extends Item implements I
 	}
 
 	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+		return enchantment.category.equals(ModEnchantments.type);
+	}
+
+	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(@Nonnull ItemStack stack, @Nullable Level worldIn, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);

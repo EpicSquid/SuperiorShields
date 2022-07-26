@@ -1,19 +1,32 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " X ",
-    "XEX",
-    " X "
-  ],
-  "key": {
-    "X": {
-      "tag": "forge:gems/lapis"
-    },
-    "E": {
-      "tag": "forge:ender_pearls"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "mekanism",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          " X ",
+          "XEX",
+          " X "
+        ],
+        "key": {
+          "X": {
+            "tag": "forge:gems/lapis"
+          },
+          "E": {
+            "tag": "forge:ender_pearls"
+          }
+        },
+        "result": {
+          "item": "superiorshields:lapis_shield"
+        }
+      }
     }
-  },
-  "result": {
-    "item": "superiorshields:lapis_shield"
-  }
+  ]
 }

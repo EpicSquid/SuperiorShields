@@ -24,6 +24,6 @@ public class VanillaShieldItem extends SuperiorShieldItem<IShieldType> {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        return enchantment.category.equals(ModEnchantments.type) || enchantment.equals(Enchantments.UNBREAKING) || enchantment.equals(Enchantments.MENDING);
+        return super.canApplyAtEnchantingTable(stack, enchantment) || enchantment.equals(Enchantments.UNBREAKING) || enchantment.equals(Enchantments.MENDING);
     }
 }

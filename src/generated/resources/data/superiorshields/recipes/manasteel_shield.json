@@ -1,19 +1,32 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " X ",
-    "XEX",
-    " X "
-  ],
-  "key": {
-    "X": {
-      "tag": "forge:ingots/manasteel"
-    },
-    "E": {
-      "tag": "forge:mana_pearl"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "botania",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          " X ",
+          "XEX",
+          " X "
+        ],
+        "key": {
+          "X": {
+            "tag": "forge:ingots/manasteel"
+          },
+          "E": {
+            "tag": "forge:mana_pearl"
+          }
+        },
+        "result": {
+          "item": "superiorshields:manasteel_shield"
+        }
+      }
     }
-  },
-  "result": {
-    "item": "superiorshields:manasteel_shield"
-  }
+  ]
 }
