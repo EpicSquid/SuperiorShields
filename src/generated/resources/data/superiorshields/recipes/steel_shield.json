@@ -1,19 +1,35 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " X ",
-    "XEX",
-    " X "
-  ],
-  "key": {
-    "X": {
-      "tag": "forge:ingots/steel"
-    },
-    "E": {
-      "tag": "forge:ender_pearls"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "value": {
+            "tag": "forge:ingots/steel",
+            "type": "forge:tag_empty"
+          },
+          "type": "forge:not"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          " X ",
+          "XEX",
+          " X "
+        ],
+        "key": {
+          "X": {
+            "tag": "forge:ingots/steel"
+          },
+          "E": {
+            "tag": "forge:ender_pearls"
+          }
+        },
+        "result": {
+          "item": "superiorshields:steel_shield"
+        }
+      }
     }
-  },
-  "result": {
-    "item": "superiorshields:steel_shield"
-  }
+  ]
 }

@@ -20,6 +20,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.crafting.ConditionalRecipe;
+import net.minecraftforge.common.crafting.conditions.*;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.Locale;
@@ -284,14 +286,22 @@ public class ModItems {
 						.tag(CURIOS_TAG)
 						.tag(SHIELD_TAG)
 						.recipe((ctx, p) -> {
-							ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
-											.pattern(" X ")
-											.pattern("XEX")
-											.pattern(" X ")
-											.define('X', ItemTags.create(new ResourceLocation("forge", "ingots/" + type.name().toLowerCase(Locale.ROOT))))
-											.define('E', Tags.Items.ENDER_PEARLS)
-											.unlockedBy("has_enderpearl", DataIngredient.tag(Tags.Items.ENDER_PEARLS).getCritereon(p))
-											.save(p, p.safeId(ctx.getEntry()));
+							var tag = ItemTags.create(new ResourceLocation("forge", "ingots/" + type.name().toLowerCase(Locale.ROOT)));
+							ConditionalRecipe.builder()
+											.addCondition(new NotCondition(
+															new TagEmptyCondition(tag.location())
+											))
+											.addRecipe((writer) -> ShapedRecipeBuilder.shaped(ctx.getEntry(), 1)
+															.pattern(" X ")
+															.pattern("XEX")
+															.pattern(" X ")
+															.define('X', tag)
+															.define('E', Tags.Items.ENDER_PEARLS)
+															.unlockedBy("has_enderpearl", DataIngredient.tag(Tags.Items.ENDER_PEARLS).getCritereon(p))
+															.save(writer)
+											)
+											.generateAdvancement()
+											.build(p, p.safeId(ctx.getEntry()));
 						})
 						.properties(props -> props.durability(durability));
 	}

@@ -1,19 +1,35 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " X ",
-    "XEX",
-    " X "
-  ],
-  "key": {
-    "X": {
-      "tag": "forge:ingots/osmium"
-    },
-    "E": {
-      "tag": "forge:ender_pearls"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "value": {
+            "tag": "forge:ingots/osmium",
+            "type": "forge:tag_empty"
+          },
+          "type": "forge:not"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          " X ",
+          "XEX",
+          " X "
+        ],
+        "key": {
+          "X": {
+            "tag": "forge:ingots/osmium"
+          },
+          "E": {
+            "tag": "forge:ender_pearls"
+          }
+        },
+        "result": {
+          "item": "superiorshields:osmium_shield"
+        }
+      }
     }
-  },
-  "result": {
-    "item": "superiorshields:osmium_shield"
-  }
+  ]
 }
