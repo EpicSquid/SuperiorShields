@@ -17,25 +17,20 @@ import javax.annotation.Nonnull;
 
 public class EnergyCapabilityProvider implements ICapabilityProvider, INBTSerializable<Tag>, IEnergyStorage {
 
-	private int maxEnergy;
+	private final int maxEnergy;
 	private int currentEnergy;
-	private int inputRate;
-	private int outputRate;
+	private final int inputRate;
+	private final int outputRate;
 	private final ItemStack stack;
-	private final LazyOptional<EnergyCapabilityProvider> op;
+	private final LazyOptional<IEnergyStorage> op;
 
 	public EnergyCapabilityProvider(int maxEnergy, int currentEnergy, int inputRate, int outputRate, @Nonnull ItemStack stack) {
 		this.maxEnergy = maxEnergy;
-		this.currentEnergy = currentEnergy;
 		this.inputRate = inputRate;
 		this.outputRate = outputRate;
 		this.stack = stack;
 
-		if (stack.getTag() == null) {
-			CompoundTag tag = new CompoundTag();
-			tag.putInt("energy", currentEnergy);
-			stack.setTag(tag);
-		}
+		this.currentEnergy = stack.getOrCreateTag().getInt("energy");
 		this.op = LazyOptional.of(() -> this);
 	}
 
@@ -48,45 +43,35 @@ public class EnergyCapabilityProvider implements ICapabilityProvider, INBTSerial
 	@Override
 	public Tag serializeNBT() {
 		CompoundTag tag = new CompoundTag();
-		tag.putInt("maxEnergy", maxEnergy);
-		tag.putInt("currentEnergy", currentEnergy);
-		tag.putInt("inputRate", inputRate);
-		tag.putInt("outputRate", outputRate);
+		tag.putInt("energy", currentEnergy);
 		return tag;
 	}
 
 	@Override
 	public void deserializeNBT(Tag nbt) {
 		if (nbt instanceof CompoundTag tag) {
-			maxEnergy = tag.getInt("maxEnergy");
-			currentEnergy = tag.getInt("currentEnergy");
-			inputRate = tag.getInt("inputRate");
-			outputRate = tag.getInt("outputRate");
+			currentEnergy = tag.getInt("energy");
 		}
 	}
 
 	@Override
 	public int receiveEnergy(int maxReceive, boolean simulate) {
-		int energyToUpdate = Math.min(currentEnergy + maxReceive, maxEnergy);
+		int energyToUpdate = Math.min(Math.min(maxReceive, inputRate), maxEnergy - currentEnergy);
 		if (!simulate) {
-			currentEnergy = energyToUpdate;
-			if (stack.getTag() != null) {
-				stack.getTag().putInt("energy", currentEnergy);
-			}
+			currentEnergy += energyToUpdate;
+			stack.getOrCreateTag().putInt("energy", currentEnergy);
 		}
-		return maxReceive;
+		return energyToUpdate;
 	}
 
 	@Override
 	public int extractEnergy(int maxExtract, boolean simulate) {
-		int energyToUpdate = Math.max(currentEnergy - maxExtract, 0);
+		int energyToUpdate = Math.min(Math.min(maxExtract, outputRate), currentEnergy);
 		if (!simulate) {
-			currentEnergy = energyToUpdate;
-			if (stack.getTag() != null) {
-				stack.getTag().putInt("energy", currentEnergy);
-			}
+			currentEnergy -= energyToUpdate;
+			stack.getOrCreateTag().putInt("energy", currentEnergy);
 		}
-		return maxExtract;
+		return energyToUpdate;
 	}
 
 	@Override
