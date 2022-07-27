@@ -53,6 +53,7 @@
   "item.superiorshields.tin_shield": "p\u05DF\u01DD\u0131\u0265S u\u0131\u27D8",
   "itemGroup.superiorshields": "sp\u05DF\u01DD\u0131\u0265S \u0279o\u0131\u0279\u01DDdnS",
   "tooltip.superiorshields.blank": "",
+  "tooltip.superiorshields.energy": "\u018E\u2132 \u029E%s / %s :\u028Eb\u0279\u01DDu\u018E",
   "tooltip.superiorshields.equip": ":\u0287o\u05DFs so\u0131\u0279n\u0254 p\u05DF\u01DD\u0131\u0265S \u0279o\u0131\u0279\u01DDdnS \u01DD\u0265\u0287 u\u0131 u\u01DD\u0265M",
   "tooltip.superiorshields.hp": "s\u0287u\u0131o\u0500 \u0287\u0131H %s ",
   "tooltip.superiorshields.recharge_delay": "\u028E\u0250\u05DF\u01DD\u15E1 \u01DDb\u0279\u0250\u0265\u0254\u01DD\u1D1A %s ",

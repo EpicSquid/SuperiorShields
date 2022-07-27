@@ -53,6 +53,7 @@
   "item.superiorshields.tin_shield": "Tin Shield",
   "itemGroup.superiorshields": "Superior Shields",
   "tooltip.superiorshields.blank": "",
+  "tooltip.superiorshields.energy": "Energy: %s / %sK FE",
   "tooltip.superiorshields.equip": "When in the Superior Shield curios slot:",
   "tooltip.superiorshields.hp": " %s Hit Points",
   "tooltip.superiorshields.recharge_delay": " %s Recharge Delay",
