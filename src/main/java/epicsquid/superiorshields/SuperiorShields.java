@@ -60,13 +60,13 @@ public class SuperiorShields {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerCaps);
 		MinecraftForge.EVENT_BUS.register(this);
 
-		ModItems.classload();
-		ModEnchantments.classload();
-		ModLang.classload();
-
 		BotaniaCompat.init();
 		MalumCompat.init();
 		ThermalCompat.init();
+
+		ModItems.classload();
+		ModEnchantments.classload();
+		ModLang.classload();
 
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(EventPriority.LOWEST, this::gatherData);
 	}
