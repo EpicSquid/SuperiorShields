@@ -1,22 +1,35 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " G ",
-    "XEX",
-    " G "
-  ],
-  "key": {
-    "G": {
-      "tag": "forge:gears/tin"
-    },
-    "X": {
-      "tag": "forge:ingots/iron"
-    },
-    "E": {
-      "tag": "forge:flux_coil"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "thermal",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          " G ",
+          "XEX",
+          " G "
+        ],
+        "key": {
+          "G": {
+            "tag": "forge:gears/tin"
+          },
+          "X": {
+            "tag": "forge:ingots/iron"
+          },
+          "E": {
+            "tag": "thermal:flux_coil"
+          }
+        },
+        "result": {
+          "item": "superiorshields:flux_shield"
+        }
+      }
     }
-  },
-  "result": {
-    "item": "superiorshields:flux_shield"
-  }
+  ]
 }

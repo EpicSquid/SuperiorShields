@@ -1,0 +1,49 @@
+{
+  "advancements": [
+    {
+      "conditions": [
+        {
+          "value": {
+            "tag": "forge:ingots/fiery",
+            "type": "forge:tag_empty"
+          },
+          "type": "forge:not"
+        }
+      ],
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "rewards": {
+          "recipes": [
+            "superiorshields:fiery_shield"
+          ]
+        },
+        "criteria": {
+          "has_eye_of_ender": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "minecraft:ender_eye"
+                  ]
+                }
+              ]
+            }
+          },
+          "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+              "recipe": "superiorshields:fiery_shield"
+            }
+          }
+        },
+        "requirements": [
+          [
+            "has_eye_of_ender",
+            "has_the_recipe"
+          ]
+        ]
+      }
+    }
+  ]
+}

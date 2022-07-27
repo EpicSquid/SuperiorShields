@@ -1,0 +1,47 @@
+{
+  "advancements": [
+    {
+      "conditions": [
+        {
+          "value": {
+            "tag": "forge:ingots/iron",
+            "type": "forge:tag_empty"
+          },
+          "type": "forge:not"
+        }
+      ],
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "rewards": {
+          "recipes": [
+            "superiorshields:iron_shield"
+          ]
+        },
+        "criteria": {
+          "has_enderpearl": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+              "items": [
+                {
+                  "tag": "forge:ender_pearls"
+                }
+              ]
+            }
+          },
+          "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+              "recipe": "superiorshields:iron_shield"
+            }
+          }
+        },
+        "requirements": [
+          [
+            "has_enderpearl",
+            "has_the_recipe"
+          ]
+        ]
+      }
+    }
+  ]
+}

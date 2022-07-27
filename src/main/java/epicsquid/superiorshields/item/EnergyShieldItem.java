@@ -1,12 +1,14 @@
 package epicsquid.superiorshields.item;
 
 import epicsquid.superiorshields.config.Config;
+import epicsquid.superiorshields.enchantment.ModEnchantments;
 import epicsquid.superiorshields.shield.IEnergyShield;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
@@ -26,7 +28,7 @@ public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 	private final LazyOptional<IEnergyStorage> energyHandler = LazyOptional.of(this::getEnergy);
 
 	public EnergyShieldItem(Item.Properties props, IEnergyShield shieldType) {
-		super(props, shieldType);
+		super(props.stacksTo(1), shieldType);
 		this.energy = new EnergyStorage(shieldType.getMaxEnergy(), 1000);
 	}
 
@@ -42,6 +44,11 @@ public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public boolean isEnchantable(@Nonnull ItemStack stack) {
+		return true;
 	}
 
 	@Override
@@ -61,7 +68,7 @@ public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 		var energyOp = getEnergyStorage(stack);
 		if (energyOp.isPresent()) {
 			var energyIn = energyOp.get();
-			return Math.round((float)energyIn.getEnergyStored() * 13.0F / (float)energyIn.getMaxEnergyStored());
+			return Math.round((float) energyIn.getEnergyStored() * 13.0F / (float) energyIn.getMaxEnergyStored());
 		}
 		return 0;
 	}
@@ -77,7 +84,6 @@ public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 			}
 		};
 	}
-
 
 
 	@Nonnull

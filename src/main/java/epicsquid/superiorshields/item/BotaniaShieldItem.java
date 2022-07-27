@@ -1,14 +1,14 @@
 package epicsquid.superiorshields.item;
 
 import epicsquid.superiorshields.config.Config;
-import epicsquid.superiorshields.shield.BotaniaShield;
+import epicsquid.superiorshields.shield.IShieldType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import vazkii.botania.api.mana.ManaItemHandler;
 
-public class BotaniaShieldItem extends SuperiorShieldItem<BotaniaShield> {
+public class BotaniaShieldItem extends SuperiorShieldItem<IShieldType> {
 
-	public BotaniaShieldItem(Properties props, BotaniaShield shieldType) {
+	public BotaniaShieldItem(Properties props, IShieldType shieldType) {
 		super(props.stacksTo(1), shieldType);
 	}
 

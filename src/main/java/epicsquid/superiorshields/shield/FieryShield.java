@@ -2,7 +2,6 @@ package epicsquid.superiorshields.shield;
 
 import epicsquid.superiorshields.shield.effect.IShieldEffect;
 import epicsquid.superiorshields.shield.effect.ShieldEffectFireNova;
-import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
 
 public enum FieryShield implements IShieldType {
 	// Better than diamond, also comes with fire nova enchantment
