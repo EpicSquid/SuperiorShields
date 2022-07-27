@@ -1,12 +1,14 @@
 package epicsquid.superiorshields.item;
 
 import epicsquid.superiorshields.config.Config;
+import epicsquid.superiorshields.enchantment.ModEnchantments;
 import epicsquid.superiorshields.shield.IEnergyShield;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;

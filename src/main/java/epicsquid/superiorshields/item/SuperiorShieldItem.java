@@ -75,7 +75,7 @@ public class SuperiorShieldItem<T extends IShieldType> extends Item implements I
 	public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
 		if (slotContext.entity() instanceof Player player && !player.level.isClientSide && !ItemStack.isSameIgnoreDurability(prevStack, stack)) {
 			CapabilityRegistry.getShield(player).ifPresent(shield -> {
-				shield.setupShield(ShieldHelper.getShieldCapacity(stack));
+				shield.setupShield(ShieldHelper.getShieldCapacity(stack), shield.getCurrentHp());
 				MinecraftForge.EVENT_BUS.post(new ShieldEquippedEvent(player, shield));
 				if (!player.level.isClientSide) {
 					updateClient(player, shield);

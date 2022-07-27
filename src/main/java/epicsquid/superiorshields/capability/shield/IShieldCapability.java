@@ -23,9 +23,11 @@ public interface IShieldCapability extends INBTSerializable<CompoundTag> {
 		setTimeWithoutDamage(0);
 	}
 
-	default void setupShield(float maxHp) {
+	default void setupShield(float maxHp, float currentHp) {
+		// Keep the current HP but make sure its no more than the max HP.
+		// This prevents reconnecting invalidating the shield having recharged
 		setMaxHp(maxHp);
-		setCurrentHp(0);
+		setCurrentHp(Math.min(maxHp, currentHp));
 		setTimeWithoutDamage(0);
 	}
 }
