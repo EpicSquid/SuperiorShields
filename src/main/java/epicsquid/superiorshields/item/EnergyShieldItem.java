@@ -26,7 +26,7 @@ public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 	private final LazyOptional<IEnergyStorage> energyHandler = LazyOptional.of(this::getEnergy);
 
 	public EnergyShieldItem(Item.Properties props, IEnergyShield shieldType) {
-		super(props, shieldType);
+		super(props.stacksTo(1), shieldType);
 		this.energy = new EnergyStorage(shieldType.getMaxEnergy(), 1000);
 	}
 
@@ -42,6 +42,11 @@ public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public boolean isEnchantable(@Nonnull ItemStack stack) {
+		return true;
 	}
 
 	@Override
