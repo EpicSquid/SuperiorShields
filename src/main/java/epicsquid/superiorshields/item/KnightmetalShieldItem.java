@@ -20,7 +20,7 @@ public class KnightmetalShieldItem extends VanillaShieldItem {
 	public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
 		var attributes = super.getAttributeModifiers(slotContext, uuid, stack);
 
-		attributes.put(Attributes.ARMOR, new AttributeModifier(UUID.randomUUID(), "Curio armor boost", 4, AttributeModifier.Operation.ADDITION));
+		attributes.put(Attributes.ARMOR, new AttributeModifier(UUID.fromString("d295b350-21c6-45b6-ad2c-2b6dbbf80b0a"), "Curio armor boost", 4, AttributeModifier.Operation.ADDITION));
 		return attributes;
 	}
 }

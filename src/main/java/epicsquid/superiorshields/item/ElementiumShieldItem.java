@@ -20,7 +20,7 @@ public class ElementiumShieldItem extends BotaniaShieldItem {
 	public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
 		var attributes = super.getAttributeModifiers(slotContext, uuid, stack);
 
-		attributes.put(PixieHandler.PIXIE_SPAWN_CHANCE, new AttributeModifier(UUID.randomUUID(), "Pixie Spawn Chance Boost", 0.25, AttributeModifier.Operation.ADDITION));
+		attributes.put(PixieHandler.PIXIE_SPAWN_CHANCE, new AttributeModifier(UUID.fromString("e6727179-355f-46b7-903e-c41b58260d0f"), "Pixie Spawn Chance Boost", 0.25, AttributeModifier.Operation.ADDITION));
 		return attributes;
 	}
 }
