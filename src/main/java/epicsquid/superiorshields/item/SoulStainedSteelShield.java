@@ -22,8 +22,8 @@ public class SoulStainedSteelShield extends VanillaShieldItem {
 	public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
 		var attributes = super.getAttributeModifiers(slotContext, uuid, stack);
 
-		attributes.put(OrtusAttributes.MAGIC_RESISTANCE.get(), new AttributeModifier(UUID.randomUUID(), "Magic Resistance", 1f, AttributeModifier.Operation.ADDITION));
-		attributes.put(AttributeRegistry.SOUL_WARD_CAP.get(), new AttributeModifier(UUID.randomUUID(), "Soul Ward Cap", 3f, AttributeModifier.Operation.ADDITION));
+		attributes.put(OrtusAttributes.MAGIC_RESISTANCE.get(), new AttributeModifier(uuid, "Magic Resistance", 1f, AttributeModifier.Operation.ADDITION));
+		attributes.put(AttributeRegistry.SOUL_WARD_CAP.get(), new AttributeModifier(uuid, "Soul Ward Cap", 3f, AttributeModifier.Operation.ADDITION));
 		return attributes;
 	}
 }
