@@ -22,8 +22,8 @@ public class SpiritHunterShield extends VanillaShieldItem {
 	public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
 		var attributes = super.getAttributeModifiers(slotContext, uuid, stack);
 
-		attributes.put(OrtusAttributes.MAGIC_PROFICIENCY.get(), new AttributeModifier(UUID.randomUUID(), "Magic Proficiency", 1f, AttributeModifier.Operation.ADDITION));
-		attributes.put(AttributeRegistry.SCYTHE_PROFICIENCY.get(), new AttributeModifier(UUID.randomUUID(), "Scythe Proficiency", 1f, AttributeModifier.Operation.ADDITION));
+		attributes.put(OrtusAttributes.MAGIC_PROFICIENCY.get(), new AttributeModifier(uuid, "Magic Proficiency", 1f, AttributeModifier.Operation.ADDITION));
+		attributes.put(AttributeRegistry.SCYTHE_PROFICIENCY.get(), new AttributeModifier(uuid, "Scythe Proficiency", 1f, AttributeModifier.Operation.ADDITION));
 		return attributes;
 	}
 }
