@@ -45,9 +45,6 @@ public class GuiShieldOverlay extends GuiComponent implements IIngameOverlay {
 			if (player.getArmorValue() > 0) {
 				defaultYOffset += 10;
 			}
-			if (player.getArmorValue() > 20) {
-				defaultXOffset += 10;
-			}
 			if (player.getActiveEffectsMap().containsKey(MobEffects.ABSORPTION)) {
 				defaultYOffset += 10;
 			}
