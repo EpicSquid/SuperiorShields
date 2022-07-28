@@ -5,6 +5,7 @@ import epicsquid.superiorshields.config.Config;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 
@@ -35,8 +36,15 @@ public abstract class ShieldEffectNova implements IShieldEffect {
 			List<LivingEntity> entities = player.level.getEntitiesOfClass(LivingEntity.class,
 							new AABB(player.position().x + rad, player.position().y + rad, player.position().z + rad, player.position().x - rad, player.position().y - rad,
 											player.position().z - rad));
-			applyToEntities(entities.stream().filter(le -> !(le instanceof Player)).toList());
+			applyToEntities(entities.stream().filter(le -> !(le instanceof Player) && !protectPets(le)).toList());
 		}
+	}
+
+	private boolean protectPets(LivingEntity livingEntity) {
+		if (livingEntity instanceof TamableAnimal tamableAnimal) {
+			return tamableAnimal.isTame();
+		}
+		return false;
 	}
 
 	protected abstract void applyToEntities(@Nonnull List<LivingEntity> entities);
