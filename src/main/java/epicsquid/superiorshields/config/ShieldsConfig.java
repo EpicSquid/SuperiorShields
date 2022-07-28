@@ -34,7 +34,7 @@ public class ShieldsConfig {
 		SPIKE_EFFECT_DURATION = builder.comment("The duration of the effect applied when a mob attacks you.").define("spike_effect_duration", 2);
 		AMPLIFY_DAMAGE_MULTIPLIER = builder.comment("The damage multiplier for attacks of the amplify enchantment.").define("amplify_damage_multiplier", 1.5f);
 		RAGING_DAMAGE_ADDED = builder.comment("The damage added to attacks while shields are depleted with the raging enchantment.").define("raging_damage_added", 2.0f);
-		AMPLIFY_SHIELD_DRAIN = builder.comment("The amount of shield HP drained when the amplify enchantment is triggered.").define("raging_damage_added", 3);
+		AMPLIFY_SHIELD_DRAIN = builder.comment("The amount of shield HP drained when the amplify enchantment is triggered.").define("amplify_shield_drain", 3);
 		builder.pop();
 
 		builder.push("shields");

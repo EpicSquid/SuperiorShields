@@ -24,7 +24,7 @@ public class EnergyCapabilityProvider implements ICapabilityProvider, INBTSerial
 	private final ItemStack stack;
 	private final LazyOptional<IEnergyStorage> op;
 
-	public EnergyCapabilityProvider(int maxEnergy, int currentEnergy, int inputRate, int outputRate, @Nonnull ItemStack stack) {
+	public EnergyCapabilityProvider(int maxEnergy, int inputRate, int outputRate, @Nonnull ItemStack stack) {
 		this.maxEnergy = maxEnergy;
 		this.inputRate = inputRate;
 		this.outputRate = outputRate;

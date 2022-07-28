@@ -80,17 +80,7 @@ public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 	@Nullable
 	@Override
 	public ICapabilityProvider initCapabilities(@Nonnull ItemStack stack, @Nullable CompoundTag nbt) {
-//		return new ICapabilityProvider() {
-//			@NotNull
-//			@Override
-//			public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @org.jetbrains.annotations.Nullable Direction side) {
-//				if (cap == CapabilityEnergy.ENERGY) {
-//					return LazyOptional.of(() -> new EnergyStorage(getShield().getMaxEnergy())).cast();
-//				}
-//				return LazyOptional.empty();
-//			}
-//		};
-		return new EnergyCapabilityProvider(getShield().getMaxEnergy(), 0, getShield().getMaxEnergy() / 100, getShield().getMaxEnergy() / 100, stack);
+		return new EnergyCapabilityProvider(getShield().getMaxEnergy(), getShield().getMaxEnergy() / 100, getShield().getMaxEnergy() / 100, stack);
 	}
 
 
@@ -98,11 +88,6 @@ public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 	private LazyOptional<IEnergyStorage> getEnergyStorage(@Nonnull ItemStack stack) {
 		return stack.getCapability(CapabilityEnergy.ENERGY);
 	}
-
-	private int getEnergyFromTag(@Nonnull ItemStack stack) {
-		return stack.getOrCreateTag().getInt("energy");
-	}
-
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
