@@ -15,7 +15,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -46,6 +45,11 @@ public class SuperiorShieldItem<T extends IShieldType> extends Item implements I
 	}
 
 	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+		return enchantment.category.equals(ModEnchantments.type);
+	}
+
+	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(@Nonnull ItemStack stack, @Nullable Level worldIn, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
@@ -69,9 +73,9 @@ public class SuperiorShieldItem<T extends IShieldType> extends Item implements I
 
 	@Override
 	public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-		if (slotContext.entity() instanceof Player player && !player.level.isClientSide && !ItemStack.isSameIgnoreDurability(prevStack, stack)) {
+		if (slotContext.entity() instanceof Player player && !ItemStack.isSameIgnoreDurability(prevStack, stack)) {
 			CapabilityRegistry.getShield(player).ifPresent(shield -> {
-				shield.setupShield(ShieldHelper.getShieldCapacity(stack));
+				shield.setupShield(ShieldHelper.getShieldCapacity(stack), shield.getCurrentHp());
 				MinecraftForge.EVENT_BUS.post(new ShieldEquippedEvent(player, shield));
 				if (!player.level.isClientSide) {
 					updateClient(player, shield);

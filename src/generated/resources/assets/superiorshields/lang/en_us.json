@@ -1,6 +1,6 @@
 {
   "curios.identifier.superior_shield": "Superior Shield",
-  "curiosmodifiers.superior_shield": "When in the Superior Shield curios slot:",
+  "curios.modifiers.superior_shield": "When in the Superior Shield curios slot:",
   "enchantment.superiorshields.amplify": "Amplify",
   "enchantment.superiorshields.amplify.desc": "While your shield is full, your next attack will deal significantly greater damage, at the cost of some shield energy.",
   "enchantment.superiorshields.capacity": "Shield Capacity",
@@ -53,6 +53,7 @@
   "item.superiorshields.tin_shield": "Tin Shield",
   "itemGroup.superiorshields": "Superior Shields",
   "tooltip.superiorshields.blank": "",
+  "tooltip.superiorshields.energy": "Energy: %s / %sK FE",
   "tooltip.superiorshields.equip": "When in the Superior Shield curios slot:",
   "tooltip.superiorshields.hp": " %s Hit Points",
   "tooltip.superiorshields.recharge_delay": " %s Recharge Delay",

@@ -8,15 +8,15 @@ import javax.annotation.Nonnull;
 
 public class ShieldEquippedEvent extends PlayerEvent {
 
-    private IShieldCapability shield;
+	private IShieldCapability shield;
 
-    public ShieldEquippedEvent(@Nonnull Player player, @Nonnull IShieldCapability shield) {
-        super(player);
-        this.shield = shield;
-    }
+	public ShieldEquippedEvent(@Nonnull Player player, @Nonnull IShieldCapability shield) {
+		super(player);
+		this.shield = shield;
+	}
 
-    @Nonnull
-    public IShieldCapability getShield() {
-        return shield;
-    }
+	@Nonnull
+	public IShieldCapability getShield() {
+		return shield;
+	}
 }

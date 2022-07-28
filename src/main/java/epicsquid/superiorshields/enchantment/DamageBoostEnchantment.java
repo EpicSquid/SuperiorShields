@@ -1,7 +1,6 @@
 package epicsquid.superiorshields.enchantment;
 
 import epicsquid.superiorshields.capability.shield.IShieldCapability;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 

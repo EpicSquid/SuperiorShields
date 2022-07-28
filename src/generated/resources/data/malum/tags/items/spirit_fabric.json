@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "malum:spirit_fabric",
+      "required": false
+    }
+  ]
+}

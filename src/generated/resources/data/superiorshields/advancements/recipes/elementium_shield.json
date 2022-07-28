@@ -1,0 +1,44 @@
+{
+  "advancements": [
+    {
+      "conditions": [
+        {
+          "modid": "botania",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "rewards": {
+          "recipes": [
+            "superiorshields:elementium_shield"
+          ]
+        },
+        "criteria": {
+          "has_elementium": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+              "items": [
+                {
+                  "tag": "forge:ingots/elementium"
+                }
+              ]
+            }
+          },
+          "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+              "recipe": "superiorshields:elementium_shield"
+            }
+          }
+        },
+        "requirements": [
+          [
+            "has_elementium",
+            "has_the_recipe"
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -8,12 +8,12 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class ShieldEnchantment extends Enchantment {
 
-    public ShieldEnchantment(Rarity rarityIn, EnchantmentCategory typeIn) {
-        super(rarityIn, typeIn, new EquipmentSlot[0]);
-    }
+	public ShieldEnchantment(Rarity rarityIn, EnchantmentCategory typeIn) {
+		super(rarityIn, typeIn, new EquipmentSlot[0]);
+	}
 
-    @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return stack.getItem() instanceof ISuperiorShield;
-    }
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack) {
+		return stack.getItem() instanceof ISuperiorShield;
+	}
 }

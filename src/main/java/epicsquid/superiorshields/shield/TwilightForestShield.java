@@ -2,7 +2,6 @@ package epicsquid.superiorshields.shield;
 
 import epicsquid.superiorshields.shield.effect.IShieldEffect;
 import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
-import net.minecraft.world.item.Tiers;
 
 public enum TwilightForestShield implements IShieldType {
 	// Fast iron, gold + iron

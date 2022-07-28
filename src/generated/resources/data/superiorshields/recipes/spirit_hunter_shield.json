@@ -1,19 +1,32 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " X ",
-    "XEX",
-    " X "
-  ],
-  "key": {
-    "X": {
-      "tag": "forge:ingots/soul_stained_steel"
-    },
-    "E": {
-      "tag": "forge:ingots/hallowed_gold"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "malum",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          " X ",
+          "XEX",
+          " X "
+        ],
+        "key": {
+          "X": {
+            "tag": "malum:spirit_fabric"
+          },
+          "E": {
+            "tag": "malum:stained_spirit_resonator"
+          }
+        },
+        "result": {
+          "item": "superiorshields:spirit_hunter_shield"
+        }
+      }
     }
-  },
-  "result": {
-    "item": "superiorshields:spirit_hunter_shield"
-  }
+  ]
 }

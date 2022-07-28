@@ -1,22 +1,35 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " G ",
-    "XEX",
-    " G "
-  ],
-  "key": {
-    "G": {
-      "tag": "forge:ingots/steel"
-    },
-    "X": {
-      "tag": "forge:wooden_grip"
-    },
-    "E": {
-      "tag": "forge:component_steel"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "immersiveengineering",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          " G ",
+          "XEX",
+          " G "
+        ],
+        "key": {
+          "G": {
+            "tag": "forge:ingots/steel"
+          },
+          "X": {
+            "tag": "forge:wooden_grip"
+          },
+          "E": {
+            "tag": "forge:component_steel"
+          }
+        },
+        "result": {
+          "item": "superiorshields:engineers_shield"
+        }
+      }
     }
-  },
-  "result": {
-    "item": "superiorshields:engineers_shield"
-  }
+  ]
 }

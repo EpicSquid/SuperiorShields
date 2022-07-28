@@ -26,8 +26,7 @@ public class GuiShieldOverlay extends GuiComponent implements IIngameOverlay {
 //		buffer.pos(x4 + 0.0F, y4 + 0.0F, 0).tex((minU + 0) * f, (minV + 0) * f1).endVertex();
 	}
 
-	public static void init()
-	{
+	public static void init() {
 		OverlayRegistry.registerOverlayAbove(ForgeIngameGui.PLAYER_HEALTH_ELEMENT, "superior_shield_overlay", new GuiShieldOverlay());
 	}
 

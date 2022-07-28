@@ -14,10 +14,11 @@ public class ModLang {
 	public static final TranslatableComponent HP = REGISTRATE.addLang("tooltip", new ResourceLocation(SuperiorShields.MODID, "hp"), " %s Hit Points");
 	public static final TranslatableComponent RECHARGE_RATE = REGISTRATE.addLang("tooltip", new ResourceLocation(SuperiorShields.MODID, "recharge_rate"), " %s Recharge Rate");
 	public static final TranslatableComponent RECHARGE_DELAY = REGISTRATE.addLang("tooltip", new ResourceLocation(SuperiorShields.MODID, "recharge_delay"), " %s Recharge Delay");
+	public static final TranslatableComponent ENERGY = REGISTRATE.addLang("tooltip", new ResourceLocation(SuperiorShields.MODID, "energy"), "Energy: %s / %sK FE");
 	public static final TranslatableComponent EQUIP = REGISTRATE.addLang("tooltip", new ResourceLocation(SuperiorShields.MODID, "equip"), "When in the Superior Shield curios slot:");
 
 	public static final TranslatableComponent SHIELD_CURIOS = REGISTRATE.addRawLang(CuriosApi.MODID + ".identifier.superior_shield", "Superior Shield");
-	public static final TranslatableComponent MODIFIERS = REGISTRATE.addRawLang(CuriosApi.MODID + "modifiers.superior_shield", "When in the Superior Shield curios slot:");
+	public static final TranslatableComponent MODIFIERS = REGISTRATE.addRawLang(CuriosApi.MODID + ".modifiers.superior_shield", "When in the Superior Shield curios slot:");
 	public static final TranslatableComponent CREATIVE_TAB = REGISTRATE.addRawLang("itemGroup." + SuperiorShields.MODID, "Superior Shields");
 
 	public static final TranslatableComponent FIRE_NOVA = registerEnchantmentDescription("fire_nova", "On depletion, lights all mobs around you on fire.");
@@ -35,6 +36,7 @@ public class ModLang {
 		return REGISTRATE.addRawLang("enchantment." + SuperiorShields.MODID + "." + ench + ".desc", desc);
 	}
 
-	public static void classload() {}
+	public static void classload() {
+	}
 
 }

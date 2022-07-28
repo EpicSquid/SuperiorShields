@@ -2,12 +2,11 @@ package epicsquid.superiorshields.shield;
 
 import epicsquid.superiorshields.shield.effect.IShieldEffect;
 import epicsquid.superiorshields.shield.effect.ShieldEffectNone;
-import vazkii.botania.api.BotaniaAPI;
 
 public enum BotaniaShield implements IShieldType {
-	MANASTEEL(BotaniaAPI.instance().getManasteelItemTier().getEnchantmentValue(), 5f, 80, 40),
-	TERRASTEEL(BotaniaAPI.instance().getTerrasteelItemTier().getEnchantmentValue(), 9f, 60, 40),
-	ELEMENTIUM(BotaniaAPI.instance().getElementiumItemTier().getEnchantmentValue(), 6f, 60, 20);
+	MANASTEEL(16, 5f, 80, 40),
+	TERRASTEEL(34, 9f, 60, 40),
+	ELEMENTIUM(18, 6f, 60, 20);
 	private final int enchantability;
 	private final float defaultCapacity;
 	private final int defaultRate;

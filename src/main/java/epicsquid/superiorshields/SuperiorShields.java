@@ -9,6 +9,9 @@ import epicsquid.superiorshields.item.ModItems;
 import epicsquid.superiorshields.lang.ModLang;
 import epicsquid.superiorshields.network.NetworkHandler;
 import epicsquid.superiorshields.setup.ModSetup;
+import epicsquid.superiorshields.setup.compat.BotaniaCompat;
+import epicsquid.superiorshields.setup.compat.MalumCompat;
+import epicsquid.superiorshields.setup.compat.ThermalCompat;
 import epicsquid.superiorshields.tags.ModTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -51,12 +54,15 @@ public class SuperiorShields {
 	};
 
 	public SuperiorShields() {
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SHIELD_SPEC, "superior-shields-common.toml");
-		//		ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
+		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.SHIELD_SPEC, "superior-shields-common.toml");
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::sendImc);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerCaps);
 		MinecraftForge.EVENT_BUS.register(this);
+
+		BotaniaCompat.init();
+		MalumCompat.init();
+		ThermalCompat.init();
 
 		ModItems.classload();
 		ModEnchantments.classload();
