@@ -7,7 +7,7 @@
           "type": "forge:not",
           "value": {
             "type": "forge:tag_empty",
-            "tag": "forge:ingots/steelleaf"
+            "tag": "forge:ingots/steeleaf"
           }
         }
       ],
@@ -18,7 +18,7 @@
             "tag": "forge:ender_pearls"
           },
           "X": {
-            "tag": "forge:ingots/steelleaf"
+            "tag": "forge:ingots/steeleaf"
           }
         },
         "pattern": [
@@ -27,7 +27,7 @@
           " X "
         ],
         "result": {
-          "item": "superiorshields:steelleaf_shield"
+          "item": "superiorshields:steeleaf_shield"
         }
       }
     }

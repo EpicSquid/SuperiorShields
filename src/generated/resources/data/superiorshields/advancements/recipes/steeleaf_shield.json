@@ -16,7 +16,7 @@
           },
           "has_the_recipe": {
             "conditions": {
-              "recipe": "superiorshields:steelleaf_shield"
+              "recipe": "superiorshields:steeleaf_shield"
             },
             "trigger": "minecraft:recipe_unlocked"
           }
@@ -29,7 +29,7 @@
         ],
         "rewards": {
           "recipes": [
-            "superiorshields:steelleaf_shield"
+            "superiorshields:steeleaf_shield"
           ]
         }
       },
@@ -38,7 +38,7 @@
           "type": "forge:not",
           "value": {
             "type": "forge:tag_empty",
-            "tag": "forge:ingots/steelleaf"
+            "tag": "forge:ingots/steeleaf"
           }
         }
       ]

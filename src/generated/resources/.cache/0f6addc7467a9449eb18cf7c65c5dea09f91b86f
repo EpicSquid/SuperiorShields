@@ -1,6 +1,6 @@
-// 1.19.1	2022-07-30T08:34:59.0565206	Registrate Provider for superiorshields [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-c2fe450333d9fd818984ff4a277dd88f876d1f1b assets/superiorshields/lang/en_ud.json
-f718594973d8bc368c4eb43f554e8ceabee59ab9 assets/superiorshields/lang/en_us.json
+// 1.19.1	2022-07-30T09:44:03.657348	Registrate Provider for superiorshields [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+450c364163e574743befe69dc4ac01687618c4ac assets/superiorshields/lang/en_ud.json
+99fdd68db492d17bbea4f5a4ea6907c56420d9e6 assets/superiorshields/lang/en_us.json
 cb02dd463fa94d5285fbca80626ee4f2835371c6 assets/superiorshields/models/item/bronze_shield.json
 4bbcc914627f9c8f61b1bb50c95772a88bc394f9 assets/superiorshields/models/item/constantan_shield.json
 b8df211ed19fd42fb5618858c8adf88dcff143a0 assets/superiorshields/models/item/copper_shield.json
@@ -27,11 +27,11 @@ ff91b502bba1e8fb4e64a3b59168146a643b45a4 assets/superiorshields/models/item/refi
 1709a5c3f89a77d88444d44cdc0790114c4a74d1 assets/superiorshields/models/item/silver_shield.json
 921cf15ed4b3f629a454314f6a6b4060dc24ce71 assets/superiorshields/models/item/soul_stained_steel_shield.json
 1aa95b65d4b7b21cdf92f1664ea0d3f525ed4933 assets/superiorshields/models/item/spirit_hunter_shield.json
-9f94f42e537509fdf468b379a44d47c77f6d6995 assets/superiorshields/models/item/steelleaf_shield.json
+6dc56bbc8a9885d8f9af60dab14a23cd571cf665 assets/superiorshields/models/item/steeleaf_shield.json
 9878403bda1884b58bcbf354250b8111bf09b034 assets/superiorshields/models/item/steel_shield.json
 dca7997f6dbcef557e21f8a8334fb888ff87c142 assets/superiorshields/models/item/terrasteel_shield.json
 b11a564b1077e9140f490348054fcaff80408398 assets/superiorshields/models/item/tin_shield.json
-9b81be2bb05da11ece6dd2ad0288ca6145bbb8cd data/curios/tags/items/superior_shield.json
+8f73a9086bb300fd21da32aaaf67b8aaff99a3ff data/curios/tags/items/superior_shield.json
 15de1bb63895a67a2d41d21b06c269ebc29c1f4e data/superiorshields/advancements/recipes/bronze_shield.json
 583e1fc8340ab77bb1a2ebc9b1a631dd175f1a42 data/superiorshields/advancements/recipes/constantan_shield.json
 2260f32eefbd0b05822262371e8d3a7f9067fbda data/superiorshields/advancements/recipes/copper_shield.json
@@ -55,7 +55,7 @@ dae93590b204af05442ff347fedf7c360a34d66d data/superiorshields/advancements/recip
 d86ea87892ab04abb6557cff996646f8807ea94f data/superiorshields/advancements/recipes/silver_shield.json
 66fb5eca70061f7117c30dbc5aec2f9947b207d2 data/superiorshields/advancements/recipes/soul_stained_steel_shield.json
 7d635ab810cc0745a0800a7ff8281e16e30578f3 data/superiorshields/advancements/recipes/spirit_hunter_shield.json
-5c2ffa95ef5c44bb0dc42ed05c3ba72b26b64679 data/superiorshields/advancements/recipes/steelleaf_shield.json
+abc56d703d6705e3b0396bfd77fe43fa4db9edab data/superiorshields/advancements/recipes/steeleaf_shield.json
 bb2590d8240c97d68b1f933018e36715cdfd84b0 data/superiorshields/advancements/recipes/steel_shield.json
 2b36ed2c69e6778d915c8246aeeb8b202c8f482f data/superiorshields/advancements/recipes/superiorshields/diamond_shield.json
 2e40512c39efc92c812bbebc523109263011dce8 data/superiorshields/advancements/recipes/superiorshields/golden_shield.json
@@ -88,8 +88,8 @@ a17114b2d31bc106b70713e85af83da3ea035534 data/superiorshields/recipes/lapis_shie
 75db81ea7067e846057df91606a2a34f7114da8c data/superiorshields/recipes/silver_shield.json
 e9401c079983b2a7ad480f945dfa35f9e958d49f data/superiorshields/recipes/soul_stained_steel_shield.json
 98920471278cfbc0f7f71d9da38accb79ee5a841 data/superiorshields/recipes/spirit_hunter_shield.json
-4fcb0cb815f21b52fda52e7222e582be18344dc9 data/superiorshields/recipes/steelleaf_shield.json
+792de619915d46a07681297be22308f70e5b7dec data/superiorshields/recipes/steeleaf_shield.json
 6da92f09da0280a119b25016cd57d881a1fee2ab data/superiorshields/recipes/steel_shield.json
 7c4c1254c974bd15f93b3175a6de75e94ba0ce24 data/superiorshields/recipes/terrasteel_shield.json
 57daee30749aead347cccb4d111b2a4c845cbdb2 data/superiorshields/recipes/tin_shield.json
-9b81be2bb05da11ece6dd2ad0288ca6145bbb8cd data/superiorshields/tags/items/shield.json
+8f73a9086bb300fd21da32aaaf67b8aaff99a3ff data/superiorshields/tags/items/shield.json

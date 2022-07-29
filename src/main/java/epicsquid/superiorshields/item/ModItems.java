@@ -70,7 +70,7 @@ public class ModItems {
 	public static final ItemEntry<VanillaShieldItem> REFINED_OBSIDIAN_SHIELD = vanillaShieldItem(MekanismMetalShield.REFINED_OBSIDIAN, 1680).register();
 	public static final ItemEntry<VanillaShieldItem> REFINED_GLOWSTONE_SHIELD = vanillaShieldItem(MekanismMetalShield.REFINED_GLOWSTONE, 384).register();
 	public static final ItemEntry<VanillaShieldItem> IRONWOOD = vanillaShieldItem(TwilightForestShield.IRONWOOD, 512).register();
-	public static final ItemEntry<VanillaShieldItem> STEELLEAF = vanillaShieldItem(TwilightForestShield.STEELLEAF, 131).register();
+	public static final ItemEntry<VanillaShieldItem> STEELEAF = vanillaShieldItem(TwilightForestShield.STEELEAF, 131).register();
 	public static final ItemEntry<VanillaShieldItem> LAPIS_SHIELD = REGISTRATE.item("lapis_shield", props -> new VanillaShieldItem(props, MekanismMetalShield.LAPIS))
 					.tab(() -> SuperiorShields.ITEM_GROUP)
 					.tag(CURIOS_TAG)
