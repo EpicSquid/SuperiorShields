@@ -4,7 +4,7 @@
       "conditions": [
         {
           "value": {
-            "tag": "forge:ingots/steelleaf",
+            "tag": "forge:ingots/steeleaf",
             "type": "forge:tag_empty"
           },
           "type": "forge:not"
@@ -14,7 +14,7 @@
         "parent": "minecraft:recipes/root",
         "rewards": {
           "recipes": [
-            "superiorshields:steelleaf_shield"
+            "superiorshields:steeleaf_shield"
           ]
         },
         "criteria": {
@@ -31,7 +31,7 @@
           "has_the_recipe": {
             "trigger": "minecraft:recipe_unlocked",
             "conditions": {
-              "recipe": "superiorshields:steelleaf_shield"
+              "recipe": "superiorshields:steeleaf_shield"
             }
           }
         },

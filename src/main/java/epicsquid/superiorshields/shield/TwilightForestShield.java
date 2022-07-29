@@ -8,7 +8,7 @@ public enum TwilightForestShield implements IShieldType {
 	IRONWOOD(25, 5f, 40, 40),
 	// Tough, slow shield
 	KNIGHTMETAL(8, 9f, 60, 100),
-	STEELLEAF(9, 6f, 40, 40);
+	STEELEAF(9, 6f, 40, 40);
 
 	private final int enchantability;
 	private final float defaultCapacity;

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "superiorshields:item/steelleaf_shield"
+    "layer0": "superiorshields:item/steeleaf_shield"
   }
 }
