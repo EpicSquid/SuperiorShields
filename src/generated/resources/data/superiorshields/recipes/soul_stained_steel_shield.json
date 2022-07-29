@@ -4,25 +4,25 @@
     {
       "conditions": [
         {
-          "modid": "malum",
-          "type": "forge:mod_loaded"
+          "type": "forge:mod_loaded",
+          "modid": "malum"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "key": {
+          "E": {
+            "tag": "malum:hallowed_spirit_resonator"
+          },
+          "X": {
+            "tag": "forge:ingots/soul_stained_steel"
+          }
+        },
         "pattern": [
           " X ",
           "XEX",
           " X "
         ],
-        "key": {
-          "X": {
-            "tag": "forge:ingots/soul_stained_steel"
-          },
-          "E": {
-            "tag": "malum:hallowed_spirit_resonator"
-          }
-        },
         "result": {
           "item": "superiorshields:soul_stained_steel_shield"
         }

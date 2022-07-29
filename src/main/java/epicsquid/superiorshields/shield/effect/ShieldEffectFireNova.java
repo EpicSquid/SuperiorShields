@@ -13,12 +13,12 @@ public class ShieldEffectFireNova extends ShieldEffectNova {
 	private final Supplier<Integer> duration;
 
 	public ShieldEffectFireNova(int duration, float radius) {
-		super(radius, ModLang.FIRE_NOVA.getKey());
+		super(radius, ModLang.FIRE_NOVA.getString());
 		this.duration = () -> duration;
 	}
 
 	public ShieldEffectFireNova() {
-		super(ModLang.FIRE_NOVA.getKey());
+		super(ModLang.FIRE_NOVA.getString());
 		this.duration = Config.SHIELD.NOVA_EFFECT_DURATION;
 	}
 

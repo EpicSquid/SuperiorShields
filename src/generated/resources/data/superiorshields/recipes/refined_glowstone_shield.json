@@ -4,28 +4,28 @@
     {
       "conditions": [
         {
+          "type": "forge:not",
           "value": {
-            "tag": "forge:ingots/refined_glowstone",
-            "type": "forge:tag_empty"
-          },
-          "type": "forge:not"
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/refined_glowstone"
+          }
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "key": {
+          "E": {
+            "tag": "forge:ender_pearls"
+          },
+          "X": {
+            "tag": "forge:ingots/refined_glowstone"
+          }
+        },
         "pattern": [
           " X ",
           "XEX",
           " X "
         ],
-        "key": {
-          "X": {
-            "tag": "forge:ingots/refined_glowstone"
-          },
-          "E": {
-            "tag": "forge:ender_pearls"
-          }
-        },
         "result": {
           "item": "superiorshields:refined_glowstone_shield"
         }

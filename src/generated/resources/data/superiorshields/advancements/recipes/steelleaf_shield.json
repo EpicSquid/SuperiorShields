@@ -1,38 +1,24 @@
 {
   "advancements": [
     {
-      "conditions": [
-        {
-          "value": {
-            "tag": "forge:ingots/steelleaf",
-            "type": "forge:tag_empty"
-          },
-          "type": "forge:not"
-        }
-      ],
       "advancement": {
         "parent": "minecraft:recipes/root",
-        "rewards": {
-          "recipes": [
-            "superiorshields:steelleaf_shield"
-          ]
-        },
         "criteria": {
           "has_enderpearl": {
-            "trigger": "minecraft:inventory_changed",
             "conditions": {
               "items": [
                 {
                   "tag": "forge:ender_pearls"
                 }
               ]
-            }
+            },
+            "trigger": "minecraft:inventory_changed"
           },
           "has_the_recipe": {
-            "trigger": "minecraft:recipe_unlocked",
             "conditions": {
               "recipe": "superiorshields:steelleaf_shield"
-            }
+            },
+            "trigger": "minecraft:recipe_unlocked"
           }
         },
         "requirements": [
@@ -40,8 +26,22 @@
             "has_enderpearl",
             "has_the_recipe"
           ]
-        ]
-      }
+        ],
+        "rewards": {
+          "recipes": [
+            "superiorshields:steelleaf_shield"
+          ]
+        }
+      },
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/steelleaf"
+          }
+        }
+      ]
     }
   ]
 }

@@ -4,28 +4,28 @@
     {
       "conditions": [
         {
+          "type": "forge:not",
           "value": {
-            "tag": "forge:ingots/knightmetal",
-            "type": "forge:tag_empty"
-          },
-          "type": "forge:not"
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/knightmetal"
+          }
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "key": {
+          "E": {
+            "item": "minecraft:ender_eye"
+          },
+          "X": {
+            "tag": "forge:ingots/knightmetal"
+          }
+        },
         "pattern": [
           " X ",
           "XEX",
           " X "
         ],
-        "key": {
-          "X": {
-            "tag": "forge:ingots/knightmetal"
-          },
-          "E": {
-            "item": "minecraft:ender_eye"
-          }
-        },
         "result": {
           "item": "superiorshields:knightmetal_shield"
         }

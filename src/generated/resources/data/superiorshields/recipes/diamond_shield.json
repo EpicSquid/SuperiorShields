@@ -1,18 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "E": {
+      "item": "minecraft:ender_eye"
+    },
+    "X": {
+      "tag": "forge:gems/diamond"
+    }
+  },
   "pattern": [
     " X ",
     "XEX",
     " X "
   ],
-  "key": {
-    "X": {
-      "tag": "forge:gems/diamond"
-    },
-    "E": {
-      "item": "minecraft:ender_eye"
-    }
-  },
   "result": {
     "item": "superiorshields:diamond_shield"
   }

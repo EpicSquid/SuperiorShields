@@ -9,7 +9,7 @@ public class ShieldHelper {
 
 	public static float getShieldCapacity(ItemStack stack) {
 		if (stack.getItem() instanceof ISuperiorShield<?> shieldItem) {
-			return shieldItem.getShieldCapacity(stack) + (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.CAPACITY.get(), stack) * 2);
+			return shieldItem.getShieldCapacity(stack) + (EnchantmentHelper.getTagEnchantmentLevel(ModEnchantments.CAPACITY.get(), stack) * 2);
 		}
 		return 0.0f;
 	}
@@ -17,7 +17,7 @@ public class ShieldHelper {
 	public static int getShieldRechargeRate(ItemStack stack) {
 		if (stack.getItem() instanceof ISuperiorShield<?> shieldItem) {
 			IShieldType type = shieldItem.getShield();
-			return shieldItem.getShieldRate(stack) - (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.QUICKENED.get(), stack) * type.getRate() / 5);
+			return shieldItem.getShieldRate(stack) - (EnchantmentHelper.getTagEnchantmentLevel(ModEnchantments.QUICKENED.get(), stack) * type.getRate() / 5);
 		}
 		return 0;
 	}

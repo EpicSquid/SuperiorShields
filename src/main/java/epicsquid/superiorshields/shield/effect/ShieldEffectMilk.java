@@ -23,6 +23,6 @@ public class ShieldEffectMilk implements IShieldEffect {
 	@Nonnull
 	@Override
 	public String getDescription() {
-		return I18n.get(ModLang.CURING.getKey());
+		return I18n.get(ModLang.CURING.getString());
 	}
 }

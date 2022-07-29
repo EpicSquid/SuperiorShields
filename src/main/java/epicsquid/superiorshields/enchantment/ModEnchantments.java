@@ -32,25 +32,25 @@ public class ModEnchantments {
 
 	public static final RegistryEntry<NovaShieldEnchantment> FROST_NOVA = enchantmentBuilder("frost_nova", new NovaShieldEnchantment(
 									Enchantment.Rarity.UNCOMMON, type,
-									new ShieldEffectPotionNova(ModLang.FROST_NOVA.getKey(), MobEffects.WEAKNESS, MobEffects.MOVEMENT_SLOWDOWN)
+									new ShieldEffectPotionNova(ModLang.FROST_NOVA.getString(), MobEffects.WEAKNESS, MobEffects.MOVEMENT_SLOWDOWN)
 					)
 	).lang("Frost Nova").register();
 
 	public static final RegistryEntry<NovaShieldEnchantment> SHULKING_NOVA = enchantmentBuilder("shulking_nova", new NovaShieldEnchantment(
 									Enchantment.Rarity.RARE, type,
-									new ShieldEffectPotionNova(ModLang.SHULKING_NOVA.getKey(), MobEffects.LEVITATION)
+									new ShieldEffectPotionNova(ModLang.SHULKING_NOVA.getString(), MobEffects.LEVITATION)
 					)
 	).lang("Frost Nova").register();
 
 	public static final RegistryEntry<SpikeShieldEnchantment> POISON_SPIKES = enchantmentBuilder("poison_spikes", new SpikeShieldEnchantment(
 									Enchantment.Rarity.UNCOMMON, type,
-									new ShieldEffectSpikePotion(ModLang.POISON_SPIKES.getKey(), MobEffects.POISON)
+									new ShieldEffectSpikePotion(ModLang.POISON_SPIKES.getString(), MobEffects.POISON)
 					)
 	).lang("Poison Spikes").register();
 
 	public static final RegistryEntry<SpikeShieldEnchantment> WITHER_SPIKES = enchantmentBuilder("wither_spikes", new SpikeShieldEnchantment(
 									Enchantment.Rarity.UNCOMMON, type,
-									new ShieldEffectSpikePotion(ModLang.WITHER_SPIKES.getKey(), MobEffects.WITHER)
+									new ShieldEffectSpikePotion(ModLang.WITHER_SPIKES.getString(), MobEffects.WITHER)
 					)
 	).lang("Withering Spikes").register();
 

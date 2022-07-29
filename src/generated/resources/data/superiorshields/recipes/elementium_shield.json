@@ -4,25 +4,25 @@
     {
       "conditions": [
         {
-          "modid": "botania",
-          "type": "forge:mod_loaded"
+          "type": "forge:mod_loaded",
+          "modid": "botania"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "key": {
+          "E": {
+            "tag": "forge:pixie_dust"
+          },
+          "X": {
+            "tag": "forge:ingots/elementium"
+          }
+        },
         "pattern": [
           " X ",
           "XEX",
           " X "
         ],
-        "key": {
-          "X": {
-            "tag": "forge:ingots/elementium"
-          },
-          "E": {
-            "tag": "forge:pixie_dust"
-          }
-        },
         "result": {
           "item": "superiorshields:elementium_shield"
         }

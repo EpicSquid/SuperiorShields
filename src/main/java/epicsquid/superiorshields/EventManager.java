@@ -9,13 +9,12 @@ import epicsquid.superiorshields.network.PacketShieldUpdate;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.network.PacketDistributor;
@@ -34,7 +33,6 @@ public class EventManager {
 		}
 
 		// handle shield buffs
-		LivingEntity entity = event.getEntityLiving();
 		Entity attacker = event.getSource().getEntity();
 
 		if (attacker instanceof Player player) {
@@ -80,7 +78,7 @@ public class EventManager {
 	}
 
 	@SubscribeEvent
-	public void entityJoinWorld(EntityJoinWorldEvent evt) {
+	public void entityJoinWorld(EntityJoinLevelEvent evt) {
 
 		Entity entity = evt.getEntity();
 

@@ -16,4 +16,6 @@ public class ShieldEnchantment extends Enchantment {
 	public boolean canApplyAtEnchantingTable(ItemStack stack) {
 		return stack.getItem() instanceof ISuperiorShield;
 	}
+
+
 }

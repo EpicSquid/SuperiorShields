@@ -190,27 +190,29 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")\
-
-    implementation fg.deobf("vazkii.botania:Botania:${botania_version}")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
 
     // dev env convenience
-    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
-    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+//    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
 
-    implementation fg.deobf("com.teamcofh:cofh_core:${minecraft_version}-${cofh_core_version}")
-    runtimeOnly fg.deobf("com.teamcofh:thermal_foundation:${minecraft_version}-${thermal_foundation_version}")
-    runtimeOnly fg.deobf("com.teamcofh:thermal_expansion:${minecraft_version}-${thermal_expansion_version}")
+    // Waiting for 1.19 ports
+
+//    implementation fg.deobf("vazkii.botania:Botania:${botania_version}")
+//
+//    implementation fg.deobf("com.teamcofh:cofh_core:${minecraft_version}-${cofh_core_version}")
+//    runtimeOnly fg.deobf("com.teamcofh:thermal_foundation:${minecraft_version}-${thermal_foundation_version}")
+//    runtimeOnly fg.deobf("com.teamcofh:thermal_expansion:${minecraft_version}-${thermal_expansion_version}")
 
     // Malum
     // TODO: switch to this when malum 1.4 comes out
     // implementation fg.deobf("com.sammy.ortus:ortus:${minecraft_version}-${ortus_version}")
     // implementation fg.deobf("com.sammy.malum:malum:${minecraft_version}-${malum_version}")
 
-    implementation fg.deobf("curse.maven:ortus-${ortus_project_id}:${ortus_file_id}")
-    implementation fg.deobf("curse.maven:malum-${malum_project_id}:${malum_file_id}")
+//    implementation fg.deobf("curse.maven:ortus-${ortus_project_id}:${ortus_file_id}")
+//    implementation fg.deobf("curse.maven:malum-${malum_project_id}:${malum_file_id}")
 
-    def registrate = "com.tterrag.registrate:Registrate:MC${minecraft_version}-${registrate_version}"
+    def registrate = "com.tterrag.registrate:Registrate:MC${registrate_version}"
     implementation fg.deobf(registrate)
     shade registrate
 }

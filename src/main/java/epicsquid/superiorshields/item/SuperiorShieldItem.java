@@ -9,7 +9,7 @@ import epicsquid.superiorshields.shield.ShieldHelper;
 import epicsquid.superiorshields.shield.effect.EffectTrigger;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -58,15 +58,14 @@ public class SuperiorShieldItem<T extends IShieldType> extends Item implements I
 		df.setMaximumFractionDigits(2);
 
 		tooltip.add(ModLang.BLANK);
-		tooltip.add(new TranslatableComponent(ModLang.EQUIP.getKey()).withStyle(ChatFormatting.GRAY));
-		tooltip.add(new TranslatableComponent(ModLang.HP.getKey(), df.format(ShieldHelper.getShieldCapacity(stack))).withStyle(ChatFormatting.DARK_GREEN));
-		tooltip.add(new TranslatableComponent(ModLang.RECHARGE_RATE.getKey(), df.format((float) shieldType.getRate() / 20f)).withStyle(ChatFormatting.DARK_GREEN));
-		tooltip.add(new TranslatableComponent(ModLang.RECHARGE_DELAY.getKey(), df.format((float) shieldType.getDelay() / 20f)).withStyle(ChatFormatting.DARK_GREEN));
+		tooltip.add(MutableComponent.create(ModLang.EQUIP.getContents()).withStyle(ChatFormatting.GRAY));
+		tooltip.add(MutableComponent.create(ModLang.HP.getContents()).append(df.format(ShieldHelper.getShieldCapacity(stack))).withStyle(ChatFormatting.DARK_GREEN));
+		tooltip.add(MutableComponent.create(ModLang.RECHARGE_RATE.getContents()).append(df.format((float) shieldType.getRate() / 20f)).withStyle(ChatFormatting.DARK_GREEN));
+		tooltip.add(MutableComponent.create(ModLang.RECHARGE_DELAY.getContents()).append(df.format((float) shieldType.getDelay() / 20f)).withStyle(ChatFormatting.DARK_GREEN));
 	}
 
-
 	@Override
-	public int getItemEnchantability(ItemStack stack) {
+	public int getEnchantmentValue(ItemStack stack) {
 		return shieldType.getEnchantability();
 	}
 

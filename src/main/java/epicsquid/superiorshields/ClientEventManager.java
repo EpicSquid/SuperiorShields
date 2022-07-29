@@ -20,16 +20,16 @@ public class ClientEventManager {
 
 	@SubscribeEvent
 	public void onRenderPlayer(RenderPlayerEvent.Pre event) {
-		Player player = event.getPlayer();
+		Player player = event.getEntity();
 		var shieldOp = CapabilityRegistry.getShield(player).resolve();
 		if (shieldOp.isPresent()) {
 			IShieldCapability shield = shieldOp.get();
 			if (shield.getCurrentHp() > 0 && player.getLastDamageSource() != DamageSource.STARVE && player.getLastDamageSource() != DamageSource.DROWN) {
-				if (event.getPlayer().hurtTime > 0) {
-					HURT_TIME.put(event.getPlayer(), event.getPlayer().hurtTime);
-					event.getPlayer().hurtTime = 0;
+				if (event.getEntity().hurtTime > 0) {
+					HURT_TIME.put(event.getEntity(), event.getEntity().hurtTime);
+					event.getEntity().hurtTime = 0;
 				}
-				if (HURT_TIME.containsKey(event.getPlayer())) {
+				if (HURT_TIME.containsKey(event.getEntity())) {
 					RenderSystem.clearColor(204 / 256f, 255 / 255f, 251 / 255f, 1);
 				}
 			}

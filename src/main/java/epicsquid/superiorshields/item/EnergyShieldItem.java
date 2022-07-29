@@ -5,10 +5,9 @@ import epicsquid.superiorshields.config.Config;
 import epicsquid.superiorshields.lang.ModLang;
 import epicsquid.superiorshields.shield.IEnergyShield;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -16,19 +15,15 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Optional;
 
 public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 
@@ -99,7 +94,7 @@ public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 			df.setMaximumFractionDigits(2);
 
 			tooltip.add(ModLang.BLANK);
-			tooltip.add(new TranslatableComponent(ModLang.ENERGY.getKey(), df.format((float) energy.getEnergyStored() / 1000), df.format((float) energy.getMaxEnergyStored() / 1000)).withStyle(ChatFormatting.GRAY));
+			tooltip.add(MutableComponent.create(ModLang.ENERGY.getContents()).append(df.format((float) energy.getEnergyStored() / 1000)).append(df.format((float) energy.getMaxEnergyStored() / 1000)).withStyle(ChatFormatting.GRAY));
 		});
 	}
 

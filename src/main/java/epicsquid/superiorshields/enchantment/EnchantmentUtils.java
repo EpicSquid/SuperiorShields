@@ -15,7 +15,7 @@ public class EnchantmentUtils {
 	public static void triggerEnchantmentEffect(IShieldCapability shield, Player player, ItemStack stack, @Nullable DamageSource source, float damage, EffectTrigger trigger) {
 		for (Enchantment enchantment : EnchantmentHelper.getEnchantments(stack).keySet()) {
 			if (enchantment instanceof ShieldEffectEnchantment effectEnchantment) {
-				effectEnchantment.getEffect().applyEffect(shield, player, source, damage, trigger, EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack));
+				effectEnchantment.getEffect().applyEffect(shield, player, source, damage, trigger, EnchantmentHelper.getTagEnchantmentLevel(enchantment, stack));
 			}
 		}
 	}

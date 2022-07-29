@@ -4,25 +4,25 @@
     {
       "conditions": [
         {
-          "modid": "botania",
-          "type": "forge:mod_loaded"
+          "type": "forge:mod_loaded",
+          "modid": "botania"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "key": {
+          "E": {
+            "item": "superiorshields:manasteel_shield"
+          },
+          "X": {
+            "tag": "forge:ingots/terrasteel"
+          }
+        },
         "pattern": [
           " X ",
           "XEX",
           " X "
         ],
-        "key": {
-          "X": {
-            "tag": "forge:ingots/terrasteel"
-          },
-          "E": {
-            "item": "superiorshields:manasteel_shield"
-          }
-        },
         "result": {
           "item": "superiorshields:terrasteel_shield"
         }

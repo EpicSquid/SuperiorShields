@@ -10,7 +10,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
-import vazkii.botania.api.BotaniaAPI;
 
 public class ModTags extends ItemTagsProvider {
 
@@ -32,8 +31,8 @@ public class ModTags extends ItemTagsProvider {
 	@Override
 	protected void addTags() {
 		// Add Botania items for crafting
-		tag(MANAPEARL).addOptional(new ResourceLocation(BotaniaAPI.MODID, "mana_pearl"));
-		tag(PIXIE_DUST).addOptional(new ResourceLocation(BotaniaAPI.MODID, "pixie_dust"));
+		tag(MANAPEARL).addOptional(new ResourceLocation("botania", "mana_pearl"));
+		tag(PIXIE_DUST).addOptional(new ResourceLocation("botania", "pixie_dust"));
 		tag(FLUX_COIL).addOptional(new ResourceLocation("thermal", "rf_coil"));
 		tag(COMPONENT_STEEL).addOptional(new ResourceLocation("immersiveengineering", "component_steel"));
 		tag(WOODEN_GRIP).addOptional(new ResourceLocation("immersiveengineering", "wooden_grip"));

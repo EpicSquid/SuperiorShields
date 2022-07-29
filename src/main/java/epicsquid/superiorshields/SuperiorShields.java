@@ -19,11 +19,14 @@ import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.common.data.ForgeBlockTagsProvider;
 import net.minecraftforge.common.util.Lazy;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -33,7 +36,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 import javax.annotation.Nonnull;
 
@@ -85,7 +87,8 @@ public class SuperiorShields {
 		DataGenerator generator = event.getGenerator();
 		if (event.includeServer()) {
 			ForgeBlockTagsProvider b = new ForgeBlockTagsProvider(generator, event.getExistingFileHelper());
-			generator.addProvider(new ModTags(generator, b, event.getExistingFileHelper()));
+			// TODO: What does "true" mean
+			generator.addProvider(true, new ModTags(generator, b, event.getExistingFileHelper()));
 		}
 	}
 
@@ -107,9 +110,8 @@ public class SuperiorShields {
 		}
 
 		@SubscribeEvent
-		public static void setupClient(FMLClientSetupEvent event) {
-//			MinecraftForge.EVENT_BUS.register(new ClientEventManager());
-			GuiShieldOverlay.init();
+		public static void onRegisterGuiOverlays(RegisterGuiOverlaysEvent event) {
+			event.registerAbove(VanillaGuiOverlay.PLAYER_HEALTH.id(), "superior_shield_overlay", new GuiShieldOverlay());
 		}
 	}
 }

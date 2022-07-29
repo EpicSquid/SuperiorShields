@@ -4,25 +4,25 @@
     {
       "conditions": [
         {
-          "modid": "malum",
-          "type": "forge:mod_loaded"
+          "type": "forge:mod_loaded",
+          "modid": "malum"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "key": {
+          "E": {
+            "tag": "malum:stained_spirit_resonator"
+          },
+          "X": {
+            "tag": "malum:spirit_fabric"
+          }
+        },
         "pattern": [
           " X ",
           "XEX",
           " X "
         ],
-        "key": {
-          "X": {
-            "tag": "malum:spirit_fabric"
-          },
-          "E": {
-            "tag": "malum:stained_spirit_resonator"
-          }
-        },
         "result": {
           "item": "superiorshields:spirit_hunter_shield"
         }
