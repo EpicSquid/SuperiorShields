@@ -4,6 +4,7 @@ import epicsquid.superiorshields.capability.shield.CapabilityRegistry;
 import epicsquid.superiorshields.enchantment.ModEnchantments;
 import epicsquid.superiorshields.event.ShieldEquippedEvent;
 import epicsquid.superiorshields.lang.ModLang;
+import epicsquid.superiorshields.lang.TooltipUtil;
 import epicsquid.superiorshields.shield.IShieldType;
 import epicsquid.superiorshields.shield.ShieldHelper;
 import epicsquid.superiorshields.shield.effect.EffectTrigger;
@@ -58,10 +59,10 @@ public class SuperiorShieldItem<T extends IShieldType> extends Item implements I
 		df.setMaximumFractionDigits(2);
 
 		tooltip.add(ModLang.BLANK);
-		tooltip.add(MutableComponent.create(ModLang.EQUIP.getContents()).withStyle(ChatFormatting.GRAY));
-		tooltip.add(MutableComponent.create(ModLang.HP.getContents()).append(df.format(ShieldHelper.getShieldCapacity(stack))).withStyle(ChatFormatting.DARK_GREEN));
-		tooltip.add(MutableComponent.create(ModLang.RECHARGE_RATE.getContents()).append(df.format((float) shieldType.getRate() / 20f)).withStyle(ChatFormatting.DARK_GREEN));
-		tooltip.add(MutableComponent.create(ModLang.RECHARGE_DELAY.getContents()).append(df.format((float) shieldType.getDelay() / 20f)).withStyle(ChatFormatting.DARK_GREEN));
+		tooltip.add(ModLang.EQUIP.withStyle(ChatFormatting.GRAY));
+		tooltip.add(TooltipUtil.withArgs(ModLang.HP, df.format(ShieldHelper.getShieldCapacity(stack))).withStyle(ChatFormatting.DARK_GREEN));
+		tooltip.add(TooltipUtil.withArgs(ModLang.RECHARGE_RATE, df.format((float) shieldType.getRate() / 20f)).withStyle(ChatFormatting.DARK_GREEN));
+		tooltip.add(TooltipUtil.withArgs(ModLang.RECHARGE_DELAY, df.format((float) shieldType.getDelay() / 20f)).withStyle(ChatFormatting.DARK_GREEN));
 	}
 
 	@Override

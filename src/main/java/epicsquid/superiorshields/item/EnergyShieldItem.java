@@ -3,6 +3,7 @@ package epicsquid.superiorshields.item;
 import epicsquid.superiorshields.capability.EnergyCapabilityProvider;
 import epicsquid.superiorshields.config.Config;
 import epicsquid.superiorshields.lang.ModLang;
+import epicsquid.superiorshields.lang.TooltipUtil;
 import epicsquid.superiorshields.shield.IEnergyShield;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
@@ -94,7 +95,7 @@ public class EnergyShieldItem extends SuperiorShieldItem<IEnergyShield> {
 			df.setMaximumFractionDigits(2);
 
 			tooltip.add(ModLang.BLANK);
-			tooltip.add(MutableComponent.create(ModLang.ENERGY.getContents()).append(df.format((float) energy.getEnergyStored() / 1000)).append(df.format((float) energy.getMaxEnergyStored() / 1000)).withStyle(ChatFormatting.GRAY));
+			tooltip.add(TooltipUtil.withArgs(ModLang.ENERGY, df.format((float) energy.getEnergyStored() / 1000), df.format((float) energy.getMaxEnergyStored() / 1000)).withStyle(ChatFormatting.GRAY));
 		});
 	}
 
