@@ -5,7 +5,7 @@
       "conditions": [
         {
           "value": {
-            "tag": "forge:ingots/steelleaf",
+            "tag": "forge:ingots/steeleaf",
             "type": "forge:tag_empty"
           },
           "type": "forge:not"
@@ -20,14 +20,14 @@
         ],
         "key": {
           "X": {
-            "tag": "forge:ingots/steelleaf"
+            "tag": "forge:ingots/steeleaf"
           },
           "E": {
             "tag": "forge:ender_pearls"
           }
         },
         "result": {
-          "item": "superiorshields:steelleaf_shield"
+          "item": "superiorshields:steeleaf_shield"
         }
       }
     }
