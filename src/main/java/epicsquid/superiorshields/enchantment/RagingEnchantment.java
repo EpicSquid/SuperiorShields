@@ -17,7 +17,7 @@ public class RagingEnchantment extends DamageBoostEnchantment {
 
 	@Override
 	public float boostDamage(float damage) {
-		return damage + Config.SHIELD.RAGING_DAMAGE_ADDED.get();
+		return damage + Config.SHIELD.RAGING_DAMAGE_ADDED.get().floatValue();
 	}
 
 	@Override
