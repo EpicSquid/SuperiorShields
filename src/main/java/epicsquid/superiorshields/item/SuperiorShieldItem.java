@@ -109,7 +109,7 @@ public class SuperiorShieldItem<T extends IShieldType> extends Item implements I
 					shield.setMaxHp(capacity);
 				}
 				if (shield.getTimeWithoutDamage() >= ShieldHelper.getShieldRechargeDelay(stack) && shield.getCurrentHp() < capacity) {
-					if (rechargeCounter % ShieldHelper.getShieldRechargeRate(stack) == 0) {
+					if (shield.getTimeWithoutDamage() == ShieldHelper.getShieldRechargeDelay(stack) || rechargeCounter % ShieldHelper.getShieldRechargeRate(stack) == 0) {
 						rechargeCounter = 1;
 						rechargeShield(shield, stack, player);
 						updateClient(player, shield);
