@@ -25,7 +25,7 @@ public abstract class ShieldEffectNova implements IShieldEffect {
 	}
 
 	public ShieldEffectNova(String description) {
-		this.radius = Config.SHIELD.NOVA_RANGE;
+		this.radius = () -> Config.SHIELD.NOVA_RANGE.get().floatValue();
 		this.description = description;
 	}
 

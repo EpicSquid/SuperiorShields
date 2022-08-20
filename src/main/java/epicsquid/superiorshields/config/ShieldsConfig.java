@@ -12,12 +12,14 @@ public class ShieldsConfig {
 
 	public final ForgeConfigSpec.ConfigValue<Integer> MANA_CONSUMPTION;
 	public final ForgeConfigSpec.ConfigValue<Integer> ENERGY_CONSUMPTION;
-	public final ForgeConfigSpec.ConfigValue<Float> NOVA_RANGE;
+	public final ForgeConfigSpec.ConfigValue<Double> NOVA_RANGE;
 	public final ForgeConfigSpec.ConfigValue<Integer> NOVA_EFFECT_DURATION;
 	public final ForgeConfigSpec.ConfigValue<Integer> SPIKE_EFFECT_DURATION;
-	public final ForgeConfigSpec.ConfigValue<Float> AMPLIFY_DAMAGE_MULTIPLIER;
+	public final ForgeConfigSpec.ConfigValue<Double> AMPLIFY_DAMAGE_MULTIPLIER;
 	public final ForgeConfigSpec.ConfigValue<Integer> AMPLIFY_SHIELD_DRAIN;
-	public final ForgeConfigSpec.ConfigValue<Float> RAGING_DAMAGE_ADDED;
+	public final ForgeConfigSpec.ConfigValue<Double> RAGING_DAMAGE_ADDED;
+	public final ForgeConfigSpec.ConfigValue<Double> SHIELD_CAPACITY_INCREASE;
+	public final ForgeConfigSpec.ConfigValue<Integer> QUICKEN_RATE;
 
 	public ShieldsConfig(ForgeConfigSpec.Builder builder) {
 
@@ -29,12 +31,14 @@ public class ShieldsConfig {
 
 		builder.push("enchantments");
 		builder.comment("Configuration for power of various enchantments in the mod.");
-		NOVA_RANGE = builder.comment("The radius of a nova enchantment's triggered effect.").define("nova_range", 1.5f);
+		NOVA_RANGE = builder.comment("The radius of a nova enchantment's triggered effect.").define("nova_range", 1.5);
 		NOVA_EFFECT_DURATION = builder.comment("The duration of the effect applied by the triggered nova enchantment.").define("nova_effect_duration", 5);
 		SPIKE_EFFECT_DURATION = builder.comment("The duration of the effect applied when a mob attacks you.").define("spike_effect_duration", 2);
-		AMPLIFY_DAMAGE_MULTIPLIER = builder.comment("The damage multiplier for attacks of the amplify enchantment.").define("amplify_damage_multiplier", 1.5f);
-		RAGING_DAMAGE_ADDED = builder.comment("The damage added to attacks while shields are depleted with the raging enchantment.").define("raging_damage_added", 2.0f);
+		AMPLIFY_DAMAGE_MULTIPLIER = builder.comment("The damage multiplier for attacks of the amplify enchantment.").define("amplify_damage_multiplier", 1.5);
+		RAGING_DAMAGE_ADDED = builder.comment("The damage added to attacks while shields are depleted with the raging enchantment.").define("raging_damage_added", 2.0);
 		AMPLIFY_SHIELD_DRAIN = builder.comment("The amount of shield HP drained when the amplify enchantment is triggered.").define("amplify_shield_drain", 3);
+		SHIELD_CAPACITY_INCREASE = builder.comment("The amount of shield HP added for reach level of shield capacity enchantment.").define("shield_capacity_increase", 2.0);
+		QUICKEN_RATE = builder.comment("The time in ticks the quicken enchantment reduces recharge rate by (there are 20 ticks in a second).").define("quicken_rate", 5);
 		builder.pop();
 
 		builder.push("shields");

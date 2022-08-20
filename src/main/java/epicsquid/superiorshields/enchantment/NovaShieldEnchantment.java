@@ -21,4 +21,14 @@ public class NovaShieldEnchantment extends ShieldEffectEnchantment<ShieldEffectN
 	protected boolean checkCompatibility(@Nonnull Enchantment ench) {
 		return !(ench instanceof NovaShieldEnchantment);
 	}
+
+	@Override
+	public int getMinCost(int pEnchantmentLevel) {
+		return 10 + 20 * (pEnchantmentLevel - 1);
+	}
+
+	@Override
+	public int getMaxCost(int pEnchantmentLevel) {
+		return super.getMinCost(pEnchantmentLevel) + 50;
+	}
 }

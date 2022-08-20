@@ -21,4 +21,14 @@ public class SpikeShieldEnchantment extends ShieldEffectEnchantment<ShieldEffect
 	protected boolean checkCompatibility(@Nonnull Enchantment ench) {
 		return !(ench instanceof SpikeShieldEnchantment);
 	}
+
+	@Override
+	public int getMinCost(int pEnchantmentLevel) {
+		return 5 + (pEnchantmentLevel - 1) * 9;
+	}
+
+	@Override
+	public int getMaxCost(int pEnchantmentLevel) {
+		return this.getMinCost(pEnchantmentLevel) + 15;
+	}
 }

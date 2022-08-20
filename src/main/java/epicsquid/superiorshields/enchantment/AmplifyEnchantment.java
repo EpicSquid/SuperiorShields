@@ -29,4 +29,14 @@ public class AmplifyEnchantment extends DamageBoostEnchantment {
 		}
 		return false;
 	}
+
+	@Override
+	public int getMinCost(int pEnchantmentLevel) {
+		return 15;
+	}
+
+	@Override
+	public int getMaxCost(int pEnchantmentLevel) {
+		return super.getMinCost(pEnchantmentLevel) + 50;
+	}
 }
