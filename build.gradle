@@ -23,7 +23,7 @@ jarJar.enable()
 
 version = "${minecraft_version}-${mod_version}"
 if (System.getenv('BUILD_NUMBER') != null) {
-    version = "${minecraft_version}-${mod_version}-" + System.getenv('BUILD_NUMBER')
+    version += '-' + System.getenv('BUILD_NUMBER')
 }
 group = 'epicsquid.superiorshields' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'superiorshields'
@@ -234,16 +234,37 @@ jar.finalizedBy('reobfJar')
 tasks.jarJar.finalizedBy('reobfJarJar')
 
 publishing {
+
     publications {
+
         mavenJava(MavenPublication) {
-            artifact jar
+
+            groupId project.group
+            artifactId project.archivesBaseName
+            version project.version
+            from components.java
+
+            // Allows the maven pom file to be modified.
+            pom.withXml {
+
+                // Go through all the dependencies.
+                asNode().dependencies.dependency.each { dep ->
+
+                    println 'Surpressing artifact ' + dep.artifactId.last().value().last() + ' from maven dependencies.'
+                    assert dep.parent().remove(dep)
+                }
+            }
         }
     }
+
     repositories {
+
         maven {
-            url "file://${project.projectDir}/mcmodsrepo"
+
+            url "file://" + System.getenv("local_maven")
         }
     }
+
 }
 
 tasks.withType(JavaCompile).configureEach {
