@@ -24,4 +24,14 @@ public class RagingEnchantment extends DamageBoostEnchantment {
 	public boolean shouldBoostDamage(IShieldCapability shield) {
 		return shield.getCurrentHp() <= 0;
 	}
+
+	@Override
+	public int getMinCost(int pEnchantmentLevel) {
+		return 1;
+	}
+
+	@Override
+	public int getMaxCost(int pEnchantmentLevel) {
+		return this.getMinCost(pEnchantmentLevel) + 40;
+	}
 }

@@ -12,4 +12,14 @@ public class CapacityEnchantment extends ShieldEnchantment {
 	public int getMaxLevel() {
 		return 3;
 	}
+
+	@Override
+	public int getMinCost(int pLevel) {
+		return 5 + (pLevel - 1) * 8;
+	}
+
+	@Override
+	public int getMaxCost(int pLevel) {
+		return super.getMinCost(pLevel) + 50;
+	}
 }
