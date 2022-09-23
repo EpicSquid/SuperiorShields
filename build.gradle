@@ -167,7 +167,7 @@ dependencies {
 
     // Curios
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${minecraft_version}-${curios_version}")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${minecraft_version}-${curios_version}:api") \
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${minecraft_version}-${curios_version}:api")  \
 
 
     // Dev Environment Runtimes
@@ -182,12 +182,9 @@ dependencies {
     runtimeOnly fg.deobf("com.teamcofh:thermal_foundation:${minecraft_version}-${thermal_foundation_version}")
     runtimeOnly fg.deobf("com.teamcofh:thermal_expansion:${minecraft_version}-${thermal_expansion_version}")
 
-    // TODO: switch to this when malum 1.4 comes out
-    // implementation fg.deobf("com.sammy.ortus:ortus:${minecraft_version}-${ortus_version}")
-    // implementation fg.deobf("com.sammy.malum:malum:${minecraft_version}-${malum_version}")
     // Malum
-    implementation fg.deobf("curse.maven:ortus-${ortus_project_id}:${ortus_file_id}")
-    implementation fg.deobf("curse.maven:malum-${malum_project_id}:${malum_file_id}")
+    implementation fg.deobf("team.lodestar.lodestone:lodestone:${minecraft_version}-${lodestone_version}")
+    implementation fg.deobf("com.sammy.malum:malum:${minecraft_version}-${malum_version}")
 
     // Registrate dependency
     jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: '[MC1.18.2-1.1.3,)') {
