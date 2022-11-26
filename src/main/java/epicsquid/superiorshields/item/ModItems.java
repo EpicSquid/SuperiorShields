@@ -5,6 +5,7 @@ import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import epicsquid.superiorshields.SuperiorShields;
+import epicsquid.superiorshields.setup.compat.ArsCompat;
 import epicsquid.superiorshields.setup.compat.BotaniaCompat;
 import epicsquid.superiorshields.setup.compat.MalumCompat;
 import epicsquid.superiorshields.setup.compat.ThermalCompat;
@@ -120,6 +121,27 @@ public class ModItems {
 					})
 					.properties(props -> props.durability(Tiers.NETHERITE.getUses()))
 					.register();
+
+	public static final ItemEntry<SuperiorShieldItem<IShieldType>> ENCHANTER_SHIELD = REGISTRATE.item("enchanter_shield", ArsCompat.makeArsShieldOrDefault(ArsShield.ENCHANTER_SHIELD))
+			.tab(() -> SuperiorShields.ITEM_GROUP)
+			.tag(CURIOS_TAG)
+			.tag(SHIELD_TAG)
+			.recipe((ctx, p) -> {
+				ConditionalRecipe.builder()
+						.addCondition(new ModLoadedCondition("ars_nouveau"))
+						.addRecipe((writer) -> ShapedRecipeBuilder.shaped(ctx.getEntry())
+								.pattern(" X ")
+								.pattern("XEX")
+								.pattern(" X ")
+								.define('X', Tags.Items.INGOTS_GOLD)
+								.define('E', ModTags.SOURCE_GEM)
+								.unlockedBy("has_source_gem", DataIngredient.tag(ModTags.SOURCE_GEM).getCritereon(p))
+								.save(writer)
+						)
+						.generateAdvancement()
+						.build(p, p.safeId(ctx.getEntry()));
+			})
+			.register();
 
 	public static final ItemEntry<SuperiorShieldItem<IShieldType>> MANASTEEL_SHIELD = REGISTRATE.item("manasteel_shield", BotaniaCompat.makeBotaniaShieldOrDefault(BotaniaShield.MANASTEEL))
 					.tab(() -> SuperiorShields.ITEM_GROUP)

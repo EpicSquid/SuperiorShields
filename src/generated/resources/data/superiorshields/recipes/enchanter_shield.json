@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "ars_nouveau",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          " X ",
+          "XEX",
+          " X "
+        ],
+        "key": {
+          "X": {
+            "tag": "forge:ingots/gold"
+          },
+          "E": {
+            "tag": "forge:gem/source"
+          }
+        },
+        "result": {
+          "item": "superiorshields:enchanter_shield"
+        }
+      }
+    }
+  ]
+}

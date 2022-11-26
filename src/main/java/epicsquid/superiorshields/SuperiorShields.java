@@ -9,6 +9,7 @@ import epicsquid.superiorshields.item.ModItems;
 import epicsquid.superiorshields.lang.ModLang;
 import epicsquid.superiorshields.network.NetworkHandler;
 import epicsquid.superiorshields.setup.ModSetup;
+import epicsquid.superiorshields.setup.compat.ArsCompat;
 import epicsquid.superiorshields.setup.compat.BotaniaCompat;
 import epicsquid.superiorshields.setup.compat.MalumCompat;
 import epicsquid.superiorshields.setup.compat.ThermalCompat;
@@ -63,6 +64,7 @@ public class SuperiorShields {
 		BotaniaCompat.init();
 		MalumCompat.init();
 		ThermalCompat.init();
+		ArsCompat.init();
 
 		ModItems.classload();
 		ModEnchantments.classload();

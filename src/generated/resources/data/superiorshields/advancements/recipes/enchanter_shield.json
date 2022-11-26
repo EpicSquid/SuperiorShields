@@ -1,0 +1,44 @@
+{
+  "advancements": [
+    {
+      "conditions": [
+        {
+          "modid": "ars_nouveau",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "rewards": {
+          "recipes": [
+            "superiorshields:enchanter_shield"
+          ]
+        },
+        "criteria": {
+          "has_source_gem": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+              "items": [
+                {
+                  "tag": "forge:gem/source"
+                }
+              ]
+            }
+          },
+          "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+              "recipe": "superiorshields:enchanter_shield"
+            }
+          }
+        },
+        "requirements": [
+          [
+            "has_source_gem",
+            "has_the_recipe"
+          ]
+        ]
+      }
+    }
+  ]
+}
