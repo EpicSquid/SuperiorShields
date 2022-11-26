@@ -5,6 +5,7 @@ import epicsquid.superiorshields.capability.shield.IShieldCapability;
 import epicsquid.superiorshields.enchantment.EnchantmentUtils;
 import epicsquid.superiorshields.network.NetworkHandler;
 import epicsquid.superiorshields.network.PacketShieldUpdate;
+import epicsquid.superiorshields.setup.compat.ArsCompat;
 import epicsquid.superiorshields.shield.IShieldType;
 import epicsquid.superiorshields.shield.effect.EffectTrigger;
 import net.minecraft.server.level.ServerPlayer;
@@ -45,6 +46,8 @@ public interface ISuperiorShield<T extends IShieldType> {
 			// Always apply at level 1 when the effect is on the shield, not on the enchantment
 			getShield().getEffect().applyEffect(shield, player, source, damage, trigger, 1);
 			EnchantmentUtils.triggerEnchantmentEffect(shield, player, stack, source, damage, trigger);
+			// Ars Reactive Compat
+			ArsCompat.reactiveTrigger(stack, player, trigger);
 		});
 	}
 
