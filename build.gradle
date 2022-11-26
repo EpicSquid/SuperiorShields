@@ -189,6 +189,9 @@ dependencies {
 //    implementation fg.deobf("team.lodestar.lodestone:lodestone:${minecraft_version}-${lodestone_version}")
 //    implementation fg.deobf("com.sammy.malum:malum:${minecraft_version}-${malum_version}")
 
+    // Ars Noveau
+    implementation fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-${minecraft_version}:${ars_version}")
+
     // Registrate dependency
     jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: '[MC1.19-1.1.5,)') {
         jarJar.pin(it, project.registrate_version)

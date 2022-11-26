@@ -112,6 +112,14 @@ public class ShieldsConfig {
 		}
 		builder.pop();
 
+		builder.push("ars_nouveau");
+		builder.comment("Shields made from materials present in Ars Noveau");
+		for (IShieldType type : ArsShield.values()) {
+			var shieldConfig = new ShieldConfig(builder, type);
+			shieldConfig.addTo(SHIELDS);
+		}
+		builder.pop();
+
 		builder.pop();
 	}
 }

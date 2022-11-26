@@ -23,6 +23,7 @@ public class ModTags extends ItemTagsProvider {
 	public static final TagKey<Item> SPIRIT_FABRIC = ItemTags.create(new ResourceLocation("malum", "spirit_fabric"));
 	public static final TagKey<Item> HALLOWED_SPIRIT_RESONATOR = ItemTags.create(new ResourceLocation("malum", "hallowed_spirit_resonator"));
 	public static final TagKey<Item> STAINED_SPIRIT_RESONATOR = ItemTags.create(new ResourceLocation("malum", "stained_spirit_resonator"));
+	public static final TagKey<Item> SOURCE_GEM = ItemTags.create(new ResourceLocation("forge", "gem/source"));
 
 	public ModTags(DataGenerator dataGen, BlockTagsProvider blockTagsProvider, @Nullable ExistingFileHelper existingFileHelper) {
 		super(dataGen, blockTagsProvider, SuperiorShields.MODID, existingFileHelper);
@@ -40,5 +41,6 @@ public class ModTags extends ItemTagsProvider {
 		tag(SPIRIT_FABRIC).addOptional(new ResourceLocation("malum", "spirit_fabric"));
 		tag(HALLOWED_SPIRIT_RESONATOR).addOptional(new ResourceLocation("malum", "hallowed_spirit_resonator"));
 		tag(STAINED_SPIRIT_RESONATOR).addOptional(new ResourceLocation("malum", "stained_spirit_resonator"));
+		tag(SOURCE_GEM).addOptional(new ResourceLocation("ars_nouveau", "source_gem"));
 	}
 }
