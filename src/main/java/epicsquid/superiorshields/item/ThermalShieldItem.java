@@ -1,9 +1,9 @@
 package epicsquid.superiorshields.item;
 
-import cofh.lib.item.IAugmentableItem;
+import cofh.core.item.IAugmentableItem;
+import cofh.core.util.helpers.AugmentDataHelper;
+import cofh.core.util.helpers.AugmentableHelper;
 import cofh.lib.util.constants.NBTTags;
-import cofh.lib.util.helpers.AugmentDataHelper;
-import cofh.lib.util.helpers.AugmentableHelper;
 import epicsquid.superiorshields.shield.IEnergyShield;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
