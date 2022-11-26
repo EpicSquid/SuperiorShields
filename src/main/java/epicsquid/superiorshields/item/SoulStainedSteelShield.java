@@ -1,12 +1,10 @@
-//package epicsquid.superiorshields.item;
-//
 //import com.google.common.collect.Multimap;
 //import com.sammy.malum.core.setup.content.AttributeRegistry;
-//import com.sammy.ortus.setup.OrtusAttributes;
 //import epicsquid.superiorshields.shield.IShieldType;
 //import net.minecraft.world.entity.ai.attributes.Attribute;
 //import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 //import net.minecraft.world.item.ItemStack;
+//import team.lodestar.lodestone.setup.LodestoneAttributeRegistry;
 //import top.theillusivec4.curios.api.SlotContext;
 //
 //import java.util.UUID;
@@ -22,7 +20,7 @@
 //	public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
 //		var attributes = super.getAttributeModifiers(slotContext, uuid, stack);
 //
-//		attributes.put(OrtusAttributes.MAGIC_RESISTANCE.get(), new AttributeModifier(uuid, "Magic Resistance", 1f, AttributeModifier.Operation.ADDITION));
+//		attributes.put(LodestoneAttributeRegistry.MAGIC_RESISTANCE.get(), new AttributeModifier(uuid, "Magic Resistance", 1f, AttributeModifier.Operation.ADDITION));
 //		attributes.put(AttributeRegistry.SOUL_WARD_CAP.get(), new AttributeModifier(uuid, "Soul Ward Cap", 3f, AttributeModifier.Operation.ADDITION));
 //		return attributes;
 //	}

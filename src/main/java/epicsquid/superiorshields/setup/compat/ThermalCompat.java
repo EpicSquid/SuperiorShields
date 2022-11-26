@@ -2,6 +2,7 @@ package epicsquid.superiorshields.setup.compat;
 
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import epicsquid.superiorshields.item.EnergyShieldItem;
+import epicsquid.superiorshields.item.ThermalShieldItem;
 import epicsquid.superiorshields.shield.IEnergyShield;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.fml.ModList;
@@ -15,14 +16,13 @@ public class ThermalCompat {
 	}
 
 	public static NonNullFunction<Item.Properties, EnergyShieldItem> makeThermalShieldOrDefault(IEnergyShield type) {
-//		return LOADED ? LoadedOnly.makeThermalShield(type) : props -> new EnergyShieldItem(props, type);
-		return props -> new EnergyShieldItem(props, type);
+		return LOADED ? LoadedOnly.makeThermalShield(type) : props -> new EnergyShieldItem(props, type);
 	}
 
 	public static class LoadedOnly {
 
-//		public static NonNullFunction<Item.Properties, EnergyShieldItem> makeThermalShield(IEnergyShield type) {
-//			return props -> new ThermalShieldItem(props, type);
-//		}
+		public static NonNullFunction<Item.Properties, EnergyShieldItem> makeThermalShield(IEnergyShield type) {
+			return props -> new ThermalShieldItem(props, type);
+		}
 	}
 }

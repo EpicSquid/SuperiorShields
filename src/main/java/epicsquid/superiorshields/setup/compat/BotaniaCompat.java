@@ -1,6 +1,8 @@
 package epicsquid.superiorshields.setup.compat;
 
 import com.tterrag.registrate.util.nullness.NonNullFunction;
+import epicsquid.superiorshields.item.BotaniaShieldItem;
+import epicsquid.superiorshields.item.ElementiumShieldItem;
 import epicsquid.superiorshields.item.SuperiorShieldItem;
 import epicsquid.superiorshields.item.VanillaShieldItem;
 import epicsquid.superiorshields.shield.IShieldType;
@@ -16,23 +18,21 @@ public class BotaniaCompat {
 	}
 
 	public static NonNullFunction<Item.Properties, SuperiorShieldItem<IShieldType>> makeBotaniaShieldOrDefault(IShieldType type) {
-//		return LOADED ? LoadedOnly.makeBotaniaShield(type) : props -> new VanillaShieldItem(props.durability(512), type);
-		return props -> new VanillaShieldItem(props.durability(512), type);
+		return LOADED ? LoadedOnly.makeBotaniaShield(type) : props -> new VanillaShieldItem(props.durability(512), type);
 	}
 
 	public static NonNullFunction<Item.Properties, SuperiorShieldItem<IShieldType>> makeElementiumShieldOrDefault(IShieldType type) {
-//		return LOADED ? LoadedOnly.makeElementiumShield(type) : props -> new VanillaShieldItem(props.durability(512), type);
-		return props -> new VanillaShieldItem(props.durability(512), type);
+		return LOADED ? LoadedOnly.makeElementiumShield(type) : props -> new VanillaShieldItem(props.durability(512), type);
 	}
 
 	public static class LoadedOnly {
 
-//		public static NonNullFunction<Item.Properties, SuperiorShieldItem<IShieldType>> makeBotaniaShield(IShieldType type) {
-//			return props -> new BotaniaShieldItem(props, type);
-//		}
-//
-//		public static NonNullFunction<Item.Properties, SuperiorShieldItem<IShieldType>> makeElementiumShield(IShieldType type) {
-//			return props -> new ElementiumShieldItem(props, type);
-//		}
+		public static NonNullFunction<Item.Properties, SuperiorShieldItem<IShieldType>> makeBotaniaShield(IShieldType type) {
+			return props -> new BotaniaShieldItem(props, type);
+		}
+
+		public static NonNullFunction<Item.Properties, SuperiorShieldItem<IShieldType>> makeElementiumShield(IShieldType type) {
+			return props -> new ElementiumShieldItem(props, type);
+		}
 	}
 }
