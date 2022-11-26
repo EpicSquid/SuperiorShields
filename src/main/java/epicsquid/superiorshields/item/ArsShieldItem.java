@@ -14,7 +14,7 @@ import top.theillusivec4.curios.api.SlotContext;
 public class ArsShieldItem extends VanillaShieldItem {
 
 	public ArsShieldItem(Properties props, IShieldType shieldType) {
-		super(props.stacksTo(1), shieldType);
+		super(props, shieldType);
 	}
 
 	@Override
