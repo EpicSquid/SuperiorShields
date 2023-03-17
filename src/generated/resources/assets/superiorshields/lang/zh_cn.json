@@ -54,8 +54,8 @@
     "item.superiorshields.tin_shield": "锡护盾",
     "itemGroup.superiorshields": "卓越护盾",
     "tooltip.superiorshields.blank": "",
-    "tooltip.superiorshields.energy": "能量： %s / %sK FE",
-    "tooltip.superiorshields.equip": "当装备于卓越护盾饰品栏位时",
+    "tooltip.superiorshields.energy": "能量：%s / %sK FE",
+    "tooltip.superiorshields.equip": "装备于饰品栏时",
     "tooltip.superiorshields.hp": " %s 护盾容量",
     "tooltip.superiorshields.recharge_delay": " %s 充能延迟",
     "tooltip.superiorshields.recharge_rate": " %s 充能速度"
