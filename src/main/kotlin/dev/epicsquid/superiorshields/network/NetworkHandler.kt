@@ -2,6 +2,8 @@ package dev.epicsquid.superiorshields.network
 
 import dev.epicsquid.superiorshields.SuperiorShields
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
+import dev.epicsquid.superiorshields.utils.decodeFrom
+import dev.epicsquid.superiorshields.utils.encodeTo
 import net.minecraft.client.Minecraft
 import net.minecraft.resources.ResourceLocation
 import net.minecraftforge.network.NetworkRegistry
@@ -13,7 +15,7 @@ object NetworkHandler {
 	private var id = 0
 	private fun nextId(): Int = id++
 
-	val channel: SimpleChannel by lazy {
+	val CHANNEL: SimpleChannel by lazy {
 		NetworkRegistry.newSimpleChannel(
 			ResourceLocation(SuperiorShields.MODID, "network"),
 			{ PROTOCOL_VERSION },
@@ -24,7 +26,7 @@ object NetworkHandler {
 	// TODO wtf is going on here? Is it actually a false positive?
 	@Suppress("INACCESSIBLE_TYPE")
 	fun register() {
-		channel.registerMessage(
+		CHANNEL.registerMessage(
 			nextId(),
 			SuperiorShieldUpdatePacket::class.java,
 			{ msg, byteBuf -> encodeTo(byteBuf, msg) },

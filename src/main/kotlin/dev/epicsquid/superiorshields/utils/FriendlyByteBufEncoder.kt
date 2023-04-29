@@ -1,4 +1,4 @@
-package dev.epicsquid.superiorshields.network
+package dev.epicsquid.superiorshields.utils
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerializationStrategy

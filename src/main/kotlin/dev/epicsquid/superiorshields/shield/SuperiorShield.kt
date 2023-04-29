@@ -1,7 +1,18 @@
 package dev.epicsquid.superiorshields.shield
 
-interface SuperiorShield {
+import dev.epicsquid.superiorshields.config.SuperiorShieldConfigItem
+
+open class SuperiorShield(val name: String) {
+
+	private val config: SuperiorShieldConfigItem
+		get() = TODO()
+
 	val capacity: Double
+		get() = config.capacity.get()
+
 	val rate: Int
+		get() = config.rate.get()
+
 	val delay: Int
+		get() = config.delay.get()
 }
