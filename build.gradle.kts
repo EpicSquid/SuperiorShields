@@ -91,6 +91,7 @@ repositories {
 	maven("https://maven.blamejared.com")
 	// Thermal
 	maven("https://maven.covers1624.net/")
+	mavenCentral()
 }
 
 dependencies {
