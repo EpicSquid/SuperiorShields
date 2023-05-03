@@ -1,8 +1,10 @@
 package dev.epicsquid.superiorshields.shield
 
 import dev.epicsquid.superiorshields.config.SuperiorShieldConfigItem
+import net.minecraft.world.entity.player.Player
+import net.minecraft.world.item.ItemStack
 
-open class SuperiorShield(val name: String) {
+abstract class SuperiorShield(val name: String) {
 
 	private val config: SuperiorShieldConfigItem
 		get() = TODO()
@@ -15,4 +17,6 @@ open class SuperiorShield(val name: String) {
 
 	val delay: Int
 		get() = config.delay.get()
+
+	abstract fun rechargeShield(stack: ItemStack, player: Player)
 }

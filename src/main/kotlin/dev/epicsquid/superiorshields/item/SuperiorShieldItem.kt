@@ -7,21 +7,34 @@ import dev.epicsquid.superiorshields.network.NetworkHandler
 import dev.epicsquid.superiorshields.network.SuperiorShieldUpdatePacket
 import dev.epicsquid.superiorshields.registry.AttributeRegistry
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
+import dev.epicsquid.superiorshields.registry.LangRegistry
+import dev.epicsquid.superiorshields.shield.BotaniaSuperiorShield
 import dev.epicsquid.superiorshields.shield.SuperiorShield
+import dev.epicsquid.superiorshields.utils.TooltipUtils
+import epicsquid.superiorshields.lang.ModLang
+import epicsquid.superiorshields.lang.TooltipUtil
+import epicsquid.superiorshields.shield.ShieldHelper
+import net.minecraft.ChatFormatting
+import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.ai.attributes.Attribute
 import net.minecraft.world.entity.ai.attributes.AttributeModifier
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.TooltipFlag
+import net.minecraft.world.level.Level
+import net.minecraftforge.api.distmarker.Dist
+import net.minecraftforge.api.distmarker.OnlyIn
 import net.minecraftforge.network.PacketDistributor
 import top.theillusivec4.curios.api.SlotContext
 import top.theillusivec4.curios.api.type.capability.ICurioItem
+import java.text.DecimalFormat
 import java.util.*
 
 class SuperiorShieldItem<T : SuperiorShield>(
 	props: Properties,
-	type: T
+	private val type: T
 ) : Item(props), ICurioItem {
 	companion object {
 		val CAPACITY_UUID: UUID = UUID.fromString("e3c5b4a0-3f1a-4b1a-9b1a-5a4b1a3f1a3f")
@@ -91,7 +104,7 @@ class SuperiorShieldItem<T : SuperiorShield>(
 			// It's not, so start recharging cycle
 			if (shield.ticksWithoutDamage >= delay) {
 				if (shield.ticksSinceRecharge % rate == 0) {
-					// TODO recharge shield
+					type.rechargeShield(stack, slotContext.entity as Player)
 					updateClient(slotContext.entity as Player, shield)
 					// TODO trigger recharge effect
 					if (shield.hp >= capacity) {
@@ -107,7 +120,28 @@ class SuperiorShieldItem<T : SuperiorShield>(
 				shield.ticksWithoutDamage++
 			}
 		}
+
+		// Repair the shield automatically if it is a Botania shield
+		if (shield is BotaniaSuperiorShield) shield.repairWithMana(stack, slotContext.entity as Player)
 	}
 
 	override fun canEquipFromUse(slotContext: SlotContext?, stack: ItemStack?): Boolean = true
+
+	@OnlyIn(Dist.CLIENT)
+	override fun appendHoverText(
+		stack: ItemStack,
+		level: Level?,
+		tooltip: MutableList<Component>,
+		isAdvanced: TooltipFlag
+	) {
+		super.appendHoverText(stack, level, tooltip, isAdvanced)
+
+		val decimalFormat = DecimalFormat()
+		decimalFormat.maximumFractionDigits = 2
+
+		tooltip.apply {
+			add(LangRegistry.BLANK)
+			add(LangRegistry.EQUIP.withStyle(ChatFormatting.GRAY))
+		}
+	}
 }
