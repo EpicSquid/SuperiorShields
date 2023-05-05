@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager
 @Mod(SuperiorShields.MODID)
 object SuperiorShields {
 	const val MODID = "superiorshields"
+	const val SUPERIOR_SHIELD_CURIO = "superior_shield"
 
 	val logger = LogManager.getLogger(MODID)
 

@@ -5,7 +5,9 @@ import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 
-open class DurabilitySuperiorShield(name: String) : SuperiorShield(name) {
+open class DurabilitySuperiorShield(
+	val name: String
+) : DefaultSuperiorShield(name) {
 
 	private fun damageItem(stack: ItemStack, player: Player) {
 		stack.hurtAndBreak(1, player) {

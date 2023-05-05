@@ -32,3 +32,17 @@ data class SuperiorShieldCapImpl(
 			ticksFull = getInt(TICKS_FULL)
 		}
 }
+
+fun SuperiorShieldCap.absorbDamage(damage: Int): Int {
+	// Reset the ticks without damage
+	ticksWithoutDamage = 0
+	return if (damage > hp) {
+		// We are not able to absorb all the damage, return what's left
+		hp = 0
+		damage - hp
+	} else {
+		// We can absorb the damage, return 0
+		hp -= damage
+		0
+	}
+}

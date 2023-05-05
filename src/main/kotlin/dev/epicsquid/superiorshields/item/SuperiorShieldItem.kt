@@ -10,10 +10,6 @@ import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
 import dev.epicsquid.superiorshields.registry.LangRegistry
 import dev.epicsquid.superiorshields.shield.BotaniaSuperiorShield
 import dev.epicsquid.superiorshields.shield.SuperiorShield
-import dev.epicsquid.superiorshields.utils.TooltipUtils
-import epicsquid.superiorshields.lang.ModLang
-import epicsquid.superiorshields.lang.TooltipUtil
-import epicsquid.superiorshields.shield.ShieldHelper
 import net.minecraft.ChatFormatting
 import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerPlayer
@@ -35,7 +31,7 @@ import java.util.*
 class SuperiorShieldItem<T : SuperiorShield>(
 	props: Properties,
 	private val type: T
-) : Item(props), ICurioItem {
+) : Item(props), ICurioItem, SuperiorShield by type {
 	companion object {
 		val CAPACITY_UUID: UUID = UUID.fromString("e3c5b4a0-3f1a-4b1a-9b1a-5a4b1a3f1a3f")
 		val RATE_UUID: UUID = UUID.fromString("e3c5b4a0-3f1a-4b1a-9b1a-5a4b1a3f1a3d")
@@ -85,12 +81,12 @@ class SuperiorShieldItem<T : SuperiorShield>(
 		val shield = slotContext.entity.shield
 
 		// Get the shield stats
-		val delay: Int = slotContext.entity.getAttributeValue(AttributeRegistry.shieldDelay).toInt()
-		val capacity: Int = slotContext.entity.getAttributeValue(AttributeRegistry.shieldCapacity).toInt()
-		val rate: Int = slotContext.entity.getAttributeValue(AttributeRegistry.shieldRate).toInt()
+		val delayAttribute: Int = slotContext.entity.getAttributeValue(AttributeRegistry.shieldDelay).toInt()
+		val capacityAttribute: Int = slotContext.entity.getAttributeValue(AttributeRegistry.shieldCapacity).toInt()
+		val rateAttribute: Int = slotContext.entity.getAttributeValue(AttributeRegistry.shieldRate).toInt()
 
 		// Check if the shield is full
-		if (shield.hp >= capacity) {
+		if (shield.hp >= capacityAttribute) {
 			if (shield.ticksFull % 20 == 0) {
 				// TODO trigger effect for being full
 				// TODO determine if we need to update client?
@@ -102,12 +98,12 @@ class SuperiorShieldItem<T : SuperiorShield>(
 			shield.ticksFull++
 		} else {
 			// It's not, so start recharging cycle
-			if (shield.ticksWithoutDamage >= delay) {
-				if (shield.ticksSinceRecharge % rate == 0) {
+			if (shield.ticksWithoutDamage >= delayAttribute) {
+				if (shield.ticksSinceRecharge % rateAttribute == 0) {
 					type.rechargeShield(stack, slotContext.entity as Player)
 					updateClient(slotContext.entity as Player, shield)
 					// TODO trigger recharge effect
-					if (shield.hp >= capacity) {
+					if (shield.hp >= capacityAttribute) {
 						// TODO trigger filled effect
 					}
 					// A recharge has occurred, reset
