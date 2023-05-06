@@ -1,6 +1,8 @@
 package dev.epicsquid.superiorshields.event
 
+import dev.epicsquid.superiorshields.SuperiorShields
 import dev.epicsquid.superiorshields.SuperiorShields.SUPERIOR_SHIELD_CURIO
+import dev.epicsquid.superiorshields.capability.SuperiorShieldCap
 import dev.epicsquid.superiorshields.capability.SuperiorShieldCapProvider
 import dev.epicsquid.superiorshields.network.NetworkHandler
 import dev.epicsquid.superiorshields.network.SuperiorShieldUpdatePacket
@@ -10,6 +12,7 @@ import dev.epicsquid.superiorshields.shield.SuperiorShield
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.Entity
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent
 import net.minecraftforge.event.AttachCapabilitiesEvent
 import net.minecraftforge.event.entity.EntityJoinLevelEvent
 import net.minecraftforge.event.entity.living.LivingHurtEvent
@@ -18,8 +21,13 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 import net.minecraftforge.network.PacketDistributor
 import top.theillusivec4.curios.api.CuriosApi
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.FORGE)
+@EventBusSubscriber(modid = SuperiorShields.MODID, bus = EventBusSubscriber.Bus.FORGE)
 object EventManager {
+
+	@SubscribeEvent
+	fun onRegisterCapabilities(event: RegisterCapabilitiesEvent) {
+		event.register(SuperiorShieldCap::class.java)
+	}
 
 	@SubscribeEvent
 	fun onAttachCapabilities(event: AttachCapabilitiesEvent<Entity>) {
