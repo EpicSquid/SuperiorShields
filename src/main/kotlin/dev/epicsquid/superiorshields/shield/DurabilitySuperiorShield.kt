@@ -2,23 +2,23 @@ package dev.epicsquid.superiorshields.shield
 
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
 import net.minecraft.world.entity.EquipmentSlot
-import net.minecraft.world.entity.player.Player
+import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.ItemStack
 
 open class DurabilitySuperiorShield(
 	val name: String
-) : DefaultSuperiorShield(name) {
+) : AbstractSuperiorShield(name) {
 
-	private fun damageItem(stack: ItemStack, player: Player) {
-		stack.hurtAndBreak(1, player) {
+	private fun damageItem(stack: ItemStack, entity: LivingEntity) {
+		stack.hurtAndBreak(1, entity) {
 			it.broadcastBreakEvent(EquipmentSlot.OFFHAND)
 		}
 	}
 
-	override fun rechargeShield(stack: ItemStack, player: Player) {
-		if (player.shield.hp < capacity) {
-			damageItem(stack, player)
-			player.shield.hp++
+	override fun rechargeShield(stack: ItemStack, entity: LivingEntity) {
+		if (entity.shield.hp < capacity) {
+			damageItem(stack, entity)
+			entity.shield.hp++
 		}
 	}
 }

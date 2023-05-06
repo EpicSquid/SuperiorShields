@@ -7,6 +7,8 @@ import dev.epicsquid.superiorshields.network.NetworkHandler
 import dev.epicsquid.superiorshields.network.SuperiorShieldUpdatePacket
 import dev.epicsquid.superiorshields.registry.AttributeRegistry
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
+import dev.epicsquid.superiorshields.shield.effects.*
+import dev.epicsquid.superiorshields.shield.effects.EffectTrigger.*
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.LivingEntity
@@ -14,7 +16,10 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraftforge.network.PacketDistributor
 
-abstract class DefaultSuperiorShield(name: String) : SuperiorShield {
+abstract class AbstractSuperiorShield(
+	val name: String,
+	effectHandler: EffectHandler
+) : SuperiorShield, EffectHandler by effectHandler {
 
 	protected val config: SuperiorShieldConfigItem
 		get() = TODO()
@@ -31,9 +36,9 @@ abstract class DefaultSuperiorShield(name: String) : SuperiorShield {
 	override fun applyShield(entity: LivingEntity, stack: ItemStack, damage: Float, source: DamageSource): Float {
 		val shield = entity.shield
 		if (shield.hp > 0) {
-			// TODO trigger damage effect
+			applyEffect(Damage(entity, source, damage, stack))
 			if (damage >= shield.hp) {
-				// TODO trigger shield empty effect
+				applyEffect(Empty(entity, stack))
 			}
 		}
 		val damageLeft = shield.absorbDamage(damage.toInt()).toFloat()
@@ -58,7 +63,7 @@ abstract class DefaultSuperiorShield(name: String) : SuperiorShield {
 		// Check if the shield is full
 		if (shield.hp >= capacityAttribute) {
 			if (shield.ticksFull % 20 == 0) {
-				// TODO trigger full effect
+				applyEffect(Full(entity, stack))
 
 				// Full trigger has occurred, reset
 				shield.ticksFull = 0
@@ -73,9 +78,9 @@ abstract class DefaultSuperiorShield(name: String) : SuperiorShield {
 					if (entity is ServerPlayer) {
 						updateClient(entity, shield)
 					}
-					// TODO trigger recharge effect
+					applyEffect(Recharge(entity, stack))
 					if (shield.hp >= capacityAttribute) {
-						// TODO trigger filled effect
+						applyEffect(Filled(entity, stack))
 					}
 					// A recharge has occurred, reset
 					shield.ticksSinceRecharge = 0
@@ -97,5 +102,17 @@ abstract class DefaultSuperiorShield(name: String) : SuperiorShield {
 			PacketDistributor.PLAYER.with { player },
 			SuperiorShieldUpdatePacket(shield.hp)
 		)
+	}
+
+	private fun applyEffect(effectTrigger: EffectTrigger) {
+		
+
+		when (effectTrigger) {
+			is Damage -> damageEffects.forEach { it(effectTrigger) }
+			is Empty -> emptyEffects.forEach { it(effectTrigger) }
+			is Filled -> filledEffects.forEach { it(effectTrigger) }
+			is Full -> fullEffects.forEach { it(effectTrigger) }
+			is Recharge -> rechargeEffects.forEach { it(effectTrigger) }
+		}
 	}
 }
