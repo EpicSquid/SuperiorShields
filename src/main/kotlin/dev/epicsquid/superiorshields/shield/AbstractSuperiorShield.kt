@@ -3,23 +3,27 @@ package dev.epicsquid.superiorshields.shield
 import dev.epicsquid.superiorshields.capability.SuperiorShieldCap
 import dev.epicsquid.superiorshields.capability.absorbDamage
 import dev.epicsquid.superiorshields.config.SuperiorShieldConfigItem
+import dev.epicsquid.superiorshields.effects.DefaultEffectHandler
+import dev.epicsquid.superiorshields.effects.EffectHandler
+import dev.epicsquid.superiorshields.effects.EffectTrigger
+import dev.epicsquid.superiorshields.effects.EffectTrigger.*
+import dev.epicsquid.superiorshields.enchantment.SuperiorShieldEnchantment
 import dev.epicsquid.superiorshields.network.NetworkHandler
 import dev.epicsquid.superiorshields.network.SuperiorShieldUpdatePacket
 import dev.epicsquid.superiorshields.registry.AttributeRegistry
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
-import dev.epicsquid.superiorshields.shield.effects.*
-import dev.epicsquid.superiorshields.shield.effects.EffectTrigger.*
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraftforge.network.PacketDistributor
 
 abstract class AbstractSuperiorShield(
 	val name: String,
-	effectHandler: EffectHandler
-) : SuperiorShield, EffectHandler by effectHandler {
+	private val effectHandler: EffectHandler = DefaultEffectHandler.NONE
+) : SuperiorShield, EffectHandler {
 
 	protected val config: SuperiorShieldConfigItem
 		get() = TODO()
@@ -104,15 +108,16 @@ abstract class AbstractSuperiorShield(
 		)
 	}
 
-	private fun applyEffect(effectTrigger: EffectTrigger) {
-		
+	override fun applyEffect(effectTrigger: EffectTrigger, scale: Int) {
+		effectHandler.applyEffect(effectTrigger)
+		applyEnchantmentEffect(effectTrigger, scale)
+	}
 
-		when (effectTrigger) {
-			is Damage -> damageEffects.forEach { it(effectTrigger) }
-			is Empty -> emptyEffects.forEach { it(effectTrigger) }
-			is Filled -> filledEffects.forEach { it(effectTrigger) }
-			is Full -> fullEffects.forEach { it(effectTrigger) }
-			is Recharge -> rechargeEffects.forEach { it(effectTrigger) }
+	private fun applyEnchantmentEffect(effectTrigger: EffectTrigger, scale: Int) {
+		EnchantmentHelper.getEnchantments(effectTrigger.shieldStack).forEach { (enchantment, level) ->
+			if (enchantment is SuperiorShieldEnchantment) {
+				enchantment.applyEffect(effectTrigger, level + scale)
+			}
 		}
 	}
 }

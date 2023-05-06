@@ -2,19 +2,13 @@ package dev.epicsquid.superiorshields.event
 
 import dev.epicsquid.superiorshields.SuperiorShields
 import dev.epicsquid.superiorshields.SuperiorShields.SUPERIOR_SHIELD_CURIO
-import dev.epicsquid.superiorshields.capability.SuperiorShieldCap
-import dev.epicsquid.superiorshields.capability.SuperiorShieldCapProvider
 import dev.epicsquid.superiorshields.network.NetworkHandler
 import dev.epicsquid.superiorshields.network.SuperiorShieldUpdatePacket
-import dev.epicsquid.superiorshields.registry.CapabilityRegistry.SUPERIOR_SHIELD_CAP_ID
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
 import dev.epicsquid.superiorshields.shield.SuperiorShield
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.damagesource.DamageSource
-import net.minecraft.world.entity.Entity
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent
-import net.minecraftforge.event.AttachCapabilitiesEvent
 import net.minecraftforge.event.entity.EntityJoinLevelEvent
 import net.minecraftforge.event.entity.living.LivingHurtEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
@@ -39,16 +33,6 @@ object EventManager {
 				icon(ResourceLocation(SuperiorShields.MODID, "item/empty_shield_slot"))
 			}.build()
 		}
-	}
-
-	@SubscribeEvent
-	fun onRegisterCapabilities(event: RegisterCapabilitiesEvent) {
-		event.register(SuperiorShieldCap::class.java)
-	}
-
-	@SubscribeEvent
-	fun onAttachCapabilities(event: AttachCapabilitiesEvent<Entity>) {
-		event.addCapability(SUPERIOR_SHIELD_CAP_ID, SuperiorShieldCapProvider())
 	}
 
 	@SubscribeEvent

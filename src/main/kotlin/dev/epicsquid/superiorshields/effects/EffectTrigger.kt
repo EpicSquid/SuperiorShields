@@ -1,4 +1,4 @@
-package dev.epicsquid.superiorshields.shield.effects
+package dev.epicsquid.superiorshields.effects
 
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.LivingEntity
