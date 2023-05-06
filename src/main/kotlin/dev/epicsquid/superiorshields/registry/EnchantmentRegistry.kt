@@ -3,10 +3,9 @@ package dev.epicsquid.superiorshields.registry
 import dev.epicsquid.superiorshields.SuperiorShields
 import dev.epicsquid.superiorshields.effects.DefaultEffectHandler
 import dev.epicsquid.superiorshields.effects.EffectHandler
-import dev.epicsquid.superiorshields.enchantment.AmplifyEnchantment
-import dev.epicsquid.superiorshields.enchantment.CapacityEnchantment
-import dev.epicsquid.superiorshields.enchantment.RagingEnchantment
-import dev.epicsquid.superiorshields.enchantment.SuperiorShieldEnchantment
+import dev.epicsquid.superiorshields.effects.ScalableEffectHandler
+import dev.epicsquid.superiorshields.effects.SuperiorShieldEffects
+import dev.epicsquid.superiorshields.enchantment.*
 import dev.epicsquid.superiorshields.shield.SuperiorShield
 import dev.epicsquid.superiorshields.utils.registryEntry
 import net.minecraft.world.entity.EquipmentSlot
@@ -37,6 +36,19 @@ object EnchantmentRegistry {
 		registrate.enchantment<AmplifyEnchantment>("amplify", type, factory(::AmplifyEnchantment))
 			.rarity(Enchantment.Rarity.RARE)
 			.lang("Amplify")
+			.register()
+	}
+
+	val curing: CuringEnchantment by registryEntry {
+		registrate.enchantment<CuringEnchantment>(
+			"curing", type, factory(
+				::CuringEnchantment,
+				ScalableEffectHandler(
+					empty = { trigger, _ -> SuperiorShieldEffects.CURING_EFFECT(trigger.shieldHolder) },
+				)
+			)
+		).rarity(Enchantment.Rarity.RARE)
+			.lang("Curing")
 			.register()
 	}
 

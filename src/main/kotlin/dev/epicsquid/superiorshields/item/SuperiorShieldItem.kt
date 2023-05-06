@@ -2,6 +2,7 @@ package dev.epicsquid.superiorshields.item
 
 import com.google.common.collect.ImmutableMultimap
 import com.google.common.collect.Multimap
+import dev.epicsquid.superiorshields.enchantment.AttributeProvider
 import dev.epicsquid.superiorshields.registry.AttributeRegistry
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
 import dev.epicsquid.superiorshields.registry.LangRegistry
@@ -13,6 +14,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.TooltipFlag
+import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.level.Level
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
@@ -26,9 +28,9 @@ class SuperiorShieldItem<T : SuperiorShield>(
 	private val type: T
 ) : Item(props), ICurioItem, SuperiorShield by type {
 	companion object {
-		val CAPACITY_UUID: UUID = UUID.fromString("e3c5b4a0-3f1a-4b1a-9b1a-5a4b1a3f1a3f")
-		val RATE_UUID: UUID = UUID.fromString("e3c5b4a0-3f1a-4b1a-9b1a-5a4b1a3f1a3d")
-		val DELAY_UUID: UUID = UUID.fromString("e3c5b4a0-3f1a-4b1a-9b1a-5a4b1a3f1a3e")
+		val CAPACITY_UUID: UUID = UUID.fromString("0ac7a83c-9c61-408b-bf21-4050a95321b3")
+		val RATE_UUID: UUID = UUID.fromString("ab9a96c0-955c-4198-ae9e-fa3c536f7032")
+		val DELAY_UUID: UUID = UUID.fromString("ca728566-0404-4ae1-a4ab-1a1ff4074a72")
 	}
 
 	private val defaultModifiers: Multimap<Attribute, AttributeModifier>
@@ -55,8 +57,14 @@ class SuperiorShieldItem<T : SuperiorShield>(
 		uuid: UUID?,
 		stack: ItemStack
 	): Multimap<Attribute, AttributeModifier> {
-		// TODO enchantment checks go here to boost default stats
-		return defaultModifiers
+		return ImmutableMultimap.builder<Attribute, AttributeModifier>().apply {
+			putAll(defaultModifiers)
+			EnchantmentHelper.getEnchantments(stack).filter { it.key is AttributeProvider }
+				.forEach { (enchantment, level) ->
+					val provider = enchantment as AttributeProvider
+					putAll(provider.getAttributeModifiers(slotContext, uuid, level))
+				}
+		}.build()
 	}
 
 	override fun curioTick(slotContext: SlotContext, stack: ItemStack) {

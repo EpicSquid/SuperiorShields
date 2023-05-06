@@ -12,6 +12,7 @@ class SuperiorShieldsConfig(
 	val ragingDamageAdded: ForgeConfigSpec.ConfigValue<Double>
 	val amplifyShieldDrain: ForgeConfigSpec.ConfigValue<Int>
 	val amplifyDamageMultiplier: ForgeConfigSpec.ConfigValue<Double>
+	val shieldCapacityIncrease: ForgeConfigSpec.ConfigValue<Int>
 
 	init {
 		builder.stack("consumption") {
@@ -25,13 +26,18 @@ class SuperiorShieldsConfig(
 
 		builder.stack("enchantments") {
 			comment("Configuration for power of various enchantments in the mod.");
-			ragingDamageAdded = comment("The damage added to attacks while shields are depleted with the raging enchantment.")
-				.define("raging_damage_added", 2.0)
-			amplifyDamageMultiplier = comment("The damage multiplier for attacks of the amplify enchantment.")
-				.define("amplify_damage_multiplier", 1.5)
+			ragingDamageAdded =
+				comment("The damage added to attacks while shields are depleted with the raging enchantment.")
+					.define("raging_damage_added", 2.0)
+			amplifyDamageMultiplier =
+				comment("The damage multiplier for attacks of the amplify enchantment.")
+					.define("amplify_damage_multiplier", 1.5)
 			amplifyShieldDrain =
 				comment("The amount of shield HP drained when the amplify enchantment is triggered.")
 					.define("amplify_shield_drain", 3)
+			shieldCapacityIncrease =
+				comment("The amount of shield HP added for reach level of shield capacity enchantment.")
+					.define("shield_capacity_increase", 2)
 
 		}
 	}
