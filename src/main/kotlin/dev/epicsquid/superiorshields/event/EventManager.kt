@@ -9,6 +9,7 @@ import dev.epicsquid.superiorshields.network.SuperiorShieldUpdatePacket
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.SUPERIOR_SHIELD_CAP_ID
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
 import dev.epicsquid.superiorshields.shield.SuperiorShield
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.Entity
@@ -17,12 +18,28 @@ import net.minecraftforge.event.AttachCapabilitiesEvent
 import net.minecraftforge.event.entity.EntityJoinLevelEvent
 import net.minecraftforge.event.entity.living.LivingHurtEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
+import net.minecraftforge.fml.InterModComms
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent
 import net.minecraftforge.network.PacketDistributor
 import top.theillusivec4.curios.api.CuriosApi
+import top.theillusivec4.curios.api.SlotTypeMessage
+import top.theillusivec4.curios.api.SlotTypeMessage.Builder
 
 @EventBusSubscriber(modid = SuperiorShields.MODID, bus = EventBusSubscriber.Bus.FORGE)
 object EventManager {
+
+	@SubscribeEvent
+	fun onInterModEnqueue(event: InterModEnqueueEvent) {
+		InterModComms.sendTo(
+			CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE
+		) {
+			Builder(SUPERIOR_SHIELD_CURIO).apply {
+				priority(220)
+				icon(ResourceLocation(SuperiorShields.MODID, "item/empty_shield_slot"))
+			}.build()
+		}
+	}
 
 	@SubscribeEvent
 	fun onRegisterCapabilities(event: RegisterCapabilitiesEvent) {

@@ -2,6 +2,7 @@ package dev.epicsquid.superiorshields
 
 import com.tterrag.registrate.Registrate
 import dev.epicsquid.superiorshields.gui.SuperiorShieldOverlay
+import dev.epicsquid.superiorshields.network.NetworkHandler
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.inventory.InventoryMenu
 import net.minecraft.world.item.CreativeModeTab
@@ -13,7 +14,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.MOD
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
 import org.apache.logging.log4j.LogManager
+import thedarkcolour.kotlinforforge.forge.MOD_CONTEXT
 
 @Mod(SuperiorShields.MODID)
 object SuperiorShields {
@@ -31,7 +34,11 @@ object SuperiorShields {
 	}
 
 	init {
-//		MOD_CONTEXT.getKEventBus().addListener(::setup)
+		MOD_CONTEXT.getKEventBus().addListener(::setup)
+	}
+
+	private fun setup(event: FMLCommonSetupEvent) {
+		NetworkHandler.register()
 	}
 }
 
