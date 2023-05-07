@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "superiorshields:item/refined_obsidian_shield"
-  }
-}

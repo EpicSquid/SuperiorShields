@@ -4,11 +4,11 @@
       "advancement": {
         "parent": "minecraft:recipes/root",
         "criteria": {
-          "has_terrasteel": {
+          "has_item": {
             "conditions": {
               "items": [
                 {
-                  "tag": "forge:ingots/terrasteel"
+                  "tag": "forge:ender_pearls"
                 }
               ]
             },
@@ -16,27 +16,30 @@
           },
           "has_the_recipe": {
             "conditions": {
-              "recipe": "superiorshields:terrasteel_shield"
+              "recipe": "superiorshields:diamond_shield"
             },
             "trigger": "minecraft:recipe_unlocked"
           }
         },
         "requirements": [
           [
-            "has_terrasteel",
+            "has_item",
             "has_the_recipe"
           ]
         ],
         "rewards": {
           "recipes": [
-            "superiorshields:terrasteel_shield"
+            "superiorshields:diamond_shield"
           ]
         }
       },
       "conditions": [
         {
-          "type": "forge:mod_loaded",
-          "modid": "botania"
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:gems/diamond"
+          }
         }
       ]
     }

@@ -4,13 +4,11 @@
       "advancement": {
         "parent": "minecraft:recipes/root",
         "criteria": {
-          "has_eye_of_ender": {
+          "has_item": {
             "conditions": {
               "items": [
                 {
-                  "items": [
-                    "minecraft:ender_eye"
-                  ]
+                  "tag": "forge:ender_pearls"
                 }
               ]
             },
@@ -18,27 +16,30 @@
           },
           "has_the_recipe": {
             "conditions": {
-              "recipe": "superiorshields:soul_stained_steel_shield"
+              "recipe": "superiorshields:netherite_shield"
             },
             "trigger": "minecraft:recipe_unlocked"
           }
         },
         "requirements": [
           [
-            "has_eye_of_ender",
+            "has_item",
             "has_the_recipe"
           ]
         ],
         "rewards": {
           "recipes": [
-            "superiorshields:soul_stained_steel_shield"
+            "superiorshields:netherite_shield"
           ]
         }
       },
       "conditions": [
         {
-          "type": "forge:mod_loaded",
-          "modid": "malum"
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/netherite"
+          }
         }
       ]
     }

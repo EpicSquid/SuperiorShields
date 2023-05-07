@@ -4,7 +4,7 @@
       "advancement": {
         "parent": "minecraft:recipes/root",
         "criteria": {
-          "has_enderpearl": {
+          "has_item": {
             "conditions": {
               "items": [
                 {
@@ -16,20 +16,20 @@
           },
           "has_the_recipe": {
             "conditions": {
-              "recipe": "superiorshields:osmium_shield"
+              "recipe": "superiorshields:golden_shield"
             },
             "trigger": "minecraft:recipe_unlocked"
           }
         },
         "requirements": [
           [
-            "has_enderpearl",
+            "has_item",
             "has_the_recipe"
           ]
         ],
         "rewards": {
           "recipes": [
-            "superiorshields:osmium_shield"
+            "superiorshields:golden_shield"
           ]
         }
       },
@@ -38,7 +38,7 @@
           "type": "forge:not",
           "value": {
             "type": "forge:tag_empty",
-            "tag": "forge:ingots/osmium"
+            "tag": "forge:ingots/gold"
           }
         }
       ]

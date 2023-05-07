@@ -1,8 +1,0 @@
-{
-  "values": [
-    {
-      "id": "thermal:rf_coil",
-      "required": false
-    }
-  ]
-}
