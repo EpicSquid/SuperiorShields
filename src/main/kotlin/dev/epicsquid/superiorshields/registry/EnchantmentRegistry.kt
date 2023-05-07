@@ -142,4 +142,6 @@ object EnchantmentRegistry {
 	): (Enchantment.Rarity, EnchantmentCategory, Array<out EquipmentSlot>) -> T {
 		return { rarity, type, _ -> enchantmentConstructor(rarity, type, effectHandler) }
 	}
+
+	fun classload() {}
 }

@@ -25,6 +25,7 @@ import java.util.*
 
 class SuperiorShieldItem<T : SuperiorShield>(
 	props: Properties,
+	private val enchantmentValue: Int,
 	private val type: T
 ) : Item(props), ICurioItem, SuperiorShield by type {
 	companion object {
@@ -39,7 +40,7 @@ class SuperiorShieldItem<T : SuperiorShield>(
 		defaultModifiers = ImmutableMultimap.builder<Attribute, AttributeModifier>().apply {
 			put(
 				AttributeRegistry.shieldCapacity,
-				AttributeModifier(CAPACITY_UUID, "Shield Capacity", type.capacity, AttributeModifier.Operation.ADDITION)
+				AttributeModifier(CAPACITY_UUID, "Shield Capacity", type.capacity.toDouble(), AttributeModifier.Operation.ADDITION)
 			)
 			put(
 				AttributeRegistry.shieldRate,
@@ -65,6 +66,10 @@ class SuperiorShieldItem<T : SuperiorShield>(
 					putAll(provider.getAttributeModifiers(slotContext, uuid, level))
 				}
 		}.build()
+	}
+
+	override fun getEnchantmentValue(stack: ItemStack?): Int {
+		return enchantmentValue
 	}
 
 	override fun curioTick(slotContext: SlotContext, stack: ItemStack) {

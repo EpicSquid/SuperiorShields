@@ -42,4 +42,6 @@ object ClientEventManager {
 			}
 		}
 	}
+
+	fun classload() {}
 }

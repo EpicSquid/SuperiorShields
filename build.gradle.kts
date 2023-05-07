@@ -6,6 +6,7 @@ plugins {
 	id("net.minecraftforge.gradle") version "5.1.+"
 	id("maven-publish")
 	id("org.parchmentmc.librarian.forgegradle") version "1.+"
+	id("org.spongepowered.mixin")
 }
 
 version = "3.0.0"
@@ -29,6 +30,10 @@ minecraft {
 			property("forge.logging.console.level", "debug")
 			property("forge.enabledGameTestNamespaces", modid)
 
+			// Disable mixins for botania support in dev environment
+			property("mixin.env.remapRefMap", "true")
+			property("mixin.env.refMapRemappingFile", "${buildDir}/createSrgToMcp/output.srg")
+
 			mods {
 				create(modid) {
 					source(sourceSets.main.get())
@@ -43,6 +48,10 @@ minecraft {
 			property("forge.logging.console.level", "debug")
 			property("forge.enabledGameTestNamespaces", modid)
 
+			// Disable mixins for botania support in dev environment
+			property("mixin.env.remapRefMap", "true")
+			property("mixin.env.refMapRemappingFile", "${buildDir}/createSrgToMcp/output.srg")
+
 			mods {
 				create(modid) {
 					source(sourceSets.main.get())
@@ -55,6 +64,10 @@ minecraft {
 
 			property("forge.logging.markers", "REGISTRIES")
 			property("forge.logging.console.level", "debug")
+
+			// Disable mixins for botania support in dev environment
+			property("mixin.env.remapRefMap", "true")
+			property("mixin.env.refMapRemappingFile", "${buildDir}/createSrgToMcp/output.srg")
 
 			args(
 				"--mod", modid,
@@ -117,8 +130,8 @@ dependencies {
 	runtimeOnly(fg.deobf("mezz.jei:jei-$minecraftVersion-forge:11.2.0.246"))
 
 	// Botania
-	implementation(fg.deobf("vazkii.botania:Botania-xplat:1.19.2-437"))
-	runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli-xplat:1.19.2-77"))
+	implementation(fg.deobf("vazkii.botania:Botania-xplat:$minecraftVersion-437"))
+	runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:$minecraftVersion-77"))
 
 	// Thermal
 	implementation(fg.deobf("com.teamcofh:cofh_core:$minecraftVersion-10.0.0.29"))

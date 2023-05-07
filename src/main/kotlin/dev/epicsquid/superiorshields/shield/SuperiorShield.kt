@@ -7,7 +7,7 @@ import net.minecraft.world.item.ItemStack
 
 interface SuperiorShield {
 
-	val capacity: Double
+	val capacity: Int
 
 	val rate: Int
 

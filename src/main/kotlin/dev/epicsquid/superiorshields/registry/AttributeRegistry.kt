@@ -35,4 +35,6 @@ object AttributeRegistry {
 			event.add(it, shieldDelay)
 		}
 	}
+
+	fun classload() {}
 }

@@ -40,7 +40,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import javax.annotation.Nonnull;
 
-@Mod(SuperiorShields.MODID)
 public class SuperiorShields {
 
 	public static final String MODID = "superiorshields";
@@ -102,16 +101,13 @@ public class SuperiorShields {
 		return REGISTRATE.get();
 	}
 
-	@Mod.EventBusSubscriber(modid = MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 	public static class ClientProxy {
-		@SubscribeEvent
 		public static void stitchTextures(TextureStitchEvent.Pre event) {
 			if (event.getAtlas().location() == InventoryMenu.BLOCK_ATLAS) {
 				event.addSprite(new ResourceLocation(SuperiorShields.MODID, "item/empty_shield_slot"));
 			}
 		}
 
-		@SubscribeEvent
 		public static void onRegisterGuiOverlays(RegisterGuiOverlaysEvent event) {
 			event.registerAbove(VanillaGuiOverlay.PLAYER_HEALTH.id(), "superior_shield_overlay", new GuiShieldOverlay());
 		}

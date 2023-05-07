@@ -27,4 +27,6 @@ object LangRegistry {
 	val MODIFIERS =
 		REGISTRATE.addRawLang(CuriosApi.MODID + ".modifiers.superior_shield", "When in the Superior Shield curios slot:")
 	val CREATIVE_TAB = REGISTRATE.addRawLang("itemGroup." + SuperiorShields.MODID, "Superior Shields")
+
+	fun classload() {}
 }

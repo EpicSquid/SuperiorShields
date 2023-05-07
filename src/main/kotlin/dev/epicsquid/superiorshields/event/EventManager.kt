@@ -72,4 +72,6 @@ object EventManager {
 			}
 		}
 	}
+
+	fun classload() {}
 }

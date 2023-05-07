@@ -26,4 +26,6 @@ object CapabilityRegistry {
 	fun onRegisterCapabilities(event: RegisterCapabilitiesEvent) {
 		event.register(SuperiorShieldCap::class.java)
 	}
+
+	fun classload() {}
 }

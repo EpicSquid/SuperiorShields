@@ -18,6 +18,12 @@ class SuperiorShieldsConfig(
 	val novaRange: ForgeConfigSpec.ConfigValue<Double>
 	val spikeEffectDuration: ForgeConfigSpec.ConfigValue<Int>
 
+	val copperShield: SuperiorShieldStats
+	val ironShield: SuperiorShieldStats
+	val goldShield: SuperiorShieldStats
+	val diamondShield: SuperiorShieldStats
+	val netheriteShield: SuperiorShieldStats
+
 	init {
 		builder.stack("consumption") {
 			comment("The amount of a resource to use for a given shield type.")
@@ -54,7 +60,17 @@ class SuperiorShieldsConfig(
 			spikeEffectDuration =
 				comment("The duration of the effect applied when a mob attacks you.")
 					.define("spike_effect_duration", 2);
+		}
 
+		builder.stack("shields") {
+			builder.stack("vanilla") {
+				comment("Shields made from materials often present in a variety of mods")
+				copperShield = builder.shield("copper", 3, 80, 40)
+				ironShield = builder.shield("iron", 5, 80, 40)
+				goldShield = builder.shield("gold", 3, 20, 40)
+				diamondShield = builder.shield("diamond", 7, 60, 40)
+				netheriteShield = builder.shield("netherite", 8, 40, 40)
+			}
 		}
 	}
 }

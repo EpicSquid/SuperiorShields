@@ -2,7 +2,7 @@ package dev.epicsquid.superiorshields.shield
 
 import dev.epicsquid.superiorshields.capability.SuperiorShieldCap
 import dev.epicsquid.superiorshields.capability.absorbDamage
-import dev.epicsquid.superiorshields.config.SuperiorShieldConfigItem
+import dev.epicsquid.superiorshields.config.SuperiorShieldStats
 import dev.epicsquid.superiorshields.effects.DefaultEffectHandler
 import dev.epicsquid.superiorshields.effects.EffectHandler
 import dev.epicsquid.superiorshields.effects.EffectTrigger
@@ -22,13 +22,11 @@ import net.minecraftforge.network.PacketDistributor
 
 abstract class AbstractSuperiorShield(
 	val name: String,
+	private val config: SuperiorShieldStats,
 	private val effectHandler: EffectHandler = DefaultEffectHandler.NONE
 ) : SuperiorShield, EffectHandler {
 
-	protected val config: SuperiorShieldConfigItem
-		get() = TODO()
-
-	override val capacity: Double
+	override val capacity: Int
 		get() = config.capacity.get()
 
 	override val rate: Int
