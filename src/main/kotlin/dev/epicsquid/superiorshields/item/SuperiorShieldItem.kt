@@ -43,11 +43,11 @@ class SuperiorShieldItem<T : SuperiorShield>(
 			)
 			put(
 				AttributeRegistry.shieldRate,
-				AttributeModifier(RATE_UUID, "Shield Rate", type.rate.toDouble(), AttributeModifier.Operation.ADDITION)
+				AttributeModifier(RATE_UUID, "Shield Recharge Rate", type.rate.toDouble(), AttributeModifier.Operation.ADDITION)
 			)
 			put(
 				AttributeRegistry.shieldDelay,
-				AttributeModifier(DELAY_UUID, "Shield Delay", type.delay.toDouble(), AttributeModifier.Operation.ADDITION)
+				AttributeModifier(DELAY_UUID, "Shield Recharge Delay", type.delay.toDouble(), AttributeModifier.Operation.ADDITION)
 			)
 		}.build()
 	}

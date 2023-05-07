@@ -13,6 +13,10 @@ class SuperiorShieldsConfig(
 	val amplifyShieldDrain: ForgeConfigSpec.ConfigValue<Int>
 	val amplifyDamageMultiplier: ForgeConfigSpec.ConfigValue<Double>
 	val shieldCapacityIncrease: ForgeConfigSpec.ConfigValue<Int>
+	val quickenRate: ForgeConfigSpec.ConfigValue<Int>
+	val novaEffectDuration: ForgeConfigSpec.ConfigValue<Int>
+	val novaRange: ForgeConfigSpec.ConfigValue<Double>
+	val spikeEffectDuration: ForgeConfigSpec.ConfigValue<Int>
 
 	init {
 		builder.stack("consumption") {
@@ -38,6 +42,18 @@ class SuperiorShieldsConfig(
 			shieldCapacityIncrease =
 				comment("The amount of shield HP added for reach level of shield capacity enchantment.")
 					.define("shield_capacity_increase", 2)
+			quickenRate =
+				comment("The time in ticks the quicken enchantment reduces recharge rate by (there are 20 ticks in a second).")
+					.define("quicken_rate", 5)
+			novaEffectDuration =
+				comment("The duration of the effect applied by the triggered nova enchantment.")
+					.define("nova_effect_duration", 5)
+			novaRange =
+				comment("The radius of a nova enchantment's triggered effect.")
+					.define("nova_range", 1.5)
+			spikeEffectDuration =
+				comment("The duration of the effect applied when a mob attacks you.")
+					.define("spike_effect_duration", 2);
 
 		}
 	}

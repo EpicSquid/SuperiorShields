@@ -6,7 +6,7 @@ import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.ItemStack
 
 open class DurabilitySuperiorShield(
-	val name: String
+	name: String
 ) : AbstractSuperiorShield(name) {
 
 	private fun damageItem(stack: ItemStack, entity: LivingEntity) {
