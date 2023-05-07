@@ -23,37 +23,37 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.MOD
 import net.minecraftforge.fml.config.ModConfig
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
-import org.apache.logging.log4j.LogManager
-import thedarkcolour.kotlinforforge.forge.MOD_CONTEXT
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
 
 @Mod(SuperiorShields.MODID)
-object SuperiorShields {
-	const val MODID = "superiorshields"
-	const val SUPERIOR_SHIELD_CURIO = "superior_shield"
+class SuperiorShields {
+	companion object {
+		const val MODID = "superiorshields"
+		const val SUPERIOR_SHIELD_CURIO = "superior_shield"
 
-	val registrate: Registrate by lazy {
-		Registrate.create(MODID)
-	}
+		val tab = object : CreativeModeTab(MODID) {
+			override fun makeIcon() = ItemStack(ItemRegistry.ironShield)
+		}
 
-	val tab = object : CreativeModeTab(MODID) {
-		override fun makeIcon() = ItemStack(ItemRegistry.ironShield)
+		val registrate: Registrate by lazy {
+			Registrate.create(MODID).creativeModeTab { tab }
+		}
 	}
 
 	init {
-		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.SHIELDS_CONFIG_SPEC, "superior-shields-server.toml")
-		MOD_CONTEXT.getKEventBus().addListener(::setup)
+		ModLoadingContext.get()
+			.registerConfig(ModConfig.Type.SERVER, Config.SHIELDS_CONFIG_SPEC, "superior-shields-server.toml")
+		val modEventBus = FMLJavaModLoadingContext.get().modEventBus
 
-		EventManager.classload()
+		modEventBus.addListener { _: FMLCommonSetupEvent -> NetworkHandler.register() }
+		modEventBus.register(AttributeRegistry)
+		AttributeRegistry.attributes.register(modEventBus)
+		MinecraftForge.EVENT_BUS.register(EventManager)
+		MinecraftForge.EVENT_BUS.register(CapabilityRegistry)
 
-		AttributeRegistry.classload()
-		CapabilityRegistry.classload()
 		EnchantmentRegistry.classload()
 		ItemRegistry.classload()
 		LangRegistry.classload()
-	}
-
-	private fun setup(event: FMLCommonSetupEvent) {
-		NetworkHandler.register()
 	}
 }
 

@@ -10,9 +10,8 @@ import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import thedarkcolour.kotlinforforge.forge.registerObject
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 object AttributeRegistry {
-	private val attributes: DeferredRegister<Attribute> =
+	val attributes: DeferredRegister<Attribute> =
 		DeferredRegister.create(ForgeRegistries.ATTRIBUTES, SuperiorShields.MODID)
 
 	val shieldCapacity by attributes.registerObject("shield_capacity") {
@@ -35,6 +34,4 @@ object AttributeRegistry {
 			event.add(it, shieldDelay)
 		}
 	}
-
-	fun classload() {}
 }

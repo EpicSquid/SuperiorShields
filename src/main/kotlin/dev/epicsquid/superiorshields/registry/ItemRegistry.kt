@@ -98,7 +98,7 @@ object ItemRegistry {
 				enchantmentValue,
 				DurabilitySuperiorShield(name, stats)
 			)
-		}.tab { SuperiorShields.tab }
+		}
 			.properties { it.durability(durability) }
 			.tag(CURIOS_TAG)
 			.tag(SUPERIOR_SHIELD_TAG)

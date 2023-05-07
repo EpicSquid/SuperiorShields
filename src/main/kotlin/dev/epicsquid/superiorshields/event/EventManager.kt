@@ -1,7 +1,7 @@
 package dev.epicsquid.superiorshields.event
 
 import dev.epicsquid.superiorshields.SuperiorShields
-import dev.epicsquid.superiorshields.SuperiorShields.SUPERIOR_SHIELD_CURIO
+import dev.epicsquid.superiorshields.SuperiorShields.Companion.SUPERIOR_SHIELD_CURIO
 import dev.epicsquid.superiorshields.network.NetworkHandler
 import dev.epicsquid.superiorshields.network.SuperiorShieldUpdatePacket
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
@@ -20,7 +20,6 @@ import top.theillusivec4.curios.api.CuriosApi
 import top.theillusivec4.curios.api.SlotTypeMessage
 import top.theillusivec4.curios.api.SlotTypeMessage.Builder
 
-@EventBusSubscriber(modid = SuperiorShields.MODID, bus = EventBusSubscriber.Bus.FORGE)
 object EventManager {
 
 	@SubscribeEvent

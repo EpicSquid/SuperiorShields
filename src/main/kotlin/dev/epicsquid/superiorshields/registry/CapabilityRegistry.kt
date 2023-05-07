@@ -12,7 +12,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 import thedarkcolour.kotlinforforge.forge.getCapabilityOrThrow
 
-@EventBusSubscriber(modid = SuperiorShields.MODID, bus = EventBusSubscriber.Bus.FORGE)
 object CapabilityRegistry {
 	val SUPERIOR_SHIELD_CAP_ID = ResourceLocation(SuperiorShields.MODID, "superior_shield")
 

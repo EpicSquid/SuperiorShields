@@ -34,10 +34,8 @@ class SuperiorShieldItem<T : SuperiorShield>(
 		val DELAY_UUID: UUID = UUID.fromString("ca728566-0404-4ae1-a4ab-1a1ff4074a72")
 	}
 
-	private val defaultModifiers: Multimap<Attribute, AttributeModifier>
-
-	init {
-		defaultModifiers = ImmutableMultimap.builder<Attribute, AttributeModifier>().apply {
+	private val defaultModifiers: Multimap<Attribute, AttributeModifier> by lazy {
+		ImmutableMultimap.builder<Attribute, AttributeModifier>().apply {
 			put(
 				AttributeRegistry.shieldCapacity,
 				AttributeModifier(CAPACITY_UUID, "Shield Capacity", type.capacity.toDouble(), AttributeModifier.Operation.ADDITION)

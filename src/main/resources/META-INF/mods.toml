@@ -1,5 +1,5 @@
-modLoader = "kotlinforforge"
-loaderVersion = "[3.9,)"
+modLoader = "javafml"
+loaderVersion = "[43,)"
 issueTrackerURL = "https://github.com/EpicSquid/SuperiorShields/issues"
 license = "MIT"
 [[mods]]
@@ -15,7 +15,7 @@ Who needs shields when you have these? Borderlands style shields for Minecraft.
 [[dependencies.superiorshields]]
 modId = "forge"
 mandatory = true
-versionRange = "[43.1.1,)"
+versionRange = "[43.2,)"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.superiorshields]]
