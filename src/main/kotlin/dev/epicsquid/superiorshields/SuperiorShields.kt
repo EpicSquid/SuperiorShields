@@ -16,14 +16,21 @@ import net.minecraftforge.client.event.RegisterGuiOverlaysEvent
 import net.minecraftforge.client.event.TextureStitchEvent
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay
 import net.minecraftforge.common.MinecraftForge
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
+import net.minecraftforge.fml.InterModComms
 import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.FORGE
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.MOD
 import net.minecraftforge.fml.config.ModConfig
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
+import top.theillusivec4.curios.api.CuriosApi
+import top.theillusivec4.curios.api.SlotTypeMessage
+import top.theillusivec4.curios.api.SlotTypeMessage.Builder
 
 @Mod(SuperiorShields.MODID)
 class SuperiorShields {
@@ -45,24 +52,32 @@ class SuperiorShields {
 			.registerConfig(ModConfig.Type.SERVER, Config.SHIELDS_CONFIG_SPEC, "superior-shields-server.toml")
 		val modEventBus = FMLJavaModLoadingContext.get().modEventBus
 
+		MinecraftForge.EVENT_BUS.register(EventManager)
 		modEventBus.addListener { _: FMLCommonSetupEvent -> NetworkHandler.register() }
+		modEventBus.addListener { _: InterModEnqueueEvent -> onInterModEnqueue() }
+		modEventBus.register(SuperiorShieldsClient)
+//		modEventBus.register(ClientEventManager)
 		modEventBus.register(AttributeRegistry)
 		AttributeRegistry.attributes.register(modEventBus)
-		MinecraftForge.EVENT_BUS.register(EventManager)
-		MinecraftForge.EVENT_BUS.register(CapabilityRegistry)
 
 		EnchantmentRegistry.classload()
 		ItemRegistry.classload()
 		LangRegistry.classload()
 	}
+
+	private fun onInterModEnqueue() {
+		InterModComms.sendTo(
+			CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE
+		) {
+			Builder(SUPERIOR_SHIELD_CURIO).apply {
+				priority(220)
+				icon(ResourceLocation(MODID, "item/empty_shield_slot"))
+			}.build()
+		}
+	}
 }
 
-@EventBusSubscriber(modid = SuperiorShields.MODID, value = [CLIENT], bus = MOD)
 object SuperiorShieldsClient {
-
-	init {
-		ClientEventManager.classload()
-	}
 
 	@SubscribeEvent
 	fun onStitchTexturesPre(event: TextureStitchEvent.Pre) {

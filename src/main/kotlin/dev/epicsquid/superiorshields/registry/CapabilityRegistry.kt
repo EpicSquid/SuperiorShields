@@ -8,8 +8,6 @@ import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.common.capabilities.CapabilityManager
 import net.minecraftforge.common.capabilities.CapabilityToken
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent
-import net.minecraftforge.eventbus.api.SubscribeEvent
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 import thedarkcolour.kotlinforforge.forge.getCapabilityOrThrow
 
 object CapabilityRegistry {
@@ -21,10 +19,5 @@ object CapabilityRegistry {
 	val LivingEntity.shield: SuperiorShieldCap
 		get() = getCapabilityOrThrow(SUPERIOR_SHIELD_CAP)
 
-	@SubscribeEvent
-	fun onRegisterCapabilities(event: RegisterCapabilitiesEvent) {
-		event.register(SuperiorShieldCap::class.java)
-	}
 
-	fun classload() {}
 }
