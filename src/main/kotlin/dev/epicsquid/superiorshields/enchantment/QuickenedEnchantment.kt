@@ -14,6 +14,6 @@ class QuickenedEnchantment(
 
 	override fun shieldAttributeModifiers(level: Int): ShieldAttributeModifiers =
 		ShieldAttributeModifiers(
-			rechargeRateMultiplier = (level * Config.SHIELDS_CONFIG.quickenMultiplier.get()).roundToInt()
+			rechargeRateMultiplier = level.toDouble() * Config.SHIELDS_CONFIG.quickenMultiplier.get()
 		)
 }

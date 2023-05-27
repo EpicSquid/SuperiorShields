@@ -21,6 +21,7 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraftforge.network.PacketDistributor
 import top.theillusivec4.curios.api.SlotContext
+import kotlin.math.roundToInt
 
 abstract class AbstractSuperiorShield(
 	val name: String,
@@ -130,7 +131,7 @@ abstract class AbstractSuperiorShield(
 			if (enchantment is AttributeProvider) {
 				val shieldAttributeModifiers = enchantment.shieldAttributeModifiers(level)
 				capacityAttribute += shieldAttributeModifiers.capacity
-				rateAttribute *= shieldAttributeModifiers.rechargeRateMultiplier
+				rateAttribute = (shieldAttributeModifiers.rechargeRateMultiplier * rateAttribute.toDouble()).roundToInt()
 				delayAttribute -= shieldAttributeModifiers.rechargeDelay
 			}
 		}
@@ -143,14 +144,14 @@ abstract class AbstractSuperiorShield(
 		shield.ticksFull = 0
 		shield.hp = shield.hp.coerceAtMost(shield.capacity)
 
-		if (entity is ServerPlayer && entity.level.isClientSide) {
+		if (entity is ServerPlayer && !entity.level.isClientSide) {
 			updateClient(entity, shield)
 		}
 	}
 
 	override fun onUnequipShield(entity: LivingEntity, shield: SuperiorShieldCap) {
 		shield.reset()
-		if (entity is ServerPlayer && entity.level.isClientSide) {
+		if (entity is ServerPlayer && !entity.level.isClientSide) {
 			updateClient(entity, shield)
 		}
 	}

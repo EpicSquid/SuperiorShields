@@ -137,8 +137,8 @@ class SuperiorShieldOverlay : GuiComponent(), IGuiOverlay {
 					9,
 					9
 				)
+				shieldHp = 0
 			}
-			shieldHp = 0
 		}
 		tess.end()
 
