@@ -4,6 +4,7 @@ import dev.epicsquid.superiorshields.capability.SuperiorShieldCap
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.ItemStack
+import top.theillusivec4.curios.api.SlotContext
 
 interface SuperiorShield {
 
@@ -27,4 +28,11 @@ interface SuperiorShield {
 	 * Called each tick for this shield
 	 */
 	fun shieldTick(entity: LivingEntity, shield: SuperiorShieldCap, stack: ItemStack)
+
+	/**
+	 * Called when the shield is equipped
+	 */
+	fun onEquipShield(entity: LivingEntity, shield: SuperiorShieldCap, stack: ItemStack)
+
+	fun onUnequipShield(entity: LivingEntity, shield: SuperiorShieldCap)
 }

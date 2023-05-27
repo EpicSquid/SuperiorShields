@@ -26,10 +26,10 @@ object EventManager {
 	@SubscribeEvent
 	fun onEntityJoinLevel(event: EntityJoinLevelEvent) {
 		val player = event.entity as? ServerPlayer ?: return
-		val shield = player.shield ?: return
+		val shield = player.shield
 		NetworkHandler.CHANNEL.send(
 			PacketDistributor.PLAYER.with { player },
-			SuperiorShieldUpdatePacket(shield.hp)
+			SuperiorShieldUpdatePacket(shield.hp, shield.capacity)
 		)
 	}
 

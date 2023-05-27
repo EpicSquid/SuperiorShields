@@ -2,7 +2,6 @@ package dev.epicsquid.superiorshields.enchantment
 
 import dev.epicsquid.superiorshields.config.Config
 import dev.epicsquid.superiorshields.effects.EffectHandler
-import dev.epicsquid.superiorshields.registry.AttributeRegistry
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.enchantment.EnchantmentCategory
@@ -24,7 +23,7 @@ class AmplifyEnchantment(
 
 	override fun shouldBoostDamage(entity: LivingEntity): Boolean {
 		val shield = entity.shield
-		val capacity = entity.attributes.getValue(AttributeRegistry.shieldCapacity).toInt()
+		val capacity = entity.shield.capacity
 
 		return if (shield.hp >= capacity && capacity > 0) {
 			shield.hp -= Config.SHIELDS_CONFIG.amplifyShieldDrain.get().toInt()

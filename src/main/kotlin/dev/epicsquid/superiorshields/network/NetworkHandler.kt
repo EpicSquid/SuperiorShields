@@ -36,6 +36,7 @@ object NetworkHandler {
 					enqueueWork {
 						Minecraft.getInstance().player?.let { player ->
 							player.shield.hp = msg.hp
+							player.shield.capacity = msg.capacity
 						}
 					}
 					packetHandled = true

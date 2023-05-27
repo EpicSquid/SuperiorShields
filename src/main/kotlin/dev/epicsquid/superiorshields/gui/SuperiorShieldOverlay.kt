@@ -3,7 +3,6 @@ package dev.epicsquid.superiorshields.gui
 import com.mojang.blaze3d.systems.RenderSystem
 import com.mojang.blaze3d.vertex.*
 import com.mojang.blaze3d.vertex.VertexFormat.Mode.QUADS
-import dev.epicsquid.superiorshields.registry.AttributeRegistry
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
 import epicsquid.superiorshields.SuperiorShields
 import net.minecraft.client.Minecraft
@@ -74,7 +73,7 @@ class SuperiorShieldOverlay : GuiComponent(), IGuiOverlay {
 		val h = minecraft.window.guiScaledHeight
 
 		var shieldHp = player.shield.hp
-		var shieldCapacity = player.attributes.getValue(AttributeRegistry.shieldCapacity).roundToInt()
+		var shieldCapacity = player.shield.capacity
 
 		var offsetX = defaultXOffset
 

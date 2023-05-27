@@ -1,16 +1,12 @@
 package dev.epicsquid.superiorshields.enchantment
 
-import com.google.common.collect.Multimap
-import net.minecraft.world.entity.ai.attributes.Attribute
-import net.minecraft.world.entity.ai.attributes.AttributeModifier
-import top.theillusivec4.curios.api.SlotContext
-import java.util.*
-
 interface AttributeProvider {
 
-	fun getAttributeModifiers(
-		slotContext: SlotContext?,
-		uuid: UUID?,
-		level: Int
-	): Multimap<Attribute, AttributeModifier>
+	fun shieldAttributeModifiers(level: Int): ShieldAttributeModifiers
 }
+
+data class ShieldAttributeModifiers(
+	val capacity: Int = 0,
+	val rechargeRateMultiplier: Int = 0,
+	val rechargeDelay: Int = 0
+)

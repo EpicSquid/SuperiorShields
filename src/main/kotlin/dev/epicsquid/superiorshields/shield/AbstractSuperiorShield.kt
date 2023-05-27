@@ -2,15 +2,16 @@ package dev.epicsquid.superiorshields.shield
 
 import dev.epicsquid.superiorshields.capability.SuperiorShieldCap
 import dev.epicsquid.superiorshields.capability.absorbDamage
+import dev.epicsquid.superiorshields.capability.reset
 import dev.epicsquid.superiorshields.config.SuperiorShieldStats
 import dev.epicsquid.superiorshields.effects.DefaultEffectHandler
 import dev.epicsquid.superiorshields.effects.EffectHandler
 import dev.epicsquid.superiorshields.effects.EffectTrigger
 import dev.epicsquid.superiorshields.effects.EffectTrigger.*
+import dev.epicsquid.superiorshields.enchantment.AttributeProvider
 import dev.epicsquid.superiorshields.enchantment.SuperiorShieldEnchantment
 import dev.epicsquid.superiorshields.network.NetworkHandler
 import dev.epicsquid.superiorshields.network.SuperiorShieldUpdatePacket
-import dev.epicsquid.superiorshields.registry.AttributeRegistry
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.damagesource.DamageSource
@@ -19,6 +20,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraftforge.network.PacketDistributor
+import top.theillusivec4.curios.api.SlotContext
 
 abstract class AbstractSuperiorShield(
 	val name: String,
@@ -58,9 +60,9 @@ abstract class AbstractSuperiorShield(
 		if (entity.level.isClientSide) return
 
 		// Get the shield stats
-		val delayAttribute: Int = entity.getAttributeValue(AttributeRegistry.shieldDelay).toInt()
-		val capacityAttribute: Int = entity.getAttributeValue(AttributeRegistry.shieldCapacity).toInt()
-		val rateAttribute: Int = entity.getAttributeValue(AttributeRegistry.shieldRate).toInt()
+		val delayAttribute: Int = shield.rechargeDelay
+		val capacityAttribute: Int = shield.capacity
+		val rateAttribute: Int = shield.rechargeRate
 
 		// Check if the shield is full
 		if (shield.hp >= capacityAttribute) {
@@ -102,7 +104,7 @@ abstract class AbstractSuperiorShield(
 	private fun updateClient(player: ServerPlayer, shield: SuperiorShieldCap) {
 		NetworkHandler.CHANNEL.send(
 			PacketDistributor.PLAYER.with { player },
-			SuperiorShieldUpdatePacket(shield.hp)
+			SuperiorShieldUpdatePacket(shield.hp, shield.capacity)
 		)
 	}
 
@@ -116,6 +118,40 @@ abstract class AbstractSuperiorShield(
 			if (enchantment is SuperiorShieldEnchantment) {
 				enchantment.applyEffect(effectTrigger, level + scale)
 			}
+		}
+	}
+
+	override fun onEquipShield(entity: LivingEntity, shield: SuperiorShieldCap, stack: ItemStack) {
+		var capacityAttribute = capacity
+		var rateAttribute = rate
+		var delayAttribute = delay
+
+		EnchantmentHelper.getEnchantments(stack).forEach { (enchantment, level) ->
+			if (enchantment is AttributeProvider) {
+				val shieldAttributeModifiers = enchantment.shieldAttributeModifiers(level)
+				capacityAttribute += shieldAttributeModifiers.capacity
+				rateAttribute *= shieldAttributeModifiers.rechargeRateMultiplier
+				delayAttribute -= shieldAttributeModifiers.rechargeDelay
+			}
+		}
+
+		shield.capacity = capacityAttribute
+		shield.rechargeRate = rateAttribute
+		shield.rechargeDelay = delayAttribute
+		shield.ticksWithoutDamage = 0
+		shield.ticksSinceRecharge = 0
+		shield.ticksFull = 0
+		shield.hp = shield.hp.coerceAtMost(shield.capacity)
+
+		if (entity is ServerPlayer && entity.level.isClientSide) {
+			updateClient(entity, shield)
+		}
+	}
+
+	override fun onUnequipShield(entity: LivingEntity, shield: SuperiorShieldCap) {
+		shield.reset()
+		if (entity is ServerPlayer && entity.level.isClientSide) {
+			updateClient(entity, shield)
 		}
 	}
 }

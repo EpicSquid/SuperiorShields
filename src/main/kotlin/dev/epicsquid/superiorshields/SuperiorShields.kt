@@ -57,8 +57,6 @@ class SuperiorShields {
 		modEventBus.addListener { _: InterModEnqueueEvent -> onInterModEnqueue() }
 		modEventBus.register(SuperiorShieldsClient)
 //		modEventBus.register(ClientEventManager)
-		modEventBus.register(AttributeRegistry)
-		AttributeRegistry.attributes.register(modEventBus)
 
 		EnchantmentRegistry.classload()
 		ItemRegistry.classload()
