@@ -7,7 +7,7 @@
           "type": "forge:not",
           "value": {
             "type": "forge:tag_empty",
-            "tag": "forge:gems/diamond"
+            "tag": "forge:ingots/silver"
           }
         }
       ],
@@ -18,7 +18,7 @@
             "tag": "forge:ender_pearls"
           },
           "X": {
-            "tag": "forge:gems/diamond"
+            "tag": "forge:ingots/silver"
           }
         },
         "pattern": [
@@ -27,7 +27,7 @@
           " X "
         ],
         "result": {
-          "item": "superiorshields:diamond_shield"
+          "item": "superiorshields:silver_shield"
         }
       }
     }

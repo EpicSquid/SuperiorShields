@@ -7,7 +7,7 @@
           "type": "forge:not",
           "value": {
             "type": "forge:tag_empty",
-            "tag": "forge:gems/diamond"
+            "tag": "forge:ingots/tin"
           }
         }
       ],
@@ -18,7 +18,7 @@
             "tag": "forge:ender_pearls"
           },
           "X": {
-            "tag": "forge:gems/diamond"
+            "tag": "forge:ingots/tin"
           }
         },
         "pattern": [
@@ -27,7 +27,7 @@
           " X "
         ],
         "result": {
-          "item": "superiorshields:diamond_shield"
+          "item": "superiorshields:tin_shield"
         }
       }
     }

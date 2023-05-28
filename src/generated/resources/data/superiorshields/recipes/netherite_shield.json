@@ -1,35 +1,12 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
-    {
-      "conditions": [
-        {
-          "type": "forge:not",
-          "value": {
-            "type": "forge:tag_empty",
-            "tag": "forge:ingots/netherite"
-          }
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "key": {
-          "E": {
-            "item": "minecraft:ender_eye"
-          },
-          "X": {
-            "tag": "forge:ingots/netherite"
-          }
-        },
-        "pattern": [
-          " X ",
-          "XEX",
-          " X "
-        ],
-        "result": {
-          "item": "superiorshields:netherite_shield"
-        }
-      }
-    }
-  ]
+  "type": "minecraft:smithing",
+  "addition": {
+    "tag": "forge:ingots/netherite"
+  },
+  "base": {
+    "item": "superiorshields:diamond_shield"
+  },
+  "result": {
+    "item": "superiorshields:netherite_shield"
+  }
 }

@@ -24,6 +24,15 @@ class SuperiorShieldsConfig(
 	val diamondShield: SuperiorShieldStats
 	val netheriteShield: SuperiorShieldStats
 
+	val tinShield: SuperiorShieldStats
+	val leadShield: SuperiorShieldStats
+	val silverShield: SuperiorShieldStats
+	val nickelShield: SuperiorShieldStats
+	val bronzeShield: SuperiorShieldStats
+	val electrumShield: SuperiorShieldStats
+	val invarShield: SuperiorShieldStats
+	val constantanShield: SuperiorShieldStats
+
 	init {
 		builder.stack("consumption") {
 			comment("The amount of a resource to use for a given shield type.")
@@ -65,11 +74,22 @@ class SuperiorShieldsConfig(
 		builder.stack("shields") {
 			builder.stack("vanilla") {
 				comment("Shields made from materials often present in a variety of mods")
-				copperShield = builder.shield("copper", 3, 80, 40)
-				ironShield = builder.shield("iron", 5, 80, 40)
-				goldShield = builder.shield("gold", 3, 20, 40)
-				diamondShield = builder.shield("diamond", 7, 60, 40)
-				netheriteShield = builder.shield("netherite", 8, 40, 40)
+				copperShield = shield("copper", 3, 80, 40)
+				ironShield = shield("iron", 5, 80, 40)
+				goldShield = shield("gold", 3, 20, 40)
+				diamondShield = shield("diamond", 7, 60, 40)
+				netheriteShield = shield("netherite", 8, 40, 40)
+			}
+			builder.stack("metal") {
+				comment("Shields made from materials often present in a variety of mods")
+				tinShield = shield("tin", 3, 40, 40)
+				leadShield = shield("lead", 7, 40, 80)
+				silverShield = shield("silver", 4, 40, 20)
+				nickelShield = shield("nickel", 5, 40, 40)
+				bronzeShield = shield("bronze", 7, 80, 40)
+				electrumShield = shield("electrum", 6, 20, 10)
+				invarShield = shield("invar", 8, 40, 40)
+				constantanShield = shield("constantan", 5, 60, 20)
 			}
 		}
 	}

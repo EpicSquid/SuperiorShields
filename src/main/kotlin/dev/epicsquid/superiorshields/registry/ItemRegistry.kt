@@ -9,12 +9,14 @@ import dev.epicsquid.superiorshields.item.SuperiorShieldItem
 import dev.epicsquid.superiorshields.shield.DurabilitySuperiorShield
 import dev.epicsquid.superiorshields.utils.registryEntry
 import net.minecraft.data.recipes.ShapedRecipeBuilder
+import net.minecraft.data.recipes.UpgradeRecipeBuilder
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.ItemTags
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.world.item.Tiers
+import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.level.ItemLike
 import net.minecraftforge.common.Tags
 import net.minecraftforge.common.crafting.ConditionalRecipe
@@ -67,20 +69,108 @@ object ItemRegistry {
 			Config.SHIELDS_CONFIG.diamondShield,
 			Tiers.DIAMOND.enchantmentValue,
 			Tiers.DIAMOND.uses,
-			Tags.Items.GEMS_DIAMOND,
-			centerItemOverride = Items.ENDER_EYE
+			Tags.Items.GEMS_DIAMOND
+		)
+	}
+
+	// Metal Shields
+	val tinShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		durabilityShieldItem(
+			"tin_shield",
+			Config.SHIELDS_CONFIG.tinShield,
+			18,
+			32,
+			"ingots/tin".forgeTag
+		)
+	}
+
+	val leadShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		durabilityShieldItem(
+			"lead_shield",
+			Config.SHIELDS_CONFIG.leadShield, 16,
+			64,
+			"ingots/lead".forgeTag
+		)
+	}
+
+	val silverShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		durabilityShieldItem(
+			"silver_shield",
+			Config.SHIELDS_CONFIG.silverShield,
+			30,
+			48,
+			"ingots/silver".forgeTag
+		)
+	}
+
+	val nickelShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		durabilityShieldItem(
+			"nickel_shield",
+			Config.SHIELDS_CONFIG.nickelShield,
+			30,
+			240,
+			"ingots/nickel".forgeTag
+		)
+	}
+
+	val bronzeShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		durabilityShieldItem(
+			"bronze_shield",
+			Config.SHIELDS_CONFIG.bronzeShield,
+			16,
+			325,
+			"ingots/bronze".forgeTag
+		)
+	}
+
+	val electrumShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		durabilityShieldItem(
+			"electrum_shield",
+			Config.SHIELDS_CONFIG.electrumShield,
+			28,
+			192,
+			"ingots/electrum".forgeTag
+		)
+	}
+
+	val invarShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		durabilityShieldItem(
+			"invar_shield",
+			Config.SHIELDS_CONFIG.invarShield,
+			13,
+			300,
+			"ingots/invar".forgeTag
+		)
+	}
+
+	val constantanShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		durabilityShieldItem(
+			"constantan_shield",
+			Config.SHIELDS_CONFIG.constantanShield,
+			10,
+			250,
+			"ingots/constantan".forgeTag
 		)
 	}
 
 	val netheriteShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
-		durabilityShieldItem(
-			"netherite_shield",
-			Config.SHIELDS_CONFIG.netheriteShield,
-			Tiers.NETHERITE.enchantmentValue,
-			Tiers.NETHERITE.uses,
-			Tags.Items.INGOTS_NETHERITE,
-			centerItemOverride = Items.ENDER_EYE
-		)
+		registrate.item<SuperiorShieldItem<DurabilitySuperiorShield>>("netherite_shield") { props: Item.Properties ->
+			SuperiorShieldItem(
+				props,
+				Tiers.NETHERITE.enchantmentValue,
+				DurabilitySuperiorShield("netherite_shield", Config.SHIELDS_CONFIG.netheriteShield)
+			) { Ingredient.of(Tags.Items.INGOTS_NETHERITE) }
+		}
+			.properties { it.durability(Tiers.NETHERITE.uses) }
+			.tag(CURIOS_TAG)
+			.tag(SUPERIOR_SHIELD_TAG)
+			.recipe { ctx, p ->
+				UpgradeRecipeBuilder
+					.smithing(Ingredient.of(diamondShield), Ingredient.of(Tags.Items.INGOTS_NETHERITE), ctx.get())
+					.unlocks("has_netherite", DataIngredient.tag(Tags.Items.INGOTS_NETHERITE).getCritereon(p))
+					.save(p, p.safeId(ctx.get()))
+			}
+			.register()
 	}
 
 	private fun durabilityShieldItem(
@@ -97,7 +187,7 @@ object ItemRegistry {
 				props,
 				enchantmentValue,
 				DurabilitySuperiorShield(name, stats)
-			)
+			) { Ingredient.of(outerTag) }
 		}
 			.properties { it.durability(durability) }
 			.tag(CURIOS_TAG)

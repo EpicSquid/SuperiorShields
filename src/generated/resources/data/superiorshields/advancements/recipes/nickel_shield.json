@@ -16,7 +16,7 @@
           },
           "has_the_recipe": {
             "conditions": {
-              "recipe": "superiorshields:netherite_shield"
+              "recipe": "superiorshields:nickel_shield"
             },
             "trigger": "minecraft:recipe_unlocked"
           }
@@ -29,7 +29,7 @@
         ],
         "rewards": {
           "recipes": [
-            "superiorshields:netherite_shield"
+            "superiorshields:nickel_shield"
           ]
         }
       },
@@ -38,7 +38,7 @@
           "type": "forge:not",
           "value": {
             "type": "forge:tag_empty",
-            "tag": "forge:ingots/netherite"
+            "tag": "forge:ingots/nickel"
           }
         }
       ]

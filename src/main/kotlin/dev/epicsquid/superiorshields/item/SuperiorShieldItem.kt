@@ -10,6 +10,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.TooltipFlag
+import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.level.Level
 import net.minecraftforge.api.distmarker.Dist
@@ -23,7 +24,8 @@ import kotlin.math.roundToInt
 class SuperiorShieldItem<T : SuperiorShield>(
 	props: Properties,
 	private val enchantmentValue: Int,
-	private val type: T
+	private val type: T,
+	private val repairItem: () -> Ingredient
 ) : Item(props), ICurioItem, SuperiorShield by type {
 
 	override fun getEnchantmentValue(stack: ItemStack?): Int {
@@ -46,6 +48,10 @@ class SuperiorShieldItem<T : SuperiorShield>(
 	}
 
 	override fun canEquipFromUse(slotContext: SlotContext?, stack: ItemStack?): Boolean = true
+
+	override fun isValidRepairItem(stack: ItemStack, repairCandidate: ItemStack): Boolean {
+		return repairItem().test(repairCandidate) || super.isValidRepairItem(stack, repairCandidate)
+	}
 
 	@OnlyIn(Dist.CLIENT)
 	override fun appendHoverText(
