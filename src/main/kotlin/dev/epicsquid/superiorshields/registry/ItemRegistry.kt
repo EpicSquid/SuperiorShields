@@ -3,18 +3,24 @@ package dev.epicsquid.superiorshields.registry
 import com.tterrag.registrate.util.DataIngredient
 import com.tterrag.registrate.util.entry.ItemEntry
 import dev.epicsquid.superiorshields.SuperiorShields
+import dev.epicsquid.superiorshields.compat.ThermalCompat
 import dev.epicsquid.superiorshields.config.Config
 import dev.epicsquid.superiorshields.config.SuperiorShieldStats
+import dev.epicsquid.superiorshields.data.SuperiorShieldsTags
+import dev.epicsquid.superiorshields.item.EnergySuperiorShieldItem
 import dev.epicsquid.superiorshields.item.SuperiorShieldItem
+import dev.epicsquid.superiorshields.item.ThermalSuperiorShieldItem
 import dev.epicsquid.superiorshields.shield.DurabilitySuperiorShield
+import dev.epicsquid.superiorshields.shield.EnergySuperiorShield
+import dev.epicsquid.superiorshields.shield.ThermalSuperiorShield
 import dev.epicsquid.superiorshields.utils.registryEntry
+import epicsquid.superiorshields.item.ThermalShieldItem
 import net.minecraft.data.recipes.ShapedRecipeBuilder
 import net.minecraft.data.recipes.UpgradeRecipeBuilder
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.ItemTags
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
-import net.minecraft.world.item.Items
 import net.minecraft.world.item.Tiers
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.level.ItemLike
@@ -24,16 +30,10 @@ import net.minecraftforge.common.crafting.conditions.ICondition
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition
 import net.minecraftforge.common.crafting.conditions.NotCondition
 import net.minecraftforge.common.crafting.conditions.TagEmptyCondition
-import top.theillusivec4.curios.api.CuriosApi
 
 object ItemRegistry {
 
 	val registrate = SuperiorShields.registrate
-
-	private val CURIOS_TAG =
-		ItemTags.create(ResourceLocation(CuriosApi.MODID, SuperiorShields.SUPERIOR_SHIELD_CURIO))
-	private val SUPERIOR_SHIELD_TAG =
-		ItemTags.create(ResourceLocation(SuperiorShields.MODID, "shield"))
 
 	val ironShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
 		durabilityShieldItem(
@@ -215,13 +215,108 @@ object ItemRegistry {
 			) { Ingredient.of(Tags.Items.INGOTS_NETHERITE) }
 		}
 			.properties { it.durability(Tiers.NETHERITE.uses) }
-			.tag(CURIOS_TAG)
-			.tag(SUPERIOR_SHIELD_TAG)
+			.tag(SuperiorShieldsTags.CURIOS_TAG)
+			.tag(SuperiorShieldsTags.SHIELD_TAG)
 			.recipe { ctx, p ->
 				UpgradeRecipeBuilder
 					.smithing(Ingredient.of(diamondShield), Ingredient.of(Tags.Items.INGOTS_NETHERITE), ctx.get())
 					.unlocks("has_netherite", DataIngredient.tag(Tags.Items.INGOTS_NETHERITE).getCritereon(p))
 					.save(p, p.safeId(ctx.get()))
+			}
+			.register()
+	}
+
+	val electricShield: EnergySuperiorShieldItem<EnergySuperiorShield> by registryEntry {
+		registrate.item<EnergySuperiorShieldItem<EnergySuperiorShield>>("electric_shield") { props: Item.Properties ->
+			EnergySuperiorShieldItem(
+				props = props,
+				enchantmentValue = 12,
+				type = EnergySuperiorShield("electric_shield", Config.SHIELDS_CONFIG.electricShield),
+				maxEnergy = 48000,
+				barColor = 0x3CFE9A
+			)
+		}
+			.tag(SuperiorShieldsTags.CURIOS_TAG)
+			.tag(SuperiorShieldsTags.SHIELD_TAG)
+			.recipe { ctx, p ->
+				ConditionalRecipe.builder().apply {
+					addCondition(ModLoadedCondition("mekanism"))
+					addRecipe { writer ->
+						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+							pattern(" X ")
+							pattern("XEX")
+							pattern(" X ")
+							define('X', SuperiorShieldsTags.ADVANCED_ALLOY)
+							define('E', ItemTags.create(ResourceLocation("forge", "batteries")))
+							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.ADVANCED_ALLOY).getCritereon(p))
+							save(writer)
+						}
+					}
+					generateAdvancement()
+				}.build(p, p.safeId(ctx.entry))
+			}
+			.register()
+	}
+
+	val engineersShield: EnergySuperiorShieldItem<EnergySuperiorShield> by registryEntry {
+		registrate.item<EnergySuperiorShieldItem<EnergySuperiorShield>>("engineers_shield") { props: Item.Properties ->
+			EnergySuperiorShieldItem(
+				props = props,
+				enchantmentValue = 14,
+				type = EnergySuperiorShield("engineers_shield", Config.SHIELDS_CONFIG.engineersShield),
+				maxEnergy = 48000,
+				barColor = 0xFF0000
+			)
+		}
+			.tag(SuperiorShieldsTags.CURIOS_TAG)
+			.tag(SuperiorShieldsTags.SHIELD_TAG)
+			.recipe { ctx, p ->
+				ConditionalRecipe.builder().apply {
+					addCondition(ModLoadedCondition("immersiveengineering"))
+					addRecipe { writer ->
+						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+							pattern(" G ")
+							pattern("XEX")
+							pattern(" G ")
+							define('G', "ingots/steel".forgeTag)
+							define('X', SuperiorShieldsTags.WOODEN_GRIP)
+							define('E', SuperiorShieldsTags.COMPONENT_STEEL)
+							unlockedBy("has_item", DataIngredient.tag("ingots/steel".forgeTag).getCritereon(p))
+							save(writer)
+						}
+					}
+					generateAdvancement()
+				}.build(p, p.safeId(ctx.entry))
+			}
+			.register()
+	}
+
+	val fluxShield: EnergySuperiorShieldItem<*> by registryEntry {
+		registrate.item<EnergySuperiorShieldItem<*>>("flux_shield", ThermalCompat.thermalItemBuilder(
+			enchantmentValue = 14,
+			type = EnergySuperiorShield("flux_shield", Config.SHIELDS_CONFIG.fluxShield),
+			maxEnergy = 48000,
+			barColor = 0xFF0000
+		))
+			.tag(SuperiorShieldsTags.CURIOS_TAG)
+			.tag(SuperiorShieldsTags.SHIELD_TAG)
+			.recipe { ctx, p ->
+				ConditionalRecipe.builder().apply {
+					addCondition(ModLoadedCondition("thermal"))
+					addRecipe { writer ->
+						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+							pattern(" G ")
+							pattern("XEX")
+							pattern(" G ")
+							define('G', SuperiorShieldsTags.TIN_GEAR)
+							define('X', Tags.Items.INGOTS_IRON)
+							define('E', SuperiorShieldsTags.FLUX_COIL)
+							unlockedBy("has_item", DataIngredient.tag(Tags.Items.DUSTS_REDSTONE).getCritereon(p))
+							save(writer)
+						}
+					}
+					generateAdvancement()
+				}.build(p, p.safeId(ctx.entry))
 			}
 			.register()
 	}
@@ -244,8 +339,8 @@ object ItemRegistry {
 			) { Ingredient.of(outerTag) }
 		}
 			.properties { it.durability(durability) }
-			.tag(CURIOS_TAG)
-			.tag(SUPERIOR_SHIELD_TAG)
+			.tag(SuperiorShieldsTags.CURIOS_TAG)
+			.tag(SuperiorShieldsTags.SHIELD_TAG)
 			.recipe { ctx, p ->
 				ConditionalRecipe.builder().apply {
 					conditions.forEach(::addCondition)

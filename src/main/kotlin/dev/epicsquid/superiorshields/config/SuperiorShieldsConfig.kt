@@ -39,6 +39,11 @@ class SuperiorShieldsConfig(
 	val refinedGlowstoneShield: SuperiorShieldStats
 	val refinedObsidianShield: SuperiorShieldStats
 
+	val electricShield: SuperiorShieldStats
+	val engineersShield: SuperiorShieldStats
+
+	val fluxShield: SuperiorShieldStats
+
 	init {
 		builder.stack("consumption") {
 			comment("The amount of a resource to use for a given shield type.")
@@ -105,6 +110,15 @@ class SuperiorShieldsConfig(
 			steelShield = shield("steel", 8, 80, 100)
 			refinedGlowstoneShield = shield("refined_glowstone", 6, 20, 60)
 			refinedObsidianShield = shield("refined_obsidian", 12, 60, 40)
+		}
+		builder.stack("energy") {
+			comment("Shields made from rechargable materials")
+			electricShield = shield("electric", 6, 60, 60)
+			engineersShield = shield("engineers", 8, 60, 80)
+		}
+		builder.stack("thermal") {
+			comment("Thermal augmentable shields stats. Each one represents a tier based on the integral components")
+			fluxShield = shield("flux", 5, 80, 40)
 		}
 	}
 }

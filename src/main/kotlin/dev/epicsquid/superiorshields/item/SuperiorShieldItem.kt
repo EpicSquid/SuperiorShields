@@ -69,8 +69,8 @@ open class SuperiorShieldItem<T : SuperiorShield>(
 
 		val (capacityAttribute, rateAttribute, delayAttribute) = calculateShieldAttributes(stack)
 
-		val rateDisplay = rateAttribute / 20
-		val delayDisplay = delayAttribute / 20
+		val rateDisplay = rateAttribute / 20.0f
+		val delayDisplay = delayAttribute / 20.0f
 
 		tooltip.apply {
 			add(LangRegistry.BLANK)

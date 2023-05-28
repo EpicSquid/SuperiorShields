@@ -24,7 +24,6 @@ class ThermalSuperiorShieldItem(
 	override fun getAugmentSlots(augmentable: ItemStack): Int = 1
 
 	override fun validAugment(augmentable: ItemStack, augment: ItemStack, augments: List<ItemStack>): Boolean {
-		// TODO: allow energy augs
 		val newType = AugmentDataHelper.getAugmentType(augment)
 		// Allow base mods
 		if (newType.isNotEmpty() && newType != NBTTags.TAG_AUGMENT_TYPE_UPGRADE) {
@@ -35,7 +34,6 @@ class ThermalSuperiorShieldItem(
 	}
 
 	override fun updateAugmentState(augmentable: ItemStack, augments: List<ItemStack>) {
-		// TODO: allow energy augs
 		augmentable.getOrCreateTag().put(NBTTags.TAG_PROPERTIES, CompoundTag())
 		augments.mapNotNull { AugmentDataHelper.getAugmentData(it) }.forEach { augmentData ->
 			augmentable.getTagElement(NBTTags.TAG_PROPERTIES)?.apply {

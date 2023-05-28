@@ -3,6 +3,7 @@ package dev.epicsquid.superiorshields.event
 import dev.epicsquid.superiorshields.SuperiorShields.Companion.SUPERIOR_SHIELD_CURIO
 import dev.epicsquid.superiorshields.capability.SuperiorShieldCap
 import dev.epicsquid.superiorshields.capability.SuperiorShieldCapProvider
+import dev.epicsquid.superiorshields.enchantment.DamageBoostEnchantment
 import dev.epicsquid.superiorshields.network.NetworkHandler
 import dev.epicsquid.superiorshields.network.SuperiorShieldUpdatePacket
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry
@@ -12,6 +13,7 @@ import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
+import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent
 import net.minecraftforge.event.AttachCapabilitiesEvent
 import net.minecraftforge.event.entity.EntityJoinLevelEvent
@@ -35,10 +37,9 @@ object EventManager {
 	}
 
 	@SubscribeEvent
-	fun onLivingHurtEvent(event: LivingDamageEvent) {
+	fun onLivingDamageEvent(event: LivingDamageEvent) {
 		if (event.isCanceled) return
 
-		val attacker = event.source.entity
 		val target = event.entity
 
 		// Handle the shield absorbing damage
@@ -56,6 +57,29 @@ object EventManager {
 								damage = event.amount,
 								source = event.source
 							)
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	fun onLivingHurtEvent(event: LivingHurtEvent) {
+		if (event.isCanceled) return
+
+		val attacker = event.source.entity
+
+		if (attacker is LivingEntity) {
+			// Handle the shield dealing damage
+			CuriosApi.getCuriosHelper().getCuriosHandler(attacker).ifPresent { handler ->
+				handler.getStacksHandler(SUPERIOR_SHIELD_CURIO).ifPresent { stackHandler ->
+					val stack = stackHandler.stacks.getStackInSlot(0)
+					if (!stack.isEmpty) {
+						EnchantmentHelper.getEnchantments(stack).forEach() { (enchantment, _) ->
+							if (enchantment is DamageBoostEnchantment && enchantment.shouldBoostDamage(attacker)) {
+								event.amount = enchantment.boostDamage(event.amount)
+							}
 						}
 					}
 				}

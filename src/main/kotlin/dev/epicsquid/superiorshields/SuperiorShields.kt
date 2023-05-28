@@ -2,6 +2,7 @@ package dev.epicsquid.superiorshields
 
 import com.tterrag.registrate.Registrate
 import dev.epicsquid.superiorshields.config.Config
+import dev.epicsquid.superiorshields.data.SuperiorShieldsTags
 import dev.epicsquid.superiorshields.event.ClientEventManager
 import dev.epicsquid.superiorshields.event.EventManager
 import dev.epicsquid.superiorshields.gui.SuperiorShieldOverlay
@@ -17,6 +18,9 @@ import net.minecraftforge.client.event.TextureStitchEvent
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent
+import net.minecraftforge.common.data.ForgeBlockTagsProvider
+import net.minecraftforge.data.event.GatherDataEvent
+import net.minecraftforge.eventbus.api.EventPriority.LOWEST
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.InterModComms
 import net.minecraftforge.fml.ModLoadingContext
@@ -61,6 +65,8 @@ class SuperiorShields {
 		EnchantmentRegistry.classload()
 		ItemRegistry.classload()
 		LangRegistry.classload()
+
+		FMLJavaModLoadingContext.get().modEventBus.addListener(LOWEST, this::onGatherData)
 	}
 
 	private fun onInterModEnqueue() {
@@ -72,6 +78,15 @@ class SuperiorShields {
 				icon(ResourceLocation(MODID, "item/empty_shield_slot"))
 			}.build()
 		}
+	}
+
+	private fun onGatherData(event: GatherDataEvent) {
+		val generator = event.generator
+		val blockTagsProvider = ForgeBlockTagsProvider(generator, event.existingFileHelper)
+		generator.addProvider(
+			event.includeServer(),
+			SuperiorShieldsTags(generator, blockTagsProvider, event.existingFileHelper)
+		)
 	}
 }
 

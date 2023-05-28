@@ -12,6 +12,14 @@
     "superiorshields:electrum_shield",
     "superiorshields:invar_shield",
     "superiorshields:constantan_shield",
-    "superiorshields:netherite_shield"
+    "superiorshields:lapis_shield",
+    "superiorshields:steel_shield",
+    "superiorshields:osmium_shield",
+    "superiorshields:refined_glowstone_shield",
+    "superiorshields:refined_obsidian_shield",
+    "superiorshields:netherite_shield",
+    "superiorshields:electric_shield",
+    "superiorshields:engineers_shield",
+    "superiorshields:flux_shield"
   ]
 }

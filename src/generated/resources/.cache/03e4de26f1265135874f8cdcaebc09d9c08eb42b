@@ -1,0 +1,11 @@
+// 1.19.2	2023-05-29T09:06:15.1728597	Tags for minecraft:item
+934c68b4abdc0d54a4c90dfba283611fbe7ec9ef data/forge/tags/items/component_steel.json
+29a4b327c6f271d66b27b286b4324a462bb77aa0 data/forge/tags/items/gem/source.json
+9095735c153c85a16880784eb3ddc3f2b103e7b2 data/forge/tags/items/ingots/soul_stained_steel.json
+d4607151e47722f2590cc2889777e783f1f7f053 data/forge/tags/items/mana_pearl.json
+58a5df4859b9613e7f0579086ebe81f47ebac1be data/forge/tags/items/pixie_dust.json
+1cb943950b3a00ac9e9476dcbf9287c64feb38ea data/forge/tags/items/wooden_grip.json
+343b06cc2bd19fe1ca4c37fb787f463156bdc64c data/malum/tags/items/hallowed_spirit_resonator.json
+73bcdc32d3c2d886a1978e72c456b47e846f6c5b data/malum/tags/items/spirit_fabric.json
+aadafcd11aeb72a016e1f9259a6160f7ed486cc5 data/malum/tags/items/stained_spirit_resonator.json
+ba655b1cbf88106d9c614a69d80f825f649a5d96 data/thermal/tags/items/flux_coil.json

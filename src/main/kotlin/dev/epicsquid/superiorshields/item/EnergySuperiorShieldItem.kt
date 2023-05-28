@@ -16,7 +16,7 @@ import thedarkcolour.kotlinforforge.forge.getCapabilityOrThrow
 import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
-sealed class EnergySuperiorShieldItem<T : EnergySuperiorShield>(
+open class EnergySuperiorShieldItem<T : EnergySuperiorShield>(
 	props: Properties,
 	enchantmentValue: Int,
 	type: T,
