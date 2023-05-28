@@ -1,13 +1,16 @@
 package dev.epicsquid.superiorshields.item
 
+import dev.epicsquid.superiorshields.enchantment.AttributeProvider
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
 import dev.epicsquid.superiorshields.registry.LangRegistry
 import dev.epicsquid.superiorshields.shield.SuperiorShield
+import dev.epicsquid.superiorshields.utils.TooltipUtils
 import net.minecraft.ChatFormatting
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.TooltipFlag
+import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.level.Level
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
@@ -15,6 +18,7 @@ import top.theillusivec4.curios.api.SlotContext
 import top.theillusivec4.curios.api.type.capability.ICurioItem
 import java.text.DecimalFormat
 import java.util.*
+import kotlin.math.roundToInt
 
 class SuperiorShieldItem<T : SuperiorShield>(
 	props: Properties,
@@ -55,9 +59,28 @@ class SuperiorShieldItem<T : SuperiorShield>(
 		val decimalFormat = DecimalFormat()
 		decimalFormat.maximumFractionDigits = 2
 
+		var capacityAttribute = capacity
+		var rateAttribute = rate
+		var delayAttribute = delay
+
+		EnchantmentHelper.getEnchantments(stack).forEach { (enchantment, level) ->
+			if (enchantment is AttributeProvider) {
+				val shieldAttributeModifiers = enchantment.shieldAttributeModifiers(level)
+				capacityAttribute += shieldAttributeModifiers.capacity
+				rateAttribute = (shieldAttributeModifiers.rechargeRateMultiplier * rateAttribute.toDouble()).roundToInt()
+				delayAttribute -= shieldAttributeModifiers.rechargeDelay
+			}
+		}
+
+		rateAttribute /= 20
+		delayAttribute /= 20
+
 		tooltip.apply {
 			add(LangRegistry.BLANK)
 			add(LangRegistry.EQUIP.withStyle(ChatFormatting.GRAY))
+			add(TooltipUtils.withArgs(LangRegistry.HP, decimalFormat.format(capacityAttribute)).withStyle(ChatFormatting.DARK_GREEN))
+			add(TooltipUtils.withArgs(LangRegistry.RECHARGE_RATE, decimalFormat.format(rateAttribute)).withStyle(ChatFormatting.DARK_GREEN))
+			add(TooltipUtils.withArgs(LangRegistry.RECHARGE_DELAY, decimalFormat.format(delayAttribute)).withStyle(ChatFormatting.DARK_GREEN))
 		}
 	}
 }
