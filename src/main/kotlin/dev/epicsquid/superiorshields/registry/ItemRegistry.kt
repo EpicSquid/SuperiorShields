@@ -20,6 +20,8 @@ import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.level.ItemLike
 import net.minecraftforge.common.Tags
 import net.minecraftforge.common.crafting.ConditionalRecipe
+import net.minecraftforge.common.crafting.conditions.ICondition
+import net.minecraftforge.common.crafting.conditions.ModLoadedCondition
 import net.minecraftforge.common.crafting.conditions.NotCondition
 import net.minecraftforge.common.crafting.conditions.TagEmptyCondition
 import top.theillusivec4.curios.api.CuriosApi
@@ -153,6 +155,57 @@ object ItemRegistry {
 		)
 	}
 
+	val lapisShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		durabilityShieldItem(
+			"lapis_shield",
+			Config.SHIELDS_CONFIG.lapisShield,
+			32,
+			128,
+			"gem/lapis".forgeTag,
+			conditions = listOf(ModLoadedCondition("mekanism"))
+		)
+	}
+
+	val steelShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		durabilityShieldItem(
+			"steel_shield",
+			Config.SHIELDS_CONFIG.steelShield,
+			16,
+			500,
+			"ingots/steel".forgeTag
+		)
+	}
+
+	val osmiumShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		durabilityShieldItem(
+			"osmium_shield",
+			Config.SHIELDS_CONFIG.osmiumShield,
+			14,
+			250,
+			"ingots/osmium".forgeTag
+		)
+	}
+
+	val refinedGlowstoneShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		durabilityShieldItem(
+			"refined_glowstone_shield",
+			Config.SHIELDS_CONFIG.refinedGlowstoneShield,
+			20,
+			384,
+			"ingots/refined_glowstone".forgeTag
+		)
+	}
+
+	val refinedObsidianShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		durabilityShieldItem(
+			"refined_obsidian_shield",
+			Config.SHIELDS_CONFIG.refinedObsidianShield,
+			18,
+			1680,
+			"ingots/refined_obsidian".forgeTag
+		)
+	}
+
 	val netheriteShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
 		registrate.item<SuperiorShieldItem<DurabilitySuperiorShield>>("netherite_shield") { props: Item.Properties ->
 			SuperiorShieldItem(
@@ -180,7 +233,8 @@ object ItemRegistry {
 		durability: Int,
 		outerTag: TagKey<Item>,
 		centerTag: TagKey<Item> = Tags.Items.ENDER_PEARLS,
-		centerItemOverride: ItemLike? = null
+		centerItemOverride: ItemLike? = null,
+		conditions: List<ICondition> = emptyList()
 	): ItemEntry<SuperiorShieldItem<DurabilitySuperiorShield>> =
 		registrate.item<SuperiorShieldItem<DurabilitySuperiorShield>>(name) { props: Item.Properties ->
 			SuperiorShieldItem(
@@ -194,6 +248,7 @@ object ItemRegistry {
 			.tag(SUPERIOR_SHIELD_TAG)
 			.recipe { ctx, p ->
 				ConditionalRecipe.builder().apply {
+					conditions.forEach(::addCondition)
 					addCondition(NotCondition(TagEmptyCondition(outerTag.location)))
 					addRecipe { writer ->
 						ShapedRecipeBuilder.shaped(ctx.entry).apply {

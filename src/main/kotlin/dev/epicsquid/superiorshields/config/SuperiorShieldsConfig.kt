@@ -33,6 +33,12 @@ class SuperiorShieldsConfig(
 	val invarShield: SuperiorShieldStats
 	val constantanShield: SuperiorShieldStats
 
+	val lapisShield: SuperiorShieldStats
+	val osmiumShield: SuperiorShieldStats
+	val steelShield: SuperiorShieldStats
+	val refinedGlowstoneShield: SuperiorShieldStats
+	val refinedObsidianShield: SuperiorShieldStats
+
 	init {
 		builder.stack("consumption") {
 			comment("The amount of a resource to use for a given shield type.")
@@ -91,6 +97,14 @@ class SuperiorShieldsConfig(
 				invarShield = shield("invar", 8, 40, 40)
 				constantanShield = shield("constantan", 5, 60, 20)
 			}
+		}
+		builder.stack("mekanism_metals") {
+			comment("Shields made from materials present in Mekanism")
+			lapisShield = shield("lapis", 3, 20, 40)
+			osmiumShield = shield("osmium", 4, 60, 40)
+			steelShield = shield("steel", 8, 80, 100)
+			refinedGlowstoneShield = shield("refined_glowstone", 6, 20, 60)
+			refinedObsidianShield = shield("refined_obsidian", 12, 60, 40)
 		}
 	}
 }

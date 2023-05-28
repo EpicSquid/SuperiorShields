@@ -34,5 +34,13 @@ interface SuperiorShield {
 	 */
 	fun onEquipShield(entity: LivingEntity, shield: SuperiorShieldCap, stack: ItemStack)
 
+	/**
+	 * Called when the shield is unequipped
+	 */
 	fun onUnequipShield(entity: LivingEntity, shield: SuperiorShieldCap)
+
+	/**
+	 * Calculates the actual stats of the shield
+	 */
+	fun calculateShieldAttributes(stack: ItemStack): SuperiorShieldAttributes
 }

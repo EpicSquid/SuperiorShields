@@ -20,7 +20,6 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraftforge.network.PacketDistributor
-import top.theillusivec4.curios.api.SlotContext
 import kotlin.math.roundToInt
 
 abstract class AbstractSuperiorShield(
@@ -97,9 +96,6 @@ abstract class AbstractSuperiorShield(
 				shield.ticksWithoutDamage++
 			}
 		}
-
-		// Repair the shield automatically if it is a Botania shield
-		if (entity is Player && shield is BotaniaSuperiorShield) shield.repairWithMana(stack, entity)
 	}
 
 	private fun updateClient(player: ServerPlayer, shield: SuperiorShieldCap) {
@@ -123,19 +119,7 @@ abstract class AbstractSuperiorShield(
 	}
 
 	override fun onEquipShield(entity: LivingEntity, shield: SuperiorShieldCap, stack: ItemStack) {
-		var capacityAttribute = capacity
-		var rateAttribute = rate
-		var delayAttribute = delay
-
-		EnchantmentHelper.getEnchantments(stack).forEach { (enchantment, level) ->
-			if (enchantment is AttributeProvider) {
-				val shieldAttributeModifiers = enchantment.shieldAttributeModifiers(level)
-				capacityAttribute += shieldAttributeModifiers.capacity
-				rateAttribute = (shieldAttributeModifiers.rechargeRateMultiplier * rateAttribute.toDouble()).roundToInt()
-				delayAttribute -= shieldAttributeModifiers.rechargeDelay
-			}
-		}
-
+		val (capacityAttribute, rateAttribute, delayAttribute) = calculateShieldAttributes(stack)
 		shield.capacity = capacityAttribute
 		shield.rechargeRate = rateAttribute
 		shield.rechargeDelay = delayAttribute
@@ -154,5 +138,26 @@ abstract class AbstractSuperiorShield(
 		if (entity is ServerPlayer && !entity.level.isClientSide) {
 			updateClient(entity, shield)
 		}
+	}
+
+	override fun calculateShieldAttributes(stack: ItemStack): SuperiorShieldAttributes {
+		var capacityAttribute = capacity
+		var rateAttribute = rate
+		var delayAttribute = delay
+
+		EnchantmentHelper.getEnchantments(stack).forEach { (enchantment, level) ->
+			if (enchantment is AttributeProvider) {
+				val shieldAttributeModifiers = enchantment.shieldAttributeModifiers(level)
+				capacityAttribute += shieldAttributeModifiers.capacity
+				rateAttribute -= (shieldAttributeModifiers.rechargeRateMultiplier * rateAttribute.toDouble()).roundToInt()
+				delayAttribute -= shieldAttributeModifiers.rechargeDelay
+			}
+		}
+
+		return SuperiorShieldAttributes(
+			capacityAttribute,
+			rateAttribute,
+			delayAttribute
+		)
 	}
 }

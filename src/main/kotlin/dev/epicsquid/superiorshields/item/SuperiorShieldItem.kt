@@ -21,11 +21,11 @@ import java.text.DecimalFormat
 import java.util.*
 import kotlin.math.roundToInt
 
-class SuperiorShieldItem<T : SuperiorShield>(
+open class SuperiorShieldItem<T : SuperiorShield>(
 	props: Properties,
 	private val enchantmentValue: Int,
 	private val type: T,
-	private val repairItem: () -> Ingredient
+	private val repairItem: () -> Ingredient? = { null }
 ) : Item(props), ICurioItem, SuperiorShield by type {
 
 	override fun getEnchantmentValue(stack: ItemStack?): Int {
@@ -41,6 +41,7 @@ class SuperiorShieldItem<T : SuperiorShield>(
 			onEquipShield(slotContext.entity, slotContext.entity.shield, stack)
 		}
 	}
+
 	override fun onUnequip(slotContext: SlotContext, newStack: ItemStack, stack: ItemStack) {
 		if (!ItemStack.isSameIgnoreDurability(stack, newStack)) {
 			onUnequipShield(slotContext.entity, slotContext.entity.shield)
@@ -50,7 +51,8 @@ class SuperiorShieldItem<T : SuperiorShield>(
 	override fun canEquipFromUse(slotContext: SlotContext?, stack: ItemStack?): Boolean = true
 
 	override fun isValidRepairItem(stack: ItemStack, repairCandidate: ItemStack): Boolean {
-		return repairItem().test(repairCandidate) || super.isValidRepairItem(stack, repairCandidate)
+		val repairItem = repairItem() ?: return super.isValidRepairItem(stack, repairCandidate)
+		return repairItem.test(repairCandidate) || super.isValidRepairItem(stack, repairCandidate)
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -65,28 +67,26 @@ class SuperiorShieldItem<T : SuperiorShield>(
 		val decimalFormat = DecimalFormat()
 		decimalFormat.maximumFractionDigits = 2
 
-		var capacityAttribute = capacity
-		var rateAttribute = rate
-		var delayAttribute = delay
+		val (capacityAttribute, rateAttribute, delayAttribute) = calculateShieldAttributes(stack)
 
-		EnchantmentHelper.getEnchantments(stack).forEach { (enchantment, level) ->
-			if (enchantment is AttributeProvider) {
-				val shieldAttributeModifiers = enchantment.shieldAttributeModifiers(level)
-				capacityAttribute += shieldAttributeModifiers.capacity
-				rateAttribute = (shieldAttributeModifiers.rechargeRateMultiplier * rateAttribute.toDouble()).roundToInt()
-				delayAttribute -= shieldAttributeModifiers.rechargeDelay
-			}
-		}
-
-		rateAttribute /= 20
-		delayAttribute /= 20
+		val rateDisplay = rateAttribute / 20
+		val delayDisplay = delayAttribute / 20
 
 		tooltip.apply {
 			add(LangRegistry.BLANK)
 			add(LangRegistry.EQUIP.withStyle(ChatFormatting.GRAY))
-			add(TooltipUtils.withArgs(LangRegistry.HP, decimalFormat.format(capacityAttribute)).withStyle(ChatFormatting.DARK_GREEN))
-			add(TooltipUtils.withArgs(LangRegistry.RECHARGE_RATE, decimalFormat.format(rateAttribute)).withStyle(ChatFormatting.DARK_GREEN))
-			add(TooltipUtils.withArgs(LangRegistry.RECHARGE_DELAY, decimalFormat.format(delayAttribute)).withStyle(ChatFormatting.DARK_GREEN))
+			add(
+				TooltipUtils.withArgs(LangRegistry.HP, decimalFormat.format(capacityAttribute))
+					.withStyle(ChatFormatting.DARK_GREEN)
+			)
+			add(
+				TooltipUtils.withArgs(LangRegistry.RECHARGE_RATE, decimalFormat.format(rateDisplay))
+					.withStyle(ChatFormatting.DARK_GREEN)
+			)
+			add(
+				TooltipUtils.withArgs(LangRegistry.RECHARGE_DELAY, decimalFormat.format(delayDisplay))
+					.withStyle(ChatFormatting.DARK_GREEN)
+			)
 		}
 	}
 }
