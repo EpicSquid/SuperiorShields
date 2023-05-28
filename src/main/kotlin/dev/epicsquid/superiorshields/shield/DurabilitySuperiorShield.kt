@@ -18,9 +18,10 @@ open class DurabilitySuperiorShield(
 	}
 
 	override fun rechargeShield(stack: ItemStack, entity: LivingEntity) {
-		if (entity.shield.hp < capacity) {
+		val shield = entity.shield
+		if (shield.hp < shield.capacity) {
 			damageItem(stack, entity)
-			entity.shield.hp++
+			shield.hp++
 		}
 	}
 }
