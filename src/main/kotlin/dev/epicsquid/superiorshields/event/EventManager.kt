@@ -15,6 +15,7 @@ import net.minecraft.world.entity.LivingEntity
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent
 import net.minecraftforge.event.AttachCapabilitiesEvent
 import net.minecraftforge.event.entity.EntityJoinLevelEvent
+import net.minecraftforge.event.entity.living.LivingDamageEvent
 import net.minecraftforge.event.entity.living.LivingHurtEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.network.PacketDistributor
@@ -34,7 +35,7 @@ object EventManager {
 	}
 
 	@SubscribeEvent
-	fun onLivingHurtEvent(event: LivingHurtEvent) {
+	fun onLivingHurtEvent(event: LivingDamageEvent) {
 		if (event.isCanceled) return
 
 		val attacker = event.source.entity
