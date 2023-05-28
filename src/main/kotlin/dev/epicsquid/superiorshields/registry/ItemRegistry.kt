@@ -3,6 +3,7 @@ package dev.epicsquid.superiorshields.registry
 import com.tterrag.registrate.util.DataIngredient
 import com.tterrag.registrate.util.entry.ItemEntry
 import dev.epicsquid.superiorshields.SuperiorShields
+import dev.epicsquid.superiorshields.compat.BotaniaCompat
 import dev.epicsquid.superiorshields.compat.ThermalCompat
 import dev.epicsquid.superiorshields.config.Config
 import dev.epicsquid.superiorshields.config.SuperiorShieldStats
@@ -292,7 +293,7 @@ object ItemRegistry {
 	}
 
 	val fluxShield: EnergySuperiorShieldItem<*> by registryEntry {
-		registrate.item<EnergySuperiorShieldItem<*>>("flux_shield", ThermalCompat.thermalItemBuilder(
+		registrate.item("flux_shield", ThermalCompat.thermalItemBuilder(
 			enchantmentValue = 14,
 			type = EnergySuperiorShield("flux_shield", Config.SHIELDS_CONFIG.fluxShield),
 			maxEnergy = 48000,
@@ -319,6 +320,90 @@ object ItemRegistry {
 				}.build(p, p.safeId(ctx.entry))
 			}
 			.register()
+	}
+
+	val manasteelShield: SuperiorShieldItem<*> by registryEntry {
+		registrate.item("manasteel_shield", BotaniaCompat.botaniaManaShieldBuilder(
+			enchantmentValue = 16,
+			type = DurabilitySuperiorShield("manasteel_shield", Config.SHIELDS_CONFIG.manasteelShield),
+			repairItem = { Ingredient.of(SuperiorShieldsTags.MANASTEEL_INGOT) }
+		))
+			.properties { it.durability(300) }
+			.tag(SuperiorShieldsTags.CURIOS_TAG)
+			.tag(SuperiorShieldsTags.SHIELD_TAG)
+			.recipe { ctx, p ->
+				ConditionalRecipe.builder().apply {
+					addCondition(ModLoadedCondition("botania"))
+					addRecipe { writer ->
+						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+							pattern(" X ")
+							pattern("XEX")
+							pattern(" X ")
+							define('X', SuperiorShieldsTags.MANASTEEL_INGOT)
+							define('E', SuperiorShieldsTags.MANAPEARL)
+							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.MANASTEEL_INGOT).getCritereon(p))
+							save(writer)
+						}
+					}
+					generateAdvancement()
+				}.build(p, p.safeId(ctx.entry))
+			}.register()
+	}
+
+	val terrasteelShield: SuperiorShieldItem<*> by registryEntry {
+		registrate.item("terrasteel_shield", BotaniaCompat.botaniaManaShieldBuilder(
+			enchantmentValue = 18,
+			type = DurabilitySuperiorShield("terrasteel_shield", Config.SHIELDS_CONFIG.terrasteelShield),
+			repairItem = { Ingredient.of(SuperiorShieldsTags.TERRASTEEL_INGOT) }
+		))
+			.properties { it.durability(600) }
+			.tag(SuperiorShieldsTags.CURIOS_TAG)
+			.tag(SuperiorShieldsTags.SHIELD_TAG)
+			.recipe { ctx, p ->
+				ConditionalRecipe.builder().apply {
+					addCondition(ModLoadedCondition("botania"))
+					addRecipe { writer ->
+						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+							pattern(" X ")
+							pattern("XEX")
+							pattern(" X ")
+							define('X', SuperiorShieldsTags.TERRASTEEL_INGOT)
+							define('E', SuperiorShieldsTags.MANAPEARL)
+							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.TERRASTEEL_INGOT).getCritereon(p))
+							save(writer)
+						}
+					}
+					generateAdvancement()
+				}.build(p, p.safeId(ctx.entry))
+			}.register()
+	}
+
+	val elementiumShield: SuperiorShieldItem<*> by registryEntry {
+		registrate.item("elementium_shield", BotaniaCompat.elementiumShieldBuilder(
+			enchantmentValue = 20,
+			type = DurabilitySuperiorShield("elementium_shield", Config.SHIELDS_CONFIG.elementiumShield),
+			repairItem = { Ingredient.of(SuperiorShieldsTags.ELEMENTIUM_INGOT) }
+		))
+			.properties { it.durability(900) }
+			.tag(SuperiorShieldsTags.CURIOS_TAG)
+			.tag(SuperiorShieldsTags.SHIELD_TAG)
+			.recipe { ctx, p ->
+				ConditionalRecipe.builder().apply {
+					addCondition(ModLoadedCondition("botania"))
+					addRecipe { writer ->
+						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+							pattern(" X ")
+							pattern("XEX")
+							pattern(" X ")
+							define('X', SuperiorShieldsTags.ELEMENTIUM_INGOT)
+							define('E', SuperiorShieldsTags.MANAPEARL)
+							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.ELEMENTIUM_INGOT).getCritereon(p))
+							save(writer)
+						}
+					}
+					generateAdvancement()
+				}.build(p, p.safeId(ctx.entry))
+			}.register()
 	}
 
 	private fun durabilityShieldItem(

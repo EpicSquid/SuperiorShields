@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "botania"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "key": {
+          "E": {
+            "tag": "forge:mana_pearl"
+          },
+          "X": {
+            "tag": "forge:ingots/terrasteel"
+          }
+        },
+        "pattern": [
+          " X ",
+          "XEX",
+          " X "
+        ],
+        "result": {
+          "item": "superiorshields:terrasteel_shield"
+        }
+      }
+    }
+  ]
+}

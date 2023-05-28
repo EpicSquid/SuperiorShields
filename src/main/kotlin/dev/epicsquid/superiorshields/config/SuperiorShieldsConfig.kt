@@ -44,6 +44,10 @@ class SuperiorShieldsConfig(
 
 	val fluxShield: SuperiorShieldStats
 
+	val manasteelShield: SuperiorShieldStats
+	val terrasteelShield: SuperiorShieldStats
+	val elementiumShield: SuperiorShieldStats
+
 	init {
 		builder.stack("consumption") {
 			comment("The amount of a resource to use for a given shield type.")
@@ -119,6 +123,12 @@ class SuperiorShieldsConfig(
 		builder.stack("thermal") {
 			comment("Thermal augmentable shields stats. Each one represents a tier based on the integral components")
 			fluxShield = shield("flux", 5, 80, 40)
+		}
+		builder.stack("botania") {
+			comment("Shields made from materials available in Botania")
+			manasteelShield = shield("manasteel", 5, 80, 40)
+			terrasteelShield = shield("terrasteel", 9, 60, 40)
+			elementiumShield = shield("elementium", 7, 60, 20)
 		}
 	}
 }

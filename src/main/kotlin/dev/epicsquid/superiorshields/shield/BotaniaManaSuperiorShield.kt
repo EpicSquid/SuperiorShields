@@ -8,7 +8,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import vazkii.botania.api.mana.ManaItemHandler
 
-sealed class BotaniaManaSuperiorShield(
+class BotaniaManaSuperiorShield(
 	name: String,
 	config: SuperiorShieldStats
 ) : DurabilitySuperiorShield(name, config) {

@@ -20,6 +20,9 @@
     "superiorshields:netherite_shield",
     "superiorshields:electric_shield",
     "superiorshields:engineers_shield",
-    "superiorshields:flux_shield"
+    "superiorshields:flux_shield",
+    "superiorshields:manasteel_shield",
+    "superiorshields:terrasteel_shield",
+    "superiorshields:elementium_shield"
   ]
 }

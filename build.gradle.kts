@@ -130,7 +130,7 @@ dependencies {
 	runtimeOnly(fg.deobf("mezz.jei:jei-$minecraftVersion-forge:11.2.0.246"))
 
 	// Botania
-	implementation(fg.deobf("vazkii.botania:Botania-xplat:$minecraftVersion-437"))
+	implementation(fg.deobf("vazkii.botania:Botania:$minecraftVersion-437-FORGE"))
 	runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:$minecraftVersion-77"))
 
 	// Thermal
@@ -142,11 +142,9 @@ dependencies {
 	// Ars Noveau
 	implementation(fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-$minecraftVersion:3.13.0.437"))
 
-	// Waiting for 1.19 ports
-
 	// Malum
-//    implementation fg.deobf("team.lodestar.lodestone:lodestone:$minecraftVersion-${lodestone_version}")
-//    implementation fg.deobf("com.sammy.malum:malum:$minecraftVersion-${malum_version}")
+	implementation(fg.deobf("team.lodestar.lodestone:lodestone:$minecraftVersion-2.0.0.82"))
+	implementation(fg.deobf("com.sammy.malum:malum:$minecraftVersion-1.4.3.1-9"))
 }
 
 tasks.withType(GenerateModuleMetadata::class.java) {
