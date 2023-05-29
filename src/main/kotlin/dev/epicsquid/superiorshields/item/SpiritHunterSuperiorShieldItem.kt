@@ -2,7 +2,6 @@ package dev.epicsquid.superiorshields.item
 
 import com.google.common.collect.Multimap
 import com.sammy.malum.core.setup.content.AttributeRegistry
-import dev.epicsquid.superiorshields.shield.BotaniaManaSuperiorShield
 import dev.epicsquid.superiorshields.shield.DurabilitySuperiorShield
 import net.minecraft.world.entity.ai.attributes.Attribute
 import net.minecraft.world.entity.ai.attributes.AttributeModifier
@@ -11,7 +10,6 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.Ingredient
 import team.lodestar.lodestone.setup.LodestoneAttributeRegistry
 import top.theillusivec4.curios.api.SlotContext
-import vazkii.botania.common.handler.PixieHandler
 import java.util.*
 
 class SpiritHunterSuperiorShieldItem(
