@@ -48,6 +48,9 @@ class SuperiorShieldsConfig(
 	val terrasteelShield: SuperiorShieldStats
 	val elementiumShield: SuperiorShieldStats
 
+	val soulStainedShield: SuperiorShieldStats
+	val spiritHunterShield: SuperiorShieldStats
+
 	init {
 		builder.stack("consumption") {
 			comment("The amount of a resource to use for a given shield type.")
@@ -129,6 +132,11 @@ class SuperiorShieldsConfig(
 			manasteelShield = shield("manasteel", 5, 80, 40)
 			terrasteelShield = shield("terrasteel", 9, 60, 40)
 			elementiumShield = shield("elementium", 7, 60, 20)
+		}
+		builder.stack("malum") {
+			comment("Shields made from materials present in Malum")
+			soulStainedShield = shield("soul_stained", 6, 60, 40)
+			spiritHunterShield = shield("spirit_hunter", 4, 20, 50)
 		}
 	}
 }

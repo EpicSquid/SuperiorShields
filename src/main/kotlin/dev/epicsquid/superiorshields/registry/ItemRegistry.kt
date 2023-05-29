@@ -4,6 +4,7 @@ import com.tterrag.registrate.util.DataIngredient
 import com.tterrag.registrate.util.entry.ItemEntry
 import dev.epicsquid.superiorshields.SuperiorShields
 import dev.epicsquid.superiorshields.compat.BotaniaCompat
+import dev.epicsquid.superiorshields.compat.MalumCompat
 import dev.epicsquid.superiorshields.compat.ThermalCompat
 import dev.epicsquid.superiorshields.config.Config
 import dev.epicsquid.superiorshields.config.SuperiorShieldStats
@@ -293,12 +294,14 @@ object ItemRegistry {
 	}
 
 	val fluxShield: EnergySuperiorShieldItem<*> by registryEntry {
-		registrate.item("flux_shield", ThermalCompat.thermalItemBuilder(
-			enchantmentValue = 14,
-			type = EnergySuperiorShield("flux_shield", Config.SHIELDS_CONFIG.fluxShield),
-			maxEnergy = 48000,
-			barColor = 0xFF0000
-		))
+		registrate.item(
+			"flux_shield", ThermalCompat.thermalItemBuilder(
+				enchantmentValue = 14,
+				type = EnergySuperiorShield("flux_shield", Config.SHIELDS_CONFIG.fluxShield),
+				maxEnergy = 48000,
+				barColor = 0xFF0000
+			)
+		)
 			.tag(SuperiorShieldsTags.CURIOS_TAG)
 			.tag(SuperiorShieldsTags.SHIELD_TAG)
 			.recipe { ctx, p ->
@@ -398,6 +401,62 @@ object ItemRegistry {
 							define('X', SuperiorShieldsTags.ELEMENTIUM_INGOT)
 							define('E', SuperiorShieldsTags.MANAPEARL)
 							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.ELEMENTIUM_INGOT).getCritereon(p))
+							save(writer)
+						}
+					}
+					generateAdvancement()
+				}.build(p, p.safeId(ctx.entry))
+			}.register()
+	}
+
+	val soulStainedShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		registrate.item("soul_stained_shield", MalumCompat.soulStainedShieldBuilder(
+			enchantmentValue = 11,
+			type = DurabilitySuperiorShield("soul_stained_shield", Config.SHIELDS_CONFIG.soulStainedShield),
+			repairItem = { Ingredient.of(SuperiorShieldsTags.SOUL_STAINED_STEEL_INGOT) }
+		))
+			.properties { it.durability(1250) }
+			.tag(SuperiorShieldsTags.CURIOS_TAG)
+			.tag(SuperiorShieldsTags.SHIELD_TAG)
+			.recipe { ctx, p ->
+				ConditionalRecipe.builder().apply {
+					addCondition(ModLoadedCondition("malum"))
+					addRecipe { writer ->
+						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+							pattern(" X ")
+							pattern("XEX")
+							pattern(" X ")
+							define('X', SuperiorShieldsTags.SOUL_STAINED_STEEL_INGOT)
+							define('E', SuperiorShieldsTags.HALLOWED_SPIRIT_RESONATOR)
+							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.SOUL_STAINED_STEEL_INGOT).getCritereon(p))
+							save(writer)
+						}
+					}
+					generateAdvancement()
+				}.build(p, p.safeId(ctx.entry))
+			}.register()
+	}
+
+	val spiritHunterShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		registrate.item("spirit_hunter_shield", MalumCompat.spiritHunterShieldBuilder(
+			enchantmentValue = 15,
+			type = DurabilitySuperiorShield("spirit_hunter_shield", Config.SHIELDS_CONFIG.spiritHunterShield),
+			repairItem = { Ingredient.of(SuperiorShieldsTags.SPIRIT_FABRIC) }
+		))
+			.properties { it.durability(200) }
+			.tag(SuperiorShieldsTags.CURIOS_TAG)
+			.tag(SuperiorShieldsTags.SHIELD_TAG)
+			.recipe { ctx, p ->
+				ConditionalRecipe.builder().apply {
+					addCondition(ModLoadedCondition("malum"))
+					addRecipe { writer ->
+						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+							pattern(" X ")
+							pattern("XEX")
+							pattern(" X ")
+							define('X', SuperiorShieldsTags.SPIRIT_FABRIC)
+							define('E', SuperiorShieldsTags.STAINED_SPIRIT_RESONATOR)
+							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.SPIRIT_FABRIC).getCritereon(p))
 							save(writer)
 						}
 					}
