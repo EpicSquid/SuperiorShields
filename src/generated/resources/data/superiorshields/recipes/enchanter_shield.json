@@ -5,17 +5,17 @@
       "conditions": [
         {
           "type": "forge:mod_loaded",
-          "modid": "botania"
+          "modid": "ars_nouveau"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
         "key": {
           "E": {
-            "tag": "forge:pixie_dust"
+            "tag": "forge:gem/source"
           },
           "X": {
-            "tag": "forge:ingots/elementium"
+            "tag": "forge:ingots/gold"
           }
         },
         "pattern": [
@@ -24,7 +24,7 @@
           " X "
         ],
         "result": {
-          "item": "superiorshields:elementium_shield"
+          "item": "superiorshields:enchanter_shield"
         }
       }
     }

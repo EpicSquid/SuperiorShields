@@ -3,6 +3,7 @@ package dev.epicsquid.superiorshields.registry
 import com.tterrag.registrate.util.DataIngredient
 import com.tterrag.registrate.util.entry.ItemEntry
 import dev.epicsquid.superiorshields.SuperiorShields
+import dev.epicsquid.superiorshields.compat.ArsCompat
 import dev.epicsquid.superiorshields.compat.BotaniaCompat
 import dev.epicsquid.superiorshields.compat.MalumCompat
 import dev.epicsquid.superiorshields.compat.ThermalCompat
@@ -399,7 +400,7 @@ object ItemRegistry {
 							pattern("XEX")
 							pattern(" X ")
 							define('X', SuperiorShieldsTags.ELEMENTIUM_INGOT)
-							define('E', SuperiorShieldsTags.MANAPEARL)
+							define('E', SuperiorShieldsTags.PIXIE_DUST)
 							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.ELEMENTIUM_INGOT).getCritereon(p))
 							save(writer)
 						}
@@ -457,6 +458,34 @@ object ItemRegistry {
 							define('X', SuperiorShieldsTags.SPIRIT_FABRIC)
 							define('E', SuperiorShieldsTags.STAINED_SPIRIT_RESONATOR)
 							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.SPIRIT_FABRIC).getCritereon(p))
+							save(writer)
+						}
+					}
+					generateAdvancement()
+				}.build(p, p.safeId(ctx.entry))
+			}.register()
+	}
+
+	val enchanterShield: SuperiorShieldItem<*> by registryEntry {
+		registrate.item("enchanter_shield", ArsCompat.arsManaShieldBuilder(
+			enchantmentValue = 24,
+			type = DurabilitySuperiorShield("enchanter_shield", Config.SHIELDS_CONFIG.enchanterShield),
+			repairItem = { Ingredient.of(SuperiorShieldsTags.SOURCE_GEM) }
+		))
+			.properties {it.durability(Tiers.IRON.uses)}
+			.tag(SuperiorShieldsTags.CURIOS_TAG)
+			.tag(SuperiorShieldsTags.SHIELD_TAG)
+			.recipe { ctx, p ->
+				ConditionalRecipe.builder().apply {
+					addCondition(ModLoadedCondition("ars_nouveau"))
+					addRecipe { writer ->
+						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+							pattern(" X ")
+							pattern("XEX")
+							pattern(" X ")
+							define('X', Tags.Items.INGOTS_GOLD)
+							define('E', SuperiorShieldsTags.SOURCE_GEM)
+							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.SOURCE_GEM).getCritereon(p))
 							save(writer)
 						}
 					}

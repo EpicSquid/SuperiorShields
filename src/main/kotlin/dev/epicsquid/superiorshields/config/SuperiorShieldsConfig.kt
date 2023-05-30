@@ -51,6 +51,8 @@ class SuperiorShieldsConfig(
 	val soulStainedShield: SuperiorShieldStats
 	val spiritHunterShield: SuperiorShieldStats
 
+	val enchanterShield: SuperiorShieldStats
+
 	init {
 		builder.stack("consumption") {
 			comment("The amount of a resource to use for a given shield type.")
@@ -137,6 +139,10 @@ class SuperiorShieldsConfig(
 			comment("Shields made from materials present in Malum")
 			soulStainedShield = shield("soul_stained", 6, 60, 40)
 			spiritHunterShield = shield("spirit_hunter", 4, 20, 50)
+		}
+		builder.stack("ars_nouveau") {
+			comment("Shields made from materials present in Ars Noveau")
+			enchanterShield = shield("enchanter", 5, 80, 40)
 		}
 	}
 }

@@ -3,6 +3,7 @@ package dev.epicsquid.superiorshields.shield
 import dev.epicsquid.superiorshields.capability.SuperiorShieldCap
 import dev.epicsquid.superiorshields.capability.absorbDamage
 import dev.epicsquid.superiorshields.capability.reset
+import dev.epicsquid.superiorshields.compat.ArsCompat
 import dev.epicsquid.superiorshields.config.SuperiorShieldStats
 import dev.epicsquid.superiorshields.effects.DefaultEffectHandler
 import dev.epicsquid.superiorshields.effects.EffectHandler
@@ -108,6 +109,8 @@ abstract class AbstractSuperiorShield(
 	override fun applyEffect(effectTrigger: EffectTrigger, scale: Int) {
 		effectHandler.applyEffect(effectTrigger)
 		applyEnchantmentEffect(effectTrigger, scale)
+
+		ArsCompat.triggerReactive(effectTrigger)
 	}
 
 	private fun applyEnchantmentEffect(effectTrigger: EffectTrigger, scale: Int) {

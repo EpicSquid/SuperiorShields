@@ -50,6 +50,5 @@ class SuperiorShieldsTags(
 		tag(ModTags.HALLOWED_SPIRIT_RESONATOR).addOptional(ResourceLocation("malum", "hallowed_spirit_resonator"))
 		tag(ModTags.STAINED_SPIRIT_RESONATOR).addOptional(ResourceLocation("malum", "stained_spirit_resonator"))
 		tag(ModTags.SOURCE_GEM).addOptional(ResourceLocation("ars_nouveau", "source_gem"))
-
 	}
 }

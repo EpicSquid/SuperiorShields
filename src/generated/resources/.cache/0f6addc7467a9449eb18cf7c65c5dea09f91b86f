@@ -1,6 +1,6 @@
-// 1.19.2	2023-05-29T12:46:13.5628162	Registrate Provider for superiorshields [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-989113987bea2113b509dd9f4f4d044cdba63087 assets/superiorshields/lang/en_ud.json
-0c0b83035613925305424ff52e666e6011aa44b0 assets/superiorshields/lang/en_us.json
+// 1.19.2	2023-05-31T07:48:12.7614733	Registrate Provider for superiorshields [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+27e6281639533032066c132255cd0f8cbd335138 assets/superiorshields/lang/en_ud.json
+c743b63251af9013aa242f7d102ab13941be79d1 assets/superiorshields/lang/en_us.json
 cb02dd463fa94d5285fbca80626ee4f2835371c6 assets/superiorshields/models/item/bronze_shield.json
 4bbcc914627f9c8f61b1bb50c95772a88bc394f9 assets/superiorshields/models/item/constantan_shield.json
 b8df211ed19fd42fb5618858c8adf88dcff143a0 assets/superiorshields/models/item/copper_shield.json
@@ -8,6 +8,7 @@ b8df211ed19fd42fb5618858c8adf88dcff143a0 assets/superiorshields/models/item/copp
 9ffd619bdb07c202c34d7d5f0736f6dc74d98ffb assets/superiorshields/models/item/electric_shield.json
 e4f2c763dc9ec2eed50068b909017618abf8417e assets/superiorshields/models/item/electrum_shield.json
 6126447fd1351df9faabe8b118d5768ba16adbb0 assets/superiorshields/models/item/elementium_shield.json
+e9fceca210263cefa1c177f7629f20dfe2318627 assets/superiorshields/models/item/enchanter_shield.json
 2270e41f4242350babf78ab70bc162f523205794 assets/superiorshields/models/item/engineers_shield.json
 1565f5bd590be58085340fef0ee764827feeaf04 assets/superiorshields/models/item/flux_shield.json
 e996ffd039d0563ad96e8453fd3593e864f89d16 assets/superiorshields/models/item/golden_shield.json
@@ -27,7 +28,7 @@ b64d39fe80066562978670031f0faaa201d0ea65 assets/superiorshields/models/item/soul
 9878403bda1884b58bcbf354250b8111bf09b034 assets/superiorshields/models/item/steel_shield.json
 dca7997f6dbcef557e21f8a8334fb888ff87c142 assets/superiorshields/models/item/terrasteel_shield.json
 b11a564b1077e9140f490348054fcaff80408398 assets/superiorshields/models/item/tin_shield.json
-dd11cf4b8d0162a548ee13ec6f7604586f9509ed data/curios/tags/items/superior_shield.json
+563e43eee78dd2291f24ce669045c688fe55616b data/curios/tags/items/superior_shield.json
 ae1af7ddaf2a4d4b243c82b733ea9dfaa42d4931 data/superiorshields/advancements/recipes/bronze_shield.json
 f2015df649f5865ab516b376d1cdd637689e20a9 data/superiorshields/advancements/recipes/constantan_shield.json
 e7bb06f25f6c513e314245660f67f25cb73bb4a5 data/superiorshields/advancements/recipes/copper_shield.json
@@ -35,6 +36,7 @@ f3cc49b05a2a96dbea2a244170ae54e5996cd500 data/superiorshields/advancements/recip
 245504525f04ff01c7b7c1531333cf1f146db85f data/superiorshields/advancements/recipes/electric_shield.json
 ddf3546733b284638e5e957c8c95b2cb39cb600f data/superiorshields/advancements/recipes/electrum_shield.json
 afb231043a9f58202beda64d95a112f89008e4c8 data/superiorshields/advancements/recipes/elementium_shield.json
+df55b9b1e21ff889a55faa39be6f4af9c6840eba data/superiorshields/advancements/recipes/enchanter_shield.json
 9c2e3341f1bbc9607b9d3c657ae92b6efdf875af data/superiorshields/advancements/recipes/engineers_shield.json
 8577f529e6a231de9c0eae0fc0e5d5ab1bdd5251 data/superiorshields/advancements/recipes/flux_shield.json
 2b10454ae4f99756d6bcea1168e36f8e24ddcc3a data/superiorshields/advancements/recipes/golden_shield.json
@@ -60,7 +62,8 @@ a534978a6d0558698f34fb8b25c7e2796169ccd9 data/superiorshields/recipes/copper_shi
 1f7a9acd3d15f5fff18db21559005ec8c702e56b data/superiorshields/recipes/diamond_shield.json
 1746e915214340b1f9e7548fb1bff66a2c04bcf6 data/superiorshields/recipes/electric_shield.json
 f6b9401fd06264338e2bed4d8eb04636bc8e792b data/superiorshields/recipes/electrum_shield.json
-a09150bc11cc98c9cf419245b9503dd62f370de8 data/superiorshields/recipes/elementium_shield.json
+42a95a7cbb379af716eb950d9a225b16d57b4aff data/superiorshields/recipes/elementium_shield.json
+5e6c7cd693885b8c0d4b5f6cdd532654ca14ad35 data/superiorshields/recipes/enchanter_shield.json
 94317adc5065ffddc79e800775461732bc6680ac data/superiorshields/recipes/engineers_shield.json
 3ee2e008892ccfea09783c7828e440b90baa3f65 data/superiorshields/recipes/flux_shield.json
 96eeb860c11f0743a6655e546f7bb7a50a59a444 data/superiorshields/recipes/golden_shield.json
@@ -80,4 +83,4 @@ e47cf58df288b3281a76324d5b31839b246262b7 data/superiorshields/recipes/lapis_shie
 6da92f09da0280a119b25016cd57d881a1fee2ab data/superiorshields/recipes/steel_shield.json
 2f53231c26e5607aded7f63920bf3451e03357aa data/superiorshields/recipes/terrasteel_shield.json
 57daee30749aead347cccb4d111b2a4c845cbdb2 data/superiorshields/recipes/tin_shield.json
-dd11cf4b8d0162a548ee13ec6f7604586f9509ed data/superiorshields/tags/items/shield.json
+563e43eee78dd2291f24ce669045c688fe55616b data/superiorshields/tags/items/shield.json
