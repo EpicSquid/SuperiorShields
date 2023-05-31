@@ -1,14 +1,8 @@
 package dev.epicsquid.superiorshields.enchantment
 
-import com.google.common.collect.ImmutableMultimap
-import com.google.common.collect.Multimap
 import dev.epicsquid.superiorshields.config.Config
 import dev.epicsquid.superiorshields.effects.EffectHandler
-import net.minecraft.world.entity.ai.attributes.Attribute
-import net.minecraft.world.entity.ai.attributes.AttributeModifier
 import net.minecraft.world.item.enchantment.EnchantmentCategory
-import top.theillusivec4.curios.api.SlotContext
-import java.util.*
 
 class CapacityEnchantment(
 	rarity: Rarity,

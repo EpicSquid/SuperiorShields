@@ -17,7 +17,6 @@ import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.LivingEntity
-import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraftforge.network.PacketDistributor

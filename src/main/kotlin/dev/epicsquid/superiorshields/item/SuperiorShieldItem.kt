@@ -1,6 +1,5 @@
 package dev.epicsquid.superiorshields.item
 
-import dev.epicsquid.superiorshields.enchantment.AttributeProvider
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
 import dev.epicsquid.superiorshields.registry.LangRegistry
 import dev.epicsquid.superiorshields.shield.SuperiorShield
@@ -11,7 +10,6 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.TooltipFlag
 import net.minecraft.world.item.crafting.Ingredient
-import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.level.Level
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
@@ -19,7 +17,6 @@ import top.theillusivec4.curios.api.SlotContext
 import top.theillusivec4.curios.api.type.capability.ICurioItem
 import java.text.DecimalFormat
 import java.util.*
-import kotlin.math.roundToInt
 
 open class SuperiorShieldItem<T : SuperiorShield>(
 	props: Properties,

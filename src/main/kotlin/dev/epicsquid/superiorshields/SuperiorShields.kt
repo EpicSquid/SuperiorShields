@@ -5,33 +5,23 @@ import dev.epicsquid.superiorshields.config.Config
 import dev.epicsquid.superiorshields.data.SuperiorShieldsTags
 import dev.epicsquid.superiorshields.event.ClientEventManager
 import dev.epicsquid.superiorshields.event.EventManager
-import dev.epicsquid.superiorshields.gui.SuperiorShieldOverlay
 import dev.epicsquid.superiorshields.network.NetworkHandler
 import dev.epicsquid.superiorshields.registry.*
 import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.inventory.InventoryMenu
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.ItemStack
-import net.minecraftforge.api.distmarker.Dist.CLIENT
-import net.minecraftforge.client.event.RegisterGuiOverlaysEvent
-import net.minecraftforge.client.event.TextureStitchEvent
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay
 import net.minecraftforge.common.MinecraftForge
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent
 import net.minecraftforge.common.data.ForgeBlockTagsProvider
 import net.minecraftforge.data.event.GatherDataEvent
 import net.minecraftforge.eventbus.api.EventPriority.LOWEST
-import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.InterModComms
 import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.FORGE
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.MOD
 import net.minecraftforge.fml.config.ModConfig
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
+import thedarkcolour.kotlinforforge.forge.runForDist
 import top.theillusivec4.curios.api.CuriosApi
 import top.theillusivec4.curios.api.SlotTypeMessage
 import top.theillusivec4.curios.api.SlotTypeMessage.Builder
@@ -59,8 +49,10 @@ class SuperiorShields {
 		MinecraftForge.EVENT_BUS.register(EventManager)
 		modEventBus.addListener { _: FMLCommonSetupEvent -> NetworkHandler.register() }
 		modEventBus.addListener { _: InterModEnqueueEvent -> onInterModEnqueue() }
-		modEventBus.register(SuperiorShieldsClient)
-//		modEventBus.register(ClientEventManager)
+		runForDist(
+			clientTarget = { modEventBus.register(ClientEventManager) },
+			serverTarget = {}
+		)
 
 		EnchantmentRegistry.classload()
 		ItemRegistry.classload()
@@ -87,20 +79,5 @@ class SuperiorShields {
 			event.includeServer(),
 			SuperiorShieldsTags(generator, blockTagsProvider, event.existingFileHelper)
 		)
-	}
-}
-
-object SuperiorShieldsClient {
-
-	@SubscribeEvent
-	fun onStitchTexturesPre(event: TextureStitchEvent.Pre) {
-		if (event.atlas.location() == InventoryMenu.BLOCK_ATLAS) {
-			event.addSprite(ResourceLocation(SuperiorShields.MODID, "item/empty_shield_slot"))
-		}
-	}
-
-	@SubscribeEvent
-	fun onRegisterGuiOverlays(event: RegisterGuiOverlaysEvent) {
-		event.registerAbove(VanillaGuiOverlay.PLAYER_HEALTH.id(), "superior_shield_overlay", SuperiorShieldOverlay())
 	}
 }

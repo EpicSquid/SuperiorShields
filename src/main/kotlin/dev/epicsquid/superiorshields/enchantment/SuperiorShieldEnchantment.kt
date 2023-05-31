@@ -1,9 +1,7 @@
 package dev.epicsquid.superiorshields.enchantment
 
-import dev.epicsquid.superiorshields.shield.SuperiorShield
-import dev.epicsquid.superiorshields.effects.DefaultEffectHandler
 import dev.epicsquid.superiorshields.effects.EffectHandler
-import dev.epicsquid.superiorshields.registry.EnchantmentRegistry
+import dev.epicsquid.superiorshields.shield.SuperiorShield
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.Enchantment
 import net.minecraft.world.item.enchantment.EnchantmentCategory

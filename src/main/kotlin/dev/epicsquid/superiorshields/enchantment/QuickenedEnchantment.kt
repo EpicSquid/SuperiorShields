@@ -3,7 +3,6 @@ package dev.epicsquid.superiorshields.enchantment
 import dev.epicsquid.superiorshields.config.Config
 import dev.epicsquid.superiorshields.effects.EffectHandler
 import net.minecraft.world.item.enchantment.EnchantmentCategory
-import kotlin.math.roundToInt
 
 class QuickenedEnchantment(
 	rarity: Rarity,

@@ -7,7 +7,6 @@ import net.minecraft.world.entity.LivingEntity
 import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.common.capabilities.CapabilityManager
 import net.minecraftforge.common.capabilities.CapabilityToken
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent
 import thedarkcolour.kotlinforforge.forge.getCapabilityOrThrow
 
 object CapabilityRegistry {

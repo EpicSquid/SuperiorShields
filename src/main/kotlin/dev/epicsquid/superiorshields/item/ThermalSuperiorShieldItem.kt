@@ -5,7 +5,6 @@ import cofh.core.util.helpers.AugmentDataHelper
 import cofh.core.util.helpers.AugmentableHelper
 import cofh.lib.util.constants.NBTTags
 import dev.epicsquid.superiorshields.capability.EnergyCapProvider
-import dev.epicsquid.superiorshields.shield.EnergySuperiorShield
 import dev.epicsquid.superiorshields.shield.ThermalSuperiorShield
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.world.item.ItemStack

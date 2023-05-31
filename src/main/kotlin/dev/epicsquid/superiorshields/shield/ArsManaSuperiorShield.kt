@@ -4,15 +4,12 @@ import com.hollingsworth.arsnouveau.common.capability.CapabilityRegistry
 import com.hollingsworth.arsnouveau.common.enchantment.EnchantmentRegistry
 import com.hollingsworth.arsnouveau.common.spell.casters.ReactiveCaster
 import dev.epicsquid.superiorshields.capability.SuperiorShieldCap
-import dev.epicsquid.superiorshields.config.Config
 import dev.epicsquid.superiorshields.config.SuperiorShieldStats
 import dev.epicsquid.superiorshields.effects.EffectTrigger
 import net.minecraft.network.chat.Component
 import net.minecraft.world.InteractionHand.MAIN_HAND
 import net.minecraft.world.entity.LivingEntity
-import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
-import vazkii.botania.api.mana.ManaItemHandler
 
 class ArsManaSuperiorShield(
 	name: String,
