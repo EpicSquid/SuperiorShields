@@ -53,6 +53,11 @@ class SuperiorShieldsConfig(
 
 	val enchanterShield: SuperiorShieldStats
 
+	val ironwoodShield: SuperiorShieldStats
+	val steeleafShield: SuperiorShieldStats
+	val knightmetalShield: SuperiorShieldStats
+	val fieryShield: SuperiorShieldStats
+
 	init {
 		builder.stack("consumption") {
 			comment("The amount of a resource to use for a given shield type.")
@@ -143,6 +148,13 @@ class SuperiorShieldsConfig(
 		builder.stack("ars_nouveau") {
 			comment("Shields made from materials present in Ars Noveau")
 			enchanterShield = shield("enchanter", 5, 80, 40)
+		}
+		builder.stack("twilight_forest") {
+			comment("Shields made from materials present in the Twilight Forest")
+			ironwoodShield = shield("ironwood", 5, 40, 40)
+			steeleafShield = shield("steeleaf", 9, 60, 100)
+			knightmetalShield = shield("knightmetal", 6, 40, 40)
+			fieryShield = shield("fiery", 7, 30, 60)
 		}
 	}
 }

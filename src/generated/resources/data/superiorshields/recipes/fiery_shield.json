@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "twilight_forest"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "key": {
+          "E": {
+            "tag": "forge:ender_pearls"
+          },
+          "X": {
+            "tag": "forge:ingots/fiery"
+          }
+        },
+        "pattern": [
+          " X ",
+          "XEX",
+          " X "
+        ],
+        "result": {
+          "item": "superiorshields:fiery_shield"
+        }
+      }
+    }
+  ]
+}

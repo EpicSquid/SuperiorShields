@@ -10,9 +10,13 @@ import dev.epicsquid.superiorshields.compat.ThermalCompat
 import dev.epicsquid.superiorshields.config.Config
 import dev.epicsquid.superiorshields.config.SuperiorShieldStats
 import dev.epicsquid.superiorshields.data.SuperiorShieldsTags
+import dev.epicsquid.superiorshields.effects.DefaultEffectHandler
+import dev.epicsquid.superiorshields.effects.EffectHandler
+import dev.epicsquid.superiorshields.effects.SuperiorShieldEffects
 import dev.epicsquid.superiorshields.item.EnergySuperiorShieldItem
 import dev.epicsquid.superiorshields.item.SuperiorShieldItem
 import dev.epicsquid.superiorshields.item.ThermalSuperiorShieldItem
+import dev.epicsquid.superiorshields.registry.ItemRegistry.diamondShield
 import dev.epicsquid.superiorshields.shield.DurabilitySuperiorShield
 import dev.epicsquid.superiorshields.shield.EnergySuperiorShield
 import dev.epicsquid.superiorshields.shield.ThermalSuperiorShield
@@ -207,6 +211,94 @@ object ItemRegistry {
 			1680,
 			"ingots/refined_obsidian".forgeTag
 		)
+	}
+
+	val ironwoodShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		durabilityShieldItem(
+			name = "ironwood_shield",
+			Config.SHIELDS_CONFIG.ironwoodShield,
+			25,
+			512,
+			"ingots/ironwood".forgeTag,
+			conditions = listOf(ModLoadedCondition("twilight_forest"))
+		)
+	}
+
+	val steeleafShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		durabilityShieldItem(
+			name = "steeleaf_shield",
+			Config.SHIELDS_CONFIG.steeleafShield,
+			9,
+			131,
+			"ingots/steeleaf".forgeTag,
+			conditions = listOf(ModLoadedCondition("twilight_forest"))
+		)
+	}
+
+	val knightmetalShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		registrate.item<SuperiorShieldItem<DurabilitySuperiorShield>>("knightmetal_shield") { props: Item.Properties ->
+			SuperiorShieldItem(
+				props,
+				8,
+				DurabilitySuperiorShield("knightmetal_shield", Config.SHIELDS_CONFIG.knightmetalShield)
+			) { Ingredient.of(Tags.Items.INGOTS_IRON) }
+		}
+			.properties { it.durability(512) }
+			.tag(SuperiorShieldsTags.CURIOS_TAG)
+			.tag(SuperiorShieldsTags.SHIELD_TAG)
+			.recipe { ctx, p ->
+				ConditionalRecipe.builder().apply {
+					addCondition(ModLoadedCondition("twilight_forest"))
+					addRecipe { writer ->
+						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+							pattern(" X ")
+							pattern("XEX")
+							pattern(" X ")
+							define('X', "ingots/knightmetal".forgeTag)
+							define('E', Tags.Items.ENDER_PEARLS)
+							unlockedBy("has_item", DataIngredient.tag(Tags.Items.ENDER_PEARLS).getCritereon(p))
+							save(writer)
+						}
+					}
+					generateAdvancement()
+				}.build(p, p.safeId(ctx.entry))
+			}.register()
+	}
+
+	val fieryShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+		registrate.item<SuperiorShieldItem<DurabilitySuperiorShield>>("fiery_shield") { props: Item.Properties ->
+			SuperiorShieldItem(
+				props,
+				8,
+				DurabilitySuperiorShield(
+					name = "fiery_shield",
+					config = Config.SHIELDS_CONFIG.fieryShield,
+					effectHandler = DefaultEffectHandler(
+						empty = { SuperiorShieldEffects.FIRE_NOVA(it.shieldHolder, 1) }
+					)
+				)
+			) { Ingredient.of(Tags.Items.INGOTS_IRON) }
+		}
+			.properties { it.durability(512) }
+			.tag(SuperiorShieldsTags.CURIOS_TAG)
+			.tag(SuperiorShieldsTags.SHIELD_TAG)
+			.recipe { ctx, p ->
+				ConditionalRecipe.builder().apply {
+					addCondition(ModLoadedCondition("twilight_forest"))
+					addRecipe { writer ->
+						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+							pattern(" X ")
+							pattern("XEX")
+							pattern(" X ")
+							define('X', "ingots/fiery".forgeTag)
+							define('E', Tags.Items.ENDER_PEARLS)
+							unlockedBy("has_item", DataIngredient.tag(Tags.Items.ENDER_PEARLS).getCritereon(p))
+							save(writer)
+						}
+					}
+					generateAdvancement()
+				}.build(p, p.safeId(ctx.entry))
+			}.register()
 	}
 
 	val netheriteShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
@@ -472,7 +564,7 @@ object ItemRegistry {
 			type = DurabilitySuperiorShield("enchanter_shield", Config.SHIELDS_CONFIG.enchanterShield),
 			repairItem = { Ingredient.of(SuperiorShieldsTags.SOURCE_GEM) }
 		))
-			.properties {it.durability(Tiers.IRON.uses)}
+			.properties { it.durability(Tiers.IRON.uses) }
 			.tag(SuperiorShieldsTags.CURIOS_TAG)
 			.tag(SuperiorShieldsTags.SHIELD_TAG)
 			.recipe { ctx, p ->
