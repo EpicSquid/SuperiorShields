@@ -1,7 +1,6 @@
 package dev.epicsquid.superiorshields.data
 
 import dev.epicsquid.superiorshields.SuperiorShields
-import epicsquid.superiorshields.tags.ModTags
 import net.minecraft.data.DataGenerator
 import net.minecraft.data.tags.BlockTagsProvider
 import net.minecraft.data.tags.ItemTagsProvider
@@ -40,15 +39,15 @@ class SuperiorShieldsTags(
 	}
 
 	override fun addTags() {
-		tag(ModTags.MANAPEARL).addOptional(ResourceLocation("botania", "mana_pearl"))
-		tag(ModTags.PIXIE_DUST).addOptional(ResourceLocation("botania", "pixie_dust"))
-		tag(ModTags.FLUX_COIL).addOptional(ResourceLocation("thermal", "rf_coil"))
-		tag(ModTags.COMPONENT_STEEL).addOptional(ResourceLocation("immersiveengineering", "component_steel"))
-		tag(ModTags.WOODEN_GRIP).addOptional(ResourceLocation("immersiveengineering", "wooden_grip"))
-		tag(ModTags.SOUL_STAINED_STEEL_INGOT).addOptional(ResourceLocation("malum", "soul_stained_steel_ingot"))
-		tag(ModTags.SPIRIT_FABRIC).addOptional(ResourceLocation("malum", "spirit_fabric"))
-		tag(ModTags.HALLOWED_SPIRIT_RESONATOR).addOptional(ResourceLocation("malum", "hallowed_spirit_resonator"))
-		tag(ModTags.STAINED_SPIRIT_RESONATOR).addOptional(ResourceLocation("malum", "stained_spirit_resonator"))
-		tag(ModTags.SOURCE_GEM).addOptional(ResourceLocation("ars_nouveau", "source_gem"))
+		tag(MANAPEARL).addOptional(ResourceLocation("botania", "mana_pearl"))
+		tag(PIXIE_DUST).addOptional(ResourceLocation("botania", "pixie_dust"))
+		tag(FLUX_COIL).addOptional(ResourceLocation("thermal", "rf_coil"))
+		tag(COMPONENT_STEEL).addOptional(ResourceLocation("immersiveengineering", "component_steel"))
+		tag(WOODEN_GRIP).addOptional(ResourceLocation("immersiveengineering", "wooden_grip"))
+		tag(SOUL_STAINED_STEEL_INGOT).addOptional(ResourceLocation("malum", "soul_stained_steel_ingot"))
+		tag(SPIRIT_FABRIC).addOptional(ResourceLocation("malum", "spirit_fabric"))
+		tag(HALLOWED_SPIRIT_RESONATOR).addOptional(ResourceLocation("malum", "hallowed_spirit_resonator"))
+		tag(STAINED_SPIRIT_RESONATOR).addOptional(ResourceLocation("malum", "stained_spirit_resonator"))
+		tag(SOURCE_GEM).addOptional(ResourceLocation("ars_nouveau", "source_gem"))
 	}
 }

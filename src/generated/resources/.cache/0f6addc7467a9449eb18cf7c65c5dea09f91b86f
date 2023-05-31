@@ -1,6 +1,6 @@
-// 1.19.2	2023-06-01T07:23:28.8254488	Registrate Provider for superiorshields [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
-42778afd811f195ce03ec7e9621e0e2061d94681 assets/superiorshields/lang/en_ud.json
-26aed1a83dd9e6840d7a2946ea841a2aaf2ad196 assets/superiorshields/lang/en_us.json
+// 1.19.2	2023-06-01T07:43:13.8613854	Registrate Provider for superiorshields [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+01f168d2d273637de86b558e0f93aed296b89367 assets/superiorshields/lang/en_ud.json
+70f82dcb7593162f80b684ab08f41733ac64c597 assets/superiorshields/lang/en_us.json
 cb02dd463fa94d5285fbca80626ee4f2835371c6 assets/superiorshields/models/item/bronze_shield.json
 4bbcc914627f9c8f61b1bb50c95772a88bc394f9 assets/superiorshields/models/item/constantan_shield.json
 b8df211ed19fd42fb5618858c8adf88dcff143a0 assets/superiorshields/models/item/copper_shield.json

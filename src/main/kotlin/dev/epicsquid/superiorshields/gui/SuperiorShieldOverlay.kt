@@ -1,10 +1,13 @@
 package dev.epicsquid.superiorshields.gui
 
 import com.mojang.blaze3d.systems.RenderSystem
-import com.mojang.blaze3d.vertex.*
+import com.mojang.blaze3d.vertex.BufferBuilder
+import com.mojang.blaze3d.vertex.DefaultVertexFormat
+import com.mojang.blaze3d.vertex.PoseStack
+import com.mojang.blaze3d.vertex.Tesselator
 import com.mojang.blaze3d.vertex.VertexFormat.Mode.QUADS
+import dev.epicsquid.superiorshields.SuperiorShields
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
-import epicsquid.superiorshields.SuperiorShields
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiComponent
 import net.minecraft.resources.ResourceLocation
@@ -13,7 +16,6 @@ import net.minecraft.world.entity.player.Player
 import net.minecraftforge.client.gui.overlay.ForgeGui
 import net.minecraftforge.client.gui.overlay.IGuiOverlay
 import org.lwjgl.opengl.GL11
-import kotlin.math.roundToInt
 
 class SuperiorShieldOverlay : GuiComponent(), IGuiOverlay {
 

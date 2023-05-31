@@ -11,17 +11,12 @@ import dev.epicsquid.superiorshields.config.Config
 import dev.epicsquid.superiorshields.config.SuperiorShieldStats
 import dev.epicsquid.superiorshields.data.SuperiorShieldsTags
 import dev.epicsquid.superiorshields.effects.DefaultEffectHandler
-import dev.epicsquid.superiorshields.effects.EffectHandler
 import dev.epicsquid.superiorshields.effects.SuperiorShieldEffects
 import dev.epicsquid.superiorshields.item.EnergySuperiorShieldItem
 import dev.epicsquid.superiorshields.item.SuperiorShieldItem
-import dev.epicsquid.superiorshields.item.ThermalSuperiorShieldItem
-import dev.epicsquid.superiorshields.registry.ItemRegistry.diamondShield
 import dev.epicsquid.superiorshields.shield.DurabilitySuperiorShield
 import dev.epicsquid.superiorshields.shield.EnergySuperiorShield
-import dev.epicsquid.superiorshields.shield.ThermalSuperiorShield
 import dev.epicsquid.superiorshields.utils.registryEntry
-import epicsquid.superiorshields.item.ThermalShieldItem
 import net.minecraft.data.recipes.ShapedRecipeBuilder
 import net.minecraft.data.recipes.UpgradeRecipeBuilder
 import net.minecraft.resources.ResourceLocation
