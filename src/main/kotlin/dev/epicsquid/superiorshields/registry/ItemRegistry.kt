@@ -13,6 +13,7 @@ import dev.epicsquid.superiorshields.data.SuperiorShieldsTags
 import dev.epicsquid.superiorshields.effects.DefaultEffectHandler
 import dev.epicsquid.superiorshields.effects.SuperiorShieldEffects
 import dev.epicsquid.superiorshields.item.EnergySuperiorShieldItem
+import dev.epicsquid.superiorshields.item.FireNovaSuperiorShieldItem
 import dev.epicsquid.superiorshields.item.SuperiorShieldItem
 import dev.epicsquid.superiorshields.shield.DurabilitySuperiorShield
 import dev.epicsquid.superiorshields.shield.EnergySuperiorShield
@@ -262,15 +263,12 @@ object ItemRegistry {
 
 	val fieryShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
 		registrate.item<SuperiorShieldItem<DurabilitySuperiorShield>>("fiery_shield") { props: Item.Properties ->
-			SuperiorShieldItem(
+			FireNovaSuperiorShieldItem(
 				props,
 				8,
 				DurabilitySuperiorShield(
 					name = "fiery_shield",
-					config = Config.SHIELDS_CONFIG.fieryShield,
-					effectHandler = DefaultEffectHandler(
-						empty = { SuperiorShieldEffects.FIRE_NOVA(it.shieldHolder, 1) }
-					)
+					config = Config.SHIELDS_CONFIG.fieryShield
 				)
 			) { Ingredient.of(Tags.Items.INGOTS_IRON) }
 		}
