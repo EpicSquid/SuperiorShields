@@ -6,6 +6,13 @@
         {
           "type": "forge:mod_loaded",
           "modid": "mekanism"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:gem/lapis"
+          }
         }
       ],
       "recipe": {
@@ -15,7 +22,7 @@
             "tag": "forge:ender_pearls"
           },
           "X": {
-            "tag": "forge:gems/lapis"
+            "tag": "forge:gem/lapis"
           }
         },
         "pattern": [

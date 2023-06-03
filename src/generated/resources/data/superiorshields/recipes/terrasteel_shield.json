@@ -12,7 +12,7 @@
         "type": "minecraft:crafting_shaped",
         "key": {
           "E": {
-            "item": "superiorshields:manasteel_shield"
+            "tag": "forge:mana_pearl"
           },
           "X": {
             "tag": "forge:ingots/terrasteel"

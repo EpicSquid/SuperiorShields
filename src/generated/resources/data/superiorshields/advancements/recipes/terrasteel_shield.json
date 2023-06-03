@@ -4,7 +4,7 @@
       "advancement": {
         "parent": "minecraft:recipes/root",
         "criteria": {
-          "has_terrasteel": {
+          "has_item": {
             "conditions": {
               "items": [
                 {
@@ -23,7 +23,7 @@
         },
         "requirements": [
           [
-            "has_terrasteel",
+            "has_item",
             "has_the_recipe"
           ]
         ],

@@ -1,19 +1,35 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "key": {
-    "E": {
-      "item": "minecraft:ender_eye"
-    },
-    "X": {
-      "tag": "forge:gems/diamond"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:gems/diamond"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "key": {
+          "E": {
+            "tag": "forge:ender_pearls"
+          },
+          "X": {
+            "tag": "forge:gems/diamond"
+          }
+        },
+        "pattern": [
+          " X ",
+          "XEX",
+          " X "
+        ],
+        "result": {
+          "item": "superiorshields:diamond_shield"
+        }
+      }
     }
-  },
-  "pattern": [
-    " X ",
-    "XEX",
-    " X "
-  ],
-  "result": {
-    "item": "superiorshields:diamond_shield"
-  }
+  ]
 }

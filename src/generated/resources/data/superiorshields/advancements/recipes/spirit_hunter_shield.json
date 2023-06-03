@@ -4,13 +4,11 @@
       "advancement": {
         "parent": "minecraft:recipes/root",
         "criteria": {
-          "has_eye_of_ender": {
+          "has_item": {
             "conditions": {
               "items": [
                 {
-                  "items": [
-                    "minecraft:ender_eye"
-                  ]
+                  "tag": "malum:spirit_fabric"
                 }
               ]
             },
@@ -25,7 +23,7 @@
         },
         "requirements": [
           [
-            "has_eye_of_ender",
+            "has_item",
             "has_the_recipe"
           ]
         ],

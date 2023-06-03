@@ -4,7 +4,7 @@
       "advancement": {
         "parent": "minecraft:recipes/root",
         "criteria": {
-          "has_advanced_alloy": {
+          "has_item": {
             "conditions": {
               "items": [
                 {
@@ -23,7 +23,7 @@
         },
         "requirements": [
           [
-            "has_advanced_alloy",
+            "has_item",
             "has_the_recipe"
           ]
         ],

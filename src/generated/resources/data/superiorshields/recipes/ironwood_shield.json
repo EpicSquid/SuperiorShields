@@ -4,6 +4,10 @@
     {
       "conditions": [
         {
+          "type": "forge:mod_loaded",
+          "modid": "twilight_forest"
+        },
+        {
           "type": "forge:not",
           "value": {
             "type": "forge:tag_empty",

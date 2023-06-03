@@ -4,18 +4,15 @@
     {
       "conditions": [
         {
-          "type": "forge:not",
-          "value": {
-            "type": "forge:tag_empty",
-            "tag": "forge:ingots/knightmetal"
-          }
+          "type": "forge:mod_loaded",
+          "modid": "twilight_forest"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
         "key": {
           "E": {
-            "item": "minecraft:ender_eye"
+            "tag": "forge:ender_pearls"
           },
           "X": {
             "tag": "forge:ingots/knightmetal"

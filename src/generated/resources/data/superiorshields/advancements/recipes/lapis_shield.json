@@ -4,7 +4,7 @@
       "advancement": {
         "parent": "minecraft:recipes/root",
         "criteria": {
-          "has_enderpearl": {
+          "has_item": {
             "conditions": {
               "items": [
                 {
@@ -23,7 +23,7 @@
         },
         "requirements": [
           [
-            "has_enderpearl",
+            "has_item",
             "has_the_recipe"
           ]
         ],
@@ -37,6 +37,13 @@
         {
           "type": "forge:mod_loaded",
           "modid": "mekanism"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:gem/lapis"
+          }
         }
       ]
     }
