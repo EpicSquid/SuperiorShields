@@ -77,6 +77,13 @@ abstract class AbstractSuperiorShield(
 		} else {
 			// It's not, so start recharging cycle
 			if (shield.ticksWithoutDamage >= delayAttribute) {
+				// This is compat for 1.19.2 update to 3.0.0, so we don't need to keep this on the 1.20 port
+				if (rateAttribute == 0) {
+					onEquipShield(entity, shield, stack)
+					return
+				}
+
+				// This is good code we have to keep
 				if (shield.ticksSinceRecharge % rateAttribute == 0) {
 					rechargeShield(stack, entity)
 					if (entity is ServerPlayer) {

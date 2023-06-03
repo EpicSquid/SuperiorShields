@@ -9,7 +9,7 @@ plugins {
 	id("org.spongepowered.mixin")
 }
 
-version = "1.19.2-3.0.0"
+version = "1.19.2-3.0.1c"
 group = "dev.epicsquid"
 
 val modid: String = "superiorshields"

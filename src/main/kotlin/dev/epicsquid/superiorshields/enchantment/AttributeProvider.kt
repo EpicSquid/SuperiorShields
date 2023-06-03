@@ -7,6 +7,6 @@ interface AttributeProvider {
 
 data class ShieldAttributeModifiers(
 	val capacity: Int = 0,
-	val rechargeRateMultiplier: Double = 1.0,
+	val rechargeRateMultiplier: Double = 0.0,
 	val rechargeDelay: Int = 0
 )
