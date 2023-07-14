@@ -9,7 +9,7 @@ plugins {
 	id("org.spongepowered.mixin")
 }
 
-version = "1.19.2-3.0.1c"
+version = "1.19.2-3.0.2"
 group = "dev.epicsquid"
 
 val modid: String = "superiorshields"
@@ -104,6 +104,13 @@ repositories {
 	maven("https://maven.blamejared.com")
 	// Thermal
 	maven("https://maven.covers1624.net/")
+	maven {
+		name = "Curse Maven"
+		url = uri("https://cursemaven.com")
+		content {
+			includeGroup("curse.maven")
+		}
+	}
 	mavenCentral()
 }
 
@@ -143,8 +150,8 @@ dependencies {
 	implementation(fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-$minecraftVersion:3.13.0.437"))
 
 	// Malum
-	implementation(fg.deobf("team.lodestar.lodestone:lodestone:$minecraftVersion-2.0.0.82"))
-	implementation(fg.deobf("com.sammy.malum:malum:$minecraftVersion-1.4.3.1-9"))
+	implementation(fg.deobf("team.lodestar.lodestone:lodestone:$minecraftVersion-1.4.2.83"))
+	implementation(fg.deobf("com.sammy.malum:malum:$minecraftVersion-1.5.1-19"))
 }
 
 tasks.withType(GenerateModuleMetadata::class.java) {
