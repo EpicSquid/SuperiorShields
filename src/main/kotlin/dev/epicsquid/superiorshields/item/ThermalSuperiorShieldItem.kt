@@ -1,6 +1,6 @@
 package dev.epicsquid.superiorshields.item
 
-import cofh.core.item.IAugmentableItem
+import cofh.core.common.item.IAugmentableItem
 import cofh.core.util.helpers.AugmentDataHelper
 import cofh.core.util.helpers.AugmentableHelper
 import cofh.lib.util.constants.NBTTags
@@ -18,7 +18,7 @@ class ThermalSuperiorShieldItem(
 	private val maxEnergy: Int,
 	barColor: Int
 ) : EnergySuperiorShieldItem<ThermalSuperiorShield>(props, enchantmentValue, type, maxEnergy, barColor),
-	IAugmentableItem{
+	IAugmentableItem {
 
 	override fun getAugmentSlots(augmentable: ItemStack): Int = 1
 

@@ -7,7 +7,9 @@ import dev.epicsquid.superiorshields.shield.ArsManaSuperiorShield
 import dev.epicsquid.superiorshields.shield.DurabilitySuperiorShield
 import dev.epicsquid.superiorshields.shield.ReactiveHelper
 import net.minecraft.world.item.Item
+import net.minecraft.world.item.Item.Properties
 import net.minecraft.world.item.crafting.Ingredient
+import net.minecraftforge.common.util.NonNullFunction
 import net.minecraftforge.fml.ModList
 
 object ArsCompat {
@@ -41,7 +43,7 @@ object ArsCompat {
 			enchantmentValue: Int,
 			type: DurabilitySuperiorShield,
 			repairItem: () -> Ingredient?,
-		): NonNullFunction<Item.Properties, SuperiorShieldItem<*>> =
+		): NonNullFunction<Properties, SuperiorShieldItem<*>> =
 			NonNullFunction { props: Item.Properties ->
 				SuperiorShieldItem(
 					props = props,

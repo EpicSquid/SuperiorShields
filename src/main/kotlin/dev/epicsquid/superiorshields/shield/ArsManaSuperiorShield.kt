@@ -1,8 +1,8 @@
 package dev.epicsquid.superiorshields.shield
 
-import com.hollingsworth.arsnouveau.common.capability.CapabilityRegistry
-import com.hollingsworth.arsnouveau.common.enchantment.EnchantmentRegistry
 import com.hollingsworth.arsnouveau.common.spell.casters.ReactiveCaster
+import com.hollingsworth.arsnouveau.setup.registry.CapabilityRegistry
+import com.hollingsworth.arsnouveau.setup.registry.EnchantmentRegistry
 import dev.epicsquid.superiorshields.capability.SuperiorShieldCap
 import dev.epicsquid.superiorshields.config.SuperiorShieldStats
 import dev.epicsquid.superiorshields.effects.EffectTrigger
@@ -39,7 +39,7 @@ object ReactiveHelper {
 		) {
 			val caster = ReactiveCaster(effectTrigger.shieldStack)
 			if (caster.spell.isValid) {
-				caster.castSpell(effectTrigger.shieldHolder.level, effectTrigger.shieldHolder, MAIN_HAND, Component.empty())
+				caster.castSpell(effectTrigger.shieldHolder.level(), effectTrigger.shieldHolder, MAIN_HAND, Component.empty())
 			}
 		}
 	}

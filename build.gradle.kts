@@ -1,86 +1,119 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
+import java.text.SimpleDateFormat
+import java.util.*
 
 plugins {
-	kotlin("jvm") version "1.8.20"
-	kotlin("plugin.serialization") version "1.8.20"
-	id("net.minecraftforge.gradle") version "5.1.+"
+	kotlin("jvm").version("1.9.22")
+	kotlin("plugin.serialization").version("1.9.22")
+	id("eclipse")
+	id("idea")
 	id("maven-publish")
-	id("org.parchmentmc.librarian.forgegradle") version "1.+"
+	id("net.neoforged.gradle").version("[6.0.18,6.2)")
+	id("org.parchmentmc.librarian.forgegradle").version("1.+")
 	id("org.spongepowered.mixin")
 }
 
-version = "1.19.2-3.0.2"
-group = "dev.epicsquid"
+val minecraftVersion: String by extra
+val minecraftVersionRange: String by extra
+val loaderVersionRange: String by extra
+val neoforgeVersionRange: String by extra
+val modVersion: String by extra
+val modGroupId: String by extra
+val modId: String by extra
+val modAuthors: String by extra
+val modDescription: String by extra
+val modLicense: String by extra
+val modName: String by extra
+val parchmentChannel: String by extra
+val parchmentVersion: String by extra
+val neoforgeVersion: String by extra
+val jeiVersion: String by extra
+val curiosVersion: String by extra
+val mixinVersion: String by extra
+val modJavaVersion: String by extra
+val kotlinVersion: String by extra
+val coroutinesVersion: String by extra
+val serializationVersion: String by extra
+val registrateVersion: String by extra
+val cofhCoreVersion: String by extra
+val thermalCoreVersion: String by extra
+val thermalFoundationVersion: String by extra
+val thermalExpansionVersion: String by extra
+val thermalInnovationVersion: String by extra
+val thermalVersionRange: String by extra
+val kotlinForForgeVersion: String by extra
+val kotlinForForgeVersionRange: String by extra
+val botaniaVersion: String by extra
+val arsNouveauVersion: String by extra
+val malumVersion: String by extra
+val patchouliVersion: String by extra
+val lodestoneVersion: String by extra
 
-val modid: String = "superiorshields"
-archivesName.set(modid)
+version = "$minecraftVersion-$modVersion"
+if (System.getenv("BUILD_NUMBER") != null) {
+	version = "$minecraftVersion-$modVersion.${System.getenv("BUILD_NUMBER")}"
+}
+group = modGroupId
+
+val baseArchivesName = modId
+base {
+	archivesName.set(baseArchivesName)
+}
+
+java {
+	toolchain {
+		languageVersion.set(JavaLanguageVersion.of(modJavaVersion))
+	}
+	withSourcesJar()
+}
 
 jarJar.enable()
 
-java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
-
 minecraft {
-	mappings("parchment", "2022.11.27-1.19.2")
+	mappings(parchmentChannel, parchmentVersion)
 
+	copyIdeResources.set(true)
+
+	// Default run configurations.
+	// These can be tweaked, removed, or duplicated as needed.
 	runs {
-		create("client") {
+		// applies to all the run configs below
+		configureEach {
 			workingDirectory(project.file("run"))
 
 			property("forge.logging.markers", "REGISTRIES")
 			property("forge.logging.console.level", "debug")
-			property("forge.enabledGameTestNamespaces", modid)
-
-			// Disable mixins for botania support in dev environment
-			property("mixin.env.remapRefMap", "true")
-			property("mixin.env.refMapRemappingFile", "${buildDir}/createSrgToMcp/output.srg")
 
 			mods {
-				create(modid) {
+				create(modId) {
 					source(sourceSets.main.get())
 				}
 			}
+		}
+
+		create("client") {
+			// Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
+			property("forge.enabledGameTestNamespaces", modId)
 		}
 
 		create("server") {
-			workingDirectory(project.file("run"))
-
-			property("forge.logging.markers", "REGISTRIES")
-			property("forge.logging.console.level", "debug")
-			property("forge.enabledGameTestNamespaces", modid)
-
-			// Disable mixins for botania support in dev environment
-			property("mixin.env.remapRefMap", "true")
-			property("mixin.env.refMapRemappingFile", "${buildDir}/createSrgToMcp/output.srg")
-
-			mods {
-				create(modid) {
-					source(sourceSets.main.get())
-				}
-			}
+			property("forge.enabledGameTestNamespaces", modId)
+			args("--nogui")
 		}
 
 		create("data") {
-			workingDirectory(project.file("run"))
+			// example of overriding the workingDirectory set in configureEach above
+			workingDirectory(project.file("run-data"))
 
-			property("forge.logging.markers", "REGISTRIES")
-			property("forge.logging.console.level", "debug")
-
-			// Disable mixins for botania support in dev environment
-			property("mixin.env.remapRefMap", "true")
-			property("mixin.env.refMapRemappingFile", "${buildDir}/createSrgToMcp/output.srg")
-
+			// Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
 			args(
-				"--mod", modid,
+				"--mod",
+				modId,
 				"--all",
-				"--output", file("src/generated/resources/"),
-				"--existing", file("src/main/resources/")
+				"--output",
+				file("src/generated/resources/"),
+				"--existing",
+				file("src/main/resources/")
 			)
-
-			mods {
-				create(modid) {
-					source(sourceSets.main.get())
-				}
-			}
 		}
 	}
 }
@@ -92,18 +125,23 @@ sourceSets {
 }
 
 repositories {
-	// Curios
-	maven("https://maven.theillusivec4.top/")
-	// Registrate
-	maven("https://maven.tterrag.com/")
-	// Kotlin for Forge
-	maven("https://thedarkcolour.github.io/KotlinForForge/")
-	// JEI
-	maven("https://dvs1.progwml6.com/files/maven/")
-	// Botania
-	maven("https://maven.blamejared.com")
-	// Thermal
-	maven("https://maven.covers1624.net/")
+	mavenCentral()
+	maven {
+		name = "Curios maven"
+		url = uri("https://maven.theillusivec4.top/")
+	}
+	maven {
+		name = "JEI maven"
+		url = uri("https://dvs1.progwml6.com/files/maven")
+	}
+	maven {
+		name = "tterrag maven"
+		url = uri("https://maven.tterrag.com/")
+	}
+	maven {
+		name = "BlameJared maven"
+		url = uri("https://maven.blamejared.com/")
+	}
 	maven {
 		name = "Curse Maven"
 		url = uri("https://cursemaven.com")
@@ -111,80 +149,122 @@ repositories {
 			includeGroup("curse.maven")
 		}
 	}
-	mavenCentral()
+	maven {
+		name = "Thermal Maven"
+		url = uri("https://maven.covers1624.net/")
+	}
+	maven {
+		name = "Kotlin for Forge"
+		setUrl("https://thedarkcolour.github.io/KotlinForForge/")
+	}
 }
 
 dependencies {
-	val minecraftVersion = "1.19.2"
-	minecraft("net.minecraftforge:forge:$minecraftVersion-43.2.8")
-	implementation("thedarkcolour:kotlinforforge:3.11.0")
-	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
-	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-Beta")
+	minecraft("net.neoforged:forge:$minecraftVersion-$neoforgeVersion")
 
-	// Registrate
-	val registrateVersion = "MC1.19-1.1.5"
-	jarJar(group = "com.tterrag.registrate", name = "Registrate", version = "[MC1.19-1.1.5,)") {
-		jarJar.pin(this, registrateVersion)
+	if (System.getProperty("idea.sync.active") != "true") {
+		annotationProcessor("org.spongepowered:mixin:$mixinVersion:processor")
 	}
-	implementation(fg.deobf("com.tterrag.registrate:Registrate:$registrateVersion"))
 
-	// Curios
-	val curiosVersion = "5.1.1.0"
-	runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:$minecraftVersion-$curiosVersion"))
-	compileOnly(fg.deobf("top.theillusivec4.curios:curios-forge:$minecraftVersion-$curiosVersion:api"))
+	// Kotlin for Forge
+	implementation("thedarkcolour:kotlinforforge:$kotlinForForgeVersion")
 
-	// Jei
-	runtimeOnly(fg.deobf("mezz.jei:jei-$minecraftVersion-forge:11.2.0.246"))
+	// Kotlin
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
 
-	// Botania
-	implementation(fg.deobf("vazkii.botania:Botania:$minecraftVersion-437-FORGE"))
-	runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:$minecraftVersion-77"))
+	// JEI Dependency
+	compileOnly(fg.deobf("mezz.jei:jei-${minecraftVersion}-common-api:${jeiVersion}"))
+	compileOnly(fg.deobf("mezz.jei:jei-${minecraftVersion}-forge-api:${jeiVersion}"))
+	runtimeOnly(fg.deobf("mezz.jei:jei-${minecraftVersion}-forge:${jeiVersion}"))
+
+	// Curios dependency
+	compileOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curiosVersion}:api"))
+	runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curiosVersion}"))
 
 	// Thermal
-	implementation(fg.deobf("com.teamcofh:cofh_core:$minecraftVersion-10.0.0.29"))
-	implementation(fg.deobf("com.teamcofh:thermal_core:$minecraftVersion-10.0.0.1"))
-	runtimeOnly(fg.deobf("com.teamcofh:thermal_foundation:$minecraftVersion-10.0.0.38"))
-	runtimeOnly(fg.deobf("com.teamcofh:thermal_expansion:$minecraftVersion-10.0.0.19"))
+	implementation(fg.deobf("com.teamcofh:cofh_core:$minecraftVersion-$cofhCoreVersion"))
+	implementation(fg.deobf("com.teamcofh:thermal_core:$minecraftVersion-$thermalCoreVersion"))
+	implementation(fg.deobf("com.teamcofh:thermal_foundation:$minecraftVersion-$thermalFoundationVersion"))
+	runtimeOnly(fg.deobf("com.teamcofh:thermal_innovation:$minecraftVersion-$thermalInnovationVersion"))
+	runtimeOnly(fg.deobf("com.teamcofh:thermal_expansion:$minecraftVersion-$thermalExpansionVersion"))
+
+
+	// Botania
+	implementation(fg.deobf("vazkii.botania:Botania:$minecraftVersion-$botaniaVersion-FORGE"))
+	runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:$minecraftVersion-$patchouliVersion-FORGE"))
 
 	// Ars Noveau
-	implementation(fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-$minecraftVersion:3.13.0.437"))
+	implementation(fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-$minecraftVersion:$arsNouveauVersion"))
 
 	// Malum
-	implementation(fg.deobf("team.lodestar.lodestone:lodestone:$minecraftVersion-1.4.2.83"))
-	implementation(fg.deobf("com.sammy.malum:malum:$minecraftVersion-1.5.1-19"))
+	implementation(fg.deobf("team.lodestar.lodestone:lodestone:$minecraftVersion-$lodestoneVersion"))
+	implementation(fg.deobf("com.sammy.malum:malum:$minecraftVersion-$malumVersion"))
 }
 
-tasks.withType(GenerateModuleMetadata::class.java) {
-	enabled = false
-}
 
-tasks.register("jarJarRelease") {
-	doLast {
-		tasks.getByName("jarJar") {
-			(this as Jar).archiveClassifier.set("")
-		}
-	}
-	finalizedBy(tasks.getByName("jarJar"))
-}
+tasks.withType<ProcessResources> {
+	inputs.property("version", version)
 
-tasks.jar.get().finalizedBy("reobfJar")
-tasks.named("jarJar").get().finalizedBy("reobfJarJar")
-
-tasks.jar {
-	manifest {
-		attributes(
-			"Specification-Title" to modid,
-			"Specification-Vendor" to "epicsquid",
-			"Specification-Version" to "1",
-			"Implementation-Title" to project.name,
-			"Implementation-Version" to project.version,
-			"Implementation-Vendor" to "epicsquid"
+	filesMatching(listOf("META-INF/mods.toml", "pack.mcmeta")) {
+		expand(
+			mapOf(
+				"forgeVersionRange" to neoforgeVersionRange,
+				"loaderVersionRange" to loaderVersionRange,
+				"minecraftVersion" to minecraftVersion,
+				"minecraftVersionRange" to minecraftVersionRange,
+				"modAuthors" to modAuthors,
+				"modDescription" to modDescription,
+				"modId" to modId,
+				"modJavaVersion" to modJavaVersion,
+				"modName" to modName,
+				"modVersion" to version,
+				"modLicense" to modLicense,
+				"thermalVersionRange" to thermalVersionRange,
+				"kotlinForForgeVersionRange" to kotlinForForgeVersionRange,
+			)
 		)
 	}
 }
 
-tasks.jar {
+tasks.withType<Jar> {
+	val now = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(Date())
+	manifest {
+		attributes(
+			mapOf(
+				"Specification-Title" to modName,
+				"Specification-Vendor" to modAuthors,
+				"Specification-Version" to '1',
+				"Implementation-Title" to modName,
+				"Implementation-Version" to version,
+				"Implementation-Vendor" to modAuthors,
+				"Implementation-Timestamp" to now,
+			)
+		)
+	}
 	finalizedBy("reobfJar")
+}
+
+publishing {
+	publications {
+		register<MavenPublication>("mavenJava") {
+			artifactId = baseArchivesName
+			artifact(tasks.jar.get())
+		}
+	}
+	repositories {
+		maven {
+			url = uri("file://${System.getenv("local_maven")}")
+		}
+	}
+}
+
+idea {
+	module {
+		for (fileName in listOf("run", "out", "logs")) {
+			excludeDirs.add(file(fileName))
+		}
+	}
 }
 
 tasks.withType<JavaCompile> {

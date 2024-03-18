@@ -34,13 +34,13 @@ open class SuperiorShieldItem<T : SuperiorShield>(
 	}
 
 	override fun onEquip(slotContext: SlotContext, prevStack: ItemStack, stack: ItemStack) {
-		if (!ItemStack.isSameIgnoreDurability(prevStack, stack)) {
+		if (!ItemStack.isSameItem(prevStack, stack)) {
 			onEquipShield(slotContext.entity, slotContext.entity.shield, stack)
 		}
 	}
 
 	override fun onUnequip(slotContext: SlotContext, newStack: ItemStack, stack: ItemStack) {
-		if (!ItemStack.isSameIgnoreDurability(stack, newStack)) {
+		if (!ItemStack.isSameItem(stack, newStack)) {
 			onUnequipShield(slotContext.entity, slotContext.entity.shield)
 		}
 	}

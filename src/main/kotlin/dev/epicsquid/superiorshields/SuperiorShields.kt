@@ -1,12 +1,13 @@
 package dev.epicsquid.superiorshields
 
-import com.tterrag.registrate.Registrate
 import dev.epicsquid.superiorshields.config.Config
 import dev.epicsquid.superiorshields.data.SuperiorShieldsTags
 import dev.epicsquid.superiorshields.event.ClientEventManager
 import dev.epicsquid.superiorshields.event.EventManager
 import dev.epicsquid.superiorshields.network.NetworkHandler
-import dev.epicsquid.superiorshields.registry.*
+import dev.epicsquid.superiorshields.registry.EnchantmentRegistry
+import dev.epicsquid.superiorshields.registry.ItemRegistry
+import dev.epicsquid.superiorshields.registry.LangRegistry
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.ItemStack
@@ -20,31 +21,25 @@ import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.config.ModConfig
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
+import thedarkcolour.kotlinforforge.forge.MOD_BUS
 import thedarkcolour.kotlinforforge.forge.runForDist
 import top.theillusivec4.curios.api.CuriosApi
 import top.theillusivec4.curios.api.SlotTypeMessage
 import top.theillusivec4.curios.api.SlotTypeMessage.Builder
 
 @Mod(SuperiorShields.MODID)
-class SuperiorShields {
-	companion object {
-		const val MODID = "superiorshields"
-		const val SUPERIOR_SHIELD_CURIO = "superior_shield"
+object SuperiorShields {
+	const val MODID = "superiorshields"
+	const val SUPERIOR_SHIELD_CURIO = "superior_shield"
 
-		val tab = object : CreativeModeTab(MODID) {
-			override fun makeIcon() = ItemStack(ItemRegistry.ironShield)
-		}
-
-		val registrate: Registrate by lazy {
-			Registrate.create(MODID).creativeModeTab { tab }
-		}
+	val tab = object : CreativeModeTab(MODID) {
+		override fun makeIcon() = ItemStack(ItemRegistry.ironShield)
 	}
 
 	init {
 		ModLoadingContext.get()
 			.registerConfig(ModConfig.Type.SERVER, Config.SHIELDS_CONFIG_SPEC, "superior-shields-server.toml")
-		val modEventBus = FMLJavaModLoadingContext.get().modEventBus
+		val modEventBus = MOD_BUS
 
 		MinecraftForge.EVENT_BUS.register(EventManager)
 		modEventBus.addListener { _: FMLCommonSetupEvent -> NetworkHandler.register() }
@@ -58,7 +53,7 @@ class SuperiorShields {
 		ItemRegistry.classload()
 		LangRegistry.classload()
 
-		FMLJavaModLoadingContext.get().modEventBus.addListener(LOWEST, this::onGatherData)
+		modEventBus.addListener(LOWEST, this::onGatherData)
 	}
 
 	private fun onInterModEnqueue() {
