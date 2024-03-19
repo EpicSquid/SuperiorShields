@@ -1,10 +1,7 @@
 package dev.epicsquid.superiorshields
 
 import dev.epicsquid.superiorshields.config.Config
-import dev.epicsquid.superiorshields.data.SuperiorShieldsItemModels
-import dev.epicsquid.superiorshields.data.SuperiorShieldsItemTags
-import dev.epicsquid.superiorshields.data.SuperiorShieldsLang
-import dev.epicsquid.superiorshields.data.SuperiorShieldsRecipes
+import dev.epicsquid.superiorshields.data.*
 import dev.epicsquid.superiorshields.event.ClientEventManager
 import dev.epicsquid.superiorshields.event.EventManager
 import dev.epicsquid.superiorshields.network.NetworkHandler
@@ -50,6 +47,7 @@ object SuperiorShields {
 		val output = generator.packOutput
 		generator.addProvider(event.includeClient(), SuperiorShieldsLang(output, "en_us"))
 		generator.addProvider(event.includeClient(), SuperiorShieldsItemModels(output, event.existingFileHelper))
+		generator.addProvider(event.includeClient(), SuperiorShieldsSpriteSources(output, event.existingFileHelper))
 
 		val blockTagsProvider = ForgeBlockTagsProvider(output, event.lookupProvider, event.existingFileHelper)
 		generator.addProvider(
@@ -57,5 +55,9 @@ object SuperiorShields {
 			SuperiorShieldsItemTags(output, event.lookupProvider, blockTagsProvider, event.existingFileHelper)
 		)
 		generator.addProvider(event.includeServer(), SuperiorShieldsRecipes(output))
+		generator.addProvider(
+			event.includeServer(),
+			SuperiorShieldsCurios(output, event.existingFileHelper, event.lookupProvider)
+		)
 	}
 }
