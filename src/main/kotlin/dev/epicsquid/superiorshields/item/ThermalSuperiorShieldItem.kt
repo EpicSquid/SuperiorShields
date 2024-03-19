@@ -12,7 +12,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider
 import kotlin.math.roundToInt
 
 class ThermalSuperiorShieldItem(
-	props: Properties,
+	props: Properties = Properties(),
 	enchantmentValue: Int,
 	private val type: ThermalSuperiorShield,
 	private val maxEnergy: Int,

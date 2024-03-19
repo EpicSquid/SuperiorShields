@@ -9,7 +9,7 @@ import com.mojang.blaze3d.vertex.VertexFormat.Mode.QUADS
 import dev.epicsquid.superiorshields.SuperiorShields
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
 import net.minecraft.client.Minecraft
-import net.minecraft.client.gui.GuiComponent
+import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.effect.MobEffects
 import net.minecraft.world.entity.player.Player
@@ -17,7 +17,7 @@ import net.minecraftforge.client.gui.overlay.ForgeGui
 import net.minecraftforge.client.gui.overlay.IGuiOverlay
 import org.lwjgl.opengl.GL11
 
-class SuperiorShieldOverlay : GuiComponent(), IGuiOverlay {
+class SuperiorShieldOverlay : IGuiOverlay {
 
 	private fun drawQuad(
 		buffer: BufferBuilder,
@@ -43,7 +43,13 @@ class SuperiorShieldOverlay : GuiComponent(), IGuiOverlay {
 		buffer.vertex((x4 + 0.0f).toDouble(), (y4 + 0.0f).toDouble(), 0.0).uv(minU * f, minV * f1).endVertex()
 	}
 
-	override fun render(gui: ForgeGui?, poseStack: PoseStack?, partialTick: Float, screenWidth: Int, screenHeight: Int) {
+	override fun render(
+		gui: ForgeGui?,
+		guiGraphics: GuiGraphics?,
+		partialTick: Float,
+		screenWidth: Int,
+		screenHeight: Int
+	) {
 		val minecraft = Minecraft.getInstance()
 		val player: Player? = minecraft.player
 		if (player == null || player.isSpectator || player.isCreative || minecraft.options.hideGui) {

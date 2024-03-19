@@ -1,7 +1,7 @@
 package dev.epicsquid.superiorshields.item
 
 import dev.epicsquid.superiorshields.capability.EnergyCapProvider
-import dev.epicsquid.superiorshields.registry.LangRegistry
+import dev.epicsquid.superiorshields.data.SuperiorShieldsLang
 import dev.epicsquid.superiorshields.shield.EnergySuperiorShield
 import dev.epicsquid.superiorshields.utils.TooltipUtils
 import net.minecraft.ChatFormatting.GRAY
@@ -17,7 +17,7 @@ import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
 open class EnergySuperiorShieldItem<T : EnergySuperiorShield>(
-	props: Properties,
+	props: Properties = Properties(),
 	enchantmentValue: Int,
 	type: T,
 	private val maxEnergy: Int,
@@ -47,10 +47,10 @@ open class EnergySuperiorShieldItem<T : EnergySuperiorShield>(
 		val energyStorage = stack.getCapabilityOrThrow(ForgeCapabilities.ENERGY)
 		val decimalFormat = DecimalFormat().apply { maximumFractionDigits = 2 }
 
-		tooltip.add(LangRegistry.BLANK)
+		tooltip.add(Component.translatable(SuperiorShieldsLang.BLANK))
 		tooltip.add(
 			TooltipUtils.withArgs(
-				LangRegistry.ENERGY,
+				Component.translatable(SuperiorShieldsLang.ENERGY),
 				decimalFormat.format(energyStorage.energyStored.toDouble() / 1000.0),
 				decimalFormat.format(energyStorage.maxEnergyStored.toDouble() / 1000.0)
 			).withStyle(GRAY)

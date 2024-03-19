@@ -23,7 +23,6 @@ import net.minecraftforge.network.PacketDistributor
 import kotlin.math.roundToInt
 
 abstract class AbstractSuperiorShield(
-	val name: String,
 	val config: SuperiorShieldStats,
 	private val effectHandler: EffectHandler = DefaultEffectHandler.NONE
 ) : SuperiorShield, EffectHandler {

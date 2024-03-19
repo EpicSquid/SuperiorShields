@@ -12,7 +12,7 @@ import vazkii.botania.common.handler.PixieHandler
 import java.util.*
 
 class ElementiumSuperiorShieldItem(
-	props: Properties,
+	props: Properties = Properties(),
 	enchantmentValue: Int,
 	type: BotaniaManaSuperiorShield,
 	repairItem: () -> Ingredient?,

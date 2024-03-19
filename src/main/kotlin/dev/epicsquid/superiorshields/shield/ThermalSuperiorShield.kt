@@ -7,9 +7,8 @@ import net.minecraft.world.item.ItemStack
 import kotlin.math.roundToInt
 
 class ThermalSuperiorShield(
-	name: String,
 	config: SuperiorShieldStats
-) : EnergySuperiorShield(name, config) {
+) : EnergySuperiorShield(config) {
 
 	override fun calculateShieldAttributes(stack: ItemStack): SuperiorShieldAttributes {
 		val defaultAttributes = super.calculateShieldAttributes(stack)

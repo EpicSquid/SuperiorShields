@@ -9,9 +9,8 @@ import net.minecraft.world.item.ItemStack
 import vazkii.botania.api.mana.ManaItemHandler
 
 class BotaniaManaSuperiorShield(
-	name: String,
 	config: SuperiorShieldStats
-) : DurabilitySuperiorShield(name, config) {
+) : DurabilitySuperiorShield(config) {
 
 	private fun repairWithMana(stack: ItemStack, player: Player) {
 		if (stack.isDamaged && ManaItemHandler.instance()

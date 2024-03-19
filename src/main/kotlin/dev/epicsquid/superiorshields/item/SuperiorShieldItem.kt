@@ -1,7 +1,7 @@
 package dev.epicsquid.superiorshields.item
 
+import dev.epicsquid.superiorshields.data.SuperiorShieldsLang
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
-import dev.epicsquid.superiorshields.registry.LangRegistry
 import dev.epicsquid.superiorshields.shield.SuperiorShield
 import dev.epicsquid.superiorshields.utils.TooltipUtils
 import net.minecraft.ChatFormatting
@@ -19,7 +19,7 @@ import java.text.DecimalFormat
 import java.util.*
 
 open class SuperiorShieldItem<T : SuperiorShield>(
-	props: Properties,
+	props: Properties = Properties(),
 	private val enchantmentValue: Int,
 	private val type: T,
 	private val repairItem: () -> Ingredient? = { null }
@@ -67,21 +67,27 @@ open class SuperiorShieldItem<T : SuperiorShield>(
 		val (capacityAttribute, rateAttribute, delayAttribute) = calculateShieldAttributes(stack)
 
 		val rateDisplay = rateAttribute / 20.0f
-		val delayDisplay = delayAttribute / 20.0f
+		val delayDisplay = delayAttribute / 20.0
 
 		tooltip.apply {
-			add(LangRegistry.BLANK)
-			add(LangRegistry.EQUIP.withStyle(ChatFormatting.GRAY))
+			add(Component.translatable(SuperiorShieldsLang.BLANK))
+			add(Component.translatable(SuperiorShieldsLang.EQUIP).withStyle(ChatFormatting.GRAY))
 			add(
-				TooltipUtils.withArgs(LangRegistry.HP, decimalFormat.format(capacityAttribute))
+				TooltipUtils.withArgs(Component.translatable(SuperiorShieldsLang.HP), decimalFormat.format(capacityAttribute))
 					.withStyle(ChatFormatting.DARK_GREEN)
 			)
 			add(
-				TooltipUtils.withArgs(LangRegistry.RECHARGE_RATE, decimalFormat.format(rateDisplay))
+				TooltipUtils.withArgs(
+					Component.translatable(SuperiorShieldsLang.RECHARGE_RATE),
+					decimalFormat.format(rateDisplay)
+				)
 					.withStyle(ChatFormatting.DARK_GREEN)
 			)
 			add(
-				TooltipUtils.withArgs(LangRegistry.RECHARGE_DELAY, decimalFormat.format(delayDisplay))
+				TooltipUtils.withArgs(
+					Component.translatable(SuperiorShieldsLang.RECHARGE_DELAY),
+					decimalFormat.format(delayDisplay)
+				)
 					.withStyle(ChatFormatting.DARK_GREEN)
 			)
 		}

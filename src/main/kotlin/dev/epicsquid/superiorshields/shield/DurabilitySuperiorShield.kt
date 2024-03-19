@@ -9,10 +9,9 @@ import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.ItemStack
 
 open class DurabilitySuperiorShield(
-	name: String,
 	config: SuperiorShieldStats,
 	effectHandler: EffectHandler = DefaultEffectHandler.NONE
-) : AbstractSuperiorShield(name, config, effectHandler) {
+) : AbstractSuperiorShield(config, effectHandler) {
 
 	private fun damageItem(stack: ItemStack, entity: LivingEntity) {
 		stack.hurtAndBreak(1, entity) {

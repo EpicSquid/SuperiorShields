@@ -12,9 +12,8 @@ import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.ItemStack
 
 class ArsManaSuperiorShield(
-	name: String,
 	config: SuperiorShieldStats
-) : DurabilitySuperiorShield(name, config) {
+) : DurabilitySuperiorShield(config) {
 
 	private fun repairWithMana(stack: ItemStack, entity: LivingEntity) {
 		CapabilityRegistry.getMana(entity).ifPresent { mana ->

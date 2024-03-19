@@ -1,7 +1,5 @@
 package dev.epicsquid.superiorshields.registry
 
-import com.tterrag.registrate.util.DataIngredient
-import com.tterrag.registrate.util.entry.ItemEntry
 import dev.epicsquid.superiorshields.SuperiorShields
 import dev.epicsquid.superiorshields.compat.ArsCompat
 import dev.epicsquid.superiorshields.compat.BotaniaCompat
@@ -9,38 +7,31 @@ import dev.epicsquid.superiorshields.compat.MalumCompat
 import dev.epicsquid.superiorshields.compat.ThermalCompat
 import dev.epicsquid.superiorshields.config.Config
 import dev.epicsquid.superiorshields.config.SuperiorShieldStats
-import dev.epicsquid.superiorshields.data.SuperiorShieldsTags
-import dev.epicsquid.superiorshields.effects.DefaultEffectHandler
-import dev.epicsquid.superiorshields.effects.SuperiorShieldEffects
+import dev.epicsquid.superiorshields.data.SuperiorShieldsItemTags
 import dev.epicsquid.superiorshields.item.EnergySuperiorShieldItem
 import dev.epicsquid.superiorshields.item.FireNovaSuperiorShieldItem
 import dev.epicsquid.superiorshields.item.SuperiorShieldItem
 import dev.epicsquid.superiorshields.shield.DurabilitySuperiorShield
 import dev.epicsquid.superiorshields.shield.EnergySuperiorShield
-import dev.epicsquid.superiorshields.utils.registryEntry
-import net.minecraft.data.recipes.ShapedRecipeBuilder
-import net.minecraft.data.recipes.UpgradeRecipeBuilder
+import dev.epicsquid.superiorshields.utils.forgeTag
+import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.ItemTags
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
+import net.minecraft.world.item.Item.Properties
 import net.minecraft.world.item.Tiers
 import net.minecraft.world.item.crafting.Ingredient
-import net.minecraft.world.level.ItemLike
 import net.minecraftforge.common.Tags
-import net.minecraftforge.common.crafting.ConditionalRecipe
-import net.minecraftforge.common.crafting.conditions.ICondition
-import net.minecraftforge.common.crafting.conditions.ModLoadedCondition
-import net.minecraftforge.common.crafting.conditions.NotCondition
-import net.minecraftforge.common.crafting.conditions.TagEmptyCondition
+import net.minecraftforge.registries.DeferredRegister
+import thedarkcolour.kotlinforforge.forge.registerObject
 
 object ItemRegistry {
 
-	val registrate = SuperiorShields.registrate
+	val REGISTRY = DeferredRegister.create(Registries.ITEM, SuperiorShields.MODID)
 
-	val ironShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val ironShield by REGISTRY.registerObject("iron_shield") {
 		durabilityShieldItem(
-			"iron_shield",
 			Config.SHIELDS_CONFIG.ironShield,
 			Tiers.IRON.enchantmentValue,
 			Tiers.IRON.uses,
@@ -48,9 +39,8 @@ object ItemRegistry {
 		)
 	}
 
-	val goldShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val goldenShield by REGISTRY.registerObject("golden_shield") {
 		durabilityShieldItem(
-			"golden_shield",
 			Config.SHIELDS_CONFIG.goldShield,
 			Tiers.GOLD.enchantmentValue,
 			Tiers.GOLD.uses,
@@ -58,9 +48,8 @@ object ItemRegistry {
 		)
 	}
 
-	val copperShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val copperShield by REGISTRY.registerObject("copper_shield") {
 		durabilityShieldItem(
-			"copper_shield",
 			Config.SHIELDS_CONFIG.copperShield,
 			9,
 			160,
@@ -68,9 +57,8 @@ object ItemRegistry {
 		)
 	}
 
-	val diamondShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val diamondShield by REGISTRY.registerObject("diamond_shield") {
 		durabilityShieldItem(
-			"diamond_shield",
 			Config.SHIELDS_CONFIG.diamondShield,
 			Tiers.DIAMOND.enchantmentValue,
 			Tiers.DIAMOND.uses,
@@ -79,9 +67,8 @@ object ItemRegistry {
 	}
 
 	// Metal Shields
-	val tinShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val tinShield by REGISTRY.registerObject("tin_shield") {
 		durabilityShieldItem(
-			"tin_shield",
 			Config.SHIELDS_CONFIG.tinShield,
 			18,
 			32,
@@ -89,18 +76,16 @@ object ItemRegistry {
 		)
 	}
 
-	val leadShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val leadShield by REGISTRY.registerObject("lead_shield") {
 		durabilityShieldItem(
-			"lead_shield",
 			Config.SHIELDS_CONFIG.leadShield, 16,
 			64,
 			"ingots/lead".forgeTag
 		)
 	}
 
-	val silverShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val silverShield by REGISTRY.registerObject("silver_shield") {
 		durabilityShieldItem(
-			"silver_shield",
 			Config.SHIELDS_CONFIG.silverShield,
 			30,
 			48,
@@ -108,9 +93,8 @@ object ItemRegistry {
 		)
 	}
 
-	val nickelShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val nickelShield by REGISTRY.registerObject("nickel_shield") {
 		durabilityShieldItem(
-			"nickel_shield",
 			Config.SHIELDS_CONFIG.nickelShield,
 			30,
 			240,
@@ -118,9 +102,8 @@ object ItemRegistry {
 		)
 	}
 
-	val bronzeShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val bronzeShield by REGISTRY.registerObject("bronze_shield") {
 		durabilityShieldItem(
-			"bronze_shield",
 			Config.SHIELDS_CONFIG.bronzeShield,
 			16,
 			325,
@@ -128,9 +111,8 @@ object ItemRegistry {
 		)
 	}
 
-	val electrumShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val electrumShield by REGISTRY.registerObject("electrum_shield") {
 		durabilityShieldItem(
-			"electrum_shield",
 			Config.SHIELDS_CONFIG.electrumShield,
 			28,
 			192,
@@ -138,9 +120,8 @@ object ItemRegistry {
 		)
 	}
 
-	val invarShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val invarShield by REGISTRY.registerObject("invar_shield") {
 		durabilityShieldItem(
-			"invar_shield",
 			Config.SHIELDS_CONFIG.invarShield,
 			13,
 			300,
@@ -148,9 +129,8 @@ object ItemRegistry {
 		)
 	}
 
-	val constantanShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val constantanShield by REGISTRY.registerObject("constantan_shield") {
 		durabilityShieldItem(
-			"constantan_shield",
 			Config.SHIELDS_CONFIG.constantanShield,
 			10,
 			250,
@@ -158,20 +138,18 @@ object ItemRegistry {
 		)
 	}
 
-	val lapisShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val lapisShield by REGISTRY.registerObject("lapis_shield") {
 		durabilityShieldItem(
-			"lapis_shield",
 			Config.SHIELDS_CONFIG.lapisShield,
 			32,
 			128,
 			"gem/lapis".forgeTag,
-			conditions = listOf(ModLoadedCondition("mekanism"))
+//			conditions = listOf(ModLoadedCondition("mekanism"))
 		)
 	}
 
-	val steelShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val steelShield by REGISTRY.registerObject("steel_shield") {
 		durabilityShieldItem(
-			"steel_shield",
 			Config.SHIELDS_CONFIG.steelShield,
 			16,
 			500,
@@ -179,9 +157,8 @@ object ItemRegistry {
 		)
 	}
 
-	val osmiumShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val osmiumShield by REGISTRY.registerObject("osmium_shield") {
 		durabilityShieldItem(
-			"osmium_shield",
 			Config.SHIELDS_CONFIG.osmiumShield,
 			14,
 			250,
@@ -189,9 +166,8 @@ object ItemRegistry {
 		)
 	}
 
-	val refinedGlowstoneShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val refinedGlowstoneShield by REGISTRY.registerObject("refined_glowstone_shield") {
 		durabilityShieldItem(
-			"refined_glowstone_shield",
 			Config.SHIELDS_CONFIG.refinedGlowstoneShield,
 			20,
 			384,
@@ -199,9 +175,8 @@ object ItemRegistry {
 		)
 	}
 
-	val refinedObsidianShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val refinedObsidianShield by REGISTRY.registerObject("refined_obsidian_shield") {
 		durabilityShieldItem(
-			"refined_obsidian_shield",
 			Config.SHIELDS_CONFIG.refinedObsidianShield,
 			18,
 			1680,
@@ -209,420 +184,402 @@ object ItemRegistry {
 		)
 	}
 
-	val ironwoodShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val ironwoodShield by REGISTRY.registerObject("ironwood_shield") {
 		durabilityShieldItem(
-			name = "ironwood_shield",
 			Config.SHIELDS_CONFIG.ironwoodShield,
 			25,
 			512,
 			"ingots/ironwood".forgeTag,
-			conditions = listOf(ModLoadedCondition("twilight_forest"))
+//			conditions = listOf(ModLoadedCondition("twilight_forest"))
 		)
 	}
 
-	val steeleafShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
+	val steeleafShield by REGISTRY.registerObject("steeleaf_shield") {
 		durabilityShieldItem(
-			name = "steeleaf_shield",
 			Config.SHIELDS_CONFIG.steeleafShield,
 			9,
 			131,
 			"ingots/steeleaf".forgeTag,
-			conditions = listOf(ModLoadedCondition("twilight_forest"))
+//			conditions = listOf(ModLoadedCondition("twilight_forest"))
 		)
 	}
 
-	val knightmetalShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
-		registrate.item<SuperiorShieldItem<DurabilitySuperiorShield>>("knightmetal_shield") { props: Item.Properties ->
-			SuperiorShieldItem(
-				props,
-				8,
-				DurabilitySuperiorShield("knightmetal_shield", Config.SHIELDS_CONFIG.knightmetalShield)
-			) { Ingredient.of(Tags.Items.INGOTS_IRON) }
-		}
-			.properties { it.durability(512) }
-			.tag(SuperiorShieldsTags.CURIOS_TAG)
-			.tag(SuperiorShieldsTags.SHIELD_TAG)
-			.recipe { ctx, p ->
-				ConditionalRecipe.builder().apply {
-					addCondition(ModLoadedCondition("twilight_forest"))
-					addRecipe { writer ->
-						ShapedRecipeBuilder.shaped(ctx.entry).apply {
-							pattern(" X ")
-							pattern("XEX")
-							pattern(" X ")
-							define('X', "ingots/knightmetal".forgeTag)
-							define('E', Tags.Items.ENDER_PEARLS)
-							unlockedBy("has_item", DataIngredient.tag(Tags.Items.ENDER_PEARLS).getCritereon(p))
-							save(writer)
-						}
-					}
-					generateAdvancement()
-				}.build(p, p.safeId(ctx.entry))
-			}.register()
+	val knightmetalShield by REGISTRY.registerObject("knightmetal_shield") {
+		SuperiorShieldItem(
+			Properties().durability(512),
+			8,
+			DurabilitySuperiorShield(Config.SHIELDS_CONFIG.knightmetalShield)
+		) { Ingredient.of("ingots/knightmetals".forgeTag) }
+//			.properties { it.durability(512) }
+//			.tag(SuperiorShieldsItemTags.CURIOS_TAG)
+//			.tag(SuperiorShieldsItemTags.SHIELD_TAG)
+//			.recipe { ctx, p ->
+//				ConditionalRecipe.builder().apply {
+//					addCondition(ModLoadedCondition("twilight_forest"))
+//					addRecipe { writer ->
+//						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+//							pattern(" X ")
+//							pattern("XEX")
+//							pattern(" X ")
+//							define('X', "ingots/knightmetal".forgeTag)
+//							define('E', Tags.Items.ENDER_PEARLS)
+//							unlockedBy("has_item", DataIngredient.tag(Tags.Items.ENDER_PEARLS).getCritereon(p))
+//							save(writer)
+//						}
+//					}
+//					generateAdvancement()
+//				}.build(p, p.safeId(ctx.entry))
+//			}.register()
 	}
 
-	val fieryShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
-		registrate.item<SuperiorShieldItem<DurabilitySuperiorShield>>("fiery_shield") { props: Item.Properties ->
-			FireNovaSuperiorShieldItem(
-				props,
-				8,
-				DurabilitySuperiorShield(
-					name = "fiery_shield",
-					config = Config.SHIELDS_CONFIG.fieryShield
-				)
-			) { Ingredient.of(Tags.Items.INGOTS_IRON) }
-		}
-			.properties { it.durability(512) }
-			.tag(SuperiorShieldsTags.CURIOS_TAG)
-			.tag(SuperiorShieldsTags.SHIELD_TAG)
-			.recipe { ctx, p ->
-				ConditionalRecipe.builder().apply {
-					addCondition(ModLoadedCondition("twilight_forest"))
-					addRecipe { writer ->
-						ShapedRecipeBuilder.shaped(ctx.entry).apply {
-							pattern(" X ")
-							pattern("XEX")
-							pattern(" X ")
-							define('X', "ingots/fiery".forgeTag)
-							define('E', Tags.Items.ENDER_PEARLS)
-							unlockedBy("has_item", DataIngredient.tag(Tags.Items.ENDER_PEARLS).getCritereon(p))
-							save(writer)
-						}
-					}
-					generateAdvancement()
-				}.build(p, p.safeId(ctx.entry))
-			}.register()
+	val fieryShield by REGISTRY.registerObject("fiery_shield") {
+		FireNovaSuperiorShieldItem(
+			Properties().durability(512),
+			8,
+			DurabilitySuperiorShield(Config.SHIELDS_CONFIG.fieryShield)
+		) { Ingredient.of("ingots/fiery".forgeTag) }
+//			.properties { it.durability(512) }
+//			.tag(SuperiorShieldsItemTags.CURIOS_TAG)
+//			.tag(SuperiorShieldsItemTags.SHIELD_TAG)
+//			.recipe { ctx, p ->
+//				ConditionalRecipe.builder().apply {
+//					addCondition(ModLoadedCondition("twilight_forest"))
+//					addRecipe { writer ->
+//						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+//							pattern(" X ")
+//							pattern("XEX")
+//							pattern(" X ")
+//							define('X', "ingots/fiery".forgeTag)
+//							define('E', Tags.Items.ENDER_PEARLS)
+//							unlockedBy("has_item", DataIngredient.tag(Tags.Items.ENDER_PEARLS).getCritereon(p))
+//							save(writer)
+//						}
+//					}
+//					generateAdvancement()
+//				}.build(p, p.safeId(ctx.entry))
+//			}.register()
 	}
 
-	val netheriteShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
-		registrate.item<SuperiorShieldItem<DurabilitySuperiorShield>>("netherite_shield") { props: Item.Properties ->
-			SuperiorShieldItem(
-				props,
-				Tiers.NETHERITE.enchantmentValue,
-				DurabilitySuperiorShield("netherite_shield", Config.SHIELDS_CONFIG.netheriteShield)
-			) { Ingredient.of(Tags.Items.INGOTS_NETHERITE) }
-		}
-			.properties { it.durability(Tiers.NETHERITE.uses) }
-			.tag(SuperiorShieldsTags.CURIOS_TAG)
-			.tag(SuperiorShieldsTags.SHIELD_TAG)
-			.recipe { ctx, p ->
-				UpgradeRecipeBuilder
-					.smithing(Ingredient.of(diamondShield), Ingredient.of(Tags.Items.INGOTS_NETHERITE), ctx.get())
-					.unlocks("has_netherite", DataIngredient.tag(Tags.Items.INGOTS_NETHERITE).getCritereon(p))
-					.save(p, p.safeId(ctx.get()))
-			}
-			.register()
-	}
-
-	val electricShield: EnergySuperiorShieldItem<EnergySuperiorShield> by registryEntry {
-		registrate.item<EnergySuperiorShieldItem<EnergySuperiorShield>>("electric_shield") { props: Item.Properties ->
-			EnergySuperiorShieldItem(
-				props = props,
-				enchantmentValue = 12,
-				type = EnergySuperiorShield("electric_shield", Config.SHIELDS_CONFIG.electricShield),
-				maxEnergy = 48000,
-				barColor = 0x3CFE9A
-			)
-		}
-			.tag(SuperiorShieldsTags.CURIOS_TAG)
-			.tag(SuperiorShieldsTags.SHIELD_TAG)
-			.recipe { ctx, p ->
-				ConditionalRecipe.builder().apply {
-					addCondition(ModLoadedCondition("mekanism"))
-					addRecipe { writer ->
-						ShapedRecipeBuilder.shaped(ctx.entry).apply {
-							pattern(" X ")
-							pattern("XEX")
-							pattern(" X ")
-							define('X', SuperiorShieldsTags.ADVANCED_ALLOY)
-							define('E', ItemTags.create(ResourceLocation("forge", "batteries")))
-							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.ADVANCED_ALLOY).getCritereon(p))
-							save(writer)
-						}
-					}
-					generateAdvancement()
-				}.build(p, p.safeId(ctx.entry))
-			}
-			.register()
-	}
-
-	val engineersShield: EnergySuperiorShieldItem<EnergySuperiorShield> by registryEntry {
-		registrate.item<EnergySuperiorShieldItem<EnergySuperiorShield>>("engineers_shield") { props: Item.Properties ->
-			EnergySuperiorShieldItem(
-				props = props,
-				enchantmentValue = 14,
-				type = EnergySuperiorShield("engineers_shield", Config.SHIELDS_CONFIG.engineersShield),
-				maxEnergy = 48000,
-				barColor = 0xFF0000
-			)
-		}
-			.tag(SuperiorShieldsTags.CURIOS_TAG)
-			.tag(SuperiorShieldsTags.SHIELD_TAG)
-			.recipe { ctx, p ->
-				ConditionalRecipe.builder().apply {
-					addCondition(ModLoadedCondition("immersiveengineering"))
-					addRecipe { writer ->
-						ShapedRecipeBuilder.shaped(ctx.entry).apply {
-							pattern(" G ")
-							pattern("XEX")
-							pattern(" G ")
-							define('G', "ingots/steel".forgeTag)
-							define('X', SuperiorShieldsTags.WOODEN_GRIP)
-							define('E', SuperiorShieldsTags.COMPONENT_STEEL)
-							unlockedBy("has_item", DataIngredient.tag("ingots/steel".forgeTag).getCritereon(p))
-							save(writer)
-						}
-					}
-					generateAdvancement()
-				}.build(p, p.safeId(ctx.entry))
-			}
-			.register()
-	}
-
-	val fluxShield: EnergySuperiorShieldItem<*> by registryEntry {
-		registrate.item(
-			"flux_shield", ThermalCompat.thermalItemBuilder(
-				enchantmentValue = 14,
-				type = EnergySuperiorShield("flux_shield", Config.SHIELDS_CONFIG.fluxShield),
-				maxEnergy = 48000,
-				barColor = 0xFF0000
-			)
+	val netheriteShield by REGISTRY.registerObject("netherite_shield") {
+		durabilityShieldItem(
+			Config.SHIELDS_CONFIG.netheriteShield,
+			Tiers.NETHERITE.enchantmentValue,
+			Tiers.NETHERITE.uses,
+			Tags.Items.INGOTS_NETHERITE
 		)
-			.tag(SuperiorShieldsTags.CURIOS_TAG)
-			.tag(SuperiorShieldsTags.SHIELD_TAG)
-			.recipe { ctx, p ->
-				ConditionalRecipe.builder().apply {
-					addCondition(ModLoadedCondition("thermal"))
-					addRecipe { writer ->
-						ShapedRecipeBuilder.shaped(ctx.entry).apply {
-							pattern(" G ")
-							pattern("XEX")
-							pattern(" G ")
-							define('G', SuperiorShieldsTags.TIN_GEAR)
-							define('X', Tags.Items.INGOTS_IRON)
-							define('E', SuperiorShieldsTags.FLUX_COIL)
-							unlockedBy("has_item", DataIngredient.tag(Tags.Items.DUSTS_REDSTONE).getCritereon(p))
-							save(writer)
-						}
-					}
-					generateAdvancement()
-				}.build(p, p.safeId(ctx.entry))
-			}
-			.register()
+	}
+//			.properties { it.durability(Tiers.NETHERITE.uses) }
+//			.tag(SuperiorShieldsItemTags.CURIOS_TAG)
+//			.tag(SuperiorShieldsItemTags.SHIELD_TAG)
+//			.recipe { ctx, p ->
+//				UpgradeRecipeBuilder
+//					.smithing(Ingredient.of(diamondShield), Ingredient.of(Tags.Items.INGOTS_NETHERITE), ctx.get())
+//					.unlocks("has_netherite", DataIngredient.tag(Tags.Items.INGOTS_NETHERITE).getCritereon(p))
+//					.save(p, p.safeId(ctx.get()))
+//			}
+//			.register()
+
+	val electricShield by REGISTRY.registerObject("electric_shield") {
+		EnergySuperiorShieldItem(
+			enchantmentValue = 12,
+			type = EnergySuperiorShield(Config.SHIELDS_CONFIG.electricShield),
+			maxEnergy = 48000,
+			barColor = 0x3CFE9A
+		)
+	}
+//		.tag(SuperiorShieldsItemTags.CURIOS_TAG)
+//		.tag(SuperiorShieldsItemTags.SHIELD_TAG)
+//		.recipe { ctx, p ->
+//			ConditionalRecipe.builder().apply {
+//				addCondition(ModLoadedCondition("mekanism"))
+//				addRecipe { writer ->
+//					ShapedRecipeBuilder.shaped(ctx.entry).apply {
+//						pattern(" X ")
+//						pattern("XEX")
+//						pattern(" X ")
+//						define('X', SuperiorShieldsItemTags.ADVANCED_ALLOY)
+//						define('E', ItemTags.create(ResourceLocation("forge", "batteries")))
+//						unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsItemTags.ADVANCED_ALLOY).getCritereon(p))
+//						save(writer)
+//					}
+//				}
+//				generateAdvancement()
+//			}.build(p, p.safeId(ctx.entry))
+//		}
+//		.register()
+
+	val engineersShield by REGISTRY.registerObject("engineers_shield") {
+		EnergySuperiorShieldItem(
+			enchantmentValue = 14,
+			type = EnergySuperiorShield(Config.SHIELDS_CONFIG.engineersShield),
+			maxEnergy = 48000,
+			barColor = 0xFF0000
+		)
+	}
+//			.tag(SuperiorShieldsItemTags.CURIOS_TAG)
+//			.tag(SuperiorShieldsItemTags.SHIELD_TAG)
+//			.recipe { ctx, p ->
+//				ConditionalRecipe.builder().apply {
+//					addCondition(ModLoadedCondition("immersiveengineering"))
+//					addRecipe { writer ->
+//						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+//							pattern(" G ")
+//							pattern("XEX")
+//							pattern(" G ")
+//							define('G', "ingots/steel".forgeTag)
+//							define('X', SuperiorShieldsItemTags.WOODEN_GRIP)
+//							define('E', SuperiorShieldsItemTags.COMPONENT_STEEL)
+//							unlockedBy("has_item", DataIngredient.tag("ingots/steel".forgeTag).getCritereon(p))
+//							save(writer)
+//						}
+//					}
+//					generateAdvancement()
+//				}.build(p, p.safeId(ctx.entry))
+//			}
+//			.register()
+
+	val fluxShield by REGISTRY.registerObject("flux_shield") {
+		ThermalCompat.thermalShield(
+			enchantmentValue = 14,
+			type = EnergySuperiorShield(Config.SHIELDS_CONFIG.fluxShield),
+			maxEnergy = 48000,
+			barColor = 0xFF0000
+		)
+//		)
+//			.tag(SuperiorShieldsItemTags.CURIOS_TAG)
+//			.tag(SuperiorShieldsItemTags.SHIELD_TAG)
+//			.recipe { ctx, p ->
+//				ConditionalRecipe.builder().apply {
+//					addCondition(ModLoadedCondition("thermal"))
+//					addRecipe { writer ->
+//						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+//							pattern(" G ")
+//							pattern("XEX")
+//							pattern(" G ")
+//							define('G', SuperiorShieldsItemTags.TIN_GEAR)
+//							define('X', Tags.Items.INGOTS_IRON)
+//							define('E', SuperiorShieldsItemTags.FLUX_COIL)
+//							unlockedBy("has_item", DataIngredient.tag(Tags.Items.DUSTS_REDSTONE).getCritereon(p))
+//							save(writer)
+//						}
+//					}
+//					generateAdvancement()
+//				}.build(p, p.safeId(ctx.entry))
+//			}
+//			.register()
 	}
 
-	val manasteelShield: SuperiorShieldItem<*> by registryEntry {
-		registrate.item("manasteel_shield", BotaniaCompat.botaniaManaShieldBuilder(
+	val manasteelShield by REGISTRY.registerObject("manasteel_shield") {
+		BotaniaCompat.botaniaManaShieldBuilder(
+			props = Properties().durability(300),
 			enchantmentValue = 16,
-			type = DurabilitySuperiorShield("manasteel_shield", Config.SHIELDS_CONFIG.manasteelShield),
-			repairItem = { Ingredient.of(SuperiorShieldsTags.MANASTEEL_INGOT) }
-		))
-			.properties { it.durability(300) }
-			.tag(SuperiorShieldsTags.CURIOS_TAG)
-			.tag(SuperiorShieldsTags.SHIELD_TAG)
-			.recipe { ctx, p ->
-				ConditionalRecipe.builder().apply {
-					addCondition(ModLoadedCondition("botania"))
-					addRecipe { writer ->
-						ShapedRecipeBuilder.shaped(ctx.entry).apply {
-							pattern(" X ")
-							pattern("XEX")
-							pattern(" X ")
-							define('X', SuperiorShieldsTags.MANASTEEL_INGOT)
-							define('E', SuperiorShieldsTags.MANAPEARL)
-							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.MANASTEEL_INGOT).getCritereon(p))
-							save(writer)
-						}
-					}
-					generateAdvancement()
-				}.build(p, p.safeId(ctx.entry))
-			}.register()
+			type = DurabilitySuperiorShield(Config.SHIELDS_CONFIG.manasteelShield),
+			repairItem = { Ingredient.of(SuperiorShieldsItemTags.MANASTEEL_INGOT) }
+		)
+//			.properties { it.durability(300) }
+//			.tag(SuperiorShieldsItemTags.CURIOS_TAG)
+//			.tag(SuperiorShieldsItemTags.SHIELD_TAG)
+//			.recipe { ctx, p ->
+//				ConditionalRecipe.builder().apply {
+//					addCondition(ModLoadedCondition("botania"))
+//					addRecipe { writer ->
+//						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+//							pattern(" X ")
+//							pattern("XEX")
+//							pattern(" X ")
+//							define('X', SuperiorShieldsItemTags.MANASTEEL_INGOT)
+//							define('E', SuperiorShieldsItemTags.MANAPEARL)
+//							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsItemTags.MANASTEEL_INGOT).getCritereon(p))
+//							save(writer)
+//						}
+//					}
+//					generateAdvancement()
+//				}.build(p, p.safeId(ctx.entry))
+//			}.register()
 	}
 
-	val terrasteelShield: SuperiorShieldItem<*> by registryEntry {
-		registrate.item("terrasteel_shield", BotaniaCompat.botaniaManaShieldBuilder(
+	val terrasteelShield by REGISTRY.registerObject("terrasteel_shield") {
+		BotaniaCompat.botaniaManaShieldBuilder(
+			props = Properties().durability(600),
 			enchantmentValue = 18,
-			type = DurabilitySuperiorShield("terrasteel_shield", Config.SHIELDS_CONFIG.terrasteelShield),
-			repairItem = { Ingredient.of(SuperiorShieldsTags.TERRASTEEL_INGOT) }
-		))
-			.properties { it.durability(600) }
-			.tag(SuperiorShieldsTags.CURIOS_TAG)
-			.tag(SuperiorShieldsTags.SHIELD_TAG)
-			.recipe { ctx, p ->
-				ConditionalRecipe.builder().apply {
-					addCondition(ModLoadedCondition("botania"))
-					addRecipe { writer ->
-						ShapedRecipeBuilder.shaped(ctx.entry).apply {
-							pattern(" X ")
-							pattern("XEX")
-							pattern(" X ")
-							define('X', SuperiorShieldsTags.TERRASTEEL_INGOT)
-							define('E', SuperiorShieldsTags.MANAPEARL)
-							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.TERRASTEEL_INGOT).getCritereon(p))
-							save(writer)
-						}
-					}
-					generateAdvancement()
-				}.build(p, p.safeId(ctx.entry))
-			}.register()
+			type = DurabilitySuperiorShield(Config.SHIELDS_CONFIG.terrasteelShield),
+			repairItem = { Ingredient.of(SuperiorShieldsItemTags.TERRASTEEL_INGOT) }
+		)
+//			.properties { it.durability(600) }
+//			.tag(SuperiorShieldsItemTags.CURIOS_TAG)
+//			.tag(SuperiorShieldsItemTags.SHIELD_TAG)
+//			.recipe { ctx, p ->
+//				ConditionalRecipe.builder().apply {
+//					addCondition(ModLoadedCondition("botania"))
+//					addRecipe { writer ->
+//						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+//							pattern(" X ")
+//							pattern("XEX")
+//							pattern(" X ")
+//							define('X', SuperiorShieldsItemTags.TERRASTEEL_INGOT)
+//							define('E', SuperiorShieldsItemTags.MANAPEARL)
+//							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsItemTags.TERRASTEEL_INGOT).getCritereon(p))
+//							save(writer)
+//						}
+//					}
+//					generateAdvancement()
+//				}.build(p, p.safeId(ctx.entry))
+//			}.register()
 	}
 
-	val elementiumShield: SuperiorShieldItem<*> by registryEntry {
-		registrate.item("elementium_shield", BotaniaCompat.elementiumShieldBuilder(
+	val elementiumShield by REGISTRY.registerObject("elementium_shield") {
+		BotaniaCompat.elementiumShieldBuilder(
+			props = Properties().durability(900),
 			enchantmentValue = 20,
-			type = DurabilitySuperiorShield("elementium_shield", Config.SHIELDS_CONFIG.elementiumShield),
-			repairItem = { Ingredient.of(SuperiorShieldsTags.ELEMENTIUM_INGOT) }
-		))
-			.properties { it.durability(900) }
-			.tag(SuperiorShieldsTags.CURIOS_TAG)
-			.tag(SuperiorShieldsTags.SHIELD_TAG)
-			.recipe { ctx, p ->
-				ConditionalRecipe.builder().apply {
-					addCondition(ModLoadedCondition("botania"))
-					addRecipe { writer ->
-						ShapedRecipeBuilder.shaped(ctx.entry).apply {
-							pattern(" X ")
-							pattern("XEX")
-							pattern(" X ")
-							define('X', SuperiorShieldsTags.ELEMENTIUM_INGOT)
-							define('E', SuperiorShieldsTags.PIXIE_DUST)
-							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.ELEMENTIUM_INGOT).getCritereon(p))
-							save(writer)
-						}
-					}
-					generateAdvancement()
-				}.build(p, p.safeId(ctx.entry))
-			}.register()
+			type = DurabilitySuperiorShield(Config.SHIELDS_CONFIG.elementiumShield),
+			repairItem = { Ingredient.of(SuperiorShieldsItemTags.ELEMENTIUM_INGOT) }
+		)
+//			.properties { it.durability(900) }
+//			.tag(SuperiorShieldsItemTags.CURIOS_TAG)
+//			.tag(SuperiorShieldsItemTags.SHIELD_TAG)
+//			.recipe { ctx, p ->
+//				ConditionalRecipe.builder().apply {
+//					addCondition(ModLoadedCondition("botania"))
+//					addRecipe { writer ->
+//						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+//							pattern(" X ")
+//							pattern("XEX")
+//							pattern(" X ")
+//							define('X', SuperiorShieldsItemTags.ELEMENTIUM_INGOT)
+//							define('E', SuperiorShieldsItemTags.PIXIE_DUST)
+//							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsItemTags.ELEMENTIUM_INGOT).getCritereon(p))
+//							save(writer)
+//						}
+//					}
+//					generateAdvancement()
+//				}.build(p, p.safeId(ctx.entry))
+//			}.register()
 	}
 
-	val soulStainedShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
-		registrate.item("soul_stained_shield", MalumCompat.soulStainedShieldBuilder(
+	val soulStainedShield by REGISTRY.registerObject("soul_stained_shield") {
+		MalumCompat.soulStainedShieldBuilder(
+			props = Properties().durability(1250),
 			enchantmentValue = 11,
-			type = DurabilitySuperiorShield("soul_stained_shield", Config.SHIELDS_CONFIG.soulStainedShield),
-			repairItem = { Ingredient.of(SuperiorShieldsTags.SOUL_STAINED_STEEL_INGOT) }
-		))
-			.properties { it.durability(1250) }
-			.tag(SuperiorShieldsTags.CURIOS_TAG)
-			.tag(SuperiorShieldsTags.SHIELD_TAG)
-			.recipe { ctx, p ->
-				ConditionalRecipe.builder().apply {
-					addCondition(ModLoadedCondition("malum"))
-					addRecipe { writer ->
-						ShapedRecipeBuilder.shaped(ctx.entry).apply {
-							pattern(" X ")
-							pattern("XEX")
-							pattern(" X ")
-							define('X', SuperiorShieldsTags.SOUL_STAINED_STEEL_INGOT)
-							define('E', SuperiorShieldsTags.HALLOWED_SPIRIT_RESONATOR)
-							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.SOUL_STAINED_STEEL_INGOT).getCritereon(p))
-							save(writer)
-						}
-					}
-					generateAdvancement()
-				}.build(p, p.safeId(ctx.entry))
-			}.register()
+			type = DurabilitySuperiorShield(Config.SHIELDS_CONFIG.soulStainedShield),
+			repairItem = { Ingredient.of(SuperiorShieldsItemTags.SOUL_STAINED_STEEL_INGOT) }
+		)
+//			.properties { it.durability(1250) }
+//			.tag(SuperiorShieldsItemTags.CURIOS_TAG)
+//			.tag(SuperiorShieldsItemTags.SHIELD_TAG)
+//			.recipe { ctx, p ->
+//				ConditionalRecipe.builder().apply {
+//					addCondition(ModLoadedCondition("malum"))
+//					addRecipe { writer ->
+//						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+//							pattern(" X ")
+//							pattern("XEX")
+//							pattern(" X ")
+//							define('X', SuperiorShieldsItemTags.SOUL_STAINED_STEEL_INGOT)
+//							define('E', SuperiorShieldsItemTags.HALLOWED_SPIRIT_RESONATOR)
+//							unlockedBy(
+//								"has_item",
+//								DataIngredient.tag(SuperiorShieldsItemTags.SOUL_STAINED_STEEL_INGOT).getCritereon(p)
+//							)
+//							save(writer)
+//						}
+//					}
+//					generateAdvancement()
+//				}.build(p, p.safeId(ctx.entry))
+//			}.register()
 	}
 
-	val spiritHunterShield: SuperiorShieldItem<DurabilitySuperiorShield> by registryEntry {
-		registrate.item("spirit_hunter_shield", MalumCompat.spiritHunterShieldBuilder(
+	val spiritHunterShield by REGISTRY.registerObject("spirit_hunter_shield") {
+		MalumCompat.spiritHunterShieldBuilder(
+			props = Properties().durability(200),
 			enchantmentValue = 15,
-			type = DurabilitySuperiorShield("spirit_hunter_shield", Config.SHIELDS_CONFIG.spiritHunterShield),
-			repairItem = { Ingredient.of(SuperiorShieldsTags.SPIRIT_FABRIC) }
-		))
-			.properties { it.durability(200) }
-			.tag(SuperiorShieldsTags.CURIOS_TAG)
-			.tag(SuperiorShieldsTags.SHIELD_TAG)
-			.recipe { ctx, p ->
-				ConditionalRecipe.builder().apply {
-					addCondition(ModLoadedCondition("malum"))
-					addRecipe { writer ->
-						ShapedRecipeBuilder.shaped(ctx.entry).apply {
-							pattern(" X ")
-							pattern("XEX")
-							pattern(" X ")
-							define('X', SuperiorShieldsTags.SPIRIT_FABRIC)
-							define('E', SuperiorShieldsTags.STAINED_SPIRIT_RESONATOR)
-							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.SPIRIT_FABRIC).getCritereon(p))
-							save(writer)
-						}
-					}
-					generateAdvancement()
-				}.build(p, p.safeId(ctx.entry))
-			}.register()
+			type = DurabilitySuperiorShield(Config.SHIELDS_CONFIG.spiritHunterShield),
+			repairItem = { Ingredient.of(SuperiorShieldsItemTags.SPIRIT_FABRIC) }
+		)
+//			.properties { it.durability(200) }
+//			.tag(SuperiorShieldsItemTags.CURIOS_TAG)
+//			.tag(SuperiorShieldsItemTags.SHIELD_TAG)
+//			.recipe { ctx, p ->
+//				ConditionalRecipe.builder().apply {
+//					addCondition(ModLoadedCondition("malum"))
+//					addRecipe { writer ->
+//						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+//							pattern(" X ")
+//							pattern("XEX")
+//							pattern(" X ")
+//							define('X', SuperiorShieldsItemTags.SPIRIT_FABRIC)
+//							define('E', SuperiorShieldsItemTags.STAINED_SPIRIT_RESONATOR)
+//							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsItemTags.SPIRIT_FABRIC).getCritereon(p))
+//							save(writer)
+//						}
+//					}
+//					generateAdvancement()
+//				}.build(p, p.safeId(ctx.entry))
+//			}.register()
 	}
 
-	val enchanterShield: SuperiorShieldItem<*> by registryEntry {
-		registrate.item("enchanter_shield", ArsCompat.arsManaShieldBuilder(
+	val enchanterShield by REGISTRY.registerObject("enchanter_shield") {
+		ArsCompat.arsManaShieldBuilder(
+			props = Properties().durability(Tiers.IRON.uses),
 			enchantmentValue = 24,
-			type = DurabilitySuperiorShield("enchanter_shield", Config.SHIELDS_CONFIG.enchanterShield),
-			repairItem = { Ingredient.of(SuperiorShieldsTags.SOURCE_GEM) }
-		))
-			.properties { it.durability(Tiers.IRON.uses) }
-			.tag(SuperiorShieldsTags.CURIOS_TAG)
-			.tag(SuperiorShieldsTags.SHIELD_TAG)
-			.recipe { ctx, p ->
-				ConditionalRecipe.builder().apply {
-					addCondition(ModLoadedCondition("ars_nouveau"))
-					addRecipe { writer ->
-						ShapedRecipeBuilder.shaped(ctx.entry).apply {
-							pattern(" X ")
-							pattern("XEX")
-							pattern(" X ")
-							define('X', Tags.Items.INGOTS_GOLD)
-							define('E', SuperiorShieldsTags.SOURCE_GEM)
-							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsTags.SOURCE_GEM).getCritereon(p))
-							save(writer)
-						}
-					}
-					generateAdvancement()
-				}.build(p, p.safeId(ctx.entry))
-			}.register()
+			type = DurabilitySuperiorShield(Config.SHIELDS_CONFIG.enchanterShield),
+			repairItem = { Ingredient.of(SuperiorShieldsItemTags.SOURCE_GEM) }
+		)
+//			.properties { it.durability(Tiers.IRON.uses) }
+//			.tag(SuperiorShieldsItemTags.CURIOS_TAG)
+//			.tag(SuperiorShieldsItemTags.SHIELD_TAG)
+//			.recipe { ctx, p ->
+//				ConditionalRecipe.builder().apply {
+//					addCondition(ModLoadedCondition("ars_nouveau"))
+//					addRecipe { writer ->
+//						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+//							pattern(" X ")
+//							pattern("XEX")
+//							pattern(" X ")
+//							define('X', Tags.Items.INGOTS_GOLD)
+//							define('E', SuperiorShieldsItemTags.SOURCE_GEM)
+//							unlockedBy("has_item", DataIngredient.tag(SuperiorShieldsItemTags.SOURCE_GEM).getCritereon(p))
+//							save(writer)
+//						}
+//					}
+//					generateAdvancement()
+//				}.build(p, p.safeId(ctx.entry))
+//			}.register()
 	}
 
 	private fun durabilityShieldItem(
-		name: String,
 		stats: SuperiorShieldStats,
 		enchantmentValue: Int,
 		durability: Int,
-		outerTag: TagKey<Item>,
-		centerTag: TagKey<Item> = Tags.Items.ENDER_PEARLS,
-		centerItemOverride: ItemLike? = null,
-		conditions: List<ICondition> = emptyList()
-	): ItemEntry<SuperiorShieldItem<DurabilitySuperiorShield>> =
-		registrate.item<SuperiorShieldItem<DurabilitySuperiorShield>>(name) { props: Item.Properties ->
-			SuperiorShieldItem(
-				props,
-				enchantmentValue,
-				DurabilitySuperiorShield(name, stats)
-			) { Ingredient.of(outerTag) }
-		}
-			.properties { it.durability(durability) }
-			.tag(SuperiorShieldsTags.CURIOS_TAG)
-			.tag(SuperiorShieldsTags.SHIELD_TAG)
-			.recipe { ctx, p ->
-				ConditionalRecipe.builder().apply {
-					conditions.forEach(::addCondition)
-					addCondition(NotCondition(TagEmptyCondition(outerTag.location)))
-					addRecipe { writer ->
-						ShapedRecipeBuilder.shaped(ctx.entry).apply {
-							pattern(" X ")
-							pattern("XEX")
-							pattern(" X ")
-							define('X', outerTag)
-							if (centerItemOverride != null)
-								define('E', centerItemOverride)
-							else
-								define('E', centerTag)
-							unlockedBy("has_item", DataIngredient.tag(centerTag).getCritereon(p))
-							save(writer)
-						}
-					}
-					generateAdvancement()
-				}.build(p, p.safeId(ctx.entry))
-			}.register()
+		repairItem: TagKey<Item>,
+	): SuperiorShieldItem<DurabilitySuperiorShield> =
+		SuperiorShieldItem(
+			props = Properties().durability(durability),
+			enchantmentValue = enchantmentValue,
+			type = DurabilitySuperiorShield(stats),
+			repairItem = { Ingredient.of(repairItem) }
+		)
+//			.properties { it.durability(durability) }
+//			.tag(SuperiorShieldsItemTags.CURIOS_TAG)
+//			.tag(SuperiorShieldsItemTags.SHIELD_TAG)
+//			.recipe { ctx, p ->
+//				ConditionalRecipe.builder().apply {
+//					conditions.forEach(::addCondition)
+//					addCondition(NotCondition(TagEmptyCondition(outerTag.location)))
+//					addRecipe { writer ->
+//						ShapedRecipeBuilder.shaped(ctx.entry).apply {
+//							pattern(" X ")
+//							pattern("XEX")
+//							pattern(" X ")
+//							define('X', outerTag)
+//							if (centerItemOverride != null)
+//								define('E', centerItemOverride)
+//							else
+//								define('E', centerTag)
+//							unlockedBy("has_item", DataIngredient.tag(centerTag).getCritereon(p))
+//							save(writer)
+//						}
+//					}
+//					generateAdvancement()
+//				}.build(p, p.safeId(ctx.entry))
 
-	private val String.forgeTag: TagKey<Item>
-		get() = ItemTags.create(ResourceLocation("forge", this))
-
-	fun classload() {}
 }

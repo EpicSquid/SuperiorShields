@@ -47,11 +47,11 @@ object SuperiorShieldEffects {
 	}
 
 	private fun novaEffect(entity: LivingEntity, scale: Int, effect: (LivingEntity) -> Unit) {
-		if (entity.level.isClientSide) return
+		if (entity.level().isClientSide) return
 
 		val range = scale.toDouble() * Config.SHIELDS_CONFIG.novaRange.get()
 
-		entity.level.getEntitiesOfClass(LivingEntity::class.java, entity.boundingBox.inflate(range))
+		entity.level().getEntitiesOfClass(LivingEntity::class.java, entity.boundingBox.inflate(range))
 			.filter { it is Enemy }
 			.forEach(effect)
 	}
@@ -61,7 +61,7 @@ object SuperiorShieldEffects {
 		damageSource: DamageSource,
 		effect: (LivingEntity) -> Unit
 	) {
-		if (entity.level.isClientSide) return
+		if (entity.level().isClientSide) return
 
 		(damageSource.entity as? LivingEntity)?.let(effect)
 	}

@@ -1,8 +1,8 @@
 package dev.epicsquid.superiorshields.event
 
-import dev.epicsquid.superiorshields.SuperiorShields.Companion.SUPERIOR_SHIELD_CURIO
 import dev.epicsquid.superiorshields.capability.SuperiorShieldCap
 import dev.epicsquid.superiorshields.capability.SuperiorShieldCapProvider
+import dev.epicsquid.superiorshields.data.SuperiorShieldsCurios.Companion.SUPERIOR_SHIELD_CURIO
 import dev.epicsquid.superiorshields.enchantment.DamageBoostEnchantment
 import dev.epicsquid.superiorshields.network.NetworkHandler
 import dev.epicsquid.superiorshields.network.SuperiorShieldUpdatePacket
@@ -10,7 +10,7 @@ import dev.epicsquid.superiorshields.registry.CapabilityRegistry
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
 import dev.epicsquid.superiorshields.shield.SuperiorShield
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.world.damagesource.DamageSource
+import net.minecraft.world.damagesource.DamageTypes
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.enchantment.EnchantmentHelper
@@ -45,8 +45,8 @@ object EventManager {
 		// Handle the shield absorbing damage
 		// Check what the source of the damage was
 		// TODO add the option to blacklist more/less damage sources
-		if (event.source != DamageSource.STARVE && event.source != DamageSource.DROWN) {
-			CuriosApi.getCuriosHelper().getCuriosHandler(target).ifPresent { handler ->
+		if (event.source != DamageTypes.STARVE && event.source != DamageTypes.DROWN) {
+			CuriosApi.getCuriosInventory(target).ifPresent { handler ->
 				handler.getStacksHandler(SUPERIOR_SHIELD_CURIO).ifPresent { stackHandler ->
 					val stack = stackHandler.stacks.getStackInSlot(0)
 					if (!stack.isEmpty) {
@@ -72,11 +72,11 @@ object EventManager {
 
 		if (attacker is LivingEntity) {
 			// Handle the shield dealing damage
-			CuriosApi.getCuriosHelper().getCuriosHandler(attacker).ifPresent { handler ->
+			CuriosApi.getCuriosInventory(attacker).ifPresent { handler ->
 				handler.getStacksHandler(SUPERIOR_SHIELD_CURIO).ifPresent { stackHandler ->
 					val stack = stackHandler.stacks.getStackInSlot(0)
 					if (!stack.isEmpty) {
-						EnchantmentHelper.getEnchantments(stack).forEach() { (enchantment, _) ->
+						EnchantmentHelper.getEnchantments(stack).forEach { (enchantment, _) ->
 							if (enchantment is DamageBoostEnchantment && enchantment.shouldBoostDamage(attacker)) {
 								event.amount = enchantment.boostDamage(event.amount)
 							}

@@ -17,6 +17,4 @@ object CapabilityRegistry {
 
 	val LivingEntity.shield: SuperiorShieldCap
 		get() = getCapabilityOrThrow(SUPERIOR_SHIELD_CAP)
-
-
 }

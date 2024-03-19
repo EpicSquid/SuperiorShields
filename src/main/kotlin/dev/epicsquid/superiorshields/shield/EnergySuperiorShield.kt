@@ -9,9 +9,8 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities
 import thedarkcolour.kotlinforforge.forge.getCapabilityOrThrow
 
 open class EnergySuperiorShield(
-	name: String,
 	config: SuperiorShieldStats
-) : AbstractSuperiorShield(name, config) {
+) : AbstractSuperiorShield(config) {
 
 	override fun rechargeShield(stack: ItemStack, entity: LivingEntity) {
 		val shield = entity.shield
