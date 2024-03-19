@@ -47,6 +47,12 @@ val arsNouveauVersion: String by extra
 val malumVersion: String by extra
 val patchouliVersion: String by extra
 val lodestoneVersion: String by extra
+val geckoLibVersion: String by extra
+val mixinExtrasVersion: String by extra
+val malumVersionRange: String by extra
+val botaniaVersionRange: String by extra
+val arsNouveauVersionRange: String by extra
+val curiosVersionRange: String by extra
 
 version = "$minecraftVersion-$modVersion"
 if (System.getenv("BUILD_NUMBER") != null) {
@@ -82,6 +88,10 @@ minecraft {
 
 			property("forge.logging.markers", "REGISTRIES")
 			property("forge.logging.console.level", "debug")
+
+			// Disable mixins for botania support in dev environment
+			property("mixin.env.remapRefMap", "true")
+			property("mixin.env.refMapRemappingFile", "${buildDir}/createSrgToMcp/output.srg")
 
 			mods {
 				create(modId) {
@@ -157,6 +167,11 @@ repositories {
 		name = "Kotlin for Forge"
 		setUrl("https://thedarkcolour.github.io/KotlinForForge/")
 	}
+
+	maven {
+		name = "Gecko Lib"
+		setUrl("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
+	}
 }
 
 dependencies {
@@ -196,10 +211,18 @@ dependencies {
 
 	// Ars Noveau
 	implementation(fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-$minecraftVersion:$arsNouveauVersion"))
+	implementation(fg.deobf("software.bernie.geckolib:geckolib-neoforge-$minecraftVersion:$geckoLibVersion"))
 
 	// Malum
 	implementation(fg.deobf("team.lodestar.lodestone:lodestone:$minecraftVersion-$lodestoneVersion"))
 	implementation(fg.deobf("com.sammy.malum:malum:$minecraftVersion-$malumVersion"))
+
+	// Mixin extra
+	// TODO remove when updating to neo
+	jarJar("io.github.llamalad7:mixinextras-forge:$mixinExtrasVersion") {
+		jarJar.ranged(this, "[$mixinExtrasVersion,)")
+	}
+	minecraftLibrary("io.github.llamalad7:mixinextras-forge:$mixinExtrasVersion")
 }
 
 
@@ -222,6 +245,10 @@ tasks.withType<ProcessResources> {
 				"modLicense" to modLicense,
 				"thermalVersionRange" to thermalVersionRange,
 				"kotlinForForgeVersionRange" to kotlinForForgeVersionRange,
+				"botaniaVersionRange" to botaniaVersionRange,
+				"arsNouveauVersionRange" to arsNouveauVersionRange,
+				"malumVersionRange" to malumVersionRange,
+				"curiosVersionRange" to curiosVersionRange
 			)
 		)
 	}
