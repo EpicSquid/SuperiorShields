@@ -8,7 +8,7 @@
             "conditions": {
               "items": [
                 {
-                  "tag": "forge:ingots/steel"
+                  "tag": "forge:component_steel"
                 }
               ]
             },
@@ -31,12 +31,34 @@
           "recipes": [
             "superiorshields:engineers_shield"
           ]
-        }
+        },
+        "sends_telemetry_event": false
       },
       "conditions": [
         {
           "type": "forge:mod_loaded",
           "modid": "immersiveengineering"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:wooden_grip"
+          }
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:component_steel"
+          }
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/steel"
+          }
         }
       ]
     }

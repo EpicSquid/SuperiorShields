@@ -4,12 +4,16 @@
     {
       "conditions": [
         {
-          "type": "forge:mod_loaded",
-          "modid": "twilight_forest"
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/fiery"
+          }
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "category": "misc",
         "key": {
           "E": {
             "tag": "forge:ender_pearls"
@@ -25,7 +29,8 @@
         ],
         "result": {
           "item": "superiorshields:fiery_shield"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

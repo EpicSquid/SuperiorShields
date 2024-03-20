@@ -31,12 +31,23 @@
           "recipes": [
             "superiorshields:electric_shield"
           ]
-        }
+        },
+        "sends_telemetry_event": false
       },
       "conditions": [
         {
-          "type": "forge:mod_loaded",
-          "modid": "mekanism"
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:batteries"
+          }
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:alloys/advanced"
+          }
         }
       ]
     }

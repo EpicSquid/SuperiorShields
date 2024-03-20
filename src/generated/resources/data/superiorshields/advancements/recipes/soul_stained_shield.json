@@ -8,7 +8,7 @@
             "conditions": {
               "items": [
                 {
-                  "tag": "forge:ingots/soul_stained_steel"
+                  "tag": "forge:soul_stained_steel_ingot"
                 }
               ]
             },
@@ -31,12 +31,16 @@
           "recipes": [
             "superiorshields:soul_stained_shield"
           ]
-        }
+        },
+        "sends_telemetry_event": false
       },
       "conditions": [
         {
-          "type": "forge:mod_loaded",
-          "modid": "malum"
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:soul_stained_steel_ingot"
+          }
         }
       ]
     }

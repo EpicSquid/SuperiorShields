@@ -8,7 +8,7 @@
             "conditions": {
               "items": [
                 {
-                  "tag": "forge:ender_pearls"
+                  "tag": "forge:ingots/ironwood"
                 }
               ]
             },
@@ -31,13 +31,10 @@
           "recipes": [
             "superiorshields:ironwood_shield"
           ]
-        }
+        },
+        "sends_telemetry_event": false
       },
       "conditions": [
-        {
-          "type": "forge:mod_loaded",
-          "modid": "twilight_forest"
-        },
         {
           "type": "forge:not",
           "value": {

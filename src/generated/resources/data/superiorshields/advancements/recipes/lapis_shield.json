@@ -8,7 +8,7 @@
             "conditions": {
               "items": [
                 {
-                  "tag": "forge:ender_pearls"
+                  "tag": "forge:gems/lapis"
                 }
               ]
             },
@@ -31,7 +31,8 @@
           "recipes": [
             "superiorshields:lapis_shield"
           ]
-        }
+        },
+        "sends_telemetry_event": false
       },
       "conditions": [
         {
@@ -42,7 +43,7 @@
           "type": "forge:not",
           "value": {
             "type": "forge:tag_empty",
-            "tag": "forge:gem/lapis"
+            "tag": "forge:gems/lapis"
           }
         }
       ]

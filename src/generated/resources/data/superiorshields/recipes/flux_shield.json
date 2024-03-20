@@ -6,10 +6,25 @@
         {
           "type": "forge:mod_loaded",
           "modid": "thermal"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:gears/tin"
+          }
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "thermal:flux_coil"
+          }
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "category": "misc",
         "key": {
           "E": {
             "tag": "thermal:flux_coil"
@@ -27,8 +42,9 @@
           " G "
         ],
         "result": {
-          "item": "superiorshields:flux_shield"
-        }
+          "item": "superiorshields:engineers_shield"
+        },
+        "show_notification": true
       }
     }
   ]

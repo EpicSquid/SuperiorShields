@@ -31,12 +31,16 @@
           "recipes": [
             "superiorshields:spirit_hunter_shield"
           ]
-        }
+        },
+        "sends_telemetry_event": false
       },
       "conditions": [
         {
-          "type": "forge:mod_loaded",
-          "modid": "malum"
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "malum:spirit_fabric"
+          }
         }
       ]
     }

@@ -35,10 +35,13 @@ class SuperiorShieldsRecipes(output: PackOutput) : RecipeProvider(output) {
 		shapedShieldRecipe(writer, ItemRegistry.nickelShield, "ingots/nickel".forgeTag)
 		shapedShieldRecipe(writer, ItemRegistry.invarShield, "ingots/invar".forgeTag)
 		shapedShieldRecipe(writer, ItemRegistry.constantanShield, "ingots/constantan".forgeTag)
+		shapedShieldRecipe(writer, ItemRegistry.osmiumShield, "ingots/osmium".forgeTag)
+		shapedShieldRecipe(writer, ItemRegistry.refinedObsidianShield, "ingots/refined_obsidian".forgeTag)
+		shapedShieldRecipe(writer, ItemRegistry.refinedGlowstoneShield, "ingots/refined_glowstone".forgeTag)
 		shapedShieldRecipe(
 			writer = writer,
 			item = ItemRegistry.lapisShield,
-			outerTag = "gems/lapis".forgeTag,
+			outerTag = Tags.Items.GEMS_LAPIS,
 			conditions = arrayOf(ModLoadedCondition("mekanism"))
 		)
 		shapedShieldRecipe(writer, ItemRegistry.knightmetalShield, "ingots/knightmetal".forgeTag)
@@ -60,8 +63,9 @@ class SuperiorShieldsRecipes(output: PackOutput) : RecipeProvider(output) {
 		shapedShieldRecipe(
 			writer,
 			ItemRegistry.electricShield,
-			SuperiorShieldsItemTags.ADVANCED_ALLOY,
-			Ingredient.of(SuperiorShieldsItemTags.BATTERIES)
+			"alloys/advanced".forgeTag,
+			Ingredient.of("batteries".forgeTag),
+			NotCondition(TagEmptyCondition("batteries".forgeTag.location)),
 		)
 
 		ConditionalRecipe.builder().apply {
@@ -90,14 +94,14 @@ class SuperiorShieldsRecipes(output: PackOutput) : RecipeProvider(output) {
 
 		ConditionalRecipe.builder().apply {
 			addCondition(ModLoadedCondition("thermal"))
-			addCondition(NotCondition(TagEmptyCondition(SuperiorShieldsItemTags.TIN_GEAR.location)))
+			addCondition(NotCondition(TagEmptyCondition("gears/tin".forgeTag.location)))
 			addCondition(NotCondition(TagEmptyCondition(SuperiorShieldsItemTags.FLUX_COIL.location)))
 			addRecipe { writer ->
 				ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemRegistry.engineersShield).apply {
 					pattern(" G ")
 					pattern("XEX")
 					pattern(" G ")
-					define('G', SuperiorShieldsItemTags.TIN_GEAR)
+					define('G', "gears/tin".forgeTag)
 					define('X', Tags.Items.INGOTS_IRON)
 					define('E', SuperiorShieldsItemTags.FLUX_COIL)
 					unlockedBy(
@@ -109,24 +113,24 @@ class SuperiorShieldsRecipes(output: PackOutput) : RecipeProvider(output) {
 				}
 			}
 			generateAdvancement()
-		}.build(writer, ForgeRegistries.ITEMS.getKey(ItemRegistry.engineersShield)!!)
+		}.build(writer, ForgeRegistries.ITEMS.getKey(ItemRegistry.fluxShield)!!)
 
 		shapedShieldRecipe(
 			writer = writer,
 			item = ItemRegistry.manasteelShield,
-			outerTag = SuperiorShieldsItemTags.MANASTEEL_INGOT,
+			outerTag = "ingots/manasteel".forgeTag,
 			centerIngredient = Ingredient.of(SuperiorShieldsItemTags.MANAPEARL)
 		)
 		shapedShieldRecipe(
 			writer = writer,
 			item = ItemRegistry.terrasteelShield,
-			outerTag = SuperiorShieldsItemTags.TERRASTEEL_INGOT,
+			outerTag = "ingots/terrasteel".forgeTag,
 			centerIngredient = Ingredient.of(SuperiorShieldsItemTags.MANAPEARL)
 		)
 		shapedShieldRecipe(
 			writer = writer,
 			item = ItemRegistry.elementiumShield,
-			outerTag = SuperiorShieldsItemTags.ELEMENTIUM_INGOT,
+			outerTag = "ingots/elementium".forgeTag,
 			centerIngredient = Ingredient.of(SuperiorShieldsItemTags.PIXIE_DUST)
 		)
 		shapedShieldRecipe(

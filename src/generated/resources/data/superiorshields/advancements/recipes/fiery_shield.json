@@ -8,7 +8,7 @@
             "conditions": {
               "items": [
                 {
-                  "tag": "forge:ender_pearls"
+                  "tag": "forge:ingots/fiery"
                 }
               ]
             },
@@ -31,12 +31,16 @@
           "recipes": [
             "superiorshields:fiery_shield"
           ]
-        }
+        },
+        "sends_telemetry_event": false
       },
       "conditions": [
         {
-          "type": "forge:mod_loaded",
-          "modid": "twilight_forest"
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/fiery"
+          }
         }
       ]
     }

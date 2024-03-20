@@ -4,12 +4,16 @@
     {
       "conditions": [
         {
-          "type": "forge:mod_loaded",
-          "modid": "ars_nouveau"
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/gold"
+          }
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "category": "misc",
         "key": {
           "E": {
             "tag": "forge:gem/source"
@@ -25,7 +29,8 @@
         ],
         "result": {
           "item": "superiorshields:enchanter_shield"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

@@ -8,7 +8,7 @@
             "conditions": {
               "items": [
                 {
-                  "tag": "forge:ender_pearls"
+                  "tag": "forge:ingots/electrum"
                 }
               ]
             },
@@ -31,7 +31,8 @@
           "recipes": [
             "superiorshields:electrum_shield"
           ]
-        }
+        },
+        "sends_telemetry_event": false
       },
       "conditions": [
         {

@@ -4,12 +4,23 @@
     {
       "conditions": [
         {
-          "type": "forge:mod_loaded",
-          "modid": "mekanism"
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:batteries"
+          }
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:alloys/advanced"
+          }
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "category": "misc",
         "key": {
           "E": {
             "tag": "forge:batteries"
@@ -25,7 +36,8 @@
         ],
         "result": {
           "item": "superiorshields:electric_shield"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

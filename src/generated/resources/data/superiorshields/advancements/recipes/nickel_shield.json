@@ -8,7 +8,7 @@
             "conditions": {
               "items": [
                 {
-                  "tag": "forge:ender_pearls"
+                  "tag": "forge:ingots/nickel"
                 }
               ]
             },
@@ -31,7 +31,8 @@
           "recipes": [
             "superiorshields:nickel_shield"
           ]
-        }
+        },
+        "sends_telemetry_event": false
       },
       "conditions": [
         {

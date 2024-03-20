@@ -31,12 +31,16 @@
           "recipes": [
             "superiorshields:elementium_shield"
           ]
-        }
+        },
+        "sends_telemetry_event": false
       },
       "conditions": [
         {
-          "type": "forge:mod_loaded",
-          "modid": "botania"
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/elementium"
+          }
         }
       ]
     }

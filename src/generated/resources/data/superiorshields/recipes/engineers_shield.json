@@ -6,10 +6,32 @@
         {
           "type": "forge:mod_loaded",
           "modid": "immersiveengineering"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:wooden_grip"
+          }
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:component_steel"
+          }
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/steel"
+          }
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
+        "category": "misc",
         "key": {
           "E": {
             "tag": "forge:component_steel"
@@ -28,7 +50,8 @@
         ],
         "result": {
           "item": "superiorshields:engineers_shield"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

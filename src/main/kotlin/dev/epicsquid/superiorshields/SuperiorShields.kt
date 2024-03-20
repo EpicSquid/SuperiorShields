@@ -8,8 +8,9 @@ import dev.epicsquid.superiorshields.network.NetworkHandler
 import dev.epicsquid.superiorshields.registry.CreativeTabsRegistry
 import dev.epicsquid.superiorshields.registry.EnchantmentRegistry
 import dev.epicsquid.superiorshields.registry.ItemRegistry
+import net.minecraft.core.HolderLookup.Provider
 import net.minecraftforge.common.MinecraftForge
-import net.minecraftforge.common.data.ForgeBlockTagsProvider
+import net.minecraftforge.common.data.BlockTagsProvider
 import net.minecraftforge.data.event.GatherDataEvent
 import net.minecraftforge.eventbus.api.EventPriority.LOWEST
 import net.minecraftforge.fml.ModLoadingContext
@@ -49,7 +50,12 @@ object SuperiorShields {
 		generator.addProvider(event.includeClient(), SuperiorShieldsItemModels(output, event.existingFileHelper))
 		generator.addProvider(event.includeClient(), SuperiorShieldsSpriteSources(output, event.existingFileHelper))
 
-		val blockTagsProvider = ForgeBlockTagsProvider(output, event.lookupProvider, event.existingFileHelper)
+		val blockTagsProvider =
+			object : BlockTagsProvider(output, event.lookupProvider, MODID, event.existingFileHelper) {
+				override fun addTags(pProvider: Provider) {
+				}
+			}
+		generator.addProvider(event.includeServer(), blockTagsProvider)
 		generator.addProvider(
 			event.includeServer(),
 			SuperiorShieldsItemTags(output, event.lookupProvider, blockTagsProvider, event.existingFileHelper)

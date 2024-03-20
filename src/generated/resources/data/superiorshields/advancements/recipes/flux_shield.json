@@ -16,7 +16,7 @@
           },
           "has_the_recipe": {
             "conditions": {
-              "recipe": "superiorshields:flux_shield"
+              "recipe": "superiorshields:engineers_shield"
             },
             "trigger": "minecraft:recipe_unlocked"
           }
@@ -29,14 +29,29 @@
         ],
         "rewards": {
           "recipes": [
-            "superiorshields:flux_shield"
+            "superiorshields:engineers_shield"
           ]
-        }
+        },
+        "sends_telemetry_event": false
       },
       "conditions": [
         {
           "type": "forge:mod_loaded",
           "modid": "thermal"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:gears/tin"
+          }
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "thermal:flux_coil"
+          }
         }
       ]
     }

@@ -1,0 +1,8 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "superiorshields:item/empty_shield_slot"
+    }
+  ]
+}
