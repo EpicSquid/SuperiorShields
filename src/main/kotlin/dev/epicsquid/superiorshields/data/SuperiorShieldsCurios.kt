@@ -22,7 +22,8 @@ class SuperiorShieldsCurios(
 		createSlot(SUPERIOR_SHIELD_CURIO)
 			.icon(ResourceLocation(SuperiorShields.MODID, "item/empty_shield_slot"))
 			.size(1)
-		createEntities(SUPERIOR_SHIELD_CURIO)
+		createEntities("${SUPERIOR_SHIELD_CURIO}_entities")
 			.addPlayer()
+			.addSlots(SUPERIOR_SHIELD_CURIO)
 	}
 }
