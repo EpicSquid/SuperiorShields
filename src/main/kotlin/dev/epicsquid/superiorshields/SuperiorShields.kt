@@ -1,13 +1,14 @@
 package dev.epicsquid.superiorshields
 
+import dev.epicsquid.superiorshields.compat.JeiCompat
 import dev.epicsquid.superiorshields.config.Config
 import dev.epicsquid.superiorshields.data.*
 import dev.epicsquid.superiorshields.event.ClientEventManager
 import dev.epicsquid.superiorshields.event.EventManager
 import dev.epicsquid.superiorshields.network.NetworkHandler
-import dev.epicsquid.superiorshields.registry.GlobalLootModifierRegistry
 import dev.epicsquid.superiorshields.registry.CreativeTabsRegistry
 import dev.epicsquid.superiorshields.registry.EnchantmentRegistry
+import dev.epicsquid.superiorshields.registry.GlobalLootModifierRegistry
 import dev.epicsquid.superiorshields.registry.ItemRegistry
 import net.minecraft.core.HolderLookup.Provider
 import net.minecraftforge.common.MinecraftForge
@@ -26,6 +27,7 @@ object SuperiorShields {
 	const val MODID = "superiorshields"
 
 	init {
+		JeiCompat.classload()
 		ModLoadingContext.get()
 			.registerConfig(ModConfig.Type.SERVER, Config.SHIELDS_CONFIG_SPEC, "superior-shields-server.toml")
 		val modEventBus = MOD_BUS
