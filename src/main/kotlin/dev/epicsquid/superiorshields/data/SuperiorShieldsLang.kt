@@ -35,6 +35,7 @@ class SuperiorShieldsLang(
 		add(EnchantmentRegistry.poisonSpikes, "Poison Spikes")
 		add(EnchantmentRegistry.witherSpikes, "Wither Spikes")
 		add(EnchantmentRegistry.flameOfTheFirehawk, "Flame of the Firehawk")
+		add(EnchantmentRegistry.theBee, "The Bees!")
 
 		addEnchantmentDesc(EnchantmentRegistry.curing, "On depletion, cures you of all potion effects, just like milk.")
 		addEnchantmentDesc(EnchantmentRegistry.quickened, "Increases shield recharge rate.")
@@ -58,6 +59,10 @@ class SuperiorShieldsLang(
 		addEnchantmentDesc(
 			EnchantmentRegistry.flameOfTheFirehawk,
 			"On depletion, lights all mobs around you on fire, and continues to do so for a short time."
+		)
+		addEnchantmentDesc(
+			EnchantmentRegistry.theBee,
+			"While your shield is full, your attacks will deal significantly greater damage."
 		)
 
 		// Items

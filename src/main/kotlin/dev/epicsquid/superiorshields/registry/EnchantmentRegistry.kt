@@ -117,4 +117,12 @@ object EnchantmentRegistry {
 			})
 		)
 	}
+
+	val theBee by REGISTRY.registerObject("the_bee") {
+		AlwaysAmplifyEnchantment(
+			Enchantment.Rarity.RARE,
+			type,
+			effectHandler = DefaultEffectHandler.NONE
+		)
+	}
 }
