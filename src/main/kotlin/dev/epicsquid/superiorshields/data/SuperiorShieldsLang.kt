@@ -97,6 +97,7 @@ class SuperiorShieldsLang(
 		add(ItemRegistry.elementiumShield, "Elementium Shield")
 		add(ItemRegistry.soulStainedShield, "Soul Stained Shield")
 		add(ItemRegistry.spiritHunterShield, "Spirit Hunter Shield")
+		add(ItemRegistry.darksteelShield, "Darksteel Shield")
 
 		// Other
 		add("tooltip.${SuperiorShields.MODID}.blank", " ")
