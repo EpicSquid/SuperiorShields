@@ -1,7 +1,8 @@
-// 1.20.1	2024-03-20T11:52:11.3343715	Item Models: superiorshields
+// 1.20.1	2024-03-21T16:31:47.9365027	Item Models: superiorshields
 cb02dd463fa94d5285fbca80626ee4f2835371c6 assets/superiorshields/models/item/bronze_shield.json
 4bbcc914627f9c8f61b1bb50c95772a88bc394f9 assets/superiorshields/models/item/constantan_shield.json
 b8df211ed19fd42fb5618858c8adf88dcff143a0 assets/superiorshields/models/item/copper_shield.json
+00c93ad7922b2989f948ac2b14a458f6fddd7aa2 assets/superiorshields/models/item/darksteel_shield.json
 21e802edef680af0c9ed11665fad36b59849dcef assets/superiorshields/models/item/diamond_shield.json
 9ffd619bdb07c202c34d7d5f0736f6dc74d98ffb assets/superiorshields/models/item/electric_shield.json
 e4f2c763dc9ec2eed50068b909017618abf8417e assets/superiorshields/models/item/electrum_shield.json

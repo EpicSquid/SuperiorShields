@@ -1,0 +1,38 @@
+{
+  "type": "superiorshields:shield_loot_modifier",
+  "common_chance": 0.4,
+  "common_rolls": 3,
+  "common_shield_items": [
+    "superiorshields:iron_shield"
+  ],
+  "conditions": [
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/bastion_treasure"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/nether_bridge"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/ruined_portal"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/pillager_outpost"
+        }
+      ]
+    }
+  ],
+  "enchantment_level": 8,
+  "rare_chance": 0.15,
+  "rare_rolls": 2,
+  "rare_shield_items": [
+    "superiorshields:golden_shield",
+    "superiorshields:diamond_shield"
+  ]
+}

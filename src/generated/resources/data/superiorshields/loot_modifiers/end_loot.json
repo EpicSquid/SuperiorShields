@@ -1,0 +1,20 @@
+{
+  "type": "superiorshields:shield_loot_modifier",
+  "common_chance": 0.4,
+  "common_rolls": 1,
+  "common_shield_items": [
+    "superiorshields:iron_shield"
+  ],
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/end_city_treasure"
+    }
+  ],
+  "enchantment_level": 12,
+  "rare_chance": 0.15,
+  "rare_rolls": 3,
+  "rare_shield_items": [
+    "superiorshields:diamond_shield"
+  ]
+}

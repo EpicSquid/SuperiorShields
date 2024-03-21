@@ -1,0 +1,8 @@
+{
+  "entries": [
+    "superiorshields:basic_loot",
+    "superiorshields:nether_loot",
+    "superiorshields:end_loot"
+  ],
+  "replace": false
+}

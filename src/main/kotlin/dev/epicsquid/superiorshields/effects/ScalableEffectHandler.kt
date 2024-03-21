@@ -7,7 +7,8 @@ class ScalableEffectHandler(
 	private val empty: ((Empty, Int) -> Unit)? = null,
 	private val filled: ((Filled, Int) -> Unit)? = null,
 	private val full: ((Full, Int) -> Unit)? = null,
-	private val recharge: ((Recharge, Int) -> Unit)? = null
+	private val recharge: ((Recharge, Int) -> Unit)? = null,
+	private val continualEmpty: ((ContinualEmpty, Int) -> Unit)? = null
 ) : EffectHandler {
 
 	override fun applyEffect(effectTrigger: EffectTrigger, scale: Int) {
@@ -17,6 +18,7 @@ class ScalableEffectHandler(
 			is Filled -> filled?.invoke(effectTrigger, scale)
 			is Full -> full?.invoke(effectTrigger, scale)
 			is Recharge -> recharge?.invoke(effectTrigger, scale)
+			is ContinualEmpty -> continualEmpty?.invoke(effectTrigger, scale)
 		}
 	}
 }

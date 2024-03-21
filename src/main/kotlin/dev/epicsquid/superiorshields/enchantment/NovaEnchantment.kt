@@ -4,7 +4,7 @@ import dev.epicsquid.superiorshields.effects.EffectHandler
 import net.minecraft.world.item.enchantment.Enchantment
 import net.minecraft.world.item.enchantment.EnchantmentCategory
 
-class NovaEnchantment(
+open class NovaEnchantment(
 	rarity: Rarity,
 	category: EnchantmentCategory,
 	effectHandler: EffectHandler

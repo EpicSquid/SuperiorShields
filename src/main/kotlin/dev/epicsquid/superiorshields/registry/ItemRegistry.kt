@@ -305,6 +305,15 @@ object ItemRegistry {
 		)
 	}
 
+	val darksteelShield by REGISTRY.registerObject("darksteel_shield") {
+		EnergySuperiorShieldItem(
+			enchantmentValue = 14,
+			type = EnergySuperiorShield(Config.SHIELDS_CONFIG.darksteelShield),
+			maxEnergy = 48000,
+			barColor = 0xFF0000
+		)
+	}
+
 	private fun durabilityShieldItem(
 		stats: SuperiorShieldStats,
 		enchantmentValue: Int,

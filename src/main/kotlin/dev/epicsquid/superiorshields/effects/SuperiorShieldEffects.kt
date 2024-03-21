@@ -46,6 +46,12 @@ object SuperiorShieldEffects {
 		}
 	}
 
+	val FLAME_OF_THE_FIREHAWK: (LivingEntity, Int) -> Unit = { entity, scale ->
+		novaEffect(entity, scale) {
+			it.setSecondsOnFire(Config.SHIELDS_CONFIG.novaEffectDuration.get())
+		}
+	}
+
 	private fun novaEffect(entity: LivingEntity, scale: Int, effect: (LivingEntity) -> Unit) {
 		if (entity.level().isClientSide) return
 

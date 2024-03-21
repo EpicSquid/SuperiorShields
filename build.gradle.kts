@@ -167,7 +167,6 @@ repositories {
 		name = "Kotlin for Forge"
 		setUrl("https://thedarkcolour.github.io/KotlinForForge/")
 	}
-
 	maven {
 		name = "Gecko Lib"
 		setUrl("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")

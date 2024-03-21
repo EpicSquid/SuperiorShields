@@ -34,6 +34,7 @@ class SuperiorShieldsLang(
 		add(EnchantmentRegistry.shulkingNova, "Shulking Nova")
 		add(EnchantmentRegistry.poisonSpikes, "Poison Spikes")
 		add(EnchantmentRegistry.witherSpikes, "Wither Spikes")
+		add(EnchantmentRegistry.flameOfTheFirehawk, "Flame of the Firehawk")
 
 		addEnchantmentDesc(EnchantmentRegistry.curing, "On depletion, cures you of all potion effects, just like milk.")
 		addEnchantmentDesc(EnchantmentRegistry.quickened, "Increases shield recharge rate.")
@@ -53,6 +54,10 @@ class SuperiorShieldsLang(
 		addEnchantmentDesc(
 			EnchantmentRegistry.witherSpikes,
 			"On damage to shield, magical spikes will wither the attacker."
+		)
+		addEnchantmentDesc(
+			EnchantmentRegistry.flameOfTheFirehawk,
+			"On depletion, lights all mobs around you on fire, and continues to do so for a short time."
 		)
 
 		// Items

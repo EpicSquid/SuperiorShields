@@ -58,6 +58,9 @@ class SuperiorShieldsConfig(
 	val knightmetalShield: SuperiorShieldStats
 	val fieryShield: SuperiorShieldStats
 
+	val darksteelShield: SuperiorShieldStats
+	val endsteelShield: SuperiorShieldStats
+
 	init {
 		builder.stack("consumption") {
 			comment("The amount of a resource to use for a given shield type.")
@@ -155,6 +158,11 @@ class SuperiorShieldsConfig(
 			steeleafShield = shield("steeleaf", 9, 60, 100)
 			knightmetalShield = shield("knightmetal", 6, 40, 40)
 			fieryShield = shield("fiery", 7, 30, 60)
+		}
+		builder.stack("enderio") {
+			comment("Shields made from materials present in Ender IO")
+			darksteelShield = shield("darksteel", 8, 60, 40)
+			endsteelShield = shield("endsteel", 10, 60, 40)
 		}
 	}
 }

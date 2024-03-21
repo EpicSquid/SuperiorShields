@@ -102,4 +102,19 @@ object EnchantmentRegistry {
 			)
 		)
 	}
+
+	val flameOfTheFirehawk by REGISTRY.registerObject("flame_of_the_firehawk") {
+		ContinualNovaEnchantment(
+			Enchantment.Rarity.RARE,
+			type,
+			ScalableEffectHandler(continualEmpty = { trigger, scale ->
+				if (trigger.ticksPassed % 40 == 0) {
+					SuperiorShieldEffects.FLAME_OF_THE_FIREHAWK(
+						trigger.shieldHolder,
+						scale * 3
+					)
+				}
+			})
+		)
+	}
 }

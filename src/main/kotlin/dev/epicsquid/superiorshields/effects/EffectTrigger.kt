@@ -34,5 +34,11 @@ sealed interface EffectTrigger {
 		val shieldHolder: LivingEntity,
 		override val shieldStack: ItemStack,
 	) : EffectTrigger
+
+	data class ContinualEmpty(
+		val shieldHolder: LivingEntity,
+		val ticksPassed: Int,
+		override val shieldStack: ItemStack,
+	) : EffectTrigger
 }
 

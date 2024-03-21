@@ -7,7 +7,8 @@ class DefaultEffectHandler(
 	private val empty: ((Empty) -> Unit)? = null,
 	private val filled: ((Filled) -> Unit)? = null,
 	private val full: ((Full) -> Unit)? = null,
-	private val recharge: ((Recharge) -> Unit)? = null
+	private val recharge: ((Recharge) -> Unit)? = null,
+	private val continualEmpty: ((ContinualEmpty) -> Unit)? = null
 ) : EffectHandler {
 	companion object {
 		val NONE = DefaultEffectHandler()
@@ -20,6 +21,7 @@ class DefaultEffectHandler(
 			is Filled -> filled?.invoke(effectTrigger)
 			is Full -> full?.invoke(effectTrigger)
 			is Recharge -> recharge?.invoke(effectTrigger)
+			is ContinualEmpty -> continualEmpty?.invoke(effectTrigger)
 		}
 	}
 }

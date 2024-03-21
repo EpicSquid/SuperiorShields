@@ -5,6 +5,7 @@ import dev.epicsquid.superiorshields.data.*
 import dev.epicsquid.superiorshields.event.ClientEventManager
 import dev.epicsquid.superiorshields.event.EventManager
 import dev.epicsquid.superiorshields.network.NetworkHandler
+import dev.epicsquid.superiorshields.registry.GlobalLootModifierRegistry
 import dev.epicsquid.superiorshields.registry.CreativeTabsRegistry
 import dev.epicsquid.superiorshields.registry.EnchantmentRegistry
 import dev.epicsquid.superiorshields.registry.ItemRegistry
@@ -39,6 +40,7 @@ object SuperiorShields {
 		EnchantmentRegistry.REGISTRY.register(modEventBus)
 		ItemRegistry.REGISTRY.register(modEventBus)
 		CreativeTabsRegistry.REGISTRY.register(modEventBus)
+		GlobalLootModifierRegistry.REGISTRY.register(modEventBus)
 
 		modEventBus.addListener(LOWEST, this::onGatherData)
 	}
@@ -65,5 +67,6 @@ object SuperiorShields {
 			event.includeServer(),
 			SuperiorShieldsCurios(output, event.existingFileHelper, event.lookupProvider)
 		)
+		generator.addProvider(event.includeServer(), SuperiorShieldsGlobalLoot(output))
 	}
 }
