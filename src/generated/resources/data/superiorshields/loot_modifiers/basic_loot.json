@@ -1,6 +1,6 @@
 {
   "type": "superiorshields:shield_loot_modifier",
-  "common_chance": 0.4,
+  "common_chance": 0.3,
   "common_rolls": 3,
   "common_shield_items": [
     "superiorshields:iron_shield",
@@ -21,10 +21,6 @@
         {
           "condition": "forge:loot_table_id",
           "loot_table_id": "minecraft:chests/abandoned_mineshaft"
-        },
-        {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "minecraft:chests/bastion_treasure"
         },
         {
           "condition": "forge:loot_table_id",
@@ -57,14 +53,19 @@
         {
           "condition": "forge:loot_table_id",
           "loot_table_id": "minecraft:chests/underwater_ruin_small"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/ruined_portal"
         }
       ]
     }
   ],
   "enchantment_level": 5,
-  "rare_chance": 0.15,
+  "rare_chance": 0.1,
   "rare_rolls": 1,
   "rare_shield_items": [
+    "superiorshields:iron_shield",
     "superiorshields:golden_shield"
   ]
 }

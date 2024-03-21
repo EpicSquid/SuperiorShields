@@ -21,7 +21,6 @@ class SuperiorShieldsGlobalLoot(output: PackOutput) : GlobalLootModifierProvider
 							"chests/simple_dungeon",
 							"chests/jungle_temple",
 							"chests/abandoned_mineshaft",
-							"chests/bastion_treasure",
 							"chests/desert_pyramid",
 							"chests/pillager_outpost",
 							"chests/stronghold_corridor",
@@ -29,11 +28,13 @@ class SuperiorShieldsGlobalLoot(output: PackOutput) : GlobalLootModifierProvider
 							"chests/stronghold_library",
 							"chests/woodland_mansion",
 							"chests/underwater_ruin_big",
-							"chests/underwater_ruin_small"
+							"chests/underwater_ruin_small",
+							"chests/ruined_portal",
 						)
 					)
 				),
 				rareShieldItems = listOf(
+					ItemRegistry.ironShield,
 					ItemRegistry.goldenShield
 				),
 			)
@@ -44,17 +45,22 @@ class SuperiorShieldsGlobalLoot(output: PackOutput) : GlobalLootModifierProvider
 					getList(
 						arrayOf(
 							"chests/bastion_treasure",
+							"chests/bastion_other",
+							"chests/bastion_bridge",
+							"chests/bastion_hoglin_stable",
 							"chests/nether_bridge",
-							"chests/ruined_portal",
-							"chests/pillager_outpost"
 						)
 					)
 				),
 				commonShieldItems = listOf(
 					ItemRegistry.ironShield
 				),
-				enchantmentLevel = 8,
+				enchantmentLevel = 10,
 				rareRolls = 2,
+				rareShieldItems = listOf(
+					ItemRegistry.goldenShield,
+					ItemRegistry.ironShield
+				)
 			)
 		)
 		add(
@@ -63,6 +69,8 @@ class SuperiorShieldsGlobalLoot(output: PackOutput) : GlobalLootModifierProvider
 					getList(
 						arrayOf(
 							"chests/end_city_treasure",
+							"chests/ancient_city",
+							"chests/ancient_city_ice_box",
 						)
 					)
 				),
@@ -73,7 +81,7 @@ class SuperiorShieldsGlobalLoot(output: PackOutput) : GlobalLootModifierProvider
 				rareShieldItems = listOf(
 					ItemRegistry.diamondShield
 				),
-				enchantmentLevel = 12,
+				enchantmentLevel = 15,
 				rareRolls = 3
 			)
 		)

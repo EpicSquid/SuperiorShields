@@ -18,14 +18,14 @@ import net.minecraftforge.registries.ForgeRegistries
 class ShieldDungeonLootModifier(
 	conditionsIn: Array<out LootItemCondition>,
 	private val commonRolls: Int = 3,
-	private val commonChance: Double = 0.4,
+	private val commonChance: Double = 0.3,
 	private val commonShieldItems: List<Item> = listOf(
 		ItemRegistry.ironShield,
 		ItemRegistry.copperShield,
 	),
 	private val enchantmentLevel: Int = 5,
 	private val rareRolls: Int = 1,
-	private val rareChance: Double = 0.15,
+	private val rareChance: Double = 0.1,
 	private val rareShieldItems: List<Item> = listOf(
 		ItemRegistry.goldenShield,
 		ItemRegistry.diamondShield

@@ -1,5 +1,5 @@
-// 1.20.1	2024-03-21T19:40:00.8600334	Global Loot Modifiers : superiorshields
+// 1.20.1	2024-03-21T19:46:43.9881926	Global Loot Modifiers : superiorshields
 82bd183c4e82c77b8c00e5307e0da61074f70eb6 data/forge/loot_modifiers/global_loot_modifiers.json
-9dc082ad1fea8a8c982864994c3a4592a07e54ee data/superiorshields/loot_modifiers/basic_loot.json
-ba300397dc3d645479b8a0581b328922abf21c94 data/superiorshields/loot_modifiers/end_loot.json
-c7bd550b8e1fca37df724f53a1ca9496597d3d4b data/superiorshields/loot_modifiers/nether_loot.json
+317fb754b9d602df728426b9aeeb9686620bc452 data/superiorshields/loot_modifiers/basic_loot.json
+e3dfd0f4c1bcc979a639b7e71060e659f25c07ea data/superiorshields/loot_modifiers/end_loot.json
+4cd93e2adf61c2f1dd414326e0521c3640ceb978 data/superiorshields/loot_modifiers/nether_loot.json
