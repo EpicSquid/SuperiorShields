@@ -137,13 +137,13 @@ class SuperiorShieldsRecipes(output: PackOutput) : RecipeProvider(output) {
 			writer = writer,
 			item = ItemRegistry.soulStainedShield,
 			outerTag = SuperiorShieldsItemTags.SOUL_STAINED_STEEL_INGOT,
-			centerIngredient = Ingredient.of(SuperiorShieldsItemTags.HALLOWED_SPIRIT_RESONATOR)
+			centerIngredient = Ingredient.of(SuperiorShieldsItemTags.SPECTRAL_LENS)
 		)
 		shapedShieldRecipe(
 			writer = writer,
 			item = ItemRegistry.spiritHunterShield,
 			outerTag = SuperiorShieldsItemTags.SPIRIT_FABRIC,
-			centerIngredient = Ingredient.of(SuperiorShieldsItemTags.STAINED_SPIRIT_RESONATOR)
+			centerIngredient = Ingredient.of(SuperiorShieldsItemTags.SPECTRAL_LENS)
 		)
 		shapedShieldRecipe(
 			writer = writer,

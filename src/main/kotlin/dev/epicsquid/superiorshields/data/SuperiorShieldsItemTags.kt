@@ -39,9 +39,7 @@ class SuperiorShieldsItemTags(
 		val WOODEN_GRIP: TagKey<Item> = "wooden_grip".forgeTag
 		val SOUL_STAINED_STEEL_INGOT: TagKey<Item> = "soul_stained_steel_ingot".forgeTag
 		val SPIRIT_FABRIC: TagKey<Item> = ItemTags.create(ResourceLocation("malum", "spirit_fabric"))
-		val HALLOWED_SPIRIT_RESONATOR: TagKey<Item> =
-			ItemTags.create(ResourceLocation("malum", "hallowed_spirit_resonator"))
-		val STAINED_SPIRIT_RESONATOR: TagKey<Item> = ItemTags.create(ResourceLocation("malum", "stained_spirit_resonator"))
+		val SPECTRAL_LENS: TagKey<Item> = ItemTags.create(ResourceLocation("malum", "spectral_lens"))
 		val SOURCE_GEM: TagKey<Item> = "gem/source".forgeTag
 	}
 
@@ -60,10 +58,8 @@ class SuperiorShieldsItemTags(
 			.addOptional(ResourceLocation("malum", "soul_stained_steel_ingot"))
 		tag(SPIRIT_FABRIC)
 			.addOptional(ResourceLocation("malum", "spirit_fabric"))
-		tag(HALLOWED_SPIRIT_RESONATOR)
+		tag(SPECTRAL_LENS)
 			.addOptional(ResourceLocation("malum", "hallowed_spirit_resonator"))
-		tag(STAINED_SPIRIT_RESONATOR)
-			.addOptional(ResourceLocation("malum", "stained_spirit_resonator"))
 		tag(SOURCE_GEM)
 			.addOptional(ResourceLocation("ars_nouveau", "source_gem"))
 

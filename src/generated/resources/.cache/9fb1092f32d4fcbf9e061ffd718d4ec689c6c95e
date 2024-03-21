@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-20T18:34:09.95107	Recipes
+// 1.20.1	2024-03-22T06:45:42.5907447	Recipes
 cbee929fbc8c1752ae81cf4be6bcee3db6ad2538 data/superiorshields/advancements/recipes/bronze_shield.json
 31385bfabd0392c9a0d59275881cce56a14ef467 data/superiorshields/advancements/recipes/constantan_shield.json
 bf5426f710541081f2762a921f7f2fba7d1f625f data/superiorshields/advancements/recipes/copper_shield.json
@@ -55,8 +55,8 @@ dc6978c44902ad58d7e42447063e35c56c4b5673 data/superiorshields/recipes/manasteel_
 224b22878cb9b944bd6a716c1e71ecf326324868 data/superiorshields/recipes/refined_glowstone_shield.json
 4f7d4eba3744f636df8cda477740bc6780b0e19f data/superiorshields/recipes/refined_obsidian_shield.json
 4dc8994df82d82146183afae086b1c818bdc91b9 data/superiorshields/recipes/silver_shield.json
-2107dfa3c858a922ef2044034ffe3c1bbf81912a data/superiorshields/recipes/soul_stained_shield.json
-6082070becd7b65f05f9a2e9fce5c999939732c2 data/superiorshields/recipes/spirit_hunter_shield.json
+7710d6d68a51925aacfc53bc2922903f2e1b816b data/superiorshields/recipes/soul_stained_shield.json
+cdf5d243a88a541d9e667ff87db9dbbddbe5ae2b data/superiorshields/recipes/spirit_hunter_shield.json
 434b255cb34fb44f4d3db27ae7c63ede40eaec5e data/superiorshields/recipes/steeleaf_shield.json
 cd9b2f2aba9e39233066ddb248de0f1b4e490f6c data/superiorshields/recipes/steel_shield.json
 f43ea60e78afcc7f65f328e633884555c38ae208 data/superiorshields/recipes/terrasteel_shield.json
