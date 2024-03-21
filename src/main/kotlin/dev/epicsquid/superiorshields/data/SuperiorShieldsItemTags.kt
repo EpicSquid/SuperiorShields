@@ -59,7 +59,7 @@ class SuperiorShieldsItemTags(
 		tag(SPIRIT_FABRIC)
 			.addOptional(ResourceLocation("malum", "spirit_fabric"))
 		tag(SPECTRAL_LENS)
-			.addOptional(ResourceLocation("malum", "hallowed_spirit_resonator"))
+			.addOptional(ResourceLocation("malum", "spectral_lens"))
 		tag(SOURCE_GEM)
 			.addOptional(ResourceLocation("ars_nouveau", "source_gem"))
 
