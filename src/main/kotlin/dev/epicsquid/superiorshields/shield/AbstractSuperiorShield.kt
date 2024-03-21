@@ -74,7 +74,10 @@ abstract class AbstractSuperiorShield(
 			// Increment how long the shield has been full for
 			shield.ticksFull++
 		} else {
-			applyEffect(ContinualEmpty(entity, shield.ticksWithoutDamage, stack))
+			// Apply continual empty effect if the shield is empty
+			if (shield.hp == 0) {
+				applyEffect(ContinualEmpty(entity, shield.ticksWithoutDamage, stack))
+			}
 			// It's not, so start recharging cycle
 			if (shield.ticksWithoutDamage >= delayAttribute) {
 				// This is compat for 1.19.2 update to 3.0.0, so we don't need to keep this on the 1.20 port
