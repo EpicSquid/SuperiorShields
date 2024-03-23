@@ -53,6 +53,7 @@ val malumVersionRange: String by extra
 val botaniaVersionRange: String by extra
 val arsNouveauVersionRange: String by extra
 val curiosVersionRange: String by extra
+val squidInkVersion: String by extra
 
 version = "$minecraftVersion-$modVersion"
 if (System.getenv("BUILD_NUMBER") != null) {
@@ -183,6 +184,12 @@ dependencies {
 	// Kotlin for Forge
 	implementation("thedarkcolour:kotlinforforge:$kotlinForForgeVersion")
 
+	// SquidInk
+	jarJar(group = "dev.epicsquid.squidink", name = "squidink", version = "[$minecraftVersion-$squidInkVersion, )") {
+		jarJar.pin(this, "$minecraftVersion-$squidInkVersion")
+	}
+	implementation("dev.epicsquid.squidink:squidink:$minecraftVersion-$squidInkVersion")
+
 	// Kotlin
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
@@ -296,3 +303,14 @@ idea {
 tasks.withType<JavaCompile> {
 	options.encoding = "UTF-8"
 }
+
+tasks.register("jarJarRelease") {
+	doLast {
+		tasks.jarJar {
+			(this as Jar).archiveClassifier.set("")
+		}
+	}
+	finalizedBy(tasks.getByName("jarJar"))
+}
+tasks.jarJar.get().finalizedBy("reobfJarJar")
+

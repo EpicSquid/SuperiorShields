@@ -1,9 +1,9 @@
 package dev.epicsquid.superiorshields.item
 
+import dev.epicsquid.squidink.utils.withArgs
 import dev.epicsquid.superiorshields.capability.EnergyCapProvider
 import dev.epicsquid.superiorshields.data.SuperiorShieldsLang
 import dev.epicsquid.superiorshields.shield.EnergySuperiorShield
-import dev.epicsquid.superiorshields.utils.TooltipUtils
 import net.minecraft.ChatFormatting.GRAY
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.chat.Component
@@ -49,8 +49,7 @@ open class EnergySuperiorShieldItem<T : EnergySuperiorShield>(
 
 		tooltip.add(Component.translatable(SuperiorShieldsLang.BLANK))
 		tooltip.add(
-			TooltipUtils.withArgs(
-				Component.translatable(SuperiorShieldsLang.ENERGY),
+			Component.translatable(SuperiorShieldsLang.ENERGY).withArgs(
 				decimalFormat.format(energyStorage.energyStored.toDouble() / 1000.0),
 				decimalFormat.format(energyStorage.maxEnergyStored.toDouble() / 1000.0)
 			).withStyle(GRAY)

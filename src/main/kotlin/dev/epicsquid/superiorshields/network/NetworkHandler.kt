@@ -1,9 +1,9 @@
 package dev.epicsquid.superiorshields.network
 
+import dev.epicsquid.squidink.network.decodeFrom
+import dev.epicsquid.squidink.network.encodeTo
 import dev.epicsquid.superiorshields.SuperiorShields
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
-import dev.epicsquid.superiorshields.utils.decodeFrom
-import dev.epicsquid.superiorshields.utils.encodeTo
 import net.minecraft.client.Minecraft
 import net.minecraft.resources.ResourceLocation
 import net.minecraftforge.network.NetworkRegistry

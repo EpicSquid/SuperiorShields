@@ -1,9 +1,9 @@
 package dev.epicsquid.superiorshields.item
 
+import dev.epicsquid.squidink.utils.withArgs
 import dev.epicsquid.superiorshields.data.SuperiorShieldsLang
 import dev.epicsquid.superiorshields.registry.CapabilityRegistry.shield
 import dev.epicsquid.superiorshields.shield.SuperiorShield
-import dev.epicsquid.superiorshields.utils.TooltipUtils
 import net.minecraft.ChatFormatting
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.Item
@@ -73,21 +73,15 @@ open class SuperiorShieldItem<T : SuperiorShield>(
 			add(Component.translatable(SuperiorShieldsLang.BLANK))
 			add(Component.translatable(SuperiorShieldsLang.EQUIP).withStyle(ChatFormatting.GRAY))
 			add(
-				TooltipUtils.withArgs(Component.translatable(SuperiorShieldsLang.HP), decimalFormat.format(capacityAttribute))
+				Component.translatable(SuperiorShieldsLang.HP).withArgs(decimalFormat.format(capacityAttribute))
 					.withStyle(ChatFormatting.DARK_GREEN)
 			)
 			add(
-				TooltipUtils.withArgs(
-					Component.translatable(SuperiorShieldsLang.RECHARGE_RATE),
-					decimalFormat.format(rateDisplay)
-				)
+				Component.translatable(SuperiorShieldsLang.RECHARGE_RATE).withArgs(decimalFormat.format(rateDisplay))
 					.withStyle(ChatFormatting.DARK_GREEN)
 			)
 			add(
-				TooltipUtils.withArgs(
-					Component.translatable(SuperiorShieldsLang.RECHARGE_DELAY),
-					decimalFormat.format(delayDisplay)
-				)
+				Component.translatable(SuperiorShieldsLang.RECHARGE_DELAY).withArgs(decimalFormat.format(delayDisplay))
 					.withStyle(ChatFormatting.DARK_GREEN)
 			)
 		}

@@ -1,6 +1,6 @@
 package dev.epicsquid.superiorshields.config
 
-import dev.epicsquid.superiorshields.utils.stack
+import dev.epicsquid.squidink.config.stack
 import net.minecraftforge.common.ForgeConfigSpec
 
 class SuperiorShieldStats(

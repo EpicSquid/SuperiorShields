@@ -1,5 +1,6 @@
 package dev.epicsquid.superiorshields.registry
 
+import dev.epicsquid.squidink.utils.forgeTag
 import dev.epicsquid.superiorshields.SuperiorShields
 import dev.epicsquid.superiorshields.compat.ArsCompat
 import dev.epicsquid.superiorshields.compat.BotaniaCompat
@@ -13,7 +14,6 @@ import dev.epicsquid.superiorshields.item.FireNovaSuperiorShieldItem
 import dev.epicsquid.superiorshields.item.SuperiorShieldItem
 import dev.epicsquid.superiorshields.shield.DurabilitySuperiorShield
 import dev.epicsquid.superiorshields.shield.EnergySuperiorShield
-import dev.epicsquid.superiorshields.utils.forgeTag
 import net.minecraft.core.registries.Registries
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item

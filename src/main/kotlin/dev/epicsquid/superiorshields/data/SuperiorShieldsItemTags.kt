@@ -3,7 +3,7 @@ package dev.epicsquid.superiorshields.data
 import dev.epicsquid.superiorshields.SuperiorShields
 import dev.epicsquid.superiorshields.item.SuperiorShieldItem
 import dev.epicsquid.superiorshields.registry.ItemRegistry
-import dev.epicsquid.superiorshields.utils.forgeTag
+import dev.epicsquid.squidink.utils.forgeTag
 import net.minecraft.core.HolderLookup.Provider
 import net.minecraft.data.PackOutput
 import net.minecraft.data.tags.ItemTagsProvider

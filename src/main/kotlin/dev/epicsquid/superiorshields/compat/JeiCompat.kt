@@ -1,7 +1,7 @@
 package dev.epicsquid.superiorshields.compat
 
+import dev.epicsquid.squidink.utils.forgeTag
 import dev.epicsquid.superiorshields.registry.ItemRegistry
-import dev.epicsquid.superiorshields.utils.forgeTag
 import mezz.jei.api.IModPlugin
 import mezz.jei.api.JeiPlugin
 import mezz.jei.api.constants.VanillaTypes

@@ -1,7 +1,7 @@
 package dev.epicsquid.superiorshields.data
 
+import dev.epicsquid.squidink.utils.forgeTag
 import dev.epicsquid.superiorshields.registry.ItemRegistry
-import dev.epicsquid.superiorshields.utils.forgeTag
 import net.minecraft.advancements.critereon.InventoryChangeTrigger
 import net.minecraft.advancements.critereon.ItemPredicate
 import net.minecraft.data.PackOutput
