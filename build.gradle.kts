@@ -188,7 +188,7 @@ dependencies {
 	jarJar(group = "dev.epicsquid.squidink", name = "squidink", version = "[$minecraftVersion-$squidInkVersion, )") {
 		jarJar.pin(this, "$minecraftVersion-$squidInkVersion")
 	}
-	implementation("dev.epicsquid.squidink:squidink:$minecraftVersion-$squidInkVersion")
+	implementation(fg.deobf("dev.epicsquid.squidink:squidink:$minecraftVersion-$squidInkVersion"))
 
 	// Kotlin
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
