@@ -1,12 +1,14 @@
 package dev.epicsquid.superiorshields.compat
 
 import dev.epicsquid.superiorshields.registry.ItemRegistry
+import dev.epicsquid.superiorshields.utils.forgeTag
 import mezz.jei.api.IModPlugin
 import mezz.jei.api.JeiPlugin
 import mezz.jei.api.constants.VanillaTypes
 import mezz.jei.api.registration.IRecipeRegistration
 import net.minecraft.resources.ResourceLocation
 import net.minecraftforge.fml.ModList
+import net.minecraftforge.registries.ForgeRegistries
 
 @JeiPlugin
 class JeiCompat : IModPlugin {
@@ -97,5 +99,75 @@ class JeiCompat : IModPlugin {
 				VanillaTypes.ITEM_STACK,
 				enderIoShields.map { it.defaultInstance }
 			)
+
+		ForgeRegistries.ITEMS.tags()?.getTag("ingots/tin".forgeTag)?.isEmpty?.let {
+			if (it) registration.ingredientManager.removeIngredientsAtRuntime(
+				VanillaTypes.ITEM_STACK,
+				listOf(ItemRegistry.tinShield.defaultInstance)
+			)
+		}
+
+		ForgeRegistries.ITEMS.tags()?.getTag("ingots/nickel".forgeTag)?.isEmpty?.let {
+			if (it) registration.ingredientManager.removeIngredientsAtRuntime(
+				VanillaTypes.ITEM_STACK,
+				listOf(ItemRegistry.nickelShield.defaultInstance)
+			)
+		}
+
+		ForgeRegistries.ITEMS.tags()?.getTag("ingots/bronze".forgeTag)?.isEmpty?.let {
+			if (it) registration.ingredientManager.removeIngredientsAtRuntime(
+				VanillaTypes.ITEM_STACK,
+				listOf(ItemRegistry.bronzeShield.defaultInstance)
+			)
+		}
+
+		ForgeRegistries.ITEMS.tags()?.getTag("ingots/electrum".forgeTag)?.isEmpty?.let {
+			if (it) registration.ingredientManager.removeIngredientsAtRuntime(
+				VanillaTypes.ITEM_STACK,
+				listOf(ItemRegistry.electrumShield.defaultInstance)
+			)
+		}
+
+		ForgeRegistries.ITEMS.tags()?.getTag("ingots/invar".forgeTag)?.isEmpty?.let {
+			if (it) registration.ingredientManager.removeIngredientsAtRuntime(
+				VanillaTypes.ITEM_STACK,
+				listOf(ItemRegistry.invarShield.defaultInstance)
+			)
+		}
+
+		ForgeRegistries.ITEMS.tags()?.getTag("ingots/lead".forgeTag)?.isEmpty?.let {
+			if (it) registration.ingredientManager.removeIngredientsAtRuntime(
+				VanillaTypes.ITEM_STACK,
+				listOf(ItemRegistry.leadShield.defaultInstance)
+			)
+		}
+
+		ForgeRegistries.ITEMS.tags()?.getTag("ingots/silver".forgeTag)?.isEmpty?.let {
+			if (it) registration.ingredientManager.removeIngredientsAtRuntime(
+				VanillaTypes.ITEM_STACK,
+				listOf(ItemRegistry.silverShield.defaultInstance)
+			)
+		}
+
+		ForgeRegistries.ITEMS.tags()?.getTag("ingots/steel".forgeTag)?.isEmpty?.let {
+			if (it) registration.ingredientManager.removeIngredientsAtRuntime(
+				VanillaTypes.ITEM_STACK,
+				listOf(ItemRegistry.steelShield.defaultInstance)
+			)
+		}
+
+		ForgeRegistries.ITEMS.tags()?.getTag("ingots/constantan".forgeTag)?.isEmpty?.let {
+			if (it) registration.ingredientManager.removeIngredientsAtRuntime(
+				VanillaTypes.ITEM_STACK,
+				listOf(ItemRegistry.constantanShield.defaultInstance)
+			)
+		}
+
+		ForgeRegistries.ITEMS.tags()?.getTag("ingots/electrum".forgeTag)?.isEmpty?.let {
+			if (it) registration.ingredientManager.removeIngredientsAtRuntime(
+				VanillaTypes.ITEM_STACK,
+				listOf(ItemRegistry.electrumShield.defaultInstance)
+			)
+		}
 	}
 }
