@@ -224,10 +224,6 @@ dependencies {
 	implementation(fg.deobf("com.sammy.malum:malum:$minecraftVersion-$malumVersion"))
 
 	// Mixin extra
-	// TODO remove when updating to neo
-	jarJar("io.github.llamalad7:mixinextras-forge:$mixinExtrasVersion") {
-		jarJar.ranged(this, "[$mixinExtrasVersion,)")
-	}
 	minecraftLibrary("io.github.llamalad7:mixinextras-forge:$mixinExtrasVersion")
 }
 
