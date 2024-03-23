@@ -97,7 +97,7 @@ class SuperiorShieldsRecipes(output: PackOutput) : RecipeProvider(output) {
 			addCondition(NotCondition(TagEmptyCondition("gears/tin".forgeTag.location)))
 			addCondition(NotCondition(TagEmptyCondition(SuperiorShieldsItemTags.FLUX_COIL.location)))
 			addRecipe { writer ->
-				ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemRegistry.engineersShield).apply {
+				ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemRegistry.fluxShield).apply {
 					pattern(" G ")
 					pattern("XEX")
 					pattern(" G ")

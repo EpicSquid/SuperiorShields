@@ -16,7 +16,7 @@
           },
           "has_the_recipe": {
             "conditions": {
-              "recipe": "superiorshields:engineers_shield"
+              "recipe": "superiorshields:flux_shield"
             },
             "trigger": "minecraft:recipe_unlocked"
           }
@@ -29,7 +29,7 @@
         ],
         "rewards": {
           "recipes": [
-            "superiorshields:engineers_shield"
+            "superiorshields:flux_shield"
           ]
         },
         "sends_telemetry_event": false

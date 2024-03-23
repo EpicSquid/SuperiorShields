@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-22T06:45:42.5907447	Recipes
+// 1.20.1	2024-03-23T14:50:26.3548118	Recipes
 cbee929fbc8c1752ae81cf4be6bcee3db6ad2538 data/superiorshields/advancements/recipes/bronze_shield.json
 31385bfabd0392c9a0d59275881cce56a14ef467 data/superiorshields/advancements/recipes/constantan_shield.json
 bf5426f710541081f2762a921f7f2fba7d1f625f data/superiorshields/advancements/recipes/copper_shield.json
@@ -9,7 +9,7 @@ defaf948d254c2c5e135777a5ac56b17ce2b6c44 data/superiorshields/advancements/recip
 f706cfe0a333c1ddfbe2f2e4fc4a05c32bd68f04 data/superiorshields/advancements/recipes/enchanter_shield.json
 29b87e5e651bc21d6d72af234f7b0e4b8d687c43 data/superiorshields/advancements/recipes/engineers_shield.json
 2bb879d38bcd61f5543ff0303e9fa43ab525410f data/superiorshields/advancements/recipes/fiery_shield.json
-16a484ebe5b52d4dc04563101245e6edd52a41fc data/superiorshields/advancements/recipes/flux_shield.json
+7859589a7de92633d2f4724376605428a6ff549f data/superiorshields/advancements/recipes/flux_shield.json
 3fac4d17acbf035b9cdeef5d33b6ebdf236f2539 data/superiorshields/advancements/recipes/golden_shield.json
 110088de5e3220cf3a077ff2a775c5673a268b5e data/superiorshields/advancements/recipes/invar_shield.json
 a0fda3c71a147da8c4ecae37ddeebdb8e386a49d data/superiorshields/advancements/recipes/ironwood_shield.json
@@ -40,7 +40,7 @@ f37a8e60c5804b664d471bde5d42eb147700403f data/superiorshields/recipes/copper_shi
 6d8a4d01224b04d2802e513353324fd511db2ae2 data/superiorshields/recipes/enchanter_shield.json
 9f5d50511ec826e2e5e2109c22b51e671ae685da data/superiorshields/recipes/engineers_shield.json
 586237528fa7b6d3f5b1bb7f16dcfa7b36b2ce5c data/superiorshields/recipes/fiery_shield.json
-12c97200dc5e8b9d60891687e6a404ac08fc35ea data/superiorshields/recipes/flux_shield.json
+1eef0db02132539cab2a1c2345270bad412a5d29 data/superiorshields/recipes/flux_shield.json
 3e3cf11906c6cd7078db2421e86494f0dd2835c7 data/superiorshields/recipes/golden_shield.json
 cefd3386c7c3f6a62ef6657427af29c652f4a820 data/superiorshields/recipes/invar_shield.json
 177452bc71cbf679c0118be14847550089c8edc5 data/superiorshields/recipes/ironwood_shield.json
